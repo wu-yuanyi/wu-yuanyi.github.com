@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>My blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Setting up a Github Pages blog with Hexo on MacInstallInstall node.js1brew install nodejs
+Installing Node.js and NPM is pretty straightforward using Homebrew. Homebrew handles downloading, unpacking a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="My blog">
+<meta property="og:url" content="http://wu-yuanyi.github.io/2017/03/27/github&hexo/index.html">
+<meta property="og:site_name" content="My blog">
+<meta property="og:description" content="Setting up a Github Pages blog with Hexo on MacInstallInstall node.js1brew install nodejs
+Installing Node.js and NPM is pretty straightforward using Homebrew. Homebrew handles downloading, unpacking a">
+<meta property="og:updated_time" content="2017-03-27T07:28:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="My blog">
+<meta name="twitter:description" content="Setting up a Github Pages blog with Hexo on MacInstallInstall node.js1brew install nodejs
+Installing Node.js and NPM is pretty straightforward using Homebrew. Homebrew handles downloading, unpacking a">
+  
+    <link rel="alternate" href="/atom.xml" title="My blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">My blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wu-yuanyi.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-github&amp;hexo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/27/github&hexo/" class="article-date">
+  <time datetime="2017-03-27T05:42:02.000Z" itemprop="datePublished">2017-03-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Setting-up-a-Github-Pages-blog-with-Hexo-on-Mac"><a href="#Setting-up-a-Github-Pages-blog-with-Hexo-on-Mac" class="headerlink" title="Setting up a Github Pages blog with Hexo on Mac"></a>Setting up a Github Pages blog with Hexo on Mac</h1><h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><h3 id="Install-node-js"><a href="#Install-node-js" class="headerlink" title="Install node.js"></a>Install node.js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install nodejs</div></pre></td></tr></table></figure>
+<p>Installing Node.js and NPM is pretty straightforward using Homebrew. Homebrew handles downloading, unpacking and installing Node and NPM on your system. The whole process (after you have XCode and Homebrew installed) should only take you a few minutes.</p>
+<ul>
+<li>To see if Node is installed, type <code>node -v</code> in iTerm. This should print the version number so you’ll see something like this <code>v7.7.4</code>.</li>
+<li>To see if NPM is installed, type <code>npm -v</code> in iTerm. This should print the version number so you’ll see something like this <code>4.1.2</code>.</li>
+</ul>
+<h3 id="Install-Hexo"><a href="#Install-Hexo" class="headerlink" title="Install Hexo"></a>Install Hexo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
+<ul>
+<li>To see if Hexo is installed, type <code>hexo -v</code> in iTerm.</li>
+</ul>
+<h2 id="Setup-Hexo"><a href="#Setup-Hexo" class="headerlink" title="Setup Hexo"></a>Setup Hexo</h2><p>Once you’ve got Hexo installed, you can simply run:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo init username.github.com</div><div class="line">$ cd username.github.com</div><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
+<p>Next, we need to configure a couple of things so open up the config file:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vim _config.yml</div></pre></td></tr></table></figure></p>
+<p>Some items you’ll want to immediately change are:</p>
+<ul>
+<li>title</li>
+<li>description</li>
+<li>author</li>
+<li>url<br>To make Github deployments work with <code>hexo deploy</code> you’ll want to make sure that the <code># Deployment</code> section looks something like:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># Deployment</div><div class="line">## Docs: https://hexo.io/docs/deployment.html</div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/username/username.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Setup-Github"><a href="#Setup-Github" class="headerlink" title="Setup Github"></a>Setup Github</h2><p>Github provides hosting for static websites via <a href="https://pages.github.com/" target="_blank" rel="external">Github Pages</a>. As long as you have an index.html in the root of your repo, Github will serve up the static files for you.</p>
+<h3 id="Create-a-new-repository-for-your-blog"><a href="#Create-a-new-repository-for-your-blog" class="headerlink" title="Create a new repository for your blog"></a>Create a new repository for your blog</h3><p>You can get this setup by creating the required repository for your new blog, simply create a new repo with the name format as <strong>\<github username\="">.github.com</github></strong>, for example: <strong>wu-yuanyi.github.com</strong>.</p>
+<h2 id="Generate-some-content"><a href="#Generate-some-content" class="headerlink" title="Generate some content"></a>Generate some content</h2><p>Now that everything is assembled in place, it’s time to flesh out the blog. To generate a new post in Hexo simply issue:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new &#123;postname&#125;</div></pre></td></tr></table></figure></p>
+<p>Now you can go ahead and add your content, and then when finished, simply run:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo generate</div><div class="line">$ hexo deploy</div></pre></td></tr></table></figure></p>
+<p>And your new blog will be live at <a href="http://username.github.com" target="_blank" rel="external">http://username.github.com</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/github&hexo/" data-id="cj0rsnaht0005xl4mgy1gsoam" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/27/AndroidEmulator/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android Emulator on Ubuntu
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/03/27/Click Fraud/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/27/Basic Principles of Information Protect/">Basic Principles of Information Protect</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/27/Tracking user with browser fingerprint/">Tracking user with browser&#39; fingerprint</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/27/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/27/通过运动传感器来追踪移动网页用户：攻击和防御/">通过运动传感器来追踪移动网页用户：攻击和防御</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Yuanyi Wu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

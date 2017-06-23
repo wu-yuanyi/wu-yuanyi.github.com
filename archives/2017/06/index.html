@@ -3,24 +3,14 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Android Emulator on Ubuntu | My blog</title>
+  <title>Archieven: 2017/6 | My blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="How to Resize Android 4.4 Emulator Internal StorageQuestion on StackOverFlow
-Problem:
-When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot get the internal storage to be anyt">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Android Emulator on Ubuntu">
-<meta property="og:url" content="http://wu-yuanyi.github.io/2017/03/27/AndroidEmulator/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="My blog">
+<meta property="og:url" content="http://wu-yuanyi.github.io/archives/2017/06/index.html">
 <meta property="og:site_name" content="My blog">
-<meta property="og:description" content="How to Resize Android 4.4 Emulator Internal StorageQuestion on StackOverFlow
-Problem:
-When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot get the internal storage to be anyt">
-<meta property="og:updated_time" content="2016-07-28T09:51:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android Emulator on Ubuntu">
-<meta name="twitter:description" content="How to Resize Android 4.4 Emulator Internal StorageQuestion on StackOverFlow
-Problem:
-When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot get the internal storage to be anyt">
+<meta name="twitter:title" content="My blog">
   
     <link rel="alternate" href="/atom.xml" title="My blog" type="application/atom+xml">
   
@@ -69,79 +59,39 @@ When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot g
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-AndroidEmulator" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/27/AndroidEmulator/" class="article-date">
-  <time datetime="2017-03-27T12:47:22.000Z" itemprop="datePublished">2017-03-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      Android Emulator on Ubuntu
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2017/06/16/study sas/" class="archive-article-date">
+  <time datetime="2017-06-16T01:22:15.000Z" itemprop="datePublished">Jun 16</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/06/16/study sas/">SAS学习心得</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="How-to-Resize-Android-4-4-Emulator-Internal-Storage"><a href="#How-to-Resize-Android-4-4-Emulator-Internal-Storage" class="headerlink" title="How to Resize Android 4.4 Emulator Internal Storage"></a>How to Resize Android 4.4 Emulator Internal Storage</h2><p><a href="http://stackoverflow.com/questions/20579606/android-4-4-virtual-device-internal-storage-will-not-resize#comment44086027_20762411" target="_blank" rel="external">Question on StackOverFlow</a></p>
-<p><strong>Problem</strong>:</p>
-<p>When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot get the internal storage to be anything larger than 200MB.</p>
-<p><strong>Solution</strong>:</p>
-<ul>
-<li>Now that the emulator file system is ext4 I was able to re-size the userdata.img using standard Linux tools.</li>
-<li>Even above suggestion can cause to android emulator hang on boot logo. The reason is that resize2fs do the changes thats are right in general but considered as broken fs by android and prevent it to mount it in rw mode, that hangs up the boot process.</li>
-<li>Event e2fsck does not fix it for android and to workaround it i use tune2fs to change the way how android should continue to mount broken fs.</li>
-</ul>
-<ol>
-<li>start emulator</li>
-<li>cd ~/.android/avd/emulator_name</li>
-<li>rm userdata-qemu.*</li>
-<li>resize2fs userdata.img 1024M</li>
-<li>start than stop emulator</li>
-<li>e2fsck -f userdata-qemu.img</li>
-<li>resize2fs userdata-qemu.img 1024M</li>
-<li>tune2fs -e continue userdata-qemu.img</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/AndroidEmulator/" data-id="cj49ikypv00002f4m9pcd22p3" class="article-share-link">Delen</a>
-      
-      
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/03/27/通过运动传感器来追踪移动网页用户：攻击和防御/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Nieuwer</strong>
-      <div class="article-nav-title">
-        
-          通过运动传感器来追踪移动网页用户：攻击和防御
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/03/27/github&hexo/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
-      <div class="article-nav-title">github&amp;hexo</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
 </section>
         

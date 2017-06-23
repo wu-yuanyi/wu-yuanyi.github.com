@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>SAS学习心得 | My blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="《SAS编程演义》笔记清歌苦调两不厌：夯实基础
+如何让SAS自动加载永久逻辑库
+如果想要让SAS语句建立的永久库在启动后就能看到，可以把包含LIBNAME语句的程序命名为autoexe.sas，并放入和sas.exe同级的目录中，此后每次SAS启动时会自动运行autosas.exe程序。
+通过工具按钮建立永久库时，可以在建立时勾上Enable at startup，下次启动SAS时就会自动加载这个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SAS学习心得">
+<meta property="og:url" content="http://wu-yuanyi.github.io/2017/06/16/study sas/index.html">
+<meta property="og:site_name" content="My blog">
+<meta property="og:description" content="《SAS编程演义》笔记清歌苦调两不厌：夯实基础
+如何让SAS自动加载永久逻辑库
+如果想要让SAS语句建立的永久库在启动后就能看到，可以把包含LIBNAME语句的程序命名为autoexe.sas，并放入和sas.exe同级的目录中，此后每次SAS启动时会自动运行autosas.exe程序。
+通过工具按钮建立永久库时，可以在建立时勾上Enable at startup，下次启动SAS时就会自动加载这个">
+<meta property="og:updated_time" content="2017-06-23T07:06:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SAS学习心得">
+<meta name="twitter:description" content="《SAS编程演义》笔记清歌苦调两不厌：夯实基础
+如何让SAS自动加载永久逻辑库
+如果想要让SAS语句建立的永久库在启动后就能看到，可以把包含LIBNAME语句的程序命名为autoexe.sas，并放入和sas.exe同级的目录中，此后每次SAS启动时会自动运行autosas.exe程序。
+通过工具按钮建立永久库时，可以在建立时勾上Enable at startup，下次启动SAS时就会自动加载这个">
+  
+    <link rel="alternate" href="/atom.xml" title="My blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">My blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wu-yuanyi.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-study sas" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/16/study sas/" class="article-date">
+  <time datetime="2017-06-16T01:22:15.000Z" itemprop="datePublished">2017-06-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SAS学习心得
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="《SAS编程演义》笔记"><a href="#《SAS编程演义》笔记" class="headerlink" title="《SAS编程演义》笔记"></a>《SAS编程演义》笔记</h1><h2 id="清歌苦调两不厌：夯实基础"><a href="#清歌苦调两不厌：夯实基础" class="headerlink" title="清歌苦调两不厌：夯实基础"></a>清歌苦调两不厌：夯实基础</h2><blockquote>
+<h3 id="如何让SAS自动加载永久逻辑库"><a href="#如何让SAS自动加载永久逻辑库" class="headerlink" title="如何让SAS自动加载永久逻辑库"></a>如何让SAS自动加载永久逻辑库</h3><ol>
+<li>如果想要让SAS语句建立的永久库在启动后就能看到，可以把包含LIBNAME语句的程序命名为autoexe.sas，并放入和sas.exe同级的目录中，此后每次SAS启动时会自动运行autosas.exe程序。</li>
+<li>通过工具按钮建立永久库时，可以在建立时勾上<em>Enable at startup</em>，下次启动SAS时就会自动加载这个永久库。</li>
+</ol>
+<h3 id="为什么又了数据文件还要视图"><a href="#为什么又了数据文件还要视图" class="headerlink" title="为什么又了数据文件还要视图"></a>为什么又了数据文件还要视图</h3><p>视图是依据查询语句动态生成，因此视图本身几乎不占据存储空间。利用视图可以节约硬盘空间。两者在世界内容效果方面是一样的。</p>
+<h3 id="日期与时间的本质"><a href="#日期与时间的本质" class="headerlink" title="日期与时间的本质"></a>日期与时间的本质</h3><ol>
+<li>日期实际存储的是距离1960年1月1日的天数</li>
+<li>时间是距离凌晨的秒数</li>
+</ol>
+<h3 id="打破SAS命名规则"><a href="#打破SAS命名规则" class="headerlink" title="打破SAS命名规则"></a>打破SAS命名规则</h3><p>修改系统选项<code>VALIDMEMNAME</code>和<code>VALIDVARNAME</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">options VALIDMEMNAME=extend VALIDVARNAME=any;</div><div class="line">data 中文名演示;</div><div class="line">    SAS中文变量名 = &quot;YES&quot;;</div><div class="line">    SAS中文變量名 = &quot;YES&quot;;</div><div class="line">    &apos;2SAS中文变量名&apos;n = &quot;YES&quot;;</div><div class="line">    &apos;SAS空格 #@%特殊字符变量名&apos;n = &quot;YES&quot;;</div><div class="line">run;</div></pre></td></tr></table></figure></p>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
+<li>不等于 ^= ~= </li>
+<li>两者取小 &gt;&lt;</li>
+<li>两者取大 &lt;&gt;</li>
+<li>连接运算符 ||</li>
+<li>与 &amp; and</li>
+<li>或 ! | or</li>
+<li>非 ^ ~ not</li>
+</ul>
+<h3 id="IF-ELSE配合DO-END"><a href="#IF-ELSE配合DO-END" class="headerlink" title="IF-ELSE配合DO-END"></a>IF-ELSE配合DO-END</h3><p> 希望执行的不仅仅是一个动作，而是多个动作，此时可以在关键词THEN后面用夹板语句DO-END，把多个动作整合在DO-END中。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data male female;</div><div class="line">  set sashelp.class;</div><div class="line">       if sex=&apos;M&apos; then do; gender=&apos;Male&apos;; output male; end;</div><div class="line">  else if sex=&apos;F&apos; then do; gender=&apos;Female&apos;; output female; end;</div><div class="line">  else put &apos;Invalid sex :&apos; sex;</div><div class="line">run;</div></pre></td></tr></table></figure></p>
+<p>###循环</p>
+<ul>
+<li>DO-END</li>
+<li>DO-WHILE</li>
+<li>DO-UNTIL<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">data random;</div><div class="line">    do i=1 to 10;</div><div class="line">        r=rannor(23);</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">data dowhile;</div><div class="line">    i=0;</div><div class="line">    do while(i&lt;5);</div><div class="line">        i+1;</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">data dountil;</div><div class="line">    i=0;</div><div class="line">    do until(i&gt;=5);</div><div class="line">        i+1;</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">run;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>###数组结构</p>
+<ul>
+<li>数组中的变量必须有相同的数据类型</li>
+<li><code>ARRAY array-name {number-of-elements} &lt;$&gt; &lt;length&gt; &lt;array-elements&gt; &lt;(initial-value-list)&gt;</code></li>
+<li>元素个数可以用{*}代替，让SAS自动计数；可以指定具体的数字，如{7}；可以指定一定的数字范围，如{1:7}</li>
+<li>元素名可以是变量名也可以是SAS自定义变量，如<em>ALL</em>（变量类型需相同，<em>NUMERIC</em>，<em>CHARACTER</em>，<em>TEMPORARY</em>（临时变量）</li>
+<li>&lt;&gt;中的内容并非必须有。如$和length只有在数组元素为字符型时才用到。</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wu-yuanyi.github.io/2017/06/16/study sas/" data-id="cj49ikyqh00042f4m5yui7h3i" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/05/04/mySQL grammar/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archieven</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recente berichten</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/16/study sas/">SAS学习心得</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/04/mySQL grammar/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/16/利用python 3进行数据分析/">利用python 3.6进行数据分析</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/11/happybase/">Start with happybase on Mac</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/27/Basic Principles of Information Protect/">Basic Principles of Information Protect</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Yuanyi Wu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

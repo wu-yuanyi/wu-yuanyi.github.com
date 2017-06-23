@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>My blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -20,13 +20,13 @@
   
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 </head>
 
 <body>
-  <div id="container">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
       <header id="header">
   <div id="banner"></div>
@@ -50,7 +50,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wu-yuanyi.github.io"></form>
@@ -61,10 +61,156 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-study sas" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/16/study sas/" class="article-date">
+  <time datetime="2017-06-16T01:22:15.000Z" itemprop="datePublished">2017-06-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/16/study sas/">SAS学习心得</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="《SAS编程演义》笔记"><a href="#《SAS编程演义》笔记" class="headerlink" title="《SAS编程演义》笔记"></a>《SAS编程演义》笔记</h1><h2 id="清歌苦调两不厌：夯实基础"><a href="#清歌苦调两不厌：夯实基础" class="headerlink" title="清歌苦调两不厌：夯实基础"></a>清歌苦调两不厌：夯实基础</h2><blockquote>
+<h3 id="如何让SAS自动加载永久逻辑库"><a href="#如何让SAS自动加载永久逻辑库" class="headerlink" title="如何让SAS自动加载永久逻辑库"></a>如何让SAS自动加载永久逻辑库</h3><ol>
+<li>如果想要让SAS语句建立的永久库在启动后就能看到，可以把包含LIBNAME语句的程序命名为autoexe.sas，并放入和sas.exe同级的目录中，此后每次SAS启动时会自动运行autosas.exe程序。</li>
+<li>通过工具按钮建立永久库时，可以在建立时勾上<em>Enable at startup</em>，下次启动SAS时就会自动加载这个永久库。</li>
+</ol>
+<h3 id="为什么又了数据文件还要视图"><a href="#为什么又了数据文件还要视图" class="headerlink" title="为什么又了数据文件还要视图"></a>为什么又了数据文件还要视图</h3><p>视图是依据查询语句动态生成，因此视图本身几乎不占据存储空间。利用视图可以节约硬盘空间。两者在世界内容效果方面是一样的。</p>
+<h3 id="日期与时间的本质"><a href="#日期与时间的本质" class="headerlink" title="日期与时间的本质"></a>日期与时间的本质</h3><ol>
+<li>日期实际存储的是距离1960年1月1日的天数</li>
+<li>时间是距离凌晨的秒数</li>
+</ol>
+<h3 id="打破SAS命名规则"><a href="#打破SAS命名规则" class="headerlink" title="打破SAS命名规则"></a>打破SAS命名规则</h3><p>修改系统选项<code>VALIDMEMNAME</code>和<code>VALIDVARNAME</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">options VALIDMEMNAME=extend VALIDVARNAME=any;</div><div class="line">data 中文名演示;</div><div class="line">    SAS中文变量名 = &quot;YES&quot;;</div><div class="line">    SAS中文變量名 = &quot;YES&quot;;</div><div class="line">    &apos;2SAS中文变量名&apos;n = &quot;YES&quot;;</div><div class="line">    &apos;SAS空格 #@%特殊字符变量名&apos;n = &quot;YES&quot;;</div><div class="line">run;</div></pre></td></tr></table></figure></p>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
+<li>不等于 ^= ~= </li>
+<li>两者取小 &gt;&lt;</li>
+<li>两者取大 &lt;&gt;</li>
+<li>连接运算符 ||</li>
+<li>与 &amp; and</li>
+<li>或 ! | or</li>
+<li>非 ^ ~ not</li>
+</ul>
+<h3 id="IF-ELSE配合DO-END"><a href="#IF-ELSE配合DO-END" class="headerlink" title="IF-ELSE配合DO-END"></a>IF-ELSE配合DO-END</h3><p> 希望执行的不仅仅是一个动作，而是多个动作，此时可以在关键词THEN后面用夹板语句DO-END，把多个动作整合在DO-END中。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data male female;</div><div class="line">  set sashelp.class;</div><div class="line">       if sex=&apos;M&apos; then do; gender=&apos;Male&apos;; output male; end;</div><div class="line">  else if sex=&apos;F&apos; then do; gender=&apos;Female&apos;; output female; end;</div><div class="line">  else put &apos;Invalid sex :&apos; sex;</div><div class="line">run;</div></pre></td></tr></table></figure></p>
+<p>###循环</p>
+<ul>
+<li>DO-END</li>
+<li>DO-WHILE</li>
+<li>DO-UNTIL<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">data random;</div><div class="line">    do i=1 to 10;</div><div class="line">        r=rannor(23);</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">data dowhile;</div><div class="line">    i=0;</div><div class="line">    do while(i&lt;5);</div><div class="line">        i+1;</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">data dountil;</div><div class="line">    i=0;</div><div class="line">    do until(i&gt;=5);</div><div class="line">        i+1;</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">run;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>###数组结构</p>
+<ul>
+<li>数组中的变量必须有相同的数据类型</li>
+<li><code>ARRAY array-name {number-of-elements} &lt;$&gt; &lt;length&gt; &lt;array-elements&gt; &lt;(initial-value-list)&gt;</code></li>
+<li>元素个数可以用{*}代替，让SAS自动计数；可以指定具体的数字，如{7}；可以指定一定的数字范围，如{1:7}</li>
+<li>元素名可以是变量名也可以是SAS自定义变量，如<em>ALL</em>（变量类型需相同，<em>NUMERIC</em>，<em>CHARACTER</em>，<em>TEMPORARY</em>（临时变量）</li>
+<li>&lt;&gt;中的内容并非必须有。如$和length只有在数组元素为字符型时才用到。</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wu-yuanyi.github.io/2017/06/16/study sas/" data-id="cj49ikyqh00042f4m5yui7h3i" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mySQL grammar" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/04/mySQL grammar/" class="article-date">
+  <time datetime="2017-05-04T14:37:59.000Z" itemprop="datePublished">2017-05-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="SQL基础"><a href="#SQL基础" class="headerlink" title="SQL基础"></a>SQL基础</h1><h2 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name;</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table_name;</div></pre></td></tr></table></figure>
+<h2 id="Distinct"><a href="#Distinct" class="headerlink" title="Distinct"></a>Distinct</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name;</div></pre></td></tr></table></figure>
+<h2 id="Where"><a href="#Where" class="headerlink" title="Where"></a>Where</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure>
+<h2 id="And-Or-Not"><a href="#And-Or-Not" class="headerlink" title="And , Or, Not"></a>And , Or, Not</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition1 <span class="keyword">and</span> condition2 <span class="keyword">and</span> condition3 ...;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition1 <span class="keyword">or</span> condition2 <span class="keyword">or</span> condition3 ...;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> <span class="keyword">not</span> condition;</div></pre></td></tr></table></figure>
+<h2 id="Order-By"><a href="#Order-By" class="headerlink" title="Order By"></a>Order By</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> column1, column2, ... <span class="keyword">ASC</span>|<span class="keyword">DESC</span>;</div></pre></td></tr></table></figure>
+<h2 id="Insert-Into"><a href="#Insert-Into" class="headerlink" title="Insert Into"></a>Insert Into</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name </div><div class="line"><span class="keyword">values</span> (value1, value2, value3, ...);</div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name (column1, column2, column3, ...) </div><div class="line"><span class="keyword">values</span> (value1, value2, value3, ...);</div></pre></td></tr></table></figure>
+<h2 id="Null-Values"><a href="#Null-Values" class="headerlink" title="Null Values"></a>Null Values</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column_names</div><div class="line"><span class="keyword">from</span> table_name</div><div class="line"><span class="keyword">where</span> column_name <span class="keyword">is</span> <span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column_names</div><div class="line"><span class="keyword">from</span> table_name</div><div class="line"><span class="keyword">where</span> column_name <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span>;</div></pre></td></tr></table></figure>
+<h2 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">update</span> table_name </div><div class="line"><span class="keyword">set</span> column1 = value1, column2 = value2, ... </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure>
+<h2 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wu-yuanyi.github.io/2017/05/04/mySQL grammar/" data-id="cj49ikyql00072f4ms59vkhl9" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-利用python 3进行数据分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/16/利用python 3进行数据分析/" class="article-date">
+  <time datetime="2017-04-16T11:14:54.000Z" itemprop="datePublished">2017-04-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/16/利用python 3进行数据分析/">利用python 3.6进行数据分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pip3 install numpy</div><div class="line">pip3 install scipy</div><div class="line">pip3 install pandas</div><div class="line">pip3 install matplotlib</div></pre></td></tr></table></figure>
+<h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy, matplotlib</div><div class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> pet</div><div class="line">plt.plot(numpy.arange(<span class="number">10</span>))</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<h1 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> scipy</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> json</div><div class="line"></div><div class="line">records = [json.loads(line) <span class="keyword">for</span> line <span class="keyword">in</span> open(path)]</div><div class="line">time_zones = [rec[<span class="string">'tz'</span>] <span class="keyword">for</span> rec <span class="keyword">in</span> records <span class="keyword">if</span> <span class="string">'tz'</span> <span class="keyword">in</span> rec]</div><div class="line"></div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_counts2</span><span class="params">(sequence)</span>:</span></div><div class="line">    counts = defaultdict(int)</div><div class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> sequence:</div><div class="line">        counts[x] +=<span class="number">1</span></div><div class="line">    <span class="keyword">return</span> counts</div><div class="line"><span class="comment"># sequence=[0,0,0,0,1,1,1,1,1]</span></div><div class="line"><span class="comment"># d = get_counts2(sequence)</span></div><div class="line"><span class="comment"># &gt;&gt;&gt; defaultdict(int, &#123;0: 4, 1: 5&#125;)</span></div><div class="line"><span class="comment"># dcit(d.items())</span></div><div class="line"><span class="comment"># &gt;&gt;&gt; &#123;0: 4, 1: 5&#125;</span></div><div class="line"></div><div class="line">counts = get_counts(time_zones)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">top_counts</span><span class="params">(count_dcit, n=<span class="number">10</span>)</span>:</span></div><div class="line">   value_key_pairs = [(count, tz) <span class="keyword">for</span> tz, count <span class="keyword">in</span> count_dict.items()]</div><div class="line">   value_key_pairs.sort()</div><div class="line">   <span class="keyword">return</span> value_key_pairs[-n:]</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wu-yuanyi.github.io/2017/04/16/利用python 3进行数据分析/" data-id="cj49ikyqp00082f4mmxbjb3b2" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-happybase" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/04/11/happybase/" class="article-date">
-  <time datetime="2017-04-11T02:32:11.000Z" itemprop="datePublished">2017-04-11</time>
+  <time datetime="2017-04-11T08:59:37.000Z" itemprop="datePublished">2017-04-11</time>
 </a>
     
   </div>
@@ -109,87 +255,18 @@
 <h2 id="Alias-1"><a href="#Alias-1" class="headerlink" title="Alias"></a>Alias</h2><p>To simplify life edit your ~/.bash_profile using vim and add the following two commands.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">alias hbstart=&quot;/usr/local/Cellar/hbase/1.2.2/bin/start-hbase.sh&quot;</div><div class="line">alias hbstop=&quot;/usr/local/Cellar/hbase/1.2.2/bin/stop-hbase.sh&quot;</div></pre></td></tr></table></figure></p>
 <h2 id="Good-to-know-1"><a href="#Good-to-know-1" class="headerlink" title="Good to know"></a>Good to know</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ hstart</div><div class="line">$ hbstart</div><div class="line">$ jps</div><div class="line">32384 NameNode</div><div class="line">33024 Jps</div><div class="line">32967 HMaster</div><div class="line">32712 ResourceManager</div><div class="line">32587 SecondaryNameNode</div><div class="line">32476 DataNode</div><div class="line">32812 NodeManager</div><div class="line">$ hbstop</div><div class="line">$ hstop</div></pre></td></tr></table></figure>
 <h1 id="Install-happybase"><a href="#Install-happybase" class="headerlink" title="Install happybase"></a>Install happybase</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install happybase</div></pre></td></tr></table></figure>
-<h1 id="Examplesfor-happybase"><a href="#Examplesfor-happybase" class="headerlink" title="Examplesfor happybase"></a>Examplesfor happybase</h1><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> happybase</div><div class="line">connection = happybase.Connection(<span class="string">'localhost'</span>,table_prefix=<span class="string">'namespace'</span>)</div><div class="line"><span class="comment"># Starting with HBase 0.94, the Thrift server optionally uses a framed transport.</span></div><div class="line"><span class="comment"># table_prefix is similar to namespace</span></div><div class="line">connection.create_table(<span class="string">'data'</span>,&#123;<span class="string">'p'</span>:dict()&#125;,)</div><div class="line">connection.tables()</div><div class="line"></div><div class="line">table = connection.table(<span class="string">'data'</span>)</div><div class="line"></div><div class="line"><span class="comment"># input one row</span></div><div class="line">table.put(<span class="string">'o'</span>, &#123;<span class="string">'p:label'</span>: <span class="string">'0'</span>, <span class="string">'p:version'</span>: <span class="string">'201701'</span>, <span class="string">'p:weight'</span>: <span class="string">'0.4'</span>&#125;)</div><div class="line"></div><div class="line"><span class="comment"># input rows</span></div><div class="line"><span class="keyword">with</span> table.batch() <span class="keyword">as</span> bat:</div><div class="line">    bat.put(<span class="string">'1'</span>,&#123;<span class="string">'p:label'</span>: <span class="string">'1'</span>, <span class="string">'p:version'</span>: <span class="string">'201702'</span>, <span class="string">'p:weight'</span>: <span class="string">'0.5'</span>&#125;)</div><div class="line">    bat.put(<span class="string">'2'</span>,&#123;<span class="string">'p:label'</span>: <span class="string">'2'</span>, <span class="string">'p:version'</span>: <span class="string">'201703'</span>, <span class="string">'p:weight'</span>: <span class="string">'0.6'</span>&#125;)</div><div class="line"></div><div class="line"><span class="comment"># scan whole table</span></div><div class="line"><span class="keyword">for</span> key, value <span class="keyword">in</span> table.scan():</div><div class="line">    <span class="keyword">print</span> key, value</div><div class="line"></div><div class="line"><span class="comment"># scan with timestamp</span></div><div class="line">table.put(<span class="string">'2'</span>, &#123;<span class="string">'p:label'</span>: <span class="string">'233'</span>, <span class="string">'p:version'</span>: <span class="string">'2017234'</span>, <span class="string">'p:weight'</span>: <span class="string">'0.9'</span>&#125;,timestamp=<span class="number">201704</span>)</div><div class="line">table.row(<span class="string">'2'</span>,timestamp=<span class="number">201704</span>)</div><div class="line"></div><div class="line"><span class="comment"># enable and disable tables</span></div><div class="line">connection.enable_table(<span class="string">'data'</span>)</div><div class="line">connection.disable_table(<span class="string">'data'</span>)</div><div class="line"></div><div class="line"><span class="comment"># delete table</span></div><div class="line">connection.delete_table(<span class="string">'data'</span>)</div></pre></td></tr></table></figure>
+<h1 id="Examplesfor-happybase"><a href="#Examplesfor-happybase" class="headerlink" title="Examplesfor happybase"></a>Examplesfor happybase</h1><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> happybase</div><div class="line">connection = happybase.Connection(<span class="string">'localhost'</span>,table_prefix=<span class="string">'namespace'</span>)</div><div class="line"><span class="comment"># Starting with HBase 0.94, the Thrift server optionally uses a framed transport.</span></div><div class="line"><span class="comment"># table_prefix is similar to namespace</span></div><div class="line">connection.create_table(<span class="string">'data'</span>,&#123;<span class="string">'p'</span>:dict()&#125;,)</div><div class="line">connection.tables()</div><div class="line"></div><div class="line">table = connection.table(<span class="string">'data'</span>)</div><div class="line"></div><div class="line"><span class="comment"># input one row</span></div><div class="line">table.put(<span class="string">'o'</span>, &#123;<span class="string">'p:label'</span>: <span class="string">'0'</span>, <span class="string">'p:version'</span>: <span class="string">'201701'</span>, <span class="string">'p:weight'</span>: <span class="string">'0.4'</span>&#125;)</div><div class="line"></div><div class="line"><span class="comment"># input rows</span></div><div class="line"><span class="keyword">with</span> table.batch() <span class="keyword">as</span> bat:</div><div class="line">    bat.put(<span class="string">'1'</span>,&#123;<span class="string">'p:label'</span>: <span class="string">'1'</span>, <span class="string">'p:version'</span>: <span class="string">'201702'</span>, <span class="string">'p:weight'</span>: <span class="string">'0.5'</span>&#125;)</div><div class="line">    bat.put(<span class="string">'2'</span>,&#123;<span class="string">'p:label'</span>: <span class="string">'2'</span>, <span class="string">'p:version'</span>: <span class="string">'201703'</span>, <span class="string">'p:weight'</span>: <span class="string">'0.6'</span>&#125;)</div><div class="line"></div><div class="line"><span class="comment"># scan datas stored by batch with timestamp</span></div><div class="line">scan(row=<span class="string">'2'</span>,timestamnp=<span class="number">201704</span>) <span class="comment">#must larger than stored timestamp</span></div><div class="line"></div><div class="line"><span class="comment"># scan whole table</span></div><div class="line"><span class="keyword">for</span> key, value <span class="keyword">in</span> table.scan():</div><div class="line">    <span class="keyword">print</span> key, value</div><div class="line"></div><div class="line"><span class="comment"># scan with timestamp</span></div><div class="line">table.put(<span class="string">'2'</span>, &#123;<span class="string">'p:label'</span>: <span class="string">'233'</span>, <span class="string">'p:version'</span>: <span class="string">'2017234'</span>, <span class="string">'p:weight'</span>: <span class="string">'0.9'</span>&#125;,timestamp=<span class="number">201704</span>)</div><div class="line">table.row(<span class="string">'2'</span>,timestamp=<span class="number">201704</span>)</div><div class="line"></div><div class="line"><span class="comment"># enable and disable tables</span></div><div class="line">connection.enable_table(<span class="string">'data'</span>)</div><div class="line">connection.disable_table(<span class="string">'data'</span>)</div><div class="line"></div><div class="line"><span class="comment"># delete table</span></div><div class="line">connection.delete_table(<span class="string">'data'</span>)</div></pre></td></tr></table></figure>
 <p>##Problems need to solve</p>
 <h4 id="Connect-again"><a href="#Connect-again" class="headerlink" title="Connect again"></a>Connect again</h4><p>Need to coonect again after error or don’t use after second<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">connection = happybase.Connection(<span class="string">'localhost'</span>)</div><div class="line">table = connection.table(<span class="string">'namespace_data'</span>)</div></pre></td></tr></table></figure></p>
 <h3 id="TTransportException"><a href="#TTransportException" class="headerlink" title="TTransportException"></a>TTransportException</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">/usr/local/lib/python2.7/site-packages/thriftpy/transport/socket.pyc in read(self, sz)</div><div class="line">    123         if len(buff) == 0:</div><div class="line">    124             raise TTransportException(type=TTransportException.END_OF_FILE,</div><div class="line">--&gt; 125                                       message='TSocket read 0 bytes')</div><div class="line">    126         return buff</div><div class="line">    127</div><div class="line"></div><div class="line">TTransportException: TTransportException(message='TSocket read 0 bytes', type=4)</div></pre></td></tr></table></figure>
 <h3 id="Broken-pipe"><a href="#Broken-pipe" class="headerlink" title="Broken pipe"></a>Broken pipe</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">/usr/local/Cellar/python/2.7.13/Frameworks/Python.framework/Versions/2.7/lib/python2.7/socket.pyc in meth(name, self, *args)</div><div class="line">    226</div><div class="line">    227 def meth(name,self,*args):</div><div class="line">--&gt; 228     return getattr(self._sock,name)(*args)</div><div class="line">    229</div><div class="line">    230 for _m in _socketmethods:</div><div class="line"></div><div class="line">error: [Errno 32] Broken pipe</div></pre></td></tr></table></figure>
 <h3 id="Thrift-closed"><a href="#Thrift-closed" class="headerlink" title="Thrift closed"></a>Thrift closed</h3><p>thrift closed selfly after one hour, need to config it.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">2017-04-10 09:38:31,614 INFO  [main] util.VersionInfo: HBase 1.2.2</div><div class="line">2017-04-10 09:38:31,615 INFO  [main] util.VersionInfo: Source code repository git://asf-dev/home/busbey/projects/hbase revision=3f671c1ead70d249ea4598f1bbcc5151322b3a13</div><div class="line">2017-04-10 09:38:31,615 INFO  [main] util.VersionInfo: Compiled by busbey on Fri Jul  1 08:28:55 CDT 2016</div><div class="line">2017-04-10 09:38:31,615 INFO  [main] util.VersionInfo: From source with checksum 7ac43c3d2f62f134b2a6aa1a05ad66ac</div><div class="line">2017-04-10 09:38:31,888 INFO  [main] thrift.ThriftServerRunner: Using default thrift server type</div><div class="line">2017-04-10 09:38:31,888 INFO  [main] thrift.ThriftServerRunner: Using thrift server type threadpool</div><div class="line">2017-04-10 09:38:31,920 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</div><div class="line"></div><div class="line"></div><div class="line">2017-04-10 10:38:32,580 INFO  [ConnectionCache_ChoreService_1] client.ConnectionManager$HConnectionImplementation: Closing master protocol: MasterService</div><div class="line">2017-04-10 10:38:32,581 INFO  [ConnectionCache_ChoreService_1] client.ConnectionManager$HConnectionImplementation: Closing zookeeper sessionid=0x15b558148f70006</div><div class="line">2017-04-10 10:38:32,588 INFO  [ConnectionCache_ChoreService_1] zookeeper.ZooKeeper: Session: 0x15b558148f70006 closed</div><div class="line">2017-04-10 10:38:32,588 INFO  [thrift-worker-2-EventThread] zookeeper.ClientCnxn: EventThread shut down</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">152</span>]: table.row(<span class="string">'66613341731'</span>,include_timestamp=<span class="keyword">True</span>)</div><div class="line">Out[<span class="number">152</span>]: &#123;<span class="string">'p:1'</span>: (<span class="string">'0.13'</span>, <span class="number">2017</span>)&#125;</div><div class="line"></div><div class="line">In [<span class="number">156</span>]: table.row(<span class="string">'66613341731'</span>,timestamp=<span class="number">2018</span>, include_timestamp=<span class="keyword">True</span>)</div><div class="line">Out[<span class="number">156</span>]: &#123;<span class="string">'p:1'</span>: (<span class="string">'0.13'</span>, <span class="number">2017</span>)&#125;</div><div class="line"></div><div class="line">In [<span class="number">157</span>]: table.row(<span class="string">'66613341731'</span>,timestamp=<span class="number">2017</span>, include_timestamp=<span class="keyword">True</span>)</div><div class="line">Out[<span class="number">157</span>]: &#123;&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/04/11/happybase/" data-id="cj1cxm6hb0005gz4m478kvi8l" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Click Fraud" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/27/Click Fraud/" class="article-date">
-  <time datetime="2017-03-27T12:47:24.000Z" itemprop="datePublished">2017-03-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/27/Click Fraud/">CLick Fraud</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>PPC(Pay Per Click) == CPC(Cost Per Click)<br>Click Fraud: Caused by competitors, disgruntled employees, software bots, and angry customers clicking on your ads.</p>
-<h2 id="ClickCease"><a href="#ClickCease" class="headerlink" title="ClickCease"></a>ClickCease</h2><p><a href="https://www.clickcease.com" target="_blank" rel="external">ClickCease</a></p>
-<ul>
-<li>24*7 Always On Click-Fraud Monitoring</li>
-<li>Stops Click-Fraud Before It Happens</li>
-<li>Business-Specific Click-Fraud detection Rules</li>
-<li>Save Money(up to 20%-25% of your advertising budget gets lost due to click fraud)</li>
-</ul>
-<p>FAQs</p>
-<ul>
-<li>Doesn’t Google prevent click fraud?<br>Google does detect click fraud, but does not prevent it. Instead, Google will give back credit to your account days after the fraud took place and only after you claim it.</li>
-<li>How do you detect fraudulent ad clicks?<br>(1) A HTML code that detects the attacker’s activity on your website.<br>(2) An Adwords tracking template that connects us directly to Google to get unique information regarding each click.</li>
-</ul>
-<h2 id="PPC-Surge"><a href="#PPC-Surge" class="headerlink" title="PPC Surge"></a>PPC Surge</h2><p><a href="https://www.ppcsurge.com" target="_blank" rel="external">PPC Surge</a><br>Once the Monitor is created, we will insert a tracking URL into your Google Adwords account. When a visitor clicks on your ad the tracking URL directs them to our website where we collect their IP address and other data (e.g., keyword) and redirect them to your site. This happens so quickly that, from the visitor’s perspective, it appears as though he/she simply clicked through to your site directly.</p>
-<p>If we detect a potential click fraud, instead of instantly redirecting the visitor to your website, we display a warning message on our site.</p>
-<p>If after seeing the warning message the visitor continues to click on your ads, our software tells Google to not display any more ads to that IP address thereby saving your advertising budget.</p>
-<h2 id="How-Google-doing-about-it"><a href="#How-Google-doing-about-it" class="headerlink" title="How Google doing about it?"></a>How Google doing about it?</h2><ul>
-<li>Advanced algorithms detect and filter out invalid clicks in real time, before advertisers are even charged.</li>
-<li>Google’s Ad Traffic Quality Team also conducts manual, offline analysis and removes any clicks that they deem invalid before advertisers are charged.</li>
-<li>Google also launches investigations based on advertisers’ reports of suspicious activity.</li>
-</ul>
-<h2 id="How-to-identify-click-fraud-by-yourself"><a href="#How-to-identify-click-fraud-by-yourself" class="headerlink" title="How to identify click fraud by yourself?"></a>How to identify click fraud by yourself?</h2><p>You need internal reporting. Internal reporting would tell you if that lead became a sale.</p>
-<ul>
-<li>IP address<br>IP address is pretty self-explanatory.</li>
-<li>click timestamp<br>The time when someone arrives on your site after clicking an ad.</li>
-<li>action timestamp<br>The time when that person completed an action on your site.<br>If you see an IP address with a bunch of click timestamps but no action timestamps, then that is likely click fraud.</li>
-<li>user agent<br>Identify whether someone on a particular IP is the same person.</li>
-<li>proxy<br>If the searches are very different, it’s likely a proxy server. If the search queries are similar and are occurring over a super short time period, the clicks are probably fraudulent.</li>
-</ul>
-<h2 id="4-tips-to-protect-yourself-from-click-happy-criminals"><a href="#4-tips-to-protect-yourself-from-click-happy-criminals" class="headerlink" title="4 tips to protect yourself from click-happy criminals"></a>4 tips to protect yourself from click-happy criminals</h2><ul>
-<li>Turn to Facebook/Twitter Ads<br>社交网络没有第三方发布者，他们往往是主要的点击诈骗的来源。恶意竞争者也很少见，因为有先进的定位选择。Set up IP Exclusions in AdWords</li>
-<li>Run GDN Remarketing Campaigns（只发部给到过网站的人看）<br>不是很懂</li>
-<li>Adjust Your Ad Targeting<br>排除一些劳动力便宜的地点或语言（click farms）<h2 id="To-be-Continued"><a href="#To-be-Continued" class="headerlink" title="To be Continued"></a>To be Continued</h2></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Click Fraud/" data-id="cj1cxm6gx0000gz4m0b61ft7e" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/04/11/happybase/" data-id="cj49ikyqk00062f4m2g9v2vql" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -289,7 +366,77 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Basic Principles of Information Protect/" data-id="cj1cxm6h70002gz4mmczigx24" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Basic Principles of Information Protect/" data-id="cj49ikypz00012f4ms37x2lug" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Click Fraud" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/27/Click Fraud/" class="article-date">
+  <time datetime="2017-03-27T12:47:24.000Z" itemprop="datePublished">2017-03-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/27/Click Fraud/">CLick Fraud</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>PPC(Pay Per Click) == CPC(Cost Per Click)<br>Click Fraud: Caused by competitors, disgruntled employees, software bots, and angry customers clicking on your ads.</p>
+<h2 id="ClickCease"><a href="#ClickCease" class="headerlink" title="ClickCease"></a>ClickCease</h2><p><a href="https://www.clickcease.com" target="_blank" rel="external">ClickCease</a></p>
+<ul>
+<li>24*7 Always On Click-Fraud Monitoring</li>
+<li>Stops Click-Fraud Before It Happens</li>
+<li>Business-Specific Click-Fraud detection Rules</li>
+<li>Save Money(up to 20%-25% of your advertising budget gets lost due to click fraud)</li>
+</ul>
+<p>FAQs</p>
+<ul>
+<li>Doesn’t Google prevent click fraud?<br>Google does detect click fraud, but does not prevent it. Instead, Google will give back credit to your account days after the fraud took place and only after you claim it.</li>
+<li>How do you detect fraudulent ad clicks?<br>(1) A HTML code that detects the attacker’s activity on your website.<br>(2) An Adwords tracking template that connects us directly to Google to get unique information regarding each click.</li>
+</ul>
+<h2 id="PPC-Surge"><a href="#PPC-Surge" class="headerlink" title="PPC Surge"></a>PPC Surge</h2><p><a href="https://www.ppcsurge.com" target="_blank" rel="external">PPC Surge</a><br>Once the Monitor is created, we will insert a tracking URL into your Google Adwords account. When a visitor clicks on your ad the tracking URL directs them to our website where we collect their IP address and other data (e.g., keyword) and redirect them to your site. This happens so quickly that, from the visitor’s perspective, it appears as though he/she simply clicked through to your site directly.</p>
+<p>If we detect a potential click fraud, instead of instantly redirecting the visitor to your website, we display a warning message on our site.</p>
+<p>If after seeing the warning message the visitor continues to click on your ads, our software tells Google to not display any more ads to that IP address thereby saving your advertising budget.</p>
+<h2 id="How-Google-doing-about-it"><a href="#How-Google-doing-about-it" class="headerlink" title="How Google doing about it?"></a>How Google doing about it?</h2><ul>
+<li>Advanced algorithms detect and filter out invalid clicks in real time, before advertisers are even charged.</li>
+<li>Google’s Ad Traffic Quality Team also conducts manual, offline analysis and removes any clicks that they deem invalid before advertisers are charged.</li>
+<li>Google also launches investigations based on advertisers’ reports of suspicious activity.</li>
+</ul>
+<h2 id="How-to-identify-click-fraud-by-yourself"><a href="#How-to-identify-click-fraud-by-yourself" class="headerlink" title="How to identify click fraud by yourself?"></a>How to identify click fraud by yourself?</h2><p>You need internal reporting. Internal reporting would tell you if that lead became a sale.</p>
+<ul>
+<li>IP address<br>IP address is pretty self-explanatory.</li>
+<li>click timestamp<br>The time when someone arrives on your site after clicking an ad.</li>
+<li>action timestamp<br>The time when that person completed an action on your site.<br>If you see an IP address with a bunch of click timestamps but no action timestamps, then that is likely click fraud.</li>
+<li>user agent<br>Identify whether someone on a particular IP is the same person.</li>
+<li>proxy<br>If the searches are very different, it’s likely a proxy server. If the search queries are similar and are occurring over a super short time period, the clicks are probably fraudulent.</li>
+</ul>
+<h2 id="4-tips-to-protect-yourself-from-click-happy-criminals"><a href="#4-tips-to-protect-yourself-from-click-happy-criminals" class="headerlink" title="4 tips to protect yourself from click-happy criminals"></a>4 tips to protect yourself from click-happy criminals</h2><ul>
+<li>Turn to Facebook/Twitter Ads<br>社交网络没有第三方发布者，他们往往是主要的点击诈骗的来源。恶意竞争者也很少见，因为有先进的定位选择。Set up IP Exclusions in AdWords</li>
+<li>Run GDN Remarketing Campaigns（只发部给到过网站的人看）<br>不是很懂</li>
+<li>Adjust Your Ad Targeting<br>排除一些劳动力便宜的地点或语言（click farms）<h2 id="To-be-Continued"><a href="#To-be-Continued" class="headerlink" title="To be Continued"></a>To be Continued</h2></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Click Fraud/" data-id="cj49ikyqe00022f4mpfhn4vji" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -330,111 +477,111 @@
 <h4 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h4><table>
 <thead>
 <tr>
-<th style="text-align:right">Attribute</th>
+<th style="text-align:left">Attribute</th>
 <th style="text-align:center">Source</th>
-<th style="text-align:left">Function or Example</th>
+<th style="text-align:right">Function or Example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:right">User agent</td>
+<td style="text-align:left">User agent</td>
 <td style="text-align:center">HTTP header</td>
-<td style="text-align:left">“Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36”</td>
+<td style="text-align:right">“Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36”</td>
 </tr>
 <tr>
-<td style="text-align:right">Accept</td>
+<td style="text-align:left">Accept</td>
 <td style="text-align:center">HTTP header</td>
-<td style="text-align:left">“text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,<em>/</em>;q=0.8””text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,<em>/</em>;q=0.8”</td>
+<td style="text-align:right">“text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,<em>/</em>;q=0.8””text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,<em>/</em>;q=0.8”</td>
 </tr>
 <tr>
-<td style="text-align:right">Content encoding</td>
+<td style="text-align:left">Content encoding</td>
 <td style="text-align:center">HTTP header</td>
-<td style="text-align:left">“gzip, deflate, sdch, br”</td>
+<td style="text-align:right">“gzip, deflate, sdch, br”</td>
 </tr>
 <tr>
-<td style="text-align:right">Content language</td>
+<td style="text-align:left">Content language</td>
 <td style="text-align:center">HTTP header</td>
-<td style="text-align:left">“en-US,en;q=0.8”</td>
+<td style="text-align:right">“en-US,en;q=0.8”</td>
 </tr>
 <tr>
-<td style="text-align:right">List of plugins</td>
+<td style="text-align:left">List of plugins</td>
 <td style="text-align:center">JavaScript</td>
-<td style="text-align:left">navigator.plugins</td>
+<td style="text-align:right">navigator.plugins</td>
 </tr>
 <tr>
-<td style="text-align:right">Platform</td>
+<td style="text-align:left">Platform</td>
 <td style="text-align:center">JavaScript</td>
-<td style="text-align:left">navigator.platform</td>
+<td style="text-align:right">navigator.platform</td>
 </tr>
 <tr>
-<td style="text-align:right">Cookies enabled</td>
+<td style="text-align:left">Cookies enabled</td>
 <td style="text-align:center">JavaScript</td>
-<td style="text-align:left">navigator.cookieEnabled</td>
+<td style="text-align:right">navigator.cookieEnabled</td>
 </tr>
 <tr>
-<td style="text-align:right">Do not track</td>
+<td style="text-align:left">Do not track</td>
 <td style="text-align:center">JavaScript</td>
-<td style="text-align:left">navigator.doNotTrack</td>
+<td style="text-align:right">navigator.doNotTrack</td>
 </tr>
 <tr>
-<td style="text-align:right">Timezone</td>
+<td style="text-align:left">Timezone</td>
 <td style="text-align:center">JavaScript</td>
-<td style="text-align:left">new Date().getTimezoneOffset()</td>
+<td style="text-align:right">new Date().getTimezoneOffset()</td>
 </tr>
 <tr>
-<td style="text-align:right">Screen resolution and depth</td>
+<td style="text-align:left">Screen resolution and depth</td>
 <td style="text-align:center">JavaScript</td>
-<td style="text-align:left">screen.width/height/colordepth</td>
+<td style="text-align:right">screen.width/height/colordepth</td>
 </tr>
 <tr>
-<td style="text-align:right">Use of local/session storage</td>
+<td style="text-align:left">Use of local/session storage</td>
 <td style="text-align:center">JavaScript</td>
-<td style="text-align:left">localStorage/sessionStorage</td>
+<td style="text-align:right">localStorage/sessionStorage</td>
 </tr>
 <tr>
-<td style="text-align:right"><strong>Canvas</strong></td>
+<td style="text-align:left"><strong>Canvas</strong></td>
 <td style="text-align:center">JavaScript</td>
-<td style="text-align:left"></td>
+<td style="text-align:right"></td>
 </tr>
 <tr>
-<td style="text-align:right">WebGL Vendor</td>
+<td style="text-align:left">WebGL Vendor</td>
 <td style="text-align:center">JavaScript</td>
-<td style="text-align:left">canvas.getContext(“…”)<sup>code 1</sup></td>
+<td style="text-align:right">canvas.getContext(“…”)<sup>code 1</sup></td>
 </tr>
 <tr>
-<td style="text-align:right">WebGL Render</td>
+<td style="text-align:left">WebGL Render</td>
 <td style="text-align:center">JavaScript</td>
-<td style="text-align:left">canvas.getContext(“…”)<sup>code 1</sup></td>
+<td style="text-align:right">canvas.getContext(“…”)<sup>code 1</sup></td>
 </tr>
 <tr>
-<td style="text-align:right">Use of Adblock</td>
+<td style="text-align:left">Use of Adblock</td>
 <td style="text-align:center">JavaScript</td>
-<td style="text-align:left"><a href="http://www.detectadblock.com/" target="_blank" rel="external">Detect Adblock</a></td>
+<td style="text-align:right"><a href="http://www.detectadblock.com/" target="_blank" rel="external">Detect Adblock</a></td>
 </tr>
 <tr>
-<td style="text-align:right"><strong>List of fonts</strong></td>
+<td style="text-align:left"><strong>List of fonts</strong></td>
 <td style="text-align:center">Sinde-channel</td>
-<td style="text-align:left"><a href="https://seclab.cs.ucsb.edu/media/uploads/papers/sp2013_cookieless.pdf" target="_blank" rel="external">List 1 in Cookieless Monster<sup>code 2</sup></a></td>
+<td style="text-align:right"><a href="https://seclab.cs.ucsb.edu/media/uploads/papers/sp2013_cookieless.pdf" target="_blank" rel="external">List 1 in Cookieless Monster<sup>code 2</sup></a></td>
 </tr>
 <tr>
-<td style="text-align:right"><em>List of fonts</em></td>
+<td style="text-align:left"><em>List of fonts</em></td>
 <td style="text-align:center">Flash</td>
-<td style="text-align:left">flash.text.Font.enumerateFonts(true)</td>
+<td style="text-align:right">flash.text.Font.enumerateFonts(true)</td>
 </tr>
 <tr>
-<td style="text-align:right"><em>Screen resolution</em></td>
+<td style="text-align:left"><em>Screen resolution</em></td>
 <td style="text-align:center">Flash</td>
-<td style="text-align:left">flash.system.Capabilities.screenResolutionX/Y</td>
+<td style="text-align:right">flash.system.Capabilities.screenResolutionX/Y</td>
 </tr>
 <tr>
-<td style="text-align:right"><em>Platform</em></td>
+<td style="text-align:left"><em>Platform</em></td>
 <td style="text-align:center">Flash</td>
-<td style="text-align:left">flash.system.Capabilities.os</td>
+<td style="text-align:right">flash.system.Capabilities.os</td>
 </tr>
 <tr>
-<td style="text-align:right"><em>Language</em></td>
+<td style="text-align:left"><em>Language</em></td>
 <td style="text-align:center">Flash</td>
-<td style="text-align:left">flash.system.Capabilities.language</td>
+<td style="text-align:right">flash.system.Capabilities.language</td>
 </tr>
 </tbody>
 </table>
@@ -547,7 +694,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Tracking user with browser fingerprint/" data-id="cj1cxm6h90003gz4mn3k430rv" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Tracking user with browser fingerprint/" data-id="cj49ikyqi00052f4m9013j0yz" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -832,7 +979,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/通过运动传感器来追踪移动网页用户：攻击和防御/" data-id="cj1cxm6hd0006gz4m0j9gc0nd" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/通过运动传感器来追踪移动网页用户：攻击和防御/" data-id="cj49ikyqq00092f4mm6hswruk" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -887,7 +1034,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/AndroidEmulator/" data-id="cj1cxm6h40001gz4mmxji7r6o" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/AndroidEmulator/" data-id="cj49ikypv00002f4m9pcd22p3" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -948,7 +1095,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/github&hexo/" data-id="cj1cxm6ha0004gz4m4s9k9jek" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/github&hexo/" data-id="cj49ikyqf00032f4momqcrmfi" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -973,9 +1120,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archieven</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
     </div>
   </div>
 
@@ -983,28 +1130,28 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Recente berichten</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/06/16/study sas/">SAS学习心得</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/04/mySQL grammar/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/16/利用python 3进行数据分析/">利用python 3.6进行数据分析</a>
+          </li>
         
           <li>
             <a href="/2017/04/11/happybase/">Start with happybase on Mac</a>
           </li>
         
           <li>
-            <a href="/2017/03/27/Click Fraud/">CLick Fraud</a>
-          </li>
-        
-          <li>
             <a href="/2017/03/27/Basic Principles of Information Protect/">Basic Principles of Information Protect</a>
-          </li>
-        
-          <li>
-            <a href="/2017/03/27/Tracking user with browser fingerprint/">Tracking user with browser&#39; fingerprint</a>
-          </li>
-        
-          <li>
-            <a href="/2017/03/27/通过运动传感器来追踪移动网页用户：攻击和防御/">通过运动传感器来追踪移动网页用户：攻击和防御</a>
           </li>
         
       </ul>
@@ -1043,6 +1190,23 @@
 
 <script src="/js/script.js"></script>
 
-  </div>
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

@@ -17,7 +17,7 @@
 如何让SAS自动加载永久逻辑库
 如果想要让SAS语句建立的永久库在启动后就能看到，可以把包含LIBNAME语句的程序命名为autoexe.sas，并放入和sas.exe同级的目录中，此后每次SAS启动时会自动运行autosas.exe程序。
 通过工具按钮建立永久库时，可以在建立时勾上Enable at startup，下次启动SAS时就会自动加载这个">
-<meta property="og:updated_time" content="2017-06-23T07:06:58.000Z">
+<meta property="og:updated_time" content="2017-07-25T05:34:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SAS学习心得">
 <meta name="twitter:description" content="《SAS编程演义》笔记清歌苦调两不厌：夯实基础
@@ -63,7 +63,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wu-yuanyi.github.io"></form>
@@ -115,27 +115,48 @@
 <li>非 ^ ~ not</li>
 </ul>
 <h3 id="IF-ELSE配合DO-END"><a href="#IF-ELSE配合DO-END" class="headerlink" title="IF-ELSE配合DO-END"></a>IF-ELSE配合DO-END</h3><p> 希望执行的不仅仅是一个动作，而是多个动作，此时可以在关键词THEN后面用夹板语句DO-END，把多个动作整合在DO-END中。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data male female;</div><div class="line">  set sashelp.class;</div><div class="line">       if sex=&apos;M&apos; then do; gender=&apos;Male&apos;; output male; end;</div><div class="line">  else if sex=&apos;F&apos; then do; gender=&apos;Female&apos;; output female; end;</div><div class="line">  else put &apos;Invalid sex :&apos; sex;</div><div class="line">run;</div></pre></td></tr></table></figure></p>
-<p>###循环</p>
-<ul>
+<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><ul>
 <li>DO-END</li>
 <li>DO-WHILE</li>
 <li>DO-UNTIL<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">data random;</div><div class="line">    do i=1 to 10;</div><div class="line">        r=rannor(23);</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">data dowhile;</div><div class="line">    i=0;</div><div class="line">    do while(i&lt;5);</div><div class="line">        i+1;</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">data dountil;</div><div class="line">    i=0;</div><div class="line">    do until(i&gt;=5);</div><div class="line">        i+1;</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">run;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>###数组结构</p>
-<ul>
+<h3 id="数组结构"><a href="#数组结构" class="headerlink" title="数组结构"></a>数组结构</h3><ul>
 <li>数组中的变量必须有相同的数据类型</li>
 <li><code>ARRAY array-name {number-of-elements} &lt;$&gt; &lt;length&gt; &lt;array-elements&gt; &lt;(initial-value-list)&gt;</code></li>
 <li>元素个数可以用{*}代替，让SAS自动计数；可以指定具体的数字，如{7}；可以指定一定的数字范围，如{1:7}</li>
 <li>元素名可以是变量名也可以是SAS自定义变量，如<em>ALL</em>（变量类型需相同，<em>NUMERIC</em>，<em>CHARACTER</em>，<em>TEMPORARY</em>（临时变量）</li>
 <li>&lt;&gt;中的内容并非必须有。如$和length只有在数组元素为字符型时才用到。</li>
 </ul>
+<p>PDV与DATA步自循环<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">data demoPDV;</div><div class="line">    put &quot;第&quot; _n_ &quot;次前运行：&quot; _all_;</div><div class="line">    input ID $  Chiness  Math  English;</div><div class="line">    Sum = Chiness + Math + English;</div><div class="line">    put &quot;第&quot; _n_ &quot;次后运行：&quot; _all_;</div><div class="line">datalines;</div><div class="line">S001 80 99 93</div><div class="line">S002 90 85 95</div><div class="line">S003 83 88 81</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure></p>
+<h3 id="与"><a href="#与" class="headerlink" title="@与@@"></a>@与@@</h3><ul>
+<li>当DATALINES数据行里要读入的数据列数=要读入的变量数，也就是说一行就是一条观测时，无尾。</li>
+<li>当DATALINES数据行里要读入的数据列数&gt;要读入的变量数，而且是整数倍时，也就是说一行=K*数条观测(K为&gt;=1的整数)，用@@。</li>
+<li>当一个DATA步里有多个INPUT语句时，我们需要单尾@。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">* 数据列数=变量数</div><div class="line">data test1;</div><div class="line">    input id x y z;</div><div class="line">    datalines;</div><div class="line">    1 98 99 97</div><div class="line">    2 93 91 92</div><div class="line">    ;</div><div class="line">run;</div><div class="line"></div><div class="line">* 数据列数=变量数，多个input语句</div><div class="line">data test2;</div><div class="line">    input id@;</div><div class="line">    input x@;</div><div class="line">    input y@;</div><div class="line">    input z@;</div><div class="line">    datalines;</div><div class="line">    1 98 99 97</div><div class="line">    2 93 91 92</div><div class="line">    ;</div><div class="line">run;</div><div class="line"></div><div class="line">* 数据列数=k*变量数</div><div class="line">data test3;</div><div class="line">    input id x y z @@;</div><div class="line">    datalines;</div><div class="line">    1 98 99 97 2 93 91 92;</div><div class="line">run;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>无尾Hold不住立即跳</li>
+<li>一尾(@)Hold住当前INPUT语句不跳，但若刚好是DATA步最后一个INPUT语句，跳。</li>
+<li>二尾(@@)打死都不跳。</li>
+<li>最后，无论多少尾，数据行末尾必定自动跳。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">data test;</div><div class="line">    input x @;</div><div class="line">    input y;</div><div class="line">    input @@;</div><div class="line">datalines;</div><div class="line">1 2 3</div><div class="line">4 5 6</div><div class="line">7</div><div class="line">;</div><div class="line">run;</div><div class="line"></div><div class="line">data test;</div><div class="line">    input x;</div><div class="line">    input y @@;</div><div class="line">    input z @;</div><div class="line">datalines;</div><div class="line">1 2 3</div><div class="line">4 5 6</div><div class="line">7</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="苔点狂吞纳线青"><a href="#苔点狂吞纳线青" class="headerlink" title="苔点狂吞纳线青"></a>苔点狂吞纳线青</h2><blockquote>
+<h3 id="LIBNAME语句访问DBMS数据文件"><a href="#LIBNAME语句访问DBMS数据文件" class="headerlink" title="LIBNAME语句访问DBMS数据文件"></a>LIBNAME语句访问DBMS数据文件</h3><p> <strong>LIBNAME</strong> <em>libref</em> <em>engine-name</em> <em><sas access-connection-options=""></sas></em> <em><sas access-libname-options=""></sas></em>;</p>
+<ul>
+<li>libref: 逻辑库名，其实是存放数据表和视图的DBMS数据库、架构、服务器端别名</li>
+<li>engine-name: 引擎名,不同的DMBS数据文件需要指定不同的引擎名，入oracle、db2等</li>
+<li>SAS/ACCESS 连接选项，常用的如用户名，密码等，不同的DMBS数据文件会有所不同</li>
+<li>SAS／ACCESS 逻辑库选项，控制SAS处理DBMS对象的方式，不同的DBMS数据文件会有所不同</li>
+</ul>
 </blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/06/16/study sas/" data-id="cj49inhrs0007fs4m3j6jwhej" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/06/16/study sas/" data-id="cj5s0d2ol0009rz4mjmonpgz9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -143,6 +164,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2017/07/31/埋点/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
   
   
     <a href="/2017/05/04/mySQL grammar/" id="article-nav-older" class="article-nav-link-wrap">
@@ -169,9 +199,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Arkiv</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
     </div>
   </div>
 
@@ -179,9 +209,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Siste innlegg</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/07/31/埋点/">(no title)</a>
+          </li>
         
           <li>
             <a href="/2017/06/16/study sas/">SAS学习心得</a>
@@ -197,10 +231,6 @@
         
           <li>
             <a href="/2017/04/11/happybase/">Start with happybase on Mac</a>
-          </li>
-        
-          <li>
-            <a href="/2017/03/27/Basic Principles of Information Protect/">Basic Principles of Information Protect</a>
           </li>
         
       </ul>

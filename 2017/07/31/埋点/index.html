@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>My blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="无埋点 = 可视化监测部署 = 所见即所得的监测部署
+无论是监测网站，还是监测App，都必须加上监测代码或SDK，不加就搜集不到数据。
+无论是埋点方法还是不埋点方法，要搜集数据都要加监测代码或SDK，称之为基础代码。要搜集到所有用户行为的数据，光有基础代码是不够的。无论是网站还是App(尤其是App)，总有一些特殊的用户操作行为时不能靠基础代码捕获的。
+不能被基础代码捕获的用户操作行为，称为eve">
+<meta property="og:type" content="article">
+<meta property="og:title" content="My blog">
+<meta property="og:url" content="http://wu-yuanyi.github.io/2017/07/31/埋点/index.html">
+<meta property="og:site_name" content="My blog">
+<meta property="og:description" content="无埋点 = 可视化监测部署 = 所见即所得的监测部署
+无论是监测网站，还是监测App，都必须加上监测代码或SDK，不加就搜集不到数据。
+无论是埋点方法还是不埋点方法，要搜集数据都要加监测代码或SDK，称之为基础代码。要搜集到所有用户行为的数据，光有基础代码是不够的。无论是网站还是App(尤其是App)，总有一些特殊的用户操作行为时不能靠基础代码捕获的。
+不能被基础代码捕获的用户操作行为，称为eve">
+<meta property="og:updated_time" content="2017-07-31T10:24:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="My blog">
+<meta name="twitter:description" content="无埋点 = 可视化监测部署 = 所见即所得的监测部署
+无论是监测网站，还是监测App，都必须加上监测代码或SDK，不加就搜集不到数据。
+无论是埋点方法还是不埋点方法，要搜集数据都要加监测代码或SDK，称之为基础代码。要搜集到所有用户行为的数据，光有基础代码是不够的。无论是网站还是App(尤其是App)，总有一些特殊的用户操作行为时不能靠基础代码捕获的。
+不能被基础代码捕获的用户操作行为，称为eve">
+  
+    <link rel="alternate" href="/atom.xml" title="My blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">My blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wu-yuanyi.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-埋点" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/31/埋点/" class="article-date">
+  <time datetime="2017-07-31T03:10:03.000Z" itemprop="datePublished">2017-07-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>无埋点 = 可视化监测部署 = 所见即所得的监测部署</p>
+<p>无论是监测网站，还是监测App，都必须加上监测代码或SDK，不加就搜集不到数据。</p>
+<p>无论是埋点方法还是不埋点方法，要搜集数据都要加监测代码或SDK，称之为基础代码。要搜集到所有用户行为的数据，光有基础代码是不够的。无论是网站还是App(尤其是App)，总有一些特殊的用户操作行为时不能靠基础代码捕获的。</p>
+<p>不能被基础代码捕获的用户操作行为，称为event(事件)。</p>
+<ul>
+<li>网页：Javascript、Flash、Silverlight、AJAX、各种页面插件的交互等等</li>
+<li>App：包含用户点击在内的所有交互</li>
+<li>凡是遵守http协议的交互（最典型的就是网页的链接），皆是可以由基础监测代码直接监测到数据的。</li>
+<li>非http类型的用户交互，基础监测代码都无能为力。</li>
+</ul>
+<p>每一个需要监测的event互动，都被称为一个“监测点”。Web上需要的监测点较少，App上则布满了监测点。为了搜集这些监测点上的用户数据，必须部署上专用点事件监测代码(event tracking code)。</p>
+<p><strong>事件监测(埋点)只有在基础代码工作的情况下才能发挥作用。</strong></p>
+<p>机构为App配置无埋点监测点两种方法：</p>
+<ul>
+<li>手指取代鼠标，直接在手机上操作设置。</li>
+<li>在电脑浏览器端操作，类似于一个模拟器。</li>
+</ul>
+<p><strong>全埋点</strong>：本质上和无埋点并无不同。因为无埋点就是直接对页面中所有的交互元素的用户行为进行监听。即使App或网页的开发者不需要监测点部分，无埋点也会将用户行为数据和对应的发生地信息照单全收。</p>
+<p>无埋点和埋点点优劣对比<br>|  | 无埋点 | 埋点 |<br>| :–: | :–: | :–: |<br>| 是否需要加基础代码 | 要 | 要 |<br>| 事件监测部署简便性 | 非常简便，业务人员可以轻松操作 | 复杂，需要工程师帮助 |<br>| 事件历史数据回溯 | 可以回溯 | 埋点前点数据不可以回溯 |<br>| 事件的属性数据 | 常见的无埋点方法基本不可以添加额外属性 | 可添加或监测数个事件属性 |<br>| 事件的分类报告 | 常见的无埋点方法基本不可以实现分类报告 | 可以实现事件的分类报告 |<br>| 无明确发生地点的时间监测 | 无法监测 | 可以监测 |</p>
+<ul>
+<li>用户的交互行为，如果没有具体的“地点”，无埋点方法不适用。如：用户上滑屏幕时，新内容瀑布流式的底部载入。这种交互没有一个明确的监测点位置，是不可见点。在可视化事件监测设置点界面上找不到这类交互。</li>
+<li>可视化的无埋点部署，能够为交互行为设置的属性非常有限。一般无埋点部署，只能给交互行为起一个名字，然后机械的记录这个交互行为发生的次数。而埋点方法可以非常好的添加event背后的属性。</li>
+<li>埋点方法因为带有多个属性，用户可以轻松的通过这些属性进行分类数据报告的读取。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wu-yuanyi.github.io/2017/07/31/埋点/" data-id="cj5s0d2og0007rz4mbo8tvbd2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/06/16/study sas/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SAS学习心得</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Arkiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Siste innlegg</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/07/31/埋点/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/16/study sas/">SAS学习心得</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/04/mySQL grammar/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/16/利用python 3进行数据分析/">利用python 3.6进行数据分析</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/11/happybase/">Start with happybase on Mac</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Yuanyi Wu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -64,7 +64,7 @@
     <article id="post-Event tracking" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/08/01/Event tracking/" class="article-date">
-  <time datetime="2017-08-01T01:34:27.000Z" itemprop="datePublished">2017-08-01</time>
+  <time datetime="2017-08-01T02:35:29.000Z" itemprop="datePublished">2017-08-01</time>
 </a>
     
   </div>
@@ -101,7 +101,7 @@
 <li>在电脑浏览器端操作，类似于一个模拟器。</li>
 </ul>
 <p><strong>全埋点</strong>：本质上和无埋点并无不同。因为无埋点就是直接对页面中所有的交互元素的用户行为进行监听。即使App或网页的开发者不需要监测点部分，无埋点也会将用户行为数据和对应的发生地信息照单全收。</p>
-<p>无埋点和埋点点优劣对比<br>| 优劣 | 无埋点 | 埋点 |<br>| :–: | :–: | :–: |<br>| 是否需要加基础代码 | 要 | 要 |<br>| 事件监测部署简便性 | 非常简便，业务人员可以轻松操作 | 复杂，需要工程师帮助 |<br>| 事件历史数据回溯 | 可以回溯 | 埋点前点数据不可以回溯 |<br>| 事件的属性数据 | 常见的无埋点方法基本不可以添加额外属性 | 可添加或监测数个事件属性 |<br>| 事件的分类报告 | 常见的无埋点方法基本不可以实现分类报告 | 可以实现事件的分类报告 |<br>| 无明确发生地点的时间监测 | 无法监测 | 可以监测 |</p>
+<p>无埋点和埋点点优劣对比<br>| 优劣 | 无埋点 | 埋点 |<br>| :— | :— | :— |<br>| 是否需要加基础代码 | 要 | 要 |<br>| 事件监测部署简便性 | 非常简便，业务人员可以轻松操作 | 复杂，需要工程师帮助 |<br>| 事件历史数据回溯 | 可以回溯 | 埋点前点数据不可以回溯 |<br>| 事件的属性数据 | 常见的无埋点方法基本不可以添加额外属性 | 可添加或监测数个事件属性 |<br>| 事件的分类报告 | 常见的无埋点方法基本不可以实现分类报告 | 可以实现事件的分类报告 |<br>| 无明确发生地点的时间监测 | 无法监测 | 可以监测 |</p>
 <ul>
 <li>用户的交互行为，如果没有具体的“地点”，无埋点方法不适用。如：用户上滑屏幕时，新内容瀑布流式的底部载入。这种交互没有一个明确的监测点位置，是不可见点。在可视化事件监测设置点界面上找不到这类交互。</li>
 <li>可视化的无埋点部署，能够为交互行为设置的属性非常有限。一般无埋点部署，只能给交互行为起一个名字，然后机械的记录这个交互行为发生的次数。而埋点方法可以非常好的添加event背后的属性。</li>
@@ -111,7 +111,52 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/08/01/Event tracking/" data-id="cj5swyylx00002g4mc2vnuucd" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/08/01/Event tracking/" data-id="cj5sz1hpo00025h4mad1glseu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mySQL grammar" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/01/mySQL grammar/" class="article-date">
+  <time datetime="2017-08-01T02:13:36.000Z" itemprop="datePublished">2017-08-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/01/mySQL grammar/">MySQL grammer</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="SQL基础"><a href="#SQL基础" class="headerlink" title="SQL基础"></a>SQL基础</h1><h2 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name;</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table_name;</div></pre></td></tr></table></figure>
+<h2 id="Distinct"><a href="#Distinct" class="headerlink" title="Distinct"></a>Distinct</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name;</div></pre></td></tr></table></figure>
+<h2 id="Where"><a href="#Where" class="headerlink" title="Where"></a>Where</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure>
+<h2 id="And-Or-Not"><a href="#And-Or-Not" class="headerlink" title="And , Or, Not"></a>And , Or, Not</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition1 <span class="keyword">and</span> condition2 <span class="keyword">and</span> condition3 ...;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition1 <span class="keyword">or</span> condition2 <span class="keyword">or</span> condition3 ...;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> <span class="keyword">not</span> condition;</div></pre></td></tr></table></figure>
+<h2 id="Order-By"><a href="#Order-By" class="headerlink" title="Order By"></a>Order By</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> column1, column2, ... <span class="keyword">ASC</span>|<span class="keyword">DESC</span>;</div></pre></td></tr></table></figure>
+<h2 id="Insert-Into"><a href="#Insert-Into" class="headerlink" title="Insert Into"></a>Insert Into</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name </div><div class="line"><span class="keyword">values</span> (value1, value2, value3, ...);</div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name (column1, column2, column3, ...) </div><div class="line"><span class="keyword">values</span> (value1, value2, value3, ...);</div></pre></td></tr></table></figure>
+<h2 id="Null-Values"><a href="#Null-Values" class="headerlink" title="Null Values"></a>Null Values</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column_names</div><div class="line"><span class="keyword">from</span> table_name</div><div class="line"><span class="keyword">where</span> column_name <span class="keyword">is</span> <span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column_names</div><div class="line"><span class="keyword">from</span> table_name</div><div class="line"><span class="keyword">where</span> column_name <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span>;</div></pre></td></tr></table></figure>
+<h2 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">update</span> table_name </div><div class="line"><span class="keyword">set</span> column1 = value1, column2 = value2, ... </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure>
+<h2 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wu-yuanyi.github.io/2017/08/01/mySQL grammar/" data-id="cj5sz1hpx00075h4myvwg7fcp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -205,41 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/06/16/study sas/" data-id="cj5swyymr00082g4mbl1ncft0" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-mySQL grammar" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/05/04/mySQL grammar/" class="article-date">
-  <time datetime="2017-05-04T14:37:59.000Z" itemprop="datePublished">2017-05-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="SQL基础"><a href="#SQL基础" class="headerlink" title="SQL基础"></a>SQL基础</h1><h2 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name;</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table_name;</div></pre></td></tr></table></figure>
-<h2 id="Distinct"><a href="#Distinct" class="headerlink" title="Distinct"></a>Distinct</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name;</div></pre></td></tr></table></figure>
-<h2 id="Where"><a href="#Where" class="headerlink" title="Where"></a>Where</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure>
-<h2 id="And-Or-Not"><a href="#And-Or-Not" class="headerlink" title="And , Or, Not"></a>And , Or, Not</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition1 <span class="keyword">and</span> condition2 <span class="keyword">and</span> condition3 ...;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition1 <span class="keyword">or</span> condition2 <span class="keyword">or</span> condition3 ...;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> <span class="keyword">not</span> condition;</div></pre></td></tr></table></figure>
-<h2 id="Order-By"><a href="#Order-By" class="headerlink" title="Order By"></a>Order By</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> column1, column2, ... <span class="keyword">ASC</span>|<span class="keyword">DESC</span>;</div></pre></td></tr></table></figure>
-<h2 id="Insert-Into"><a href="#Insert-Into" class="headerlink" title="Insert Into"></a>Insert Into</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name </div><div class="line"><span class="keyword">values</span> (value1, value2, value3, ...);</div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name (column1, column2, column3, ...) </div><div class="line"><span class="keyword">values</span> (value1, value2, value3, ...);</div></pre></td></tr></table></figure>
-<h2 id="Null-Values"><a href="#Null-Values" class="headerlink" title="Null Values"></a>Null Values</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column_names</div><div class="line"><span class="keyword">from</span> table_name</div><div class="line"><span class="keyword">where</span> column_name <span class="keyword">is</span> <span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column_names</div><div class="line"><span class="keyword">from</span> table_name</div><div class="line"><span class="keyword">where</span> column_name <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span>;</div></pre></td></tr></table></figure>
-<h2 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">update</span> table_name </div><div class="line"><span class="keyword">set</span> column1 = value1, column2 = value2, ... </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure>
-<h2 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/05/04/mySQL grammar/" data-id="cj5swyymn00062g4muco61pi8" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/06/16/study sas/" data-id="cj5sz1hpy00085h4mrzfn3vr0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -278,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/04/16/利用python 3进行数据分析/" data-id="cj5swyymo00072g4m1mlwpitw" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/04/16/利用python 3进行数据分析/" data-id="cj5sz1hpz00095h4meyin8gfn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -347,7 +358,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/04/11/happybase/" data-id="cj5swyymt000a2g4myg7eqbi8" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/04/11/happybase/" data-id="cj5sz1hpv00065h4ms6pt84ak" class="article-share-link">Share</a>
       
       
     </footer>
@@ -605,7 +616,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Tracking user with browser fingerprint/" data-id="cj5swyym100012g4m3ogcli6e" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Tracking user with browser fingerprint/" data-id="cj5sz1hps00055h4mlun7k5a9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -675,107 +686,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Click Fraud/" data-id="cj5swyym600042g4mmes3p4bj" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Basic Principles of Information Protect" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/27/Basic Principles of Information Protect/" class="article-date">
-  <time datetime="2017-03-27T12:47:24.000Z" itemprop="datePublished">2017-03-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/27/Basic Principles of Information Protect/">Basic Principles of Information Protect</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://web.mit.edu/Saltzer/www/publications/protection/Basic.html" target="_blank" rel="external">Basic Principles of Information Protect</a></p>
-<p>An externally administered code of ethics or a lack of knowledge about computers adequately protects the stored information.<br>The protection mechanisms not only protect one user from another, they may also protect their own implementation.<br>A narrow view is dangerous. It is hard to prove that this negative requirement has been achieved</p>
-<h2 id="Considerations-Surrounding-the-Study-of-Protection"><a href="#Considerations-Surrounding-the-Study-of-Protection" class="headerlink" title="Considerations Surrounding the Study of Protection"></a>Considerations Surrounding the Study of Protection</h2><h3 id="Examples-of-security-techniques-sometimes-applied-to-computer-systems-are-the-following"><a href="#Examples-of-security-techniques-sometimes-applied-to-computer-systems-are-the-following" class="headerlink" title="Examples of security techniques sometimes applied to computer systems are the following:"></a>Examples of security techniques sometimes applied to computer systems are the following:</h3><ul>
-<li>labeling files with lists of authorized users,</li>
-<li>verifying the identity of a prospective user by demanding a password,</li>
-<li>shielding the computer to prevent interception and subsequent interpretation of electromagnetic radiation,</li>
-<li>enciphering information sent over telephone lines,</li>
-<li>locking the room containing the computer,</li>
-<li>controlling who is allowed to make changes to the computer system (both its hardware and software),</li>
-<li>using redundant circuits or programmed cross-checks that maintain security in the face of hardware or software failures,</li>
-<li>certifying that the hardware and software are actually implemented as intended.</li>
-</ul>
-<h3 id="Functional-Levels-of-Information-Protection"><a href="#Functional-Levels-of-Information-Protection" class="headerlink" title="Functional Levels of Information Protection:"></a>Functional Levels of Information Protection:</h3><ul>
-<li>unprotected system</li>
-<li>before release<ul>
-<li>all-or-nothing system</li>
-<li>controlled sharing</li>
-<li>user_programmed sharing controls</li>
-</ul>
-</li>
-<li>after release<ul>
-<li>putting strings on information</li>
-</ul>
-</li>
-</ul>
-<h3 id="Design-principles"><a href="#Design-principles" class="headerlink" title="Design principles"></a>Design principles</h3><ul>
-<li>Economy of mechanism(simple and small)</li>
-<li>faill-safe default(white list)</li>
-<li>complete mediation</li>
-<li>open design</li>
-<li>separation of privilege</li>
-<li>least privilege</li>
-<li>least common mechanism</li>
-<li>psychological acceptability</li>
-<li>two further design principles<ul>
-<li>work factor</li>
-<li>compromise recording</li>
-</ul>
-</li>
-</ul>
-<h2 id="Technical-Underpinnings"><a href="#Technical-Underpinnings" class="headerlink" title="Technical Underpinnings"></a>Technical Underpinnings</h2><h3 id="development-plan"><a href="#development-plan" class="headerlink" title="development plan"></a>development plan</h3><ul>
-<li>from the top down: a subject is coherent and self-contained</li>
-<li>bottom-up: a topic still containing ad hoc strategies and competing world views</li>
-</ul>
-<h3 id="essentials-of-information-protection"><a href="#essentials-of-information-protection" class="headerlink" title="essentials of information protection"></a>essentials of information protection</h3><ul>
-<li>protect</li>
-<li>authenticate</li>
-</ul>
-<h3 id="an-isolated-virtual-machine"><a href="#an-isolated-virtual-machine" class="headerlink" title="an isolated virtual machine"></a>an isolated virtual machine</h3><ul>
-<li>descriptor register</li>
-<li>privileged bit</li>
-<li>supervisor</li>
-</ul>
-<h3 id="authentication-mechanisms"><a href="#authentication-mechanisms" class="headerlink" title="authentication mechanisms"></a>authentication mechanisms</h3><ul>
-<li>password<ul>
-<li>easy to guess</li>
-<li>exposed to be used</li>
-</ul>
-</li>
-</ul>
-<h3 id="shared-information"><a href="#shared-information" class="headerlink" title="shared information"></a>shared information</h3><ul>
-<li>list-oriented(high-level)</li>
-<li>ticket-oriented(low-level)</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Basic Principles of Information Protect/" data-id="cj5swyym300022g4m8ee8kutk" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Click Fraud/" data-id="cj5sz1hpp00035h4mdt3yjv2o" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1060,7 +971,107 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/通过运动传感器来追踪移动网页用户：攻击和防御/" data-id="cj5swyyms00092g4mmregf8jg" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/通过运动传感器来追踪移动网页用户：攻击和防御/" data-id="cj5sz1hq1000a5h4mx1sc6s1r" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Basic Principles of Information Protect" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/27/Basic Principles of Information Protect/" class="article-date">
+  <time datetime="2017-03-27T12:47:24.000Z" itemprop="datePublished">2017-03-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/27/Basic Principles of Information Protect/">Basic Principles of Information Protect</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://web.mit.edu/Saltzer/www/publications/protection/Basic.html" target="_blank" rel="external">Basic Principles of Information Protect</a></p>
+<p>An externally administered code of ethics or a lack of knowledge about computers adequately protects the stored information.<br>The protection mechanisms not only protect one user from another, they may also protect their own implementation.<br>A narrow view is dangerous. It is hard to prove that this negative requirement has been achieved</p>
+<h2 id="Considerations-Surrounding-the-Study-of-Protection"><a href="#Considerations-Surrounding-the-Study-of-Protection" class="headerlink" title="Considerations Surrounding the Study of Protection"></a>Considerations Surrounding the Study of Protection</h2><h3 id="Examples-of-security-techniques-sometimes-applied-to-computer-systems-are-the-following"><a href="#Examples-of-security-techniques-sometimes-applied-to-computer-systems-are-the-following" class="headerlink" title="Examples of security techniques sometimes applied to computer systems are the following:"></a>Examples of security techniques sometimes applied to computer systems are the following:</h3><ul>
+<li>labeling files with lists of authorized users,</li>
+<li>verifying the identity of a prospective user by demanding a password,</li>
+<li>shielding the computer to prevent interception and subsequent interpretation of electromagnetic radiation,</li>
+<li>enciphering information sent over telephone lines,</li>
+<li>locking the room containing the computer,</li>
+<li>controlling who is allowed to make changes to the computer system (both its hardware and software),</li>
+<li>using redundant circuits or programmed cross-checks that maintain security in the face of hardware or software failures,</li>
+<li>certifying that the hardware and software are actually implemented as intended.</li>
+</ul>
+<h3 id="Functional-Levels-of-Information-Protection"><a href="#Functional-Levels-of-Information-Protection" class="headerlink" title="Functional Levels of Information Protection:"></a>Functional Levels of Information Protection:</h3><ul>
+<li>unprotected system</li>
+<li>before release<ul>
+<li>all-or-nothing system</li>
+<li>controlled sharing</li>
+<li>user_programmed sharing controls</li>
+</ul>
+</li>
+<li>after release<ul>
+<li>putting strings on information</li>
+</ul>
+</li>
+</ul>
+<h3 id="Design-principles"><a href="#Design-principles" class="headerlink" title="Design principles"></a>Design principles</h3><ul>
+<li>Economy of mechanism(simple and small)</li>
+<li>faill-safe default(white list)</li>
+<li>complete mediation</li>
+<li>open design</li>
+<li>separation of privilege</li>
+<li>least privilege</li>
+<li>least common mechanism</li>
+<li>psychological acceptability</li>
+<li>two further design principles<ul>
+<li>work factor</li>
+<li>compromise recording</li>
+</ul>
+</li>
+</ul>
+<h2 id="Technical-Underpinnings"><a href="#Technical-Underpinnings" class="headerlink" title="Technical Underpinnings"></a>Technical Underpinnings</h2><h3 id="development-plan"><a href="#development-plan" class="headerlink" title="development plan"></a>development plan</h3><ul>
+<li>from the top down: a subject is coherent and self-contained</li>
+<li>bottom-up: a topic still containing ad hoc strategies and competing world views</li>
+</ul>
+<h3 id="essentials-of-information-protection"><a href="#essentials-of-information-protection" class="headerlink" title="essentials of information protection"></a>essentials of information protection</h3><ul>
+<li>protect</li>
+<li>authenticate</li>
+</ul>
+<h3 id="an-isolated-virtual-machine"><a href="#an-isolated-virtual-machine" class="headerlink" title="an isolated virtual machine"></a>an isolated virtual machine</h3><ul>
+<li>descriptor register</li>
+<li>privileged bit</li>
+<li>supervisor</li>
+</ul>
+<h3 id="authentication-mechanisms"><a href="#authentication-mechanisms" class="headerlink" title="authentication mechanisms"></a>authentication mechanisms</h3><ul>
+<li>password<ul>
+<li>easy to guess</li>
+<li>exposed to be used</li>
+</ul>
+</li>
+</ul>
+<h3 id="shared-information"><a href="#shared-information" class="headerlink" title="shared information"></a>shared information</h3><ul>
+<li>list-oriented(high-level)</li>
+<li>ticket-oriented(low-level)</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Basic Principles of Information Protect/" data-id="cj5sz1hpl00015h4muyzst0zh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1115,7 +1126,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/AndroidEmulator/" data-id="cj5swyym500032g4mdcm2ugn9" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/AndroidEmulator/" data-id="cj5sz1hph00005h4mo6waq7lu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1146,7 +1157,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
     </div>
   </div>
 
@@ -1163,11 +1174,11 @@
           </li>
         
           <li>
-            <a href="/2017/06/16/study sas/">SAS学习心得</a>
+            <a href="/2017/08/01/mySQL grammar/">MySQL grammer</a>
           </li>
         
           <li>
-            <a href="/2017/05/04/mySQL grammar/">(no title)</a>
+            <a href="/2017/06/16/study sas/">SAS学习心得</a>
           </li>
         
           <li>

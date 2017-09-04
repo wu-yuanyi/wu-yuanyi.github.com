@@ -61,6 +61,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-AndroidEmulator" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/27/AndroidEmulator/" class="article-date">
+  <time datetime="2017-03-27T12:47:22.000Z" itemprop="datePublished">2017-03-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/27/AndroidEmulator/">Android Emulator on Ubuntu</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="How-to-Resize-Android-4-4-Emulator-Internal-Storage"><a href="#How-to-Resize-Android-4-4-Emulator-Internal-Storage" class="headerlink" title="How to Resize Android 4.4 Emulator Internal Storage"></a>How to Resize Android 4.4 Emulator Internal Storage</h2><p><a href="http://stackoverflow.com/questions/20579606/android-4-4-virtual-device-internal-storage-will-not-resize#comment44086027_20762411" target="_blank" rel="external">Question on StackOverFlow</a></p>
+<p><strong>Problem</strong>:</p>
+<p>When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot get the internal storage to be anything larger than 200MB.</p>
+<p><strong>Solution</strong>:</p>
+<ul>
+<li>Now that the emulator file system is ext4 I was able to re-size the userdata.img using standard Linux tools.</li>
+<li>Even above suggestion can cause to android emulator hang on boot logo. The reason is that resize2fs do the changes thats are right in general but considered as broken fs by android and prevent it to mount it in rw mode, that hangs up the boot process.</li>
+<li>Event e2fsck does not fix it for android and to workaround it i use tune2fs to change the way how android should continue to mount broken fs.</li>
+</ul>
+<ol>
+<li>start emulator</li>
+<li>cd ~/.android/avd/emulator_name</li>
+<li>rm userdata-qemu.*</li>
+<li>resize2fs userdata.img 1024M</li>
+<li>start than stop emulator</li>
+<li>e2fsck -f userdata-qemu.img</li>
+<li>resize2fs userdata-qemu.img 1024M</li>
+<li>tune2fs -e continue userdata-qemu.img</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/AndroidEmulator/" data-id="cj75j11pk00011f4m6d6e4x3z" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-github&amp;hexo" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/03/27/github&hexo/" class="article-date">
@@ -112,7 +167,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/github&hexo/" data-id="cj5sz7kzz00056y4m4l80q1ut" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/github&hexo/" data-id="cj75j11q000051f4mtg469p5x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -156,6 +211,10 @@
       <ul>
         
           <li>
+            <a href="/2017/08/02/black production survey/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2017/08/01/Event tracking/">Event tracking</a>
           </li>
         
@@ -169,10 +228,6 @@
         
           <li>
             <a href="/2017/04/16/利用python 3进行数据分析/">利用python 3.6进行数据分析</a>
-          </li>
-        
-          <li>
-            <a href="/2017/04/11/happybase/">Start with happybase on Mac</a>
           </li>
         
       </ul>

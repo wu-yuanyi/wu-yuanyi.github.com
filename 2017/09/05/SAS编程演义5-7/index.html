@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>《SAS编程演义》笔记（5-7章） | My blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="亦应帷幄运鸿筹：数据库集
+MODIFY语句
+
+修改所有观测
+
+1234567891011data class;	set sashelp.class;	weight = weight*0.4536; /*lbs-&amp;gt;kg*/	height = height*0.0254; /*in-&amp;gt;m*/run;data sashelp.class;	modify sashelp.class;	weig">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《SAS编程演义》笔记（5-7章）">
+<meta property="og:url" content="http://wu-yuanyi.github.io/2017/09/05/SAS编程演义5-7/index.html">
+<meta property="og:site_name" content="My blog">
+<meta property="og:description" content="亦应帷幄运鸿筹：数据库集
+MODIFY语句
+
+修改所有观测
+
+1234567891011data class;	set sashelp.class;	weight = weight*0.4536; /*lbs-&amp;gt;kg*/	height = height*0.0254; /*in-&amp;gt;m*/run;data sashelp.class;	modify sashelp.class;	weig">
+<meta property="og:updated_time" content="2017-09-05T07:08:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《SAS编程演义》笔记（5-7章）">
+<meta name="twitter:description" content="亦应帷幄运鸿筹：数据库集
+MODIFY语句
+
+修改所有观测
+
+1234567891011data class;	set sashelp.class;	weight = weight*0.4536; /*lbs-&amp;gt;kg*/	height = height*0.0254; /*in-&amp;gt;m*/run;data sashelp.class;	modify sashelp.class;	weig">
+  
+    <link rel="alternate" href="/atom.xml" title="My blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">My blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wu-yuanyi.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-SAS编程演义5-7" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/05/SAS编程演义5-7/" class="article-date">
+  <time datetime="2017-09-05T03:15:23.000Z" itemprop="datePublished">2017-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      《SAS编程演义》笔记（5-7章）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="亦应帷幄运鸿筹：数据库集"><a href="#亦应帷幄运鸿筹：数据库集" class="headerlink" title="亦应帷幄运鸿筹：数据库集"></a>亦应帷幄运鸿筹：数据库集</h2><blockquote>
+<h3 id="MODIFY语句"><a href="#MODIFY语句" class="headerlink" title="MODIFY语句"></a>MODIFY语句</h3></blockquote>
+<ul>
+<li>修改所有观测</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">data class;</div><div class="line">	set sashelp.class;</div><div class="line">	weight = weight*0.4536; /*lbs-&gt;kg*/</div><div class="line">	height = height*0.0254; /*in-&gt;m*/</div><div class="line">run;</div><div class="line"></div><div class="line">data sashelp.class;</div><div class="line">	modify sashelp.class;</div><div class="line">	weight = weight*0.4536; /*lbs-&gt;kg*/</div><div class="line">	height = height*0.0254; /*in-&gt;m*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<ul>
+<li>修改匹配观测<ul>
+<li>主数据集(Master Dataset)：存放原始数据。</li>
+<li>事物数据集(Transaction Dataset)：存放匹配变量、需要修改的变量及其新值。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">data raw;/*主数据集*/</div><div class="line">	name=&quot;吴源燚&quot;;gender=&quot;&quot;;age=2;Location=&quot;SH&quot;;output;</div><div class="line">	name=&quot;WUYY&quot;;gender=&quot;M&quot;;age=.;Location=&quot;SH&quot;;output;</div><div class="line">run;</div><div class="line"></div><div class="line">data new;/*事物数据集*/</div><div class="line">	name=&quot;吴源燚&quot;;gender=&quot;M&quot;;</div><div class="line">	name=&quot;WUYY&quot;;age=30;output;</div><div class="line">	name=&quot;WUYY&quot;;age=35;output;</div><div class="line">run;</div><div class="line"></div><div class="line">data raw;</div><div class="line">	modify raw new;</div><div class="line">	by name;</div><div class="line">	replace; /*默认可省略*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wu-yuanyi.github.io/2017/09/05/SAS编程演义5-7/" data-id="cj7798skp0005m34mcfklvcyt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/05/SAS编程演义1-4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          《SAS编程演义》笔记（1-4章）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/02/black production survey/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">网贷黑中介调研</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/05/SAS编程演义1-4/">《SAS编程演义》笔记（1-4章）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/05/SAS编程演义5-7/">《SAS编程演义》笔记（5-7章）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/02/black production survey/">网贷黑中介调研</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/01/Event tracking/">Event tracking</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/01/mySQL grammar/">MySQL grammer</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Yuanyi Wu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

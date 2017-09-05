@@ -225,7 +225,7 @@
 <h3 id="读入TXT特殊字符分隔的文件"><a href="#读入TXT特殊字符分隔的文件" class="headerlink" title="读入TXT特殊字符分隔的文件"></a>读入TXT特殊字符分隔的文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">filename mytxttab &quot;D:\Data\Raw|class_tab.txt&quot;</div><div class="line">filename mytxtblk &quot;D:\Data\Raw|class_blk.txt&quot;</div><div class="line">proc import</div><div class="line">    datafile=mytxttab dbms=dlm out=tmp replace;</div><div class="line">delimiter=&apos;09&apos;x;</div><div class="line">getnames=yes;</div><div class="line">run;</div><div class="line">proc import</div><div class="line">    datafile=mytxtblk dbms=dlm out=tmp replace;</div><div class="line">delimiter=&apos;20&apos;x;</div><div class="line">getnames=yes;</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h3 id="INPUT语句列表读入式"><a href="#INPUT语句列表读入式" class="headerlink" title="INPUT语句列表读入式"></a>INPUT语句列表读入式</h3></blockquote>
 <p>适合数据不齐整</p>
-<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable &lt;$&gt; &lt;:|$|~&gt; &lt;<em>informat.</em>&gt; <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#x40;&#124;&#x40;&#x40;">&#x40;&#124;&#x40;&#x40;</a>;</p>
+<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable &lt;$&gt; &lt;:|$|~&gt; &lt;<em>informat.</em>&gt; <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#x40;&#x7c;&#x40;&#x40;">&#x40;&#x7c;&#x40;&#x40;</a>;</p>
 <ul>
 <li>pointer-control: 控制变量读入点起始位置。针对行: #, /。针对列: @, +。</li>
 <li>variable: 变量列表</li>
@@ -242,7 +242,7 @@
 <blockquote>
 <h3 id="INPUT语句列读入式"><a href="#INPUT语句列读入式" class="headerlink" title="INPUT语句列读入式"></a>INPUT语句列读入式</h3></blockquote>
 <p>适合数据齐整的情况</p>
-<p><strong>INPUT</strong> variable&lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#64;&#124;&#x40;&#64;">&#64;&#124;&#x40;&#64;</a>;</p>
+<p><strong>INPUT</strong> variable&lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#58;&#x40;&#x7c;&#64;&#x40;">&#x40;&#x7c;&#64;&#x40;</a>;</p>
 <ul>
 <li>start-column&lt;-end-column&gt;: 变量读入点起止列</li>
 <li>.decimals: 小数位数</li>
@@ -251,7 +251,7 @@
 <blockquote>
 <h3 id="INPUT语句格式读入式"><a href="#INPUT语句格式读入式" class="headerlink" title="INPUT语句格式读入式"></a>INPUT语句格式读入式</h3></blockquote>
 <p>可以对字符变量指定宽度，以及读入非标准形式对数字，如科学计数法、带货币符号、带千分位等。</p>
-<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; <em>variable</em> <em>informat.</em> <a href="&#109;&#x61;&#105;&#108;&#116;&#111;&#x3a;&#64;&#124;&#64;&#x40;">&#64;&#124;&#64;&#x40;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (<em>informat-list</em>) <a href="&#109;&#x61;&#105;&#108;&#116;&#x6f;&#x3a;&#64;&#124;&#x40;&#64;">&#64;&#124;&#x40;&#64;</a>;<br><strong>INPUY</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (<em>\&lt;n\</em>&gt; informat.) <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#58;&#64;&#x7c;&#x40;&#x40;">&#64;&#x7c;&#x40;&#x40;</a>;</p>
+<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; <em>variable</em> <em>informat.</em> <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#64;&#124;&#64;&#x40;">&#64;&#124;&#64;&#x40;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (<em>informat-list</em>) <a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#x40;&#x7c;&#x40;&#64;">&#x40;&#x7c;&#x40;&#64;</a>;<br><strong>INPUY</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (<em>\&lt;n\</em>&gt; informat.) <a href="&#109;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#x40;&#x7c;&#64;&#x40;">&#x40;&#x7c;&#64;&#x40;</a>;</p>
 <ul>
 <li>(variable-list) (informat-list): 变量格式列表<ul>
 <li>编号范围列表：形如x1,x2,x3可缩写为x1-xn</li>
@@ -265,7 +265,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">/*gender虽然只有1列，但声明时要带上其后的一个空格，age，location类似*/</div><div class="line">input name &amp; $10. gender $2. age 3. location $8. fee comma6.;</div><div class="line">datalines;</div><div class="line">YY Wu  M 25 Shanghai 12,345</div><div class="line">Yuanyi Wu  M 25 Shanghai 54,321</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
 <blockquote>
 <h3 id="INPUT语句命名读入式"><a href="#INPUT语句命名读入式" class="headerlink" title="INPUT语句命名读入式"></a>INPUT语句命名读入式</h3></blockquote>
-<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= &lt;$&gt; <a href="&#x6d;&#x61;&#105;&#108;&#x74;&#x6f;&#58;&#64;&#124;&#64;&#64;">&#64;&#124;&#64;&#64;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= informat. <a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#58;&#64;&#x7c;&#x40;&#64;">&#64;&#x7c;&#x40;&#64;</a>;<br><strong>INPUT</strong> variable= &lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#64;&#x7c;&#x40;&#x40;">&#64;&#x7c;&#x40;&#x40;</a>;</p>
+<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= &lt;$&gt; <a href="&#109;&#97;&#105;&#108;&#x74;&#111;&#58;&#x40;&#124;&#x40;&#x40;">&#x40;&#124;&#x40;&#x40;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= informat. <a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#x40;&#124;&#x40;&#x40;">&#x40;&#124;&#x40;&#x40;</a>;<br><strong>INPUT</strong> variable= &lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#x3a;&#64;&#124;&#64;&#64;">&#64;&#124;&#64;&#64;</a>;</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">input name= $ gender= $ age= location=$;</div><div class="line">datalines;</div><div class="line">name=WYY gender=M age=25 location=Shanghai</div><div class="line">name=GY gender=F age=24 location=Shanghai</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
 <blockquote>
 <h3 id="数据导出"><a href="#数据导出" class="headerlink" title="数据导出"></a>数据导出</h3></blockquote>
@@ -391,7 +391,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/09/05/SAS编程演义1-4/" data-id="cj77994qd0004mz4m3ei7imsb" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/09/05/SAS编程演义1-4/" data-id="cj77d0nnq00049q4muf0y7lsl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -441,7 +441,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/09/05/SAS编程演义5-7/" data-id="cj77994qf0005mz4m5rodthcq" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/09/05/SAS编程演义5-7/" data-id="cj77d0nnr00059q4mbuc8csdw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -473,7 +473,58 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>防止银行降额封卡和冻结的方法：</p>
+        <h1 id="网贷技术"><a href="#网贷技术" class="headerlink" title="网贷技术"></a>网贷技术</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="客户的详细版征信"><a href="#客户的详细版征信" class="headerlink" title="客户的详细版征信"></a>客户的详细版征信</h3><p>不查征信的小贷，另当别论。要求客户打印详细版征信；没有的话，一定要让客户如是交代最近的申请记录以及单位信息。</p>
+<h3 id="删除贷款相关信息"><a href="#删除贷款相关信息" class="headerlink" title="删除贷款相关信息"></a>删除贷款相关信息</h3><ul>
+<li>贷款App：删除客户手机里所有贷款相关的App</li>
+<li>手机短信：删除所有信贷相关的短信，包括网贷平台的验证码、批准、被拒短信；信用卡催收短信，包括带有“如已还款请忽略”的。</li>
+<li>通话记录：删除一切与信贷公司、银行相关的通话记录。更不可将号码保存到通讯录。</li>
+<li>信用卡账单：删除逾期账单、未满六个月的信用卡的账单、非详版账单，只保留符合要求且用卡状况良好的账单。</li>
+<li>淘宝交易记录：删除充值点卡、购买虚拟物品，非客户本人收货地址、收货人电话与申请人不一致的交易。</li>
+</ul>
+<h2 id="包装客户"><a href="#包装客户" class="headerlink" title="包装客户"></a>包装客户</h2><p>年龄、学历、单位、公积金、社保、征信情况、车贷、房贷、信用卡种类、贷款记录、打卡工资、是否有保单、实名制手机、芝麻分、电商账号。</p>
+<ul>
+<li>年龄：一般18-60周岁，大部分网贷已经限制到22-40周岁。</li>
+<li>征信：纯白户或黑户，做黑白户小贷的口子。</li>
+<li>信用卡：3-6月或以上的客户，大部分口子都可以操作。</li>
+<li>账单：一些口子要6个月以上的连续账单，如叮当贷、爱钱进、宜人极速贷。</li>
+<li>车贷、房贷：可以做易分期，也可以办卡。办卡的话，基本上都可以下。</li>
+<li>保单：平安人寿的保单贷、太平洋的保单贷。</li>
+<li>社保、公积金：有地区限制，51公积金app，宜人贷公积金模式、网易小贷。</li>
+<li>学历：浦发青春贷、闪银，交通、广大办信用卡。</li>
+<li>在校大学生：本科学历可以做10-50万贷款。</li>
+</ul>
+<h2 id="贷款实操"><a href="#贷款实操" class="headerlink" title="贷款实操"></a>贷款实操</h2><ul>
+<li>单位好直接使用，无单位就要包装单位。</li>
+<li>做工牌认证、银行流水账单。</li>
+<li>培训客户，做好回访。</li>
+<li>坐等下款，收钱。</li>
+</ul>
+<h2 id="申请贷款的10个细节"><a href="#申请贷款的10个细节" class="headerlink" title="申请贷款的10个细节"></a>申请贷款的10个细节</h2><ul>
+<li>实名制手机：每个月必须有通话记录，证明这个电话是经常使用的。</li>
+<li>联系人：必须能在最近通话记录中找到的联系人。</li>
+<li>工作信息：很多网贷会共享资料，因此工作信息不要经常换，最好提供一年以上的。如果没有工作，自己准备一个固话，搜索附近的公司（网上没电话的那种），用这家公司的名字在网上发布招聘信息，留下准备的固化。当然工作合同证明也可以这样。</li>
+<li>信用卡账单邮箱：账单必须连续多月，若有多张信用卡，保留信用最好的一张卡就行。</li>
+<li>阿里系验证：淘宝支付宝一定要实名验证，最近两个月一定要有实物消费记录。保留一个常用地址，其他全部删除。</li>
+<li>工作证明、名片、工牌：</li>
+<li>回访电话：一定要接到电话，有的网贷公司两次没接到就会直接拒。回答问题一定不要犹豫，必须和资料相符。</li>
+<li>回访联系人：回访联系人的网贷不是很急不用去申请。申请前对手机里的联系人进行整理，并提前打好招呼。</li>
+<li>回访内容<ul>
+<li>父母：</li>
+<li>公司：本人接最后，本人没接到，一定要让接电话的人说是单位电话。</li>
+<li>配偶：一定是本人接听，不是本人则100%拒贷。</li>
+<li>申请人：聊工作，聊生活，也可以反问能否批，什么时候批。</li>
+</ul>
+</li>
+<li>信用卡回访<ul>
+<li>资料写小纸条上，随身携带以免忘记。</li>
+<li>不清楚如何回答时，借口信号不好，过几分钟再打来，趁机熟悉资料。</li>
+<li>卡片寄哪里？一定要寄往资料上的公司货住址。</li>
+<li>要和申卡时填写的联系人提前说明，以免挂掉。</li>
+<li>问认识单位谁谁谁时，若不认识，可回答“或许有，公司人多不熟悉”。</li>
+</ul>
+</li>
+</ul>
+<p>防止银行降额封卡和冻结的方法：</p>
 <ul>
 <li>预约分期(打电话给银行客服，这比消费预约3-6期的分期)</li>
 <li>全额还款<ul>
@@ -564,7 +615,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/08/02/black production survey/" data-id="cj77994ql0007mz4myyj3za4c" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/08/02/black production survey/" data-id="cj77d0nnu00069q4mht6rxa26" class="article-share-link">Share</a>
       
       
     </footer>
@@ -710,7 +761,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/08/01/Event tracking/" data-id="cj77994qc0003mz4mrib9757h" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/08/01/Event tracking/" data-id="cj77d0nno00039q4mqm2xw5nt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -755,7 +806,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/08/01/mySQL grammar/" data-id="cj77994qr000amz4mvc69t1xm" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/08/01/mySQL grammar/" data-id="cj77d0no1000a9q4mhfz3nili" class="article-share-link">Share</a>
       
       
     </footer>
@@ -794,7 +845,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/04/16/利用python 3进行数据分析/" data-id="cj77994qt000bmz4m5a6dfkjf" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/04/16/利用python 3进行数据分析/" data-id="cj77d0no2000b9q4mp9wlbzkn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -863,7 +914,107 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/04/11/happybase/" data-id="cj77994qq0009mz4mc1ou1r43" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/04/11/happybase/" data-id="cj77d0no000099q4mstu0v955" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Basic Principles of Information Protect" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/27/Basic Principles of Information Protect/" class="article-date">
+  <time datetime="2017-03-27T12:47:24.000Z" itemprop="datePublished">2017-03-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/27/Basic Principles of Information Protect/">Basic Principles of Information Protect</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://web.mit.edu/Saltzer/www/publications/protection/Basic.html" target="_blank" rel="external">Basic Principles of Information Protect</a></p>
+<p>An externally administered code of ethics or a lack of knowledge about computers adequately protects the stored information.<br>The protection mechanisms not only protect one user from another, they may also protect their own implementation.<br>A narrow view is dangerous. It is hard to prove that this negative requirement has been achieved</p>
+<h2 id="Considerations-Surrounding-the-Study-of-Protection"><a href="#Considerations-Surrounding-the-Study-of-Protection" class="headerlink" title="Considerations Surrounding the Study of Protection"></a>Considerations Surrounding the Study of Protection</h2><h3 id="Examples-of-security-techniques-sometimes-applied-to-computer-systems-are-the-following"><a href="#Examples-of-security-techniques-sometimes-applied-to-computer-systems-are-the-following" class="headerlink" title="Examples of security techniques sometimes applied to computer systems are the following:"></a>Examples of security techniques sometimes applied to computer systems are the following:</h3><ul>
+<li>labeling files with lists of authorized users,</li>
+<li>verifying the identity of a prospective user by demanding a password,</li>
+<li>shielding the computer to prevent interception and subsequent interpretation of electromagnetic radiation,</li>
+<li>enciphering information sent over telephone lines,</li>
+<li>locking the room containing the computer,</li>
+<li>controlling who is allowed to make changes to the computer system (both its hardware and software),</li>
+<li>using redundant circuits or programmed cross-checks that maintain security in the face of hardware or software failures,</li>
+<li>certifying that the hardware and software are actually implemented as intended.</li>
+</ul>
+<h3 id="Functional-Levels-of-Information-Protection"><a href="#Functional-Levels-of-Information-Protection" class="headerlink" title="Functional Levels of Information Protection:"></a>Functional Levels of Information Protection:</h3><ul>
+<li>unprotected system</li>
+<li>before release<ul>
+<li>all-or-nothing system</li>
+<li>controlled sharing</li>
+<li>user_programmed sharing controls</li>
+</ul>
+</li>
+<li>after release<ul>
+<li>putting strings on information</li>
+</ul>
+</li>
+</ul>
+<h3 id="Design-principles"><a href="#Design-principles" class="headerlink" title="Design principles"></a>Design principles</h3><ul>
+<li>Economy of mechanism(simple and small)</li>
+<li>faill-safe default(white list)</li>
+<li>complete mediation</li>
+<li>open design</li>
+<li>separation of privilege</li>
+<li>least privilege</li>
+<li>least common mechanism</li>
+<li>psychological acceptability</li>
+<li>two further design principles<ul>
+<li>work factor</li>
+<li>compromise recording</li>
+</ul>
+</li>
+</ul>
+<h2 id="Technical-Underpinnings"><a href="#Technical-Underpinnings" class="headerlink" title="Technical Underpinnings"></a>Technical Underpinnings</h2><h3 id="development-plan"><a href="#development-plan" class="headerlink" title="development plan"></a>development plan</h3><ul>
+<li>from the top down: a subject is coherent and self-contained</li>
+<li>bottom-up: a topic still containing ad hoc strategies and competing world views</li>
+</ul>
+<h3 id="essentials-of-information-protection"><a href="#essentials-of-information-protection" class="headerlink" title="essentials of information protection"></a>essentials of information protection</h3><ul>
+<li>protect</li>
+<li>authenticate</li>
+</ul>
+<h3 id="an-isolated-virtual-machine"><a href="#an-isolated-virtual-machine" class="headerlink" title="an isolated virtual machine"></a>an isolated virtual machine</h3><ul>
+<li>descriptor register</li>
+<li>privileged bit</li>
+<li>supervisor</li>
+</ul>
+<h3 id="authentication-mechanisms"><a href="#authentication-mechanisms" class="headerlink" title="authentication mechanisms"></a>authentication mechanisms</h3><ul>
+<li>password<ul>
+<li>easy to guess</li>
+<li>exposed to be used</li>
+</ul>
+</li>
+</ul>
+<h3 id="shared-information"><a href="#shared-information" class="headerlink" title="shared information"></a>shared information</h3><ul>
+<li>list-oriented(high-level)</li>
+<li>ticket-oriented(low-level)</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Basic Principles of Information Protect/" data-id="cj77d0nnm00029q4mpyciuv42" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1121,7 +1272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Tracking user with browser fingerprint/" data-id="cj77994qk0006mz4mx11m5i7l" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Tracking user with browser fingerprint/" data-id="cj77d0nnz00089q4m844wzgbr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1406,107 +1557,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/通过运动传感器来追踪移动网页用户：攻击和防御/" data-id="cj77994qu000cmz4m2conj9a5" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Basic Principles of Information Protect" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/27/Basic Principles of Information Protect/" class="article-date">
-  <time datetime="2017-03-27T12:47:24.000Z" itemprop="datePublished">2017-03-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/27/Basic Principles of Information Protect/">Basic Principles of Information Protect</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://web.mit.edu/Saltzer/www/publications/protection/Basic.html" target="_blank" rel="external">Basic Principles of Information Protect</a></p>
-<p>An externally administered code of ethics or a lack of knowledge about computers adequately protects the stored information.<br>The protection mechanisms not only protect one user from another, they may also protect their own implementation.<br>A narrow view is dangerous. It is hard to prove that this negative requirement has been achieved</p>
-<h2 id="Considerations-Surrounding-the-Study-of-Protection"><a href="#Considerations-Surrounding-the-Study-of-Protection" class="headerlink" title="Considerations Surrounding the Study of Protection"></a>Considerations Surrounding the Study of Protection</h2><h3 id="Examples-of-security-techniques-sometimes-applied-to-computer-systems-are-the-following"><a href="#Examples-of-security-techniques-sometimes-applied-to-computer-systems-are-the-following" class="headerlink" title="Examples of security techniques sometimes applied to computer systems are the following:"></a>Examples of security techniques sometimes applied to computer systems are the following:</h3><ul>
-<li>labeling files with lists of authorized users,</li>
-<li>verifying the identity of a prospective user by demanding a password,</li>
-<li>shielding the computer to prevent interception and subsequent interpretation of electromagnetic radiation,</li>
-<li>enciphering information sent over telephone lines,</li>
-<li>locking the room containing the computer,</li>
-<li>controlling who is allowed to make changes to the computer system (both its hardware and software),</li>
-<li>using redundant circuits or programmed cross-checks that maintain security in the face of hardware or software failures,</li>
-<li>certifying that the hardware and software are actually implemented as intended.</li>
-</ul>
-<h3 id="Functional-Levels-of-Information-Protection"><a href="#Functional-Levels-of-Information-Protection" class="headerlink" title="Functional Levels of Information Protection:"></a>Functional Levels of Information Protection:</h3><ul>
-<li>unprotected system</li>
-<li>before release<ul>
-<li>all-or-nothing system</li>
-<li>controlled sharing</li>
-<li>user_programmed sharing controls</li>
-</ul>
-</li>
-<li>after release<ul>
-<li>putting strings on information</li>
-</ul>
-</li>
-</ul>
-<h3 id="Design-principles"><a href="#Design-principles" class="headerlink" title="Design principles"></a>Design principles</h3><ul>
-<li>Economy of mechanism(simple and small)</li>
-<li>faill-safe default(white list)</li>
-<li>complete mediation</li>
-<li>open design</li>
-<li>separation of privilege</li>
-<li>least privilege</li>
-<li>least common mechanism</li>
-<li>psychological acceptability</li>
-<li>two further design principles<ul>
-<li>work factor</li>
-<li>compromise recording</li>
-</ul>
-</li>
-</ul>
-<h2 id="Technical-Underpinnings"><a href="#Technical-Underpinnings" class="headerlink" title="Technical Underpinnings"></a>Technical Underpinnings</h2><h3 id="development-plan"><a href="#development-plan" class="headerlink" title="development plan"></a>development plan</h3><ul>
-<li>from the top down: a subject is coherent and self-contained</li>
-<li>bottom-up: a topic still containing ad hoc strategies and competing world views</li>
-</ul>
-<h3 id="essentials-of-information-protection"><a href="#essentials-of-information-protection" class="headerlink" title="essentials of information protection"></a>essentials of information protection</h3><ul>
-<li>protect</li>
-<li>authenticate</li>
-</ul>
-<h3 id="an-isolated-virtual-machine"><a href="#an-isolated-virtual-machine" class="headerlink" title="an isolated virtual machine"></a>an isolated virtual machine</h3><ul>
-<li>descriptor register</li>
-<li>privileged bit</li>
-<li>supervisor</li>
-</ul>
-<h3 id="authentication-mechanisms"><a href="#authentication-mechanisms" class="headerlink" title="authentication mechanisms"></a>authentication mechanisms</h3><ul>
-<li>password<ul>
-<li>easy to guess</li>
-<li>exposed to be used</li>
-</ul>
-</li>
-</ul>
-<h3 id="shared-information"><a href="#shared-information" class="headerlink" title="shared information"></a>shared information</h3><ul>
-<li>list-oriented(high-level)</li>
-<li>ticket-oriented(low-level)</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Basic Principles of Information Protect/" data-id="cj77994q80001mz4mucjknikk" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/通过运动传感器来追踪移动网页用户：攻击和防御/" data-id="cj77d0no2000c9q4mctqtgcpv" class="article-share-link">Share</a>
       
       
     </footer>

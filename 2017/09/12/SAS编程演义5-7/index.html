@@ -5,28 +5,16 @@
   
   <title>《SAS编程演义》笔记（5-7章） | My blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set \&amp;lt;(data-set-options)&amp;gt; transaction-data-set \&amp;lt;(data-set-options)&amp;gt; \ \ \ \;
-BY by-variable;
-
-master-data-set：主数据集（Master Dataset），存放原始数据。
-transaction-data-s">
+  <meta name="description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set &amp;lt;(data-set-options)&amp;gt; transaction-data-set &amp;lt;(data-set-options)&amp;gt; &amp;lt;CUROBS=variable&amp;gt; &amp;lt; NOBS=variable&amp;gt; &amp;lt;END=variable&amp;gt; &amp;lt;UPDATEMODE=MI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《SAS编程演义》笔记（5-7章）">
 <meta property="og:url" content="http://wu-yuanyi.github.io/2017/09/12/SAS编程演义5-7/index.html">
 <meta property="og:site_name" content="My blog">
-<meta property="og:description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set \&amp;lt;(data-set-options)&amp;gt; transaction-data-set \&amp;lt;(data-set-options)&amp;gt; \ \ \ \;
-BY by-variable;
-
-master-data-set：主数据集（Master Dataset），存放原始数据。
-transaction-data-s">
-<meta property="og:updated_time" content="2017-09-12T01:56:02.000Z">
+<meta property="og:description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set &amp;lt;(data-set-options)&amp;gt; transaction-data-set &amp;lt;(data-set-options)&amp;gt; &amp;lt;CUROBS=variable&amp;gt; &amp;lt; NOBS=variable&amp;gt; &amp;lt;END=variable&amp;gt; &amp;lt;UPDATEMODE=MI">
+<meta property="og:updated_time" content="2017-09-12T02:54:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《SAS编程演义》笔记（5-7章）">
-<meta name="twitter:description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set \&amp;lt;(data-set-options)&amp;gt; transaction-data-set \&amp;lt;(data-set-options)&amp;gt; \ \ \ \;
-BY by-variable;
-
-master-data-set：主数据集（Master Dataset），存放原始数据。
-transaction-data-s">
+<meta name="twitter:description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set &amp;lt;(data-set-options)&amp;gt; transaction-data-set &amp;lt;(data-set-options)&amp;gt; &amp;lt;CUROBS=variable&amp;gt; &amp;lt; NOBS=variable&amp;gt; &amp;lt;END=variable&amp;gt; &amp;lt;UPDATEMODE=MI">
   
     <link rel="alternate" href="/atom.xml" title="My blog" type="application/atom+xml">
   
@@ -97,7 +85,7 @@ transaction-data-s">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="亦应帷幄运鸿筹：数据库集"><a href="#亦应帷幄运鸿筹：数据库集" class="headerlink" title="亦应帷幄运鸿筹：数据库集"></a>亦应帷幄运鸿筹：数据库集</h2><h3 id="修改数据集"><a href="#修改数据集" class="headerlink" title="修改数据集"></a>修改数据集</h3><p><strong>MODIFY</strong> <em>master-data-set</em> \&lt;(<em>data-set-options</em>)> <em>transaction-data-set</em> \&lt;(<em>data-set-options</em>)> \<curobs=*variable*\> \<nobs=*variable*\> \<end=*variable*\> \<updatemode=missingcheck|nomissingcheck\>;</updatemode=missingcheck|nomissingcheck\></end=*variable*\></nobs=*variable*\></curobs=*variable*\></p>
+        <h2 id="亦应帷幄运鸿筹：数据库集"><a href="#亦应帷幄运鸿筹：数据库集" class="headerlink" title="亦应帷幄运鸿筹：数据库集"></a>亦应帷幄运鸿筹：数据库集</h2><h3 id="修改数据集"><a href="#修改数据集" class="headerlink" title="修改数据集"></a>修改数据集</h3><p><strong>MODIFY</strong> <em>master-data-set</em> &lt;(<em>data-set-options</em>)&gt; <em>transaction-data-set</em> &lt;(<em>data-set-options</em>)&gt; &lt;CUROBS=<em>variable</em>&gt; &lt; NOBS=<em>variable</em>&gt; &lt;END=<em>variable</em>&gt; &lt;UPDATEMODE=MISSINGCHECK|NOMISSINGCHECK&gt;;</p>
 <p><strong>BY</strong> <em>by-variable</em>;</p>
 <ul>
 <li><em>master-data-set</em>：主数据集（Master Dataset），存放原始数据。</li>
@@ -106,23 +94,23 @@ transaction-data-s">
 <li>NOBS=<em>variable</em>：将主数据集和事物数据集总观测数存储到临时变量variable中</li>
 <li>END=<em>variable</em>：创建并命名一个临时变量variable，用1和0标记是否为最后一条记录。</li>
 </ul>
-<p><strong>MODIFY</strong> <em>master-data-set</em> \&lt;(<em>data-set-options</em>)> KEY=<em>index</em> \&lt;\/UNIQUE> \<keyreset=*variable*\> \<nobs=*variable*\> \<end=*variable*\>;</end=*variable*\></nobs=*variable*\></keyreset=*variable*\></p>
+<p><strong>MODIFY</strong> <em>master-data-set</em> &lt;(<em>data-set-options</em>)&gt; KEY=<em>index</em> &lt;/UNIQUE&gt; &lt;KEYRESET=<em>variable</em>&gt; &lt;NOBS=<em>variable</em>&gt; &lt;END=<em>variable</em>&gt;;</p>
 <ul>
 <li>KEY=<em>index</em>：指定索引</li>
 <li>KEYRESET=<em>variable</em>：是否从索引头部查找</li>
 </ul>
-<p><strong>MODIFY</strong> <em>master-data-set</em> \&lt;(<em>data-set-options</em>)> \<nobs=variable\> POINT=<em>variable</em>;</nobs=variable\></p>
+<p><strong>MODIFY</strong> <em>master-data-set</em> &lt;(<em>data-set-options</em>)&gt; &lt;NOBS=variable&gt; POINT=<em>variable</em>;</p>
 <ul>
 <li>POINT=<em>variable</em>：随机读取由variable指定的观测</li>
 </ul>
-<p><strong>MODIFY</strong> <em>master-data-set</em> \&lt;(<em>data-set-options</em>)> \<nobs=*variable*\> \<end=*variable*\></end=*variable*\></nobs=*variable*\></p>
+<p><strong>MODIFY</strong> <em>master-data-set</em> &lt;(<em>data-set-options</em>)&gt; &lt;NOBS=<em>variable</em>&gt; &lt;END=<em>variable</em>&gt;</p>
 <p>MODIFY比SET更高效。MODIFY语句直接修改原数据集，不生成新数据集。SET语句打开原数据集，重新生成一份新数据集（即使新数据集与原数据集同名）。因此使用MODIFY语句时，DATA语句后必须是原数据集，但使用SET语句时则无所谓。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">data class;</div><div class="line">	set sashelp.class;</div><div class="line">	weight = weight*0.4536; /*lbs-&gt;kg*/</div><div class="line">	height = height*0.0254; /*in-&gt;m*/</div><div class="line">run;</div><div class="line"></div><div class="line">data sashelp.class;</div><div class="line">	modify sashelp.class;</div><div class="line">	weight = weight*0.4536; /*lbs-&gt;kg*/</div><div class="line">	height = height*0.0254; /*in-&gt;m*/</div><div class="line">run;</div></pre></td></tr></table></figure>
 <p>MODIFY比MERGE更高效。MODIFY语句进行匹配修改观测时，因其采用动态WHERE语句，不像MERGE需要事先排序。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">data raw;/*主数据集*/</div><div class="line">	name=&quot;吴源燚&quot;;gender=&quot;&quot;;age=2;Location=&quot;SH&quot;;output;</div><div class="line">	name=&quot;WUYY&quot;;gender=&quot;M&quot;;age=.;Location=&quot;SH&quot;;output;</div><div class="line">run;</div><div class="line"></div><div class="line">data new;/*事物数据集*/</div><div class="line">	name=&quot;吴源燚&quot;;gender=&quot;M&quot;;</div><div class="line">	name=&quot;WUYY&quot;;age=25;output;</div><div class="line">	name=&quot;WUYY&quot;;age=30;output;</div><div class="line">run;</div><div class="line"></div><div class="line">data raw;</div><div class="line">	modify raw new;</div><div class="line">	by name;</div><div class="line">	replace; /*默认可省略*/</div><div class="line">run;</div></pre></td></tr></table></figure>
 <p>MODIFY语句是对原数据集里观测进行修改，但是不能改变数据集结构，即不能新增变量也不能新增观察。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">data sashelp.class class_female;</div><div class="line">	modify sashelp.class;</div><div class="line">	if sex =&quot;F&quot; then do;</div><div class="line">		output class_female;</div><div class="line">		remove sashelp.class;</div><div class="line">	end;</div><div class="line">	else do;</div><div class="line">		height=height+5;</div><div class="line">		replace sashelp.class;</div><div class="line">	end;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="更新数据集"><a href="#更新数据集" class="headerlink" title="更新数据集"></a>更新数据集</h3><p><strong>UPDATE</strong> <em>master-data-set</em> \&lt;(<em>data-set-options</em>)> <em>transaction-data-set</em> \&lt;(<em>data-set-options</em>)> \<end=*variable*\> \<updatemode=missingcheck|nomissingcheck\>;</updatemode=missingcheck|nomissingcheck\></end=*variable*\></p>
+<h3 id="更新数据集"><a href="#更新数据集" class="headerlink" title="更新数据集"></a>更新数据集</h3><p><strong>UPDATE</strong> <em>master-data-set</em> &lt;(<em>data-set-options</em>)&gt; <em>transaction-data-set</em> &lt;(<em>data-set-options</em>)&gt; &lt;END=<em>variable</em>&gt; &lt;UPDATEMODE=MISSINGCHECK|NOMISSINGCHECK&gt;;</p>
 <p><strong>BY</strong> <em>by-variable</em>;</p>
 <ul>
 <li><em>master-data-set</em>：主数据集，存放原始数据。</li>
@@ -137,8 +125,8 @@ transaction-data-s">
 </ul>
 <p>主数据集和事物数据集需先按BY变量排序；UPDTATE只有一种用法，其后必须跟BY语句；主数据集中，BY变量的值应该唯一，否则只会更新相同值的首条记录，事物数据集中BY变量值可以不唯一，更新的数据集最终会以最后一条为准。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">data raw;/*主数据集*/</div><div class="line">	name=&quot;吴源燚&quot;;gender=&quot;&quot;;age=2;Location=&quot;SH&quot;;output;</div><div class="line">	name=&quot;WUYY&quot;;gender=&quot;M&quot;;age=.;Location=&quot;SH&quot;;output;</div><div class="line">run;</div><div class="line"></div><div class="line">data new;/*事物数据集*/</div><div class="line">	name=&quot;吴源燚&quot;;gender=&quot;M&quot;;</div><div class="line">	name=&quot;WUYY&quot;;age=25;output;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sort data=raw; /*排序*/</div><div class="line">	by name;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sort data=new;</div><div class="line">	by name;</div><div class="line">run;</div><div class="line"></div><div class="line">data want; /*用事物数据集更新主数据集*/</div><div class="line">	update raw new;</div><div class="line">	by name;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="行列转置"><a href="#行列转置" class="headerlink" title="行列转置"></a>行列转置</h3><p><strong>PROC TRANSPOSE</strong> \&lt;<em>DATA=input-data-set</em>> \<delimiter=*delimiter*\> \<label=*label*\> \<let\> \<name=*name*\> \<out=*output-data-set*\> \<prefix=*prefix*\> \<suffix=*suffix*\>;</suffix=*suffix*\></prefix=*prefix*\></out=*output-data-set*\></name=*name*\></let\></label=*label*\></delimiter=*delimiter*\></p>
-<p><strong>BY</strong> \<descending\> <em>variable-1</em> \&lt;\<descending\> <em>variable-2</em>> \<notstored>;</notstored></descending\></descending\></p>
+<h3 id="行列转置"><a href="#行列转置" class="headerlink" title="行列转置"></a>行列转置</h3><p><strong>PROC TRANSPOSE</strong> &lt;DATA=<em>input-data-set</em>&gt; &lt;DELIMITER=<em>delimiter</em>&gt; &lt;LABEL=<em>label</em>&gt; &lt;LET&gt; &lt;NAME=<em>name</em>&gt; &lt;OUT=<em>output-data-set</em>&gt; &lt;PREFIX=<em>prefix</em>&gt; &lt;SUFFIX=<em>suffix</em>&gt;;</p>
+<p><strong>BY</strong> &lt;DESCENDING&gt; <em>variable-1</em> &lt;&lt;DESCENDING&gt; <em>variable-2</em>&gt; &lt;NOTSTORED&gt;;</p>
 <p><strong>COPY</strong> <em>variable(s)</em>;</p>
 <p><strong>ID</strong> <em>variable</em>;</p>
 <p><strong>IDLABEL</strong> <em>variable</em>;</p>
@@ -182,12 +170,12 @@ transaction-data-s">
 <li>字符型变量的长度为第一次出现的数据中的定义长度，后面相同的字段如果比前面更长，则会被截断，因此建议在SET语句前先用LENGTH语句申明其长度。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">data class1 class2 class3(keep=name sex) class4(keep=name age height weight);</div><div class="line">	set sashelp.class;</div><div class="line">	if _n_ &lt; 10 then do;</div><div class="line">		output class1;</div><div class="line">		output class2;</div><div class="line">	end;</div><div class="line">	else do;</div><div class="line">		output class2;</div><div class="line">		output class4;</div><div class="line">	end;</div><div class="line">run;</div><div class="line"></div><div class="line">data class;</div><div class="line">	set class1 class2;</div><div class="line">run;</div><div class="line"></div><div class="line">data class;</div><div class="line">	set class2 class4;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h4 id="PROC-APPEND"><a href="#PROC-APPEND" class="headerlink" title="PROC APPEND"></a>PROC APPEND</h4><p><strong>PROC APPEND</strong> BASE=\&lt;<em>libref.</em>>SAS-data-set \<appendver=v6\> \<data=\<*libref.*\>SAS-data-set> \<encryptkey=*key-value*\> \<froce\> \<getsort\> \<nowarn\>;</nowarn\></getsort\></froce\></encryptkey=*key-value*\></data=\<*libref.*\></appendver=v6\></p>
+<h4 id="PROC-APPEND"><a href="#PROC-APPEND" class="headerlink" title="PROC APPEND"></a>PROC APPEND</h4><p><strong>PROC APPEND</strong> BASE=&lt;<em>libref.</em>&gt;SAS-data-set &lt;APPENDVER=V6&gt; &lt;DATA=&lt;<em>libref.</em>&gt;SAS-data-set&gt; &lt;ENCRYPTKEY=<em>key-value</em>&gt; &lt;FROCE&gt; &lt;GETSORT&gt; &lt;NOWARN&gt;;</p>
 <p><strong>RUN</strong>;</p>
 <ul>
-<li>BASE=\&lt;<em>libref.</em>>SAS-data-set：指定基础数据集，追加数据集的观测将写入此数据集中</li>
+<li>BASE=&lt;<em>libref.</em>&gt;SAS-data-set：指定基础数据集，追加数据集的观测将写入此数据集中</li>
 <li>APPENDVER：指定追加机制的版本，可以是V6或V7</li>
-<li>DATA=\&lt;<em>libref.</em>>SAS-data-set：指定待追加数据集</li>
+<li>DATA=&lt;<em>libref.</em>&gt;SAS-data-set：指定待追加数据集</li>
 <li>ENCRYPTKEY=<em>key-value</em>：AES加密键值</li>
 <li>FORECE：当追加数据集里的变量不在BASE数据集，或者变量类型和长度不同时，强制追加，不过此时LOG中会有警告信息，可以用NOWARN屏蔽</li>
 <li>GETSORT：把BASE数据集的排序标识复制到追加数据集中</li>
@@ -246,10 +234,10 @@ transaction-data-s">
 <p>在指定逻辑库、数据集以及数据文件类型时，需用引号，且引号里面的字母是大学。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">proc sql; /*从字典库中获取SASHELP库下所有数据集信息*/</div><div class="line">	create tables desds as select memname, nobs, nvar from dictionary.tables</div><div class="line">	where libname=&quot;SASHELP&quot; and memtype=&quot;DATA&quot;;</div><div class="line">quit;</div><div class="line"></div><div class="line">proc sql; /*从视图中获取SASHELP库下所有数据集信息*/</div><div class="line">	create tables desds as select memname, nobs, nvar from sashelp.vtable</div><div class="line">	where libname=&quot;SASHELP&quot; and memtype=&quot;DATA&quot;;</div><div class="line">quit;</div><div class="line"></div><div class="line">proc sql; /*从字典库中获取数据集CARS的所有变量信息*/</div><div class="line">	create table varlist as select name, type, length, label from dictionary.columns</div><div class="line">	where libname=&quot;SASHELP&quot; and memname=&quot;CARS&quot;;</div><div class="line">quit;</div><div class="line"></div><div class="line">proc sql; /*从视图中获取数据集CARS的所有变量信息*/</div><div class="line">	create table varlist as select name, type, length, label from sashelp.vcolumn</div><div class="line">	where libname=&quot;SASHELP&quot; and memname=&quot;CARS&quot;;</div><div class="line">quit;</div></pre></td></tr></table></figure>
 <h2 id="间有山川亦奇秀：函数例程"><a href="#间有山川亦奇秀：函数例程" class="headerlink" title="间有山川亦奇秀：函数例程"></a>间有山川亦奇秀：函数例程</h2><h3 id="函数语法"><a href="#函数语法" class="headerlink" title="函数语法"></a>函数语法</h3><p>可用于DATA步赋值语句、IF语句、WHERE表达式（语句或选项）、宏语句、PROC REPORT以及PROC SQL语句中。PRCO SQL的SELECT语句里的函数作用是纵向的，而其他函数的作用则是横向的。</p>
-<p><em>function-name</em>(<em>argument-1</em>\&lt;…*argument-n>)</p>
+<p><em>function-name</em>(<em>argument-1</em>&lt;…*argument-n&gt;)</p>
 <p><em>function-name</em>(OF <em>variable-list</em>)</p>
 <p><em>function-name</em>(OF <em>array-name</em>[*])</p>
-<p><em>function-name</em>(\&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]> \&lt;…, \&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]>>)</p>
+<p><em>function-name</em>(&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]&gt; &lt;…, &lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]&gt;&gt;)</p>
 <ul>
 <li>function-name：函数名称</li>
 <li>argument：参数，可以是变量名、常数、表达式、甚至还可以是其他函数</li>
@@ -258,10 +246,10 @@ transaction-data-s">
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">data _null_;</div><div class="line">	array ex&#123;7&#125; (95 93 92 99 98 85 94);</div><div class="line">	avg_function1=mean(ex1, ex2, ex3, ex4, ex5, ex6, ex7); /*单个参数*/</div><div class="line">	avg_function2=mean(of ex1 ex2 ex3 ex4 ex5 ex6 ex7); /*变量清单*/</div><div class="line">	avg_function3=mean(of ex1-ex7); /*变量清单*/</div><div class="line">	avg_function4=mean(of ex:); /*变量清单*/</div><div class="line">	avg_function5=mean(of ex[*]; /*数组名*/</div><div class="line">	put (avg_function1 avg_function2 avg_function3 avg_function4 avg_function5) (=);</div><div class="line">	put avg_function1= avg_function2= avg_function3= avg_function4= avg_function5=;</div><div class="line">	/*put avg_function1 avg_function2 avg_function3 avg_function4 avg_function5;*/</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h3 id="例程语法"><a href="#例程语法" class="headerlink" title="例程语法"></a>例程语法</h3><p>主要用于DATA步的CALL语句中，不能用于赋值语句和表达式。</p>
-<p>CALL <em>routine-name</em>(<em>argument-1</em>\&lt;…*argument-n>)</p>
+<p>CALL <em>routine-name</em>(<em>argument-1</em>&lt;…*argument-n&gt;)</p>
 <p>CALL <em>routine-name</em>(OF <em>variable-list</em>)</p>
 <p>CALL <em>routine-name</em>(OF <em>array-name</em>[*])</p>
-<p>CALL <em>routine-name</em>(\&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]> \&lt;…, \&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]>>)</p>
+<p>CALL <em>routine-name</em>(&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]&gt; &lt;…, &lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]&gt;&gt;)</p>
 <ul>
 <li>routine-name：函数名称</li>
 <li>argument：参数，可以是变量名、常数、表达式、甚至还可以是其他函数</li>
@@ -429,7 +417,7 @@ transaction-data-s">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/09/12/SAS编程演义5-7/" data-id="cj7gy4s000005yd4m7nnwjn8b" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/09/12/SAS编程演义5-7/" data-id="cj7h11kjg0005ra4mbc3mhg3y" class="article-share-link">Share</a>
       
       
     </footer>

@@ -5,27 +5,24 @@
   
   <title>《SAS编程演义》笔记（5-7章） | My blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set&amp;lt;(data-set-options)&amp;gt; transaction-data-set\&amp;lt;(data-set-options)&amp;gt;
-\ \ \ \;
+  <meta name="description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set \&amp;lt;(data-set-options)&amp;gt; transaction-data-set \&amp;lt;(data-set-options)&amp;gt; \ \ \ \;
 BY by-variable;
 
 master-data-set：主数据集（Master Dataset），存放原始数据。
 transaction-data-s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《SAS编程演义》笔记（5-7章）">
-<meta property="og:url" content="http://wu-yuanyi.github.io/2017/09/05/SAS编程演义5-7/index.html">
+<meta property="og:url" content="http://wu-yuanyi.github.io/2017/09/12/SAS编程演义5-7/index.html">
 <meta property="og:site_name" content="My blog">
-<meta property="og:description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set&amp;lt;(data-set-options)&amp;gt; transaction-data-set\&amp;lt;(data-set-options)&amp;gt;
-\ \ \ \;
+<meta property="og:description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set \&amp;lt;(data-set-options)&amp;gt; transaction-data-set \&amp;lt;(data-set-options)&amp;gt; \ \ \ \;
 BY by-variable;
 
 master-data-set：主数据集（Master Dataset），存放原始数据。
 transaction-data-s">
-<meta property="og:updated_time" content="2017-09-12T01:37:06.000Z">
+<meta property="og:updated_time" content="2017-09-12T01:56:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《SAS编程演义》笔记（5-7章）">
-<meta name="twitter:description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set&amp;lt;(data-set-options)&amp;gt; transaction-data-set\&amp;lt;(data-set-options)&amp;gt;
-\ \ \ \;
+<meta name="twitter:description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set \&amp;lt;(data-set-options)&amp;gt; transaction-data-set \&amp;lt;(data-set-options)&amp;gt; \ \ \ \;
 BY by-variable;
 
 master-data-set：主数据集（Master Dataset），存放原始数据。
@@ -80,8 +77,8 @@ transaction-data-s">
       <div class="outer">
         <section id="main"><article id="post-SAS编程演义5-7" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/09/05/SAS编程演义5-7/" class="article-date">
-  <time datetime="2017-09-05T03:15:23.000Z" itemprop="datePublished">2017-09-05</time>
+    <a href="/2017/09/12/SAS编程演义5-7/" class="article-date">
+  <time datetime="2017-09-12T01:39:08.000Z" itemprop="datePublished">2017-09-12</time>
 </a>
     
   </div>
@@ -100,8 +97,7 @@ transaction-data-s">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="亦应帷幄运鸿筹：数据库集"><a href="#亦应帷幄运鸿筹：数据库集" class="headerlink" title="亦应帷幄运鸿筹：数据库集"></a>亦应帷幄运鸿筹：数据库集</h2><h3 id="修改数据集"><a href="#修改数据集" class="headerlink" title="修改数据集"></a>修改数据集</h3><p><strong>MODIFY</strong> <em>master-data-set</em>&lt;(<em>data-set-options</em>)&gt; <em>transaction-data-set</em>\&lt;(<em>data-set-options</em>)></p>
-<p>\<curobs=*variable*\> \<nobs=*variable*\> \<end=*variable*\> \<updatemode=missingcheck|nomissingcheck\>;</updatemode=missingcheck|nomissingcheck\></end=*variable*\></nobs=*variable*\></curobs=*variable*\></p>
+        <h2 id="亦应帷幄运鸿筹：数据库集"><a href="#亦应帷幄运鸿筹：数据库集" class="headerlink" title="亦应帷幄运鸿筹：数据库集"></a>亦应帷幄运鸿筹：数据库集</h2><h3 id="修改数据集"><a href="#修改数据集" class="headerlink" title="修改数据集"></a>修改数据集</h3><p><strong>MODIFY</strong> <em>master-data-set</em> \&lt;(<em>data-set-options</em>)> <em>transaction-data-set</em> \&lt;(<em>data-set-options</em>)> \<curobs=*variable*\> \<nobs=*variable*\> \<end=*variable*\> \<updatemode=missingcheck|nomissingcheck\>;</updatemode=missingcheck|nomissingcheck\></end=*variable*\></nobs=*variable*\></curobs=*variable*\></p>
 <p><strong>BY</strong> <em>by-variable</em>;</p>
 <ul>
 <li><em>master-data-set</em>：主数据集（Master Dataset），存放原始数据。</li>
@@ -115,7 +111,7 @@ transaction-data-s">
 <li>KEY=<em>index</em>：指定索引</li>
 <li>KEYRESET=<em>variable</em>：是否从索引头部查找</li>
 </ul>
-<p><strong>MODIFY</strong> <em>master-data-set</em>\&lt;(<em>data-set-options</em>)>\<nobs=variable\>POINT=<em>variable</em>;</nobs=variable\></p>
+<p><strong>MODIFY</strong> <em>master-data-set</em> \&lt;(<em>data-set-options</em>)> \<nobs=variable\> POINT=<em>variable</em>;</nobs=variable\></p>
 <ul>
 <li>POINT=<em>variable</em>：随机读取由variable指定的观测</li>
 </ul>
@@ -144,9 +140,9 @@ transaction-data-s">
 <h3 id="行列转置"><a href="#行列转置" class="headerlink" title="行列转置"></a>行列转置</h3><p><strong>PROC TRANSPOSE</strong> \&lt;<em>DATA=input-data-set</em>> \<delimiter=*delimiter*\> \<label=*label*\> \<let\> \<name=*name*\> \<out=*output-data-set*\> \<prefix=*prefix*\> \<suffix=*suffix*\>;</suffix=*suffix*\></prefix=*prefix*\></out=*output-data-set*\></name=*name*\></let\></label=*label*\></delimiter=*delimiter*\></p>
 <p><strong>BY</strong> \<descending\> <em>variable-1</em> \&lt;\<descending\> <em>variable-2</em>> \<notstored>;</notstored></descending\></descending\></p>
 <p><strong>COPY</strong> <em>variable(s)</em>;</p>
-<p><strong>ID</strong> variable;</p>
-<p><strong>IDLABEL</strong> variable;</p>
-<p><strong>VAR</strong> variable(s);</p>
+<p><strong>ID</strong> <em>variable</em>;</p>
+<p><strong>IDLABEL</strong> <em>variable</em>;</p>
+<p><strong>VAR</strong> <em>variable</em>(<em>s</em>);</p>
 <p><strong>RUN</strong>;</p>
 <ul>
 <li>DATA=input-data-set：待转置数据集名称</li>
@@ -186,7 +182,7 @@ transaction-data-s">
 <li>字符型变量的长度为第一次出现的数据中的定义长度，后面相同的字段如果比前面更长，则会被截断，因此建议在SET语句前先用LENGTH语句申明其长度。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">data class1 class2 class3(keep=name sex) class4(keep=name age height weight);</div><div class="line">	set sashelp.class;</div><div class="line">	if _n_ &lt; 10 then do;</div><div class="line">		output class1;</div><div class="line">		output class2;</div><div class="line">	end;</div><div class="line">	else do;</div><div class="line">		output class2;</div><div class="line">		output class4;</div><div class="line">	end;</div><div class="line">run;</div><div class="line"></div><div class="line">data class;</div><div class="line">	set class1 class2;</div><div class="line">run;</div><div class="line"></div><div class="line">data class;</div><div class="line">	set class2 class4;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h4 id="PROC-APPEND"><a href="#PROC-APPEND" class="headerlink" title="PROC APPEND"></a>PROC APPEND</h4><p><strong>PROC APPEND</strong> BASE=\&lt;<em>libref.</em>>SAS-data-set\<appendver=v6\> \<data=\<*libref.*\>SAS-data-set> \<encryptkey=*key-value*\> \<froce\> \<getsort\> \<nowarn\>;</nowarn\></getsort\></froce\></encryptkey=*key-value*\></data=\<*libref.*\></appendver=v6\></p>
+<h4 id="PROC-APPEND"><a href="#PROC-APPEND" class="headerlink" title="PROC APPEND"></a>PROC APPEND</h4><p><strong>PROC APPEND</strong> BASE=\&lt;<em>libref.</em>>SAS-data-set \<appendver=v6\> \<data=\<*libref.*\>SAS-data-set> \<encryptkey=*key-value*\> \<froce\> \<getsort\> \<nowarn\>;</nowarn\></getsort\></froce\></encryptkey=*key-value*\></data=\<*libref.*\></appendver=v6\></p>
 <p><strong>RUN</strong>;</p>
 <ul>
 <li>BASE=\&lt;<em>libref.</em>>SAS-data-set：指定基础数据集，追加数据集的观测将写入此数据集中</li>
@@ -253,7 +249,7 @@ transaction-data-s">
 <p><em>function-name</em>(<em>argument-1</em>\&lt;…*argument-n>)</p>
 <p><em>function-name</em>(OF <em>variable-list</em>)</p>
 <p><em>function-name</em>(OF <em>array-name</em>[*])</p>
-<p><em>function-name</em>(\&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]> \&lt;…, \&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]>></p>
+<p><em>function-name</em>(\&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]> \&lt;…, \&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]>>)</p>
 <ul>
 <li>function-name：函数名称</li>
 <li>argument：参数，可以是变量名、常数、表达式、甚至还可以是其他函数</li>
@@ -265,7 +261,7 @@ transaction-data-s">
 <p>CALL <em>routine-name</em>(<em>argument-1</em>\&lt;…*argument-n>)</p>
 <p>CALL <em>routine-name</em>(OF <em>variable-list</em>)</p>
 <p>CALL <em>routine-name</em>(OF <em>array-name</em>[*])</p>
-<p>CALL <em>routine-name</em>(\&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]> \&lt;…, \&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]>></p>
+<p>CALL <em>routine-name</em>(\&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]> \&lt;…, \&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]>>)</p>
 <ul>
 <li>routine-name：函数名称</li>
 <li>argument：参数，可以是变量名、常数、表达式、甚至还可以是其他函数</li>
@@ -433,7 +429,7 @@ transaction-data-s">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/09/05/SAS编程演义5-7/" data-id="cj7gxgjr50005ry4mz7myl1lp" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/09/12/SAS编程演义5-7/" data-id="cj7gy4s000005yd4m7nnwjn8b" class="article-share-link">Share</a>
       
       
     </footer>
@@ -442,19 +438,10 @@ transaction-data-s">
     
 <nav id="article-nav">
   
-    <a href="/2017/09/05/SAS编程演义1-4/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          《SAS编程演义》笔记（1-4章）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/08/02/black production survey/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/09/05/SAS编程演义1-4/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">网贷黑中介调研</div>
+      <div class="article-nav-title">《SAS编程演义》笔记（1-4章）</div>
     </a>
   
 </nav>
@@ -491,11 +478,11 @@ transaction-data-s">
       <ul>
         
           <li>
-            <a href="/2017/09/05/SAS编程演义1-4/">《SAS编程演义》笔记（1-4章）</a>
+            <a href="/2017/09/12/SAS编程演义5-7/">《SAS编程演义》笔记（5-7章）</a>
           </li>
         
           <li>
-            <a href="/2017/09/05/SAS编程演义5-7/">《SAS编程演义》笔记（5-7章）</a>
+            <a href="/2017/09/05/SAS编程演义1-4/">《SAS编程演义》笔记（1-4章）</a>
           </li>
         
           <li>

@@ -61,293 +61,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-SAS编程演义1-4" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/05/SAS编程演义1-4/" class="article-date">
-  <time datetime="2017-09-05T03:55:44.000Z" itemprop="datePublished">2017-09-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/05/SAS编程演义1-4/">《SAS编程演义》笔记（1-4章）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="清歌苦调两不厌：夯实基础"><a href="#清歌苦调两不厌：夯实基础" class="headerlink" title="清歌苦调两不厌：夯实基础"></a>清歌苦调两不厌：夯实基础</h2><h3 id="如何让SAS自动加载永久逻辑库"><a href="#如何让SAS自动加载永久逻辑库" class="headerlink" title="如何让SAS自动加载永久逻辑库"></a>如何让SAS自动加载永久逻辑库</h3><ol>
-<li>如果想要让SAS语句建立的永久库在启动后就能看到，可以把包含LIBNAME语句的程序命名为autoexe.sas，并放入和sas.exe同级的目录中，此后每次SAS启动时会自动运行autosas.exe程序。</li>
-<li>通过工具按钮建立永久库时，可以在建立时勾上<em>Enable at startup</em>，下次启动SAS时就会自动加载这个永久库。</li>
-</ol>
-<h3 id="为什么又了数据文件还要视图"><a href="#为什么又了数据文件还要视图" class="headerlink" title="为什么又了数据文件还要视图"></a>为什么又了数据文件还要视图</h3><p>视图是依据查询语句动态生成，因此视图本身几乎不占据存储空间。利用视图可以节约硬盘空间。两者在世界内容效果方面是一样的。</p>
-<h3 id="日期与时间的本质"><a href="#日期与时间的本质" class="headerlink" title="日期与时间的本质"></a>日期与时间的本质</h3><ol>
-<li>日期实际存储的是距离1960年1月1日的天数</li>
-<li>时间是距离凌晨的秒数</li>
-</ol>
-<h3 id="打破SAS命名规则"><a href="#打破SAS命名规则" class="headerlink" title="打破SAS命名规则"></a>打破SAS命名规则</h3><p>修改系统选项<code>VALIDMEMNAME</code>和<code>VALIDVARNAME</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">options VALIDMEMNAME=extend VALIDVARNAME=any;</div><div class="line">data 中文名演示;</div><div class="line">    SAS中文变量名 = &quot;YES&quot;;</div><div class="line">    SAS中文變量名 = &quot;YES&quot;;</div><div class="line">    &apos;2SAS中文变量名&apos;n = &quot;YES&quot;;</div><div class="line">    &apos;SAS空格 #@%特殊字符变量名&apos;n = &quot;YES&quot;;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
-<li>不等于 ^= ~= </li>
-<li>两者取小 &gt;&lt;</li>
-<li>两者取大 &lt;&gt;</li>
-<li>连接运算符 ||</li>
-<li>与 &amp; and</li>
-<li>或 ! | or</li>
-<li>非 ^ ~ not</li>
-</ul>
-<h3 id="IF-ELSE配合DO-END"><a href="#IF-ELSE配合DO-END" class="headerlink" title="IF-ELSE配合DO-END"></a>IF-ELSE配合DO-END</h3><p>希望执行的不仅仅是一个动作，而是多个动作，此时可以在关键词THEN后面用夹板语句DO-END，把多个动作整合在DO-END中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data male female;</div><div class="line">  set sashelp.class;</div><div class="line">       if sex=&apos;M&apos; then do; gender=&apos;Male&apos;; output male; end;</div><div class="line">  else if sex=&apos;F&apos; then do; gender=&apos;Female&apos;; output female; end;</div><div class="line">  else put &apos;Invalid sex :&apos; sex;</div><div class="line">run;</div></pre></td></tr></table></figure></p>
-<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><ul>
-<li>DO-END</li>
-<li>DO-WHILE</li>
-<li>DO-UNTIL<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">data random;</div><div class="line">    do i=1 to 10;</div><div class="line">        r=rannor(23);</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">data dowhile;</div><div class="line">    i=0;</div><div class="line">    do while(i&lt;5);</div><div class="line">        i+1;</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">data dountil;</div><div class="line">    i=0;</div><div class="line">    do until(i&gt;=5);</div><div class="line">        i+1;</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="数组结构"><a href="#数组结构" class="headerlink" title="数组结构"></a>数组结构</h3><ul>
-<li>数组中的变量必须有相同的数据类型</li>
-<li><code>ARRAY array-name {number-of-elements} &lt;$&gt; &lt;length&gt; &lt;array-elements&gt; &lt;(initial-value-list)&gt;</code></li>
-<li>元素个数可以用{*}代替，让SAS自动计数；可以指定具体的数字，如{7}；可以指定一定的数字范围，如{1:7}</li>
-<li>元素名可以是变量名也可以是SAS自定义变量，如_ALL_（变量类型需相同，_NUMERIC_，_CHARACTER_，_TEMPORARY_（临时变量）</li>
-<li>&lt;&gt;中的内容并非必须有。如$和length只有在数组元素为字符型时才用到。</li>
-</ul>
-<p>PDV与DATA步自循环</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">data demoPDV;</div><div class="line">    put &quot;第&quot; _n_ &quot;次前运行：&quot; _all_;</div><div class="line">    input ID $  Chiness  Math  English;</div><div class="line">    Sum = Chiness + Math + English;</div><div class="line">    put &quot;第&quot; _n_ &quot;次后运行：&quot; _all_;</div><div class="line">datalines;</div><div class="line">S001 80 99 93</div><div class="line">S002 90 85 95</div><div class="line">S003 83 88 81</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="与"><a href="#与" class="headerlink" title="@与@@"></a>@与@@</h3><ul>
-<li>当DATALINES数据行里要读入的数据列数=要读入的变量数，也就是说一行就是一条观测时，无尾。</li>
-<li>当DATALINES数据行里要读入的数据列数&gt;要读入的变量数，而且是整数倍时，也就是说一行=K*数条观测(K为&gt;=1的整数)，用@@。</li>
-<li><p>当一个DATA步里有多个INPUT语句时，我们需要单尾@。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">* 数据列数=变量数</div><div class="line">data test1;</div><div class="line">    input id x y z;</div><div class="line">    datalines;</div><div class="line">    1 98 99 97</div><div class="line">    2 93 91 92</div><div class="line">    ;</div><div class="line">run;</div><div class="line"></div><div class="line">* 数据列数=变量数，多个input语句</div><div class="line">data test2;</div><div class="line">    input id@;</div><div class="line">    input x@;</div><div class="line">    input y@;</div><div class="line">    input z@;</div><div class="line">    datalines;</div><div class="line">    1 98 99 97</div><div class="line">    2 93 91 92</div><div class="line">    ;</div><div class="line">run;</div><div class="line"></div><div class="line">* 数据列数=k*变量数</div><div class="line">data test3;</div><div class="line">    input id x y z @@;</div><div class="line">    datalines;</div><div class="line">    1 98 99 97 2 93 91 92;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<ul>
-<li>无尾Hold不住立即跳</li>
-<li>一尾(@)Hold住当前INPUT语句不跳，但若刚好是DATA步最后一个INPUT语句，跳。</li>
-<li>二尾(@@)打死都不跳。</li>
-<li>最后，无论多少尾，数据行末尾必定自动跳。</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">data test;</div><div class="line">    input x @;</div><div class="line">    input y;</div><div class="line">    input @@;</div><div class="line">datalines;</div><div class="line">1 2 3</div><div class="line">4 5 6</div><div class="line">7</div><div class="line">;</div><div class="line">run;</div><div class="line"></div><div class="line">data test;</div><div class="line">    input x;</div><div class="line">    input y @@;</div><div class="line">    input z @;</div><div class="line">datalines;</div><div class="line">1 2 3</div><div class="line">4 5 6</div><div class="line">7</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="苔点狂吞纳线青：读取数据"><a href="#苔点狂吞纳线青：读取数据" class="headerlink" title="苔点狂吞纳线青：读取数据"></a>苔点狂吞纳线青：读取数据</h2><h3 id="读取方式"><a href="#读取方式" class="headerlink" title="读取方式"></a>读取方式</h3><ul>
-<li>LIBNAME语句</li>
-<li>SQL直通设施(SQL pss-through facility)</li>
-<li>ACCESS/DBLOAD过程，已不推荐</li>
-<li>IMPORT/EXPORT过程</li>
-<li>INFILE+INPUT语句</li>
-<li>INPUT+DATALINES语句</li>
-<li>IO函数</li>
-</ul>
-<h3 id="LIBNAME访问DBMS数据文件"><a href="#LIBNAME访问DBMS数据文件" class="headerlink" title="LIBNAME访问DBMS数据文件"></a>LIBNAME访问DBMS数据文件</h3><p><strong>LIBNAME</strong> <em>libref</em> <em>engine-name</em> \&lt;<em>SAS/ACCESS-connection-options</em>> \&lt;<em>SAS/ACCESS-LIBNAME-options</em>>;</p>
-<p><code>libname mydb2 db2 user=yuanyi password=&quot;wuyuanyi&quot; datasrc=datadb</code></p>
-<ul>
-<li>libref: 逻辑库名，其实是存放数据表和视图的DBMS数据库、架构、服务器端别名</li>
-<li>engine-name: 引擎名,不同的DMBS数据文件需要指定不同的引擎名，入oracle、db2等</li>
-<li>SAS/ACCESS 连接选项，常用的如用户名，密码等，不同的DMBS数据文件会有所不同</li>
-<li>SAS／ACCESS 逻辑库选项，控制SAS处理DBMS对象的方式，不同的DBMS数据文件会有所不同</li>
-</ul>
-<h3 id="PROC-IMPORT语法"><a href="#PROC-IMPORT语法" class="headerlink" title="PROC IMPORT语法"></a>PROC IMPORT语法</h3><p><strong>PROC IMPORT</strong></p>
-<p><strong>DATAFILE</strong> = <em>“filename”</em>|<strong>DATATABLE</strong> = <em>“tablename”(Not used for Microsoft Excel files)</em></p>
-<p>\<dbms =="" *data-source-identifier*=""></dbms></p>
-<p>\<out =="" *libref.sas="" data-set-name*\=""> \&lt;<em>SAS data-set-option(s)</em>></out></p>
-<p>\<replace></replace></p>
-<p>&lt;<em>file-format-specofoc-statements</em>&gt;;</p>
-<p><strong>RUN</strong>;</p>
-<ul>
-<li>filename: 欲读入的文件，包括路径、文件名以及扩展名（如：d:\mydata.xls），当然也可以用之前定义的fileref</li>
-<li>data source identifier: 一般情况下与文件扩展名一致，.mdb、.dbf、.dat、.sav等。如果是excel文件，建议用Excel</li>
-<li>\<out句\>: 读入数据后存放的SAS数据库和数据集名称</out句\></li>
-<li>\<sas data-set-option(s)\="">: 对保存的数据进行数据集读写，变量筛选，观测筛选等方面的控制<ul>
-<li>PW=选项加密数据集</li>
-<li>READ=、WRITE=、ALTER=选项分别加密读、写以及修改权限</li>
-<li>KEEP=、DROP=、RENAME=选项筛选、重命名变量</li>
-<li>OBS=、WHERE=筛选保留的观测</li>
-</ul>
-</sas></li>
-<li>\<replace>: 重复运行时替换掉同名数据集</replace></li>
-<li>\<file-format-specific-statements>: 对分隔符分隔的文件（如CSV文件）、EXCEL文件、Access数据文件、dBase数据文件、Paradox数据文件、SPSS以及Stata数据文件做更详细的读取设置</file-format-specific-statements></li>
-<li>对于分隔符分隔的文件<ul>
-<li>DATAROW=n 指定数据从第n行开始</li>
-<li>GETNAMES=YES|NO 应对数据文件首行是不是变量名</li>
-<li>GUESSINGROWS=n|MAX 应对仅用默认头20行数据无法判断变量类型和长度的情况</li>
-<li>DELIMITER=‘char’|’nn’x 个性化指定数据文件的分隔符，如DELIMITER=‘#’|‘20’x(十六进制ascii码的空格)</li>
-</ul>
-</li>
-<li>对于EXCEL文件<ul>
-<li>SHEET=EXCEL文件中特定的sheet</li>
-<li>RANGE=读入某sheet中特定的数据区域</li>
-</ul>
-</li>
-</ul>
-<h3 id="LIBNAME访问PC文件语法"><a href="#LIBNAME访问PC文件语法" class="headerlink" title="LIBNAME访问PC文件语法"></a>LIBNAME访问PC文件语法</h3><p><strong>LIBNAME</strong> &lt;<em>libref</em>&gt; &lt;<em>engine-name</em>&gt; &lt;<em>‘physical-path and filename.ext’</em>&gt; &lt;<em>SAS/ACCESS-engine-connection-options</em>&gt; &lt;<em>SAS/ACCESS LIBNAME-options</em>&gt;;</p>
-<ul>
-<li>libref: 逻辑库名，其实是存放数据表和视图的DBMS数据库、架构、服务器端别名</li>
-<li>engine-name: 引擎名,不同的DMBS数据文件需要指定不同的引擎名，入oracle、db2等</li>
-<li>‘physical-path and filename.ext’: PC数据文件地址，文件名以及扩展名，置于引号中</li>
-<li>SAS/ACCESS 连接选项，常用的如用户名，密码等，不同的DMBS数据文件会有所不同</li>
-<li>SAS／ACCESS 逻辑库选项，控制SAS处理DBMS对象的方式，不同的DBMS数据文件会有所不同</li>
-</ul>
-<p>⚠️SAS在读取Excel文件时，默认用前8行数据判定列的数据类型和长度。解决的办法是让SAS读入更多的数据行再确定数据类型，然而SAS未为Excel提供这样的选项。可以修改Windows注册表的Excel的TypeGuessRows的值为0，这样SAS会在读入所有行后再确定变量的类型。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">filename myexcel &quot;D:\Data\Raw|class.xlsx&quot;;</div><div class="line">prco import</div><div class="line">    datafile=myexcel dbms=excel out=myxls replace;</div><div class="line">range=&quot;&apos;sheet1$A1:E20&apos;n&quot;; ／*读入sheet1的A1-E20区域数据*／</div><div class="line">getnames=yes;</div><div class="line">run;</div><div class="line">proc import</div><div class="line">    datafile=myexcel dbms=excel out=myxls replace;</div><div class="line">dbdsopts=&quot;firstobs=3 obs=8&quot;; /*读入sheet1的3-8行区域数据*/</div><div class="line">getnames=yes;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="读入CSV文件"><a href="#读入CSV文件" class="headerlink" title="读入CSV文件"></a>读入CSV文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">filename mycsv &quot;D:\Data\Raw|class.csv&quot;;</div><div class="line">proc import </div><div class="line">    datafile=mycsv dbms=csv out=tmp replace;</div><div class="line">getnames=yes;</div><div class="line">guessingrows=20; /*通过前20行确定变量类型*/</div><div class="line">datarow=2; /*数据从第二行开始*/</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="读入TXT特殊字符分隔的文件"><a href="#读入TXT特殊字符分隔的文件" class="headerlink" title="读入TXT特殊字符分隔的文件"></a>读入TXT特殊字符分隔的文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">filename mytxttab &quot;D:\Data\Raw|class_tab.txt&quot;</div><div class="line">filename mytxtblk &quot;D:\Data\Raw|class_blk.txt&quot;</div><div class="line">proc import</div><div class="line">    datafile=mytxttab dbms=dlm out=tmp replace;</div><div class="line">delimiter=&apos;09&apos;x;</div><div class="line">getnames=yes;</div><div class="line">run;</div><div class="line">proc import</div><div class="line">    datafile=mytxtblk dbms=dlm out=tmp replace;</div><div class="line">delimiter=&apos;20&apos;x;</div><div class="line">getnames=yes;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="INPUT语句列表读入式"><a href="#INPUT语句列表读入式" class="headerlink" title="INPUT语句列表读入式"></a>INPUT语句列表读入式</h3><p>适合数据不齐整</p>
-<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable &lt;$&gt; &lt;:|$|~&gt; &lt;<em>informat.</em>&gt; <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#58;&#64;&#124;&#64;&#64;">&#64;&#124;&#64;&#64;</a>;</p>
-<ul>
-<li>pointer-control: 控制变量读入点起始位置。针对行: #, /。针对列: @, +。</li>
-<li>variable: 变量列表</li>
-<li>$: 变量类型为字符型</li>
-<li>:|$|~: 三个互斥点可选用格式修饰符<ul>
-<li>: 读入点变量列上不齐整，读到空列、读完字符定义的长度或者数据行结尾时就算一个变量读完</li>
-<li>&amp; 读入点字符变量包含不连续的空格</li>
-<li>~ 读入其他分隔符分隔数据，字符变量引号，引号里有分隔符</li>
-</ul>
-</li>
-<li>informat.: 输入格式<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">input name : $13. gender $ age location $; /*:表示遇到空格或第13列，才读完name*/</div><div class="line">datalines;</div><div class="line">WYY M 25 Shanghai</div><div class="line">WuYuanyi M 25 Shanghai</div><div class="line">StatsThinking M 1 Beijing</div><div class="line">;</div><div class="line">run;</div><div class="line"></div><div class="line">data tmp;</div><div class="line">input name &amp; $9. gender $ age location $; /*一个空格不会认为变量结束*/</div><div class="line">datalines;</div><div class="line">W YY  M 25 Shanghai</div><div class="line">Wu Yuanyi  M 25 Shanghai</div><div class="line">;</div><div class="line">run;</div><div class="line"></div><div class="line">data tmp;</div><div class="line">infile datalines delimiter=&apos;,&apos;;</div><div class="line">input name &amp; $9. gender $ age location $ affiliation ~ $12.;</div><div class="line">datalines;</div><div class="line">YY WU,M,30,Shanghai,&quot;SHTU,SSIT&quot;</div><div class="line">Yuanyi Wu,M,30,Shanghai,&quot;SHTU,SSIT&quot;</div><div class="line">run;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="INPUT语句列读入式"><a href="#INPUT语句列读入式" class="headerlink" title="INPUT语句列读入式"></a>INPUT语句列读入式</h3><p>适合数据齐整的情况</p>
-<p><strong>INPUT</strong> variable&lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#x40;&#124;&#x40;&#x40;">&#x40;&#124;&#x40;&#x40;</a>;</p>
-<ul>
-<li>start-column&lt;-end-column&gt;: 变量读入点起止列</li>
-<li>.decimals: 小数位数</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">input name $ 1-9 gender $ 11 age 13-14 location $ 16-23;</div><div class="line">YY Wu     M 25 Shanghai</div><div class="line">Yuanyi Wu M 25 Shanghai</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="INPUT语句格式读入式"><a href="#INPUT语句格式读入式" class="headerlink" title="INPUT语句格式读入式"></a>INPUT语句格式读入式</h3><p>可以对字符变量指定宽度，以及读入非标准形式对数字，如科学计数法、带货币符号、带千分位等。</p>
-<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; <em>variable</em> <em>informat.</em> <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#64;&#x7c;&#64;&#x40;">&#64;&#x7c;&#64;&#x40;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (<em>informat-list</em>) <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#64;&#124;&#64;&#64;">&#64;&#124;&#64;&#64;</a>;<br><strong>INPUY</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (<em>\&lt;n\</em>&gt; informat.) <a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#64;&#x7c;&#64;&#x40;">&#64;&#x7c;&#64;&#x40;</a>;</p>
-<ul>
-<li>(variable-list) (informat-list): 变量格式列表<ul>
-<li>编号范围列表：形如x1,x2,x3可缩写为x1-xn</li>
-<li>名称范围列表：x–a定义顺序从x到a的所有变量，x-numeric-a为x到a的所有数值型变量，x-character-ax到a的所有字符型变量</li>
-<li>名称前缀列表：如x_1,x_2或x1,X2可简写成x:</li>
-<li>特殊SAS名列表：_numerica_, _character_, _all_</li>
-</ul>
-</li>
-<li>\<n\*\> informat.: 变量格式列表n表示格式重复的次数</n\*\></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">/*gender虽然只有1列，但声明时要带上其后的一个空格，age，location类似*/</div><div class="line">input name &amp; $10. gender $2. age 3. location $8. fee comma6.;</div><div class="line">datalines;</div><div class="line">YY Wu  M 25 Shanghai 12,345</div><div class="line">Yuanyi Wu  M 25 Shanghai 54,321</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="INPUT语句命名读入式"><a href="#INPUT语句命名读入式" class="headerlink" title="INPUT语句命名读入式"></a>INPUT语句命名读入式</h3><p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= &lt;$&gt; <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x40;&#x7c;&#64;&#64;">&#x40;&#x7c;&#64;&#64;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= informat. <a href="&#x6d;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#64;&#x7c;&#x40;&#x40;">&#64;&#x7c;&#x40;&#x40;</a>;<br><strong>INPUT</strong> variable= &lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#58;&#64;&#x7c;&#x40;&#64;">&#64;&#x7c;&#x40;&#64;</a>;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">input name= $ gender= $ age= location=$;</div><div class="line">datalines;</div><div class="line">name=WYY gender=M age=25 location=Shanghai</div><div class="line">name=GY gender=F age=24 location=Shanghai</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="数据导出"><a href="#数据导出" class="headerlink" title="数据导出"></a>数据导出</h3><p><strong>PROC EXPORT DATA</strong>=&lt;<em>libref.</em>&gt;<em>SAS data set</em>&lt;(<em>SAS data set options</em>)&gt;</p>
-<p><strong>OUTFILE</strong>=”filename”|<strong>OUTTABLE</strong>=”tablename”</p>
-<p>\<dbms=data-source-identifier\></dbms=data-source-identifier\></p>
-<p>\<label\></label\></p>
-<p>\<replace\></replace\></p>
-<p>\<file-format-specific-statements\>;</file-format-specific-statements\></p>
-<p><strong>RUN</strong>;</p>
-<ul>
-<li>SAS data set: 欲输出的数据集</li>
-<li>filename|tablename: 输出文件的地址名称</li>
-<li>LABEL: 输出文件中输出变量名的标签</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">proc export</div><div class="line">    data=sashelp.class outfile=&apos;D:\Data\Raw|class.xlsx&apos;</div><div class="line">    dbms=excel replace;</div><div class="line">run;</div><div class="line"></div><div class="line">proc export</div><div class="line">    data=sashelp.class outfile=&apos;D:\Data\Raw|class_tab.txt&apos;</div><div class="line">    dbms=csv replace delimiter=&apos;09&apos;x;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="行舟来去泛纵横：变量观测"><a href="#行舟来去泛纵横：变量观测" class="headerlink" title="行舟来去泛纵横：变量观测"></a>行舟来去泛纵横：变量观测</h2><h3 id="DATA-SET语句"><a href="#DATA-SET语句" class="headerlink" title="DATA+SET语句"></a>DATA+SET语句</h3><p><strong>DATA</strong> &lt;<em>data-set-name-1</em> &lt;<em>data-set-options-1</em>&gt;&gt;  &lt;…<em>data-set-name-n</em> &lt;<em>data-set-options-n</em>&gt;&gt; \&lt;\/ \<debug> \<nesting> \<stack =="" *stack-size*="" \="">> \<nolist\>;</nolist\></stack></nesting></debug></p>
-<p><strong>DATA</strong> _NULL_ &lt;/ \<debug\> \<nesting\> \<stack =="" *stack-size*\="">&gt; \<nolist\>;</nolist\></stack></nesting\></debug\></p>
-<ul>
-<li>data-set-name: 欲创建的SAS数据集名</li>
-<li>data-set-options: 欲创建的SAS数据集的限制选项</li>
-<li>DEBUG: 调试程序逻辑错误以及部分数据错误</li>
-<li>NESTING: 日志中标记DO-END和SELECT-END语句的起止</li>
-<li>STACK =: 可嵌套LINK语句个数</li>
-<li>NOLIST: 出错时不在日志打印每个变量的值</li>
-<li>_NULL_: 不建任何SAS数据集</li>
-</ul>
-<h3 id="获取背后数据"><a href="#获取背后数据" class="headerlink" title="获取背后数据"></a>获取背后数据</h3><ol>
-<li>利用<code>OSD TRACE ON</code>和<code>ODS TRACE OFF</code>对整个统计过程进行全程追踪和监控：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ods trace on;</div><div class="line">proc lifetest data=sashelp.bmt;</div><div class="line">	time t*status(0);</div><div class="line">	strata group;</div><div class="line">run;</div><div class="line">ods trace off;</div></pre></td></tr></table></figure>
-<ol>
-<li>在LOG文件中，产生的结果一目了然，想要什么数据随意抓取。</li>
-<li><code>ODS OUTPUT</code>语句抓取Result树形目录下结果：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ods output SurvialPlot=SurvPlotData;</div><div class="line">proc lifetset data=sashelp.bmt;</div><div class="line">	time t*status(0);</div><div class="line">	strata group;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="IF与WHERE"><a href="#IF与WHERE" class="headerlink" title="IF与WHERE"></a>IF与WHERE</h3><ol>
-<li>WHERE更高效。WHERE语句在读入PDV之前就先行判断，求子集IF语句先读入观测进入PDV，而后再判断。</li>
-<li>WHERE更广泛。WHERE语句可用在DATA步，PROC步，作为数据集选项使用。IF语句只能作为DATA步语句使用。</li>
-<li>IF语句对INPUT语句创建的观测有效，WHERE语句只能筛选数据集里的观测。</li>
-<li>当有BY语句时，求子集IF语句与WHERE语句结果可能不同，因为SAS创建BY组再WHERE语句之后，求子集IF语句之前。</li>
-<li>求自己IF语句可以用在条件IF语句中，WHERE语句不行</li>
-<li>当读入多个数据集时，WHERE语句可以针对每个数据集单独筛选，求子集IF语句不行。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">/*打开数据集时，直接读取只需要的观测：通过WHERE选项限定读入数据集*/</div><div class="line">data tmp;</div><div class="line">	set sashelp.class(where=(sex=&quot;F&quot;));</div><div class="line">run;</div><div class="line"></div><div class="line">/*PDV里筛选过滤观测*/</div><div class="line">/*通过WHERE语句*/</div><div class="line">data tmp;</div><div class="line">	set sashelp.class;</div><div class="line">	where sex=&quot;F&quot;;</div><div class="line">run;</div><div class="line">/*通过求子集IF语句*/</div><div class="line">data tmp;</div><div class="line">	set sashelp.class;</div><div class="line">	if sex=&quot;F&quot;;</div><div class="line">run;</div><div class="line">/*只写入所需观测进入数据集：通过WHERE选项限定输出数据集*/</div><div class="line">data tmp(where=(sex=&quot;F&quot;));</div><div class="line">	set sashelp.class;</div><div class="line">run;</div><div class="line"></div><div class="line">data want(where=(not missing(id)));</div><div class="line">	set raw1(where=(age between 20 and 30)) raw2(where=(sex=&quot;F&quot;));</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="KEEP、DROP与RENAME"><a href="#KEEP、DROP与RENAME" class="headerlink" title="KEEP、DROP与RENAME"></a>KEEP、DROP与RENAME</h3><ol>
-<li>选项只作用于被其尾随的数据集，而语句作用域PDV，即语句对不管来自哪个数据集的变量都有效。</li>
-<li>KEPP/DROP，RENAME，WHERE和其他语句的执行有固定的执行顺序。<ul>
-<li>数据集读入和输出阶段的执行顺序：<ol>
-<li>KEPP/DROP选项筛选变量</li>
-<li>RENAME选项修改变量名</li>
-<li>WHERE选项筛选观测</li>
-</ol>
-</li>
-<li>编程处理阶段：<ol>
-<li>WHERE选项筛选观测</li>
-<li>其他执行语句</li>
-<li>KEPP/DROP选项筛选变量</li>
-<li>RENAME选项修改变量名</li>
-</ol>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="编译变量和临时变量"><a href="#编译变量和临时变量" class="headerlink" title="编译变量和临时变量"></a>编译变量和临时变量</h3><p>编译变量(NOBS、IN、OBS、END、POINT等)和临时变量的赋值方式是将等号左边赋值给等号右边，其他赋值语句是将等号左边赋值给右边，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">/*PROC SQL获取观测值 最慢*/</div><div class="line">proc sql;</div><div class="line">	select count(name) as N from sashelp.class;</div><div class="line">quit;</div><div class="line"></div><div class="line">/*_N_获取观测数 中*/</div><div class="line">data _null_;</div><div class="line">	set sashelp.class end=last;</div><div class="line">	if last then put _n_;</div><div class="line">run;</div><div class="line"></div><div class="line">/*编译变量获取观测数 最快*/</div><div class="line">data _null_;</div><div class="line">	if 0 then set sashelp.class nobs=n;</div><div class="line">	put _all_;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="CALL例程"><a href="#CALL例程" class="headerlink" title="CALL例程"></a>CALL例程</h3><p>CALL例程也可以生成新变量，这种方法是函数形式的一种变种。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">data rand;</div><div class="line">	seed=123;</div><div class="line">	do i=1 to 10;</div><div class="line">		x=rannor(seed);</div><div class="line">		call rannor(seed,y);</div><div class="line">		output;</div><div class="line">	end;</div><div class="line">run;</div><div class="line">proc print data=rand;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="变量类型转换"><a href="#变量类型转换" class="headerlink" title="变量类型转换"></a>变量类型转换</h3><p>new_variable = input(original_variable, informat.);</p>
-<p>new_variable = put(original_variable, format.);</p>
-<ul>
-<li>new_variable：欲生成的新变量</li>
-<li>informat.：变量输入格式</li>
-<li>format.：变量输出格式</li>
-</ul>
-<h3 id="DATA步实现累加"><a href="#DATA步实现累加" class="headerlink" title="DATA步实现累加"></a>DATA步实现累加</h3><p>累加语句：variable+expression;</p>
-<ul>
-<li>variable：累加器变量，必须为数字型变量，累加后的值保存于此变量中</li>
-<li>expression：表达式，表达式的值会被累加到累加器变量variable中</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data want;</div><div class="line">	set sashelp.class;</div><div class="line">	cum_weight+weight;</div><div class="line">	cnt_weight+1;</div><div class="line">	avg_weight=cum_weight/cnt_weight;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p>RETAIN语句：<strong>RETAIN</strong> &lt;<em>element-list(s)</em>&lt;<em>initial-value(s)|(initial-value-1)|(initial-value-list-1)</em>&gt; &lt;<em>…element-list-n</em>&lt;<em>initial-value-n|(initial-value-n)|(initial-value-list-n)</em>&gt;&gt;&gt;</p>
-<ul>
-<li>element-list：需要保留PDV里的值的参数，可以是变量名、变量列表、数组名</li>
-</ul>
-<ul>
-<li>initial-value：初始值，对应于只有一个参数或者参数列表里的第一个参数</li>
-<li>(initial-value-1)：带括号的初始值</li>
-<li>(initial-value-list-1)：带括号的初始值列表</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">data want;</div><div class="line">	set sashelp.class;</div><div class="line">	retain cum_weight cnt_weight (0 0);</div><div class="line">	cum_weight=cum_weight+weight;</div><div class="line">	cnt_weight=cnt_weight+1;</div><div class="line">	avg_weight=cum_weight/cnt_weight;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p>BY语句的作用是在PROC SORT中排序后，在SET、MERGE、UPDATE以及MODIFY语句中，指定分组变量，产生临时变量FIRST.变量和LAST.变量用以标示观测变量是否为分组变量里的第一条和最后一条。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">proc sort data=sashelp.class out=class;</div><div class="line">	by sex;</div><div class="line">run;</div><div class="line">data want;</div><div class="line">	set class end=last;</div><div class="line">	by sex;</div><div class="line">	if first.sex then do;</div><div class="line">		cum_weight=0;</div><div class="line">		cnt_weight=0;</div><div class="line">	end;</div><div class="line">	cum_weight+weight;</div><div class="line">	cnt_weight+1;</div><div class="line">	if last.sex then do;</div><div class="line">		avg_weight=cum_weight/cnt_weight;</div><div class="line">		output;</div><div class="line">	end;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="隔行取数据"><a href="#隔行取数据" class="headerlink" title="隔行取数据"></a>隔行取数据</h3><p>SAS DATA步是隔行处理数据，一旦一行处理完，读入下一行数据后，前面行的数据就不在PDV里了。</p>
-<ul>
-<li>LAG：把前面任一行的数据在取出来</li>
-<li>DIF：计算目前行与前面任一行的差</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">data want;</div><div class="line">	set sashelp.class;</div><div class="line">	/*前面2人是谁*/</div><div class="line">	pre1name=lag1(name);</div><div class="line">	pre2name=lag2(name);</div><div class="line">	/*与前面两人身高的差*/</div><div class="line">	dif1height=dif1(heigh);</div><div class="line">	dif2hegith=dif2(height);</div><div class="line">run;</div><div class="line">proc print&apos;</div><div class="line">run;</div></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/09/05/SAS编程演义1-4/" data-id="cj7gxgjr20004ry4mm498vgs0" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-SAS编程演义5-7" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/09/05/SAS编程演义5-7/" class="article-date">
-  <time datetime="2017-09-05T03:15:23.000Z" itemprop="datePublished">2017-09-05</time>
+    <a href="/2017/09/12/SAS编程演义5-7/" class="article-date">
+  <time datetime="2017-09-12T01:39:08.000Z" itemprop="datePublished">2017-09-12</time>
 </a>
     
   </div>
@@ -358,7 +75,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/05/SAS编程演义5-7/">《SAS编程演义》笔记（5-7章）</a>
+      <a class="article-title" href="/2017/09/12/SAS编程演义5-7/">《SAS编程演义》笔记（5-7章）</a>
     </h1>
   
 
@@ -366,8 +83,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="亦应帷幄运鸿筹：数据库集"><a href="#亦应帷幄运鸿筹：数据库集" class="headerlink" title="亦应帷幄运鸿筹：数据库集"></a>亦应帷幄运鸿筹：数据库集</h2><h3 id="修改数据集"><a href="#修改数据集" class="headerlink" title="修改数据集"></a>修改数据集</h3><p><strong>MODIFY</strong> <em>master-data-set</em>&lt;(<em>data-set-options</em>)&gt; <em>transaction-data-set</em>\&lt;(<em>data-set-options</em>)></p>
-<p>\<curobs=*variable*\> \<nobs=*variable*\> \<end=*variable*\> \<updatemode=missingcheck|nomissingcheck\>;</updatemode=missingcheck|nomissingcheck\></end=*variable*\></nobs=*variable*\></curobs=*variable*\></p>
+        <h2 id="亦应帷幄运鸿筹：数据库集"><a href="#亦应帷幄运鸿筹：数据库集" class="headerlink" title="亦应帷幄运鸿筹：数据库集"></a>亦应帷幄运鸿筹：数据库集</h2><h3 id="修改数据集"><a href="#修改数据集" class="headerlink" title="修改数据集"></a>修改数据集</h3><p><strong>MODIFY</strong> <em>master-data-set</em> \&lt;(<em>data-set-options</em>)> <em>transaction-data-set</em> \&lt;(<em>data-set-options</em>)> \<curobs=*variable*\> \<nobs=*variable*\> \<end=*variable*\> \<updatemode=missingcheck|nomissingcheck\>;</updatemode=missingcheck|nomissingcheck\></end=*variable*\></nobs=*variable*\></curobs=*variable*\></p>
 <p><strong>BY</strong> <em>by-variable</em>;</p>
 <ul>
 <li><em>master-data-set</em>：主数据集（Master Dataset），存放原始数据。</li>
@@ -381,7 +97,7 @@
 <li>KEY=<em>index</em>：指定索引</li>
 <li>KEYRESET=<em>variable</em>：是否从索引头部查找</li>
 </ul>
-<p><strong>MODIFY</strong> <em>master-data-set</em>\&lt;(<em>data-set-options</em>)>\<nobs=variable\>POINT=<em>variable</em>;</nobs=variable\></p>
+<p><strong>MODIFY</strong> <em>master-data-set</em> \&lt;(<em>data-set-options</em>)> \<nobs=variable\> POINT=<em>variable</em>;</nobs=variable\></p>
 <ul>
 <li>POINT=<em>variable</em>：随机读取由variable指定的观测</li>
 </ul>
@@ -410,9 +126,9 @@
 <h3 id="行列转置"><a href="#行列转置" class="headerlink" title="行列转置"></a>行列转置</h3><p><strong>PROC TRANSPOSE</strong> \&lt;<em>DATA=input-data-set</em>> \<delimiter=*delimiter*\> \<label=*label*\> \<let\> \<name=*name*\> \<out=*output-data-set*\> \<prefix=*prefix*\> \<suffix=*suffix*\>;</suffix=*suffix*\></prefix=*prefix*\></out=*output-data-set*\></name=*name*\></let\></label=*label*\></delimiter=*delimiter*\></p>
 <p><strong>BY</strong> \<descending\> <em>variable-1</em> \&lt;\<descending\> <em>variable-2</em>> \<notstored>;</notstored></descending\></descending\></p>
 <p><strong>COPY</strong> <em>variable(s)</em>;</p>
-<p><strong>ID</strong> variable;</p>
-<p><strong>IDLABEL</strong> variable;</p>
-<p><strong>VAR</strong> variable(s);</p>
+<p><strong>ID</strong> <em>variable</em>;</p>
+<p><strong>IDLABEL</strong> <em>variable</em>;</p>
+<p><strong>VAR</strong> <em>variable</em>(<em>s</em>);</p>
 <p><strong>RUN</strong>;</p>
 <ul>
 <li>DATA=input-data-set：待转置数据集名称</li>
@@ -452,7 +168,7 @@
 <li>字符型变量的长度为第一次出现的数据中的定义长度，后面相同的字段如果比前面更长，则会被截断，因此建议在SET语句前先用LENGTH语句申明其长度。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">data class1 class2 class3(keep=name sex) class4(keep=name age height weight);</div><div class="line">	set sashelp.class;</div><div class="line">	if _n_ &lt; 10 then do;</div><div class="line">		output class1;</div><div class="line">		output class2;</div><div class="line">	end;</div><div class="line">	else do;</div><div class="line">		output class2;</div><div class="line">		output class4;</div><div class="line">	end;</div><div class="line">run;</div><div class="line"></div><div class="line">data class;</div><div class="line">	set class1 class2;</div><div class="line">run;</div><div class="line"></div><div class="line">data class;</div><div class="line">	set class2 class4;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h4 id="PROC-APPEND"><a href="#PROC-APPEND" class="headerlink" title="PROC APPEND"></a>PROC APPEND</h4><p><strong>PROC APPEND</strong> BASE=\&lt;<em>libref.</em>>SAS-data-set\<appendver=v6\> \<data=\<*libref.*\>SAS-data-set> \<encryptkey=*key-value*\> \<froce\> \<getsort\> \<nowarn\>;</nowarn\></getsort\></froce\></encryptkey=*key-value*\></data=\<*libref.*\></appendver=v6\></p>
+<h4 id="PROC-APPEND"><a href="#PROC-APPEND" class="headerlink" title="PROC APPEND"></a>PROC APPEND</h4><p><strong>PROC APPEND</strong> BASE=\&lt;<em>libref.</em>>SAS-data-set \<appendver=v6\> \<data=\<*libref.*\>SAS-data-set> \<encryptkey=*key-value*\> \<froce\> \<getsort\> \<nowarn\>;</nowarn\></getsort\></froce\></encryptkey=*key-value*\></data=\<*libref.*\></appendver=v6\></p>
 <p><strong>RUN</strong>;</p>
 <ul>
 <li>BASE=\&lt;<em>libref.</em>>SAS-data-set：指定基础数据集，追加数据集的观测将写入此数据集中</li>
@@ -519,7 +235,7 @@
 <p><em>function-name</em>(<em>argument-1</em>\&lt;…*argument-n>)</p>
 <p><em>function-name</em>(OF <em>variable-list</em>)</p>
 <p><em>function-name</em>(OF <em>array-name</em>[*])</p>
-<p><em>function-name</em>(\&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]> \&lt;…, \&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]>></p>
+<p><em>function-name</em>(\&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]> \&lt;…, \&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]>>)</p>
 <ul>
 <li>function-name：函数名称</li>
 <li>argument：参数，可以是变量名、常数、表达式、甚至还可以是其他函数</li>
@@ -531,7 +247,7 @@
 <p>CALL <em>routine-name</em>(<em>argument-1</em>\&lt;…*argument-n>)</p>
 <p>CALL <em>routine-name</em>(OF <em>variable-list</em>)</p>
 <p>CALL <em>routine-name</em>(OF <em>array-name</em>[*])</p>
-<p>CALL <em>routine-name</em>(\&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]> \&lt;…, \&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]>></p>
+<p>CALL <em>routine-name</em>(\&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]> \&lt;…, \&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]>>)</p>
 <ul>
 <li>routine-name：函数名称</li>
 <li>argument：参数，可以是变量名、常数、表达式、甚至还可以是其他函数</li>
@@ -699,7 +415,290 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/09/05/SAS编程演义5-7/" data-id="cj7gxgjr50005ry4mz7myl1lp" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/09/12/SAS编程演义5-7/" data-id="cj7gy4s000005yd4m7nnwjn8b" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-SAS编程演义1-4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/05/SAS编程演义1-4/" class="article-date">
+  <time datetime="2017-09-05T03:55:44.000Z" itemprop="datePublished">2017-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/05/SAS编程演义1-4/">《SAS编程演义》笔记（1-4章）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="清歌苦调两不厌：夯实基础"><a href="#清歌苦调两不厌：夯实基础" class="headerlink" title="清歌苦调两不厌：夯实基础"></a>清歌苦调两不厌：夯实基础</h2><h3 id="如何让SAS自动加载永久逻辑库"><a href="#如何让SAS自动加载永久逻辑库" class="headerlink" title="如何让SAS自动加载永久逻辑库"></a>如何让SAS自动加载永久逻辑库</h3><ol>
+<li>如果想要让SAS语句建立的永久库在启动后就能看到，可以把包含LIBNAME语句的程序命名为autoexe.sas，并放入和sas.exe同级的目录中，此后每次SAS启动时会自动运行autosas.exe程序。</li>
+<li>通过工具按钮建立永久库时，可以在建立时勾上<em>Enable at startup</em>，下次启动SAS时就会自动加载这个永久库。</li>
+</ol>
+<h3 id="为什么又了数据文件还要视图"><a href="#为什么又了数据文件还要视图" class="headerlink" title="为什么又了数据文件还要视图"></a>为什么又了数据文件还要视图</h3><p>视图是依据查询语句动态生成，因此视图本身几乎不占据存储空间。利用视图可以节约硬盘空间。两者在世界内容效果方面是一样的。</p>
+<h3 id="日期与时间的本质"><a href="#日期与时间的本质" class="headerlink" title="日期与时间的本质"></a>日期与时间的本质</h3><ol>
+<li>日期实际存储的是距离1960年1月1日的天数</li>
+<li>时间是距离凌晨的秒数</li>
+</ol>
+<h3 id="打破SAS命名规则"><a href="#打破SAS命名规则" class="headerlink" title="打破SAS命名规则"></a>打破SAS命名规则</h3><p>修改系统选项<code>VALIDMEMNAME</code>和<code>VALIDVARNAME</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">options VALIDMEMNAME=extend VALIDVARNAME=any;</div><div class="line">data 中文名演示;</div><div class="line">    SAS中文变量名 = &quot;YES&quot;;</div><div class="line">    SAS中文變量名 = &quot;YES&quot;;</div><div class="line">    &apos;2SAS中文变量名&apos;n = &quot;YES&quot;;</div><div class="line">    &apos;SAS空格 #@%特殊字符变量名&apos;n = &quot;YES&quot;;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
+<li>不等于 ^= ~= </li>
+<li>两者取小 &gt;&lt;</li>
+<li>两者取大 &lt;&gt;</li>
+<li>连接运算符 ||</li>
+<li>与 &amp; and</li>
+<li>或 ! | or</li>
+<li>非 ^ ~ not</li>
+</ul>
+<h3 id="IF-ELSE配合DO-END"><a href="#IF-ELSE配合DO-END" class="headerlink" title="IF-ELSE配合DO-END"></a>IF-ELSE配合DO-END</h3><p>希望执行的不仅仅是一个动作，而是多个动作，此时可以在关键词THEN后面用夹板语句DO-END，把多个动作整合在DO-END中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data male female;</div><div class="line">  set sashelp.class;</div><div class="line">       if sex=&apos;M&apos; then do; gender=&apos;Male&apos;; output male; end;</div><div class="line">  else if sex=&apos;F&apos; then do; gender=&apos;Female&apos;; output female; end;</div><div class="line">  else put &apos;Invalid sex :&apos; sex;</div><div class="line">run;</div></pre></td></tr></table></figure></p>
+<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><ul>
+<li>DO-END</li>
+<li>DO-WHILE</li>
+<li>DO-UNTIL<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">data random;</div><div class="line">    do i=1 to 10;</div><div class="line">        r=rannor(23);</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">data dowhile;</div><div class="line">    i=0;</div><div class="line">    do while(i&lt;5);</div><div class="line">        i+1;</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">data dountil;</div><div class="line">    i=0;</div><div class="line">    do until(i&gt;=5);</div><div class="line">        i+1;</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">run;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="数组结构"><a href="#数组结构" class="headerlink" title="数组结构"></a>数组结构</h3><ul>
+<li>数组中的变量必须有相同的数据类型</li>
+<li><code>ARRAY array-name {number-of-elements} &lt;$&gt; &lt;length&gt; &lt;array-elements&gt; &lt;(initial-value-list)&gt;</code></li>
+<li>元素个数可以用{*}代替，让SAS自动计数；可以指定具体的数字，如{7}；可以指定一定的数字范围，如{1:7}</li>
+<li>元素名可以是变量名也可以是SAS自定义变量，如_ALL_（变量类型需相同，_NUMERIC_，_CHARACTER_，_TEMPORARY_（临时变量）</li>
+<li>&lt;&gt;中的内容并非必须有。如$和length只有在数组元素为字符型时才用到。</li>
+</ul>
+<p>PDV与DATA步自循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">data demoPDV;</div><div class="line">    put &quot;第&quot; _n_ &quot;次前运行：&quot; _all_;</div><div class="line">    input ID $  Chiness  Math  English;</div><div class="line">    Sum = Chiness + Math + English;</div><div class="line">    put &quot;第&quot; _n_ &quot;次后运行：&quot; _all_;</div><div class="line">datalines;</div><div class="line">S001 80 99 93</div><div class="line">S002 90 85 95</div><div class="line">S003 83 88 81</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="与"><a href="#与" class="headerlink" title="@与@@"></a>@与@@</h3><ul>
+<li>当DATALINES数据行里要读入的数据列数=要读入的变量数，也就是说一行就是一条观测时，无尾。</li>
+<li>当DATALINES数据行里要读入的数据列数&gt;要读入的变量数，而且是整数倍时，也就是说一行=K*数条观测(K为&gt;=1的整数)，用@@。</li>
+<li><p>当一个DATA步里有多个INPUT语句时，我们需要单尾@。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">* 数据列数=变量数</div><div class="line">data test1;</div><div class="line">    input id x y z;</div><div class="line">    datalines;</div><div class="line">    1 98 99 97</div><div class="line">    2 93 91 92</div><div class="line">    ;</div><div class="line">run;</div><div class="line"></div><div class="line">* 数据列数=变量数，多个input语句</div><div class="line">data test2;</div><div class="line">    input id@;</div><div class="line">    input x@;</div><div class="line">    input y@;</div><div class="line">    input z@;</div><div class="line">    datalines;</div><div class="line">    1 98 99 97</div><div class="line">    2 93 91 92</div><div class="line">    ;</div><div class="line">run;</div><div class="line"></div><div class="line">* 数据列数=k*变量数</div><div class="line">data test3;</div><div class="line">    input id x y z @@;</div><div class="line">    datalines;</div><div class="line">    1 98 99 97 2 93 91 92;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<ul>
+<li>无尾Hold不住立即跳</li>
+<li>一尾(@)Hold住当前INPUT语句不跳，但若刚好是DATA步最后一个INPUT语句，跳。</li>
+<li>二尾(@@)打死都不跳。</li>
+<li>最后，无论多少尾，数据行末尾必定自动跳。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">data test;</div><div class="line">    input x @;</div><div class="line">    input y;</div><div class="line">    input @@;</div><div class="line">datalines;</div><div class="line">1 2 3</div><div class="line">4 5 6</div><div class="line">7</div><div class="line">;</div><div class="line">run;</div><div class="line"></div><div class="line">data test;</div><div class="line">    input x;</div><div class="line">    input y @@;</div><div class="line">    input z @;</div><div class="line">datalines;</div><div class="line">1 2 3</div><div class="line">4 5 6</div><div class="line">7</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="苔点狂吞纳线青：读取数据"><a href="#苔点狂吞纳线青：读取数据" class="headerlink" title="苔点狂吞纳线青：读取数据"></a>苔点狂吞纳线青：读取数据</h2><h3 id="读取方式"><a href="#读取方式" class="headerlink" title="读取方式"></a>读取方式</h3><ul>
+<li>LIBNAME语句</li>
+<li>SQL直通设施(SQL pss-through facility)</li>
+<li>ACCESS/DBLOAD过程，已不推荐</li>
+<li>IMPORT/EXPORT过程</li>
+<li>INFILE+INPUT语句</li>
+<li>INPUT+DATALINES语句</li>
+<li>IO函数</li>
+</ul>
+<h3 id="LIBNAME访问DBMS数据文件"><a href="#LIBNAME访问DBMS数据文件" class="headerlink" title="LIBNAME访问DBMS数据文件"></a>LIBNAME访问DBMS数据文件</h3><p><strong>LIBNAME</strong> <em>libref</em> <em>engine-name</em> \&lt;<em>SAS/ACCESS-connection-options</em>> \&lt;<em>SAS/ACCESS-LIBNAME-options</em>>;</p>
+<p><code>libname mydb2 db2 user=yuanyi password=&quot;wuyuanyi&quot; datasrc=datadb</code></p>
+<ul>
+<li>libref: 逻辑库名，其实是存放数据表和视图的DBMS数据库、架构、服务器端别名</li>
+<li>engine-name: 引擎名,不同的DMBS数据文件需要指定不同的引擎名，入oracle、db2等</li>
+<li>SAS/ACCESS 连接选项，常用的如用户名，密码等，不同的DMBS数据文件会有所不同</li>
+<li>SAS／ACCESS 逻辑库选项，控制SAS处理DBMS对象的方式，不同的DBMS数据文件会有所不同</li>
+</ul>
+<h3 id="PROC-IMPORT语法"><a href="#PROC-IMPORT语法" class="headerlink" title="PROC IMPORT语法"></a>PROC IMPORT语法</h3><p><strong>PROC IMPORT</strong></p>
+<p><strong>DATAFILE</strong> = <em>“filename”</em>|<strong>DATATABLE</strong> = <em>“tablename”(Not used for Microsoft Excel files)</em></p>
+<p>\<dbms =="" *data-source-identifier*=""></dbms></p>
+<p>\<out =="" *libref.sas="" data-set-name*\=""> \&lt;<em>SAS data-set-option(s)</em>></out></p>
+<p>\<replace></replace></p>
+<p>&lt;<em>file-format-specofoc-statements</em>&gt;;</p>
+<p><strong>RUN</strong>;</p>
+<ul>
+<li>filename: 欲读入的文件，包括路径、文件名以及扩展名（如：d:\mydata.xls），当然也可以用之前定义的fileref</li>
+<li>data source identifier: 一般情况下与文件扩展名一致，.mdb、.dbf、.dat、.sav等。如果是excel文件，建议用Excel</li>
+<li>\<out句\>: 读入数据后存放的SAS数据库和数据集名称</out句\></li>
+<li>\<sas data-set-option(s)\="">: 对保存的数据进行数据集读写，变量筛选，观测筛选等方面的控制<ul>
+<li>PW=选项加密数据集</li>
+<li>READ=、WRITE=、ALTER=选项分别加密读、写以及修改权限</li>
+<li>KEEP=、DROP=、RENAME=选项筛选、重命名变量</li>
+<li>OBS=、WHERE=筛选保留的观测</li>
+</ul>
+</sas></li>
+<li>\<replace>: 重复运行时替换掉同名数据集</replace></li>
+<li>\<file-format-specific-statements>: 对分隔符分隔的文件（如CSV文件）、EXCEL文件、Access数据文件、dBase数据文件、Paradox数据文件、SPSS以及Stata数据文件做更详细的读取设置</file-format-specific-statements></li>
+<li>对于分隔符分隔的文件<ul>
+<li>DATAROW=n 指定数据从第n行开始</li>
+<li>GETNAMES=YES|NO 应对数据文件首行是不是变量名</li>
+<li>GUESSINGROWS=n|MAX 应对仅用默认头20行数据无法判断变量类型和长度的情况</li>
+<li>DELIMITER=‘char’|’nn’x 个性化指定数据文件的分隔符，如DELIMITER=‘#’|‘20’x(十六进制ascii码的空格)</li>
+</ul>
+</li>
+<li>对于EXCEL文件<ul>
+<li>SHEET=EXCEL文件中特定的sheet</li>
+<li>RANGE=读入某sheet中特定的数据区域</li>
+</ul>
+</li>
+</ul>
+<h3 id="LIBNAME访问PC文件语法"><a href="#LIBNAME访问PC文件语法" class="headerlink" title="LIBNAME访问PC文件语法"></a>LIBNAME访问PC文件语法</h3><p><strong>LIBNAME</strong> &lt;<em>libref</em>&gt; &lt;<em>engine-name</em>&gt; &lt;<em>‘physical-path and filename.ext’</em>&gt; &lt;<em>SAS/ACCESS-engine-connection-options</em>&gt; &lt;<em>SAS/ACCESS LIBNAME-options</em>&gt;;</p>
+<ul>
+<li>libref: 逻辑库名，其实是存放数据表和视图的DBMS数据库、架构、服务器端别名</li>
+<li>engine-name: 引擎名,不同的DMBS数据文件需要指定不同的引擎名，入oracle、db2等</li>
+<li>‘physical-path and filename.ext’: PC数据文件地址，文件名以及扩展名，置于引号中</li>
+<li>SAS/ACCESS 连接选项，常用的如用户名，密码等，不同的DMBS数据文件会有所不同</li>
+<li>SAS／ACCESS 逻辑库选项，控制SAS处理DBMS对象的方式，不同的DBMS数据文件会有所不同</li>
+</ul>
+<p>⚠️SAS在读取Excel文件时，默认用前8行数据判定列的数据类型和长度。解决的办法是让SAS读入更多的数据行再确定数据类型，然而SAS未为Excel提供这样的选项。可以修改Windows注册表的Excel的TypeGuessRows的值为0，这样SAS会在读入所有行后再确定变量的类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">filename myexcel &quot;D:\Data\Raw|class.xlsx&quot;;</div><div class="line">prco import</div><div class="line">    datafile=myexcel dbms=excel out=myxls replace;</div><div class="line">range=&quot;&apos;sheet1$A1:E20&apos;n&quot;; ／*读入sheet1的A1-E20区域数据*／</div><div class="line">getnames=yes;</div><div class="line">run;</div><div class="line">proc import</div><div class="line">    datafile=myexcel dbms=excel out=myxls replace;</div><div class="line">dbdsopts=&quot;firstobs=3 obs=8&quot;; /*读入sheet1的3-8行区域数据*/</div><div class="line">getnames=yes;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="读入CSV文件"><a href="#读入CSV文件" class="headerlink" title="读入CSV文件"></a>读入CSV文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">filename mycsv &quot;D:\Data\Raw|class.csv&quot;;</div><div class="line">proc import </div><div class="line">    datafile=mycsv dbms=csv out=tmp replace;</div><div class="line">getnames=yes;</div><div class="line">guessingrows=20; /*通过前20行确定变量类型*/</div><div class="line">datarow=2; /*数据从第二行开始*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="读入TXT特殊字符分隔的文件"><a href="#读入TXT特殊字符分隔的文件" class="headerlink" title="读入TXT特殊字符分隔的文件"></a>读入TXT特殊字符分隔的文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">filename mytxttab &quot;D:\Data\Raw|class_tab.txt&quot;</div><div class="line">filename mytxtblk &quot;D:\Data\Raw|class_blk.txt&quot;</div><div class="line">proc import</div><div class="line">    datafile=mytxttab dbms=dlm out=tmp replace;</div><div class="line">delimiter=&apos;09&apos;x;</div><div class="line">getnames=yes;</div><div class="line">run;</div><div class="line">proc import</div><div class="line">    datafile=mytxtblk dbms=dlm out=tmp replace;</div><div class="line">delimiter=&apos;20&apos;x;</div><div class="line">getnames=yes;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="INPUT语句列表读入式"><a href="#INPUT语句列表读入式" class="headerlink" title="INPUT语句列表读入式"></a>INPUT语句列表读入式</h3><p>适合数据不齐整</p>
+<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable &lt;$&gt; &lt;:|$|~&gt; &lt;<em>informat.</em>&gt; <a href="&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#x3a;&#x40;&#124;&#x40;&#x40;">&#x40;&#124;&#x40;&#x40;</a>;</p>
+<ul>
+<li>pointer-control: 控制变量读入点起始位置。针对行: #, /。针对列: @, +。</li>
+<li>variable: 变量列表</li>
+<li>$: 变量类型为字符型</li>
+<li>:|$|~: 三个互斥点可选用格式修饰符<ul>
+<li>: 读入点变量列上不齐整，读到空列、读完字符定义的长度或者数据行结尾时就算一个变量读完</li>
+<li>&amp; 读入点字符变量包含不连续的空格</li>
+<li>~ 读入其他分隔符分隔数据，字符变量引号，引号里有分隔符</li>
+</ul>
+</li>
+<li>informat.: 输入格式<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">input name : $13. gender $ age location $; /*:表示遇到空格或第13列，才读完name*/</div><div class="line">datalines;</div><div class="line">WYY M 25 Shanghai</div><div class="line">WuYuanyi M 25 Shanghai</div><div class="line">StatsThinking M 1 Beijing</div><div class="line">;</div><div class="line">run;</div><div class="line"></div><div class="line">data tmp;</div><div class="line">input name &amp; $9. gender $ age location $; /*一个空格不会认为变量结束*/</div><div class="line">datalines;</div><div class="line">W YY  M 25 Shanghai</div><div class="line">Wu Yuanyi  M 25 Shanghai</div><div class="line">;</div><div class="line">run;</div><div class="line"></div><div class="line">data tmp;</div><div class="line">infile datalines delimiter=&apos;,&apos;;</div><div class="line">input name &amp; $9. gender $ age location $ affiliation ~ $12.;</div><div class="line">datalines;</div><div class="line">YY WU,M,30,Shanghai,&quot;SHTU,SSIT&quot;</div><div class="line">Yuanyi Wu,M,30,Shanghai,&quot;SHTU,SSIT&quot;</div><div class="line">run;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="INPUT语句列读入式"><a href="#INPUT语句列读入式" class="headerlink" title="INPUT语句列读入式"></a>INPUT语句列读入式</h3><p>适合数据齐整的情况</p>
+<p><strong>INPUT</strong> variable&lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#111;&#58;&#x40;&#x7c;&#x40;&#x40;">&#x40;&#x7c;&#x40;&#x40;</a>;</p>
+<ul>
+<li>start-column&lt;-end-column&gt;: 变量读入点起止列</li>
+<li>.decimals: 小数位数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">input name $ 1-9 gender $ 11 age 13-14 location $ 16-23;</div><div class="line">YY Wu     M 25 Shanghai</div><div class="line">Yuanyi Wu M 25 Shanghai</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="INPUT语句格式读入式"><a href="#INPUT语句格式读入式" class="headerlink" title="INPUT语句格式读入式"></a>INPUT语句格式读入式</h3><p>可以对字符变量指定宽度，以及读入非标准形式对数字，如科学计数法、带货币符号、带千分位等。</p>
+<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; <em>variable</em> <em>informat.</em> <a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#58;&#x40;&#124;&#x40;&#64;">&#x40;&#124;&#x40;&#64;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (<em>informat-list</em>) <a href="&#x6d;&#x61;&#105;&#108;&#x74;&#111;&#58;&#x40;&#124;&#x40;&#64;">&#x40;&#124;&#x40;&#64;</a>;<br><strong>INPUY</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (<em>\&lt;n\</em>&gt; informat.) <a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#64;&#x7c;&#x40;&#x40;">&#64;&#x7c;&#x40;&#x40;</a>;</p>
+<ul>
+<li>(variable-list) (informat-list): 变量格式列表<ul>
+<li>编号范围列表：形如x1,x2,x3可缩写为x1-xn</li>
+<li>名称范围列表：x–a定义顺序从x到a的所有变量，x-numeric-a为x到a的所有数值型变量，x-character-ax到a的所有字符型变量</li>
+<li>名称前缀列表：如x_1,x_2或x1,X2可简写成x:</li>
+<li>特殊SAS名列表：_numerica_, _character_, _all_</li>
+</ul>
+</li>
+<li>\<n\*\> informat.: 变量格式列表n表示格式重复的次数</n\*\></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">/*gender虽然只有1列，但声明时要带上其后的一个空格，age，location类似*/</div><div class="line">input name &amp; $10. gender $2. age 3. location $8. fee comma6.;</div><div class="line">datalines;</div><div class="line">YY Wu  M 25 Shanghai 12,345</div><div class="line">Yuanyi Wu  M 25 Shanghai 54,321</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="INPUT语句命名读入式"><a href="#INPUT语句命名读入式" class="headerlink" title="INPUT语句命名读入式"></a>INPUT语句命名读入式</h3><p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= &lt;$&gt; <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#x40;&#x7c;&#64;&#x40;">&#x40;&#x7c;&#64;&#x40;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= informat. <a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#58;&#64;&#124;&#x40;&#64;">&#64;&#124;&#x40;&#64;</a>;<br><strong>INPUT</strong> variable= &lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#111;&#58;&#64;&#124;&#64;&#x40;">&#64;&#124;&#64;&#x40;</a>;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">input name= $ gender= $ age= location=$;</div><div class="line">datalines;</div><div class="line">name=WYY gender=M age=25 location=Shanghai</div><div class="line">name=GY gender=F age=24 location=Shanghai</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="数据导出"><a href="#数据导出" class="headerlink" title="数据导出"></a>数据导出</h3><p><strong>PROC EXPORT DATA</strong>=&lt;<em>libref.</em>&gt;<em>SAS data set</em>&lt;(<em>SAS data set options</em>)&gt;</p>
+<p><strong>OUTFILE</strong>=”filename”|<strong>OUTTABLE</strong>=”tablename”</p>
+<p>\<dbms=data-source-identifier\></dbms=data-source-identifier\></p>
+<p>\<label\></label\></p>
+<p>\<replace\></replace\></p>
+<p>\<file-format-specific-statements\>;</file-format-specific-statements\></p>
+<p><strong>RUN</strong>;</p>
+<ul>
+<li>SAS data set: 欲输出的数据集</li>
+<li>filename|tablename: 输出文件的地址名称</li>
+<li>LABEL: 输出文件中输出变量名的标签</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">proc export</div><div class="line">    data=sashelp.class outfile=&apos;D:\Data\Raw|class.xlsx&apos;</div><div class="line">    dbms=excel replace;</div><div class="line">run;</div><div class="line"></div><div class="line">proc export</div><div class="line">    data=sashelp.class outfile=&apos;D:\Data\Raw|class_tab.txt&apos;</div><div class="line">    dbms=csv replace delimiter=&apos;09&apos;x;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="行舟来去泛纵横：变量观测"><a href="#行舟来去泛纵横：变量观测" class="headerlink" title="行舟来去泛纵横：变量观测"></a>行舟来去泛纵横：变量观测</h2><h3 id="DATA-SET语句"><a href="#DATA-SET语句" class="headerlink" title="DATA+SET语句"></a>DATA+SET语句</h3><p><strong>DATA</strong> &lt;<em>data-set-name-1</em> &lt;<em>data-set-options-1</em>&gt;&gt;  &lt;…<em>data-set-name-n</em> &lt;<em>data-set-options-n</em>&gt;&gt; \&lt;\/ \<debug> \<nesting> \<stack =="" *stack-size*="" \="">> \<nolist\>;</nolist\></stack></nesting></debug></p>
+<p><strong>DATA</strong> _NULL_ &lt;/ \<debug\> \<nesting\> \<stack =="" *stack-size*\="">&gt; \<nolist\>;</nolist\></stack></nesting\></debug\></p>
+<ul>
+<li>data-set-name: 欲创建的SAS数据集名</li>
+<li>data-set-options: 欲创建的SAS数据集的限制选项</li>
+<li>DEBUG: 调试程序逻辑错误以及部分数据错误</li>
+<li>NESTING: 日志中标记DO-END和SELECT-END语句的起止</li>
+<li>STACK =: 可嵌套LINK语句个数</li>
+<li>NOLIST: 出错时不在日志打印每个变量的值</li>
+<li>_NULL_: 不建任何SAS数据集</li>
+</ul>
+<h3 id="获取背后数据"><a href="#获取背后数据" class="headerlink" title="获取背后数据"></a>获取背后数据</h3><ol>
+<li>利用<code>OSD TRACE ON</code>和<code>ODS TRACE OFF</code>对整个统计过程进行全程追踪和监控：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ods trace on;</div><div class="line">proc lifetest data=sashelp.bmt;</div><div class="line">	time t*status(0);</div><div class="line">	strata group;</div><div class="line">run;</div><div class="line">ods trace off;</div></pre></td></tr></table></figure>
+<ol>
+<li>在LOG文件中，产生的结果一目了然，想要什么数据随意抓取。</li>
+<li><code>ODS OUTPUT</code>语句抓取Result树形目录下结果：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ods output SurvialPlot=SurvPlotData;</div><div class="line">proc lifetset data=sashelp.bmt;</div><div class="line">	time t*status(0);</div><div class="line">	strata group;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="IF与WHERE"><a href="#IF与WHERE" class="headerlink" title="IF与WHERE"></a>IF与WHERE</h3><ol>
+<li>WHERE更高效。WHERE语句在读入PDV之前就先行判断，求子集IF语句先读入观测进入PDV，而后再判断。</li>
+<li>WHERE更广泛。WHERE语句可用在DATA步，PROC步，作为数据集选项使用。IF语句只能作为DATA步语句使用。</li>
+<li>IF语句对INPUT语句创建的观测有效，WHERE语句只能筛选数据集里的观测。</li>
+<li>当有BY语句时，求子集IF语句与WHERE语句结果可能不同，因为SAS创建BY组再WHERE语句之后，求子集IF语句之前。</li>
+<li>求自己IF语句可以用在条件IF语句中，WHERE语句不行</li>
+<li>当读入多个数据集时，WHERE语句可以针对每个数据集单独筛选，求子集IF语句不行。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">/*打开数据集时，直接读取只需要的观测：通过WHERE选项限定读入数据集*/</div><div class="line">data tmp;</div><div class="line">	set sashelp.class(where=(sex=&quot;F&quot;));</div><div class="line">run;</div><div class="line"></div><div class="line">/*PDV里筛选过滤观测*/</div><div class="line">/*通过WHERE语句*/</div><div class="line">data tmp;</div><div class="line">	set sashelp.class;</div><div class="line">	where sex=&quot;F&quot;;</div><div class="line">run;</div><div class="line">/*通过求子集IF语句*/</div><div class="line">data tmp;</div><div class="line">	set sashelp.class;</div><div class="line">	if sex=&quot;F&quot;;</div><div class="line">run;</div><div class="line">/*只写入所需观测进入数据集：通过WHERE选项限定输出数据集*/</div><div class="line">data tmp(where=(sex=&quot;F&quot;));</div><div class="line">	set sashelp.class;</div><div class="line">run;</div><div class="line"></div><div class="line">data want(where=(not missing(id)));</div><div class="line">	set raw1(where=(age between 20 and 30)) raw2(where=(sex=&quot;F&quot;));</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="KEEP、DROP与RENAME"><a href="#KEEP、DROP与RENAME" class="headerlink" title="KEEP、DROP与RENAME"></a>KEEP、DROP与RENAME</h3><ol>
+<li>选项只作用于被其尾随的数据集，而语句作用域PDV，即语句对不管来自哪个数据集的变量都有效。</li>
+<li>KEPP/DROP，RENAME，WHERE和其他语句的执行有固定的执行顺序。<ul>
+<li>数据集读入和输出阶段的执行顺序：<ol>
+<li>KEPP/DROP选项筛选变量</li>
+<li>RENAME选项修改变量名</li>
+<li>WHERE选项筛选观测</li>
+</ol>
+</li>
+<li>编程处理阶段：<ol>
+<li>WHERE选项筛选观测</li>
+<li>其他执行语句</li>
+<li>KEPP/DROP选项筛选变量</li>
+<li>RENAME选项修改变量名</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="编译变量和临时变量"><a href="#编译变量和临时变量" class="headerlink" title="编译变量和临时变量"></a>编译变量和临时变量</h3><p>编译变量(NOBS、IN、OBS、END、POINT等)和临时变量的赋值方式是将等号左边赋值给等号右边，其他赋值语句是将等号左边赋值给右边，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">/*PROC SQL获取观测值 最慢*/</div><div class="line">proc sql;</div><div class="line">	select count(name) as N from sashelp.class;</div><div class="line">quit;</div><div class="line"></div><div class="line">/*_N_获取观测数 中*/</div><div class="line">data _null_;</div><div class="line">	set sashelp.class end=last;</div><div class="line">	if last then put _n_;</div><div class="line">run;</div><div class="line"></div><div class="line">/*编译变量获取观测数 最快*/</div><div class="line">data _null_;</div><div class="line">	if 0 then set sashelp.class nobs=n;</div><div class="line">	put _all_;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="CALL例程"><a href="#CALL例程" class="headerlink" title="CALL例程"></a>CALL例程</h3><p>CALL例程也可以生成新变量，这种方法是函数形式的一种变种。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">data rand;</div><div class="line">	seed=123;</div><div class="line">	do i=1 to 10;</div><div class="line">		x=rannor(seed);</div><div class="line">		call rannor(seed,y);</div><div class="line">		output;</div><div class="line">	end;</div><div class="line">run;</div><div class="line">proc print data=rand;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="变量类型转换"><a href="#变量类型转换" class="headerlink" title="变量类型转换"></a>变量类型转换</h3><p>new_variable = input(original_variable, informat.);</p>
+<p>new_variable = put(original_variable, format.);</p>
+<ul>
+<li>new_variable：欲生成的新变量</li>
+<li>informat.：变量输入格式</li>
+<li>format.：变量输出格式</li>
+</ul>
+<h3 id="DATA步实现累加"><a href="#DATA步实现累加" class="headerlink" title="DATA步实现累加"></a>DATA步实现累加</h3><p>累加语句：variable+expression;</p>
+<ul>
+<li>variable：累加器变量，必须为数字型变量，累加后的值保存于此变量中</li>
+<li>expression：表达式，表达式的值会被累加到累加器变量variable中</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data want;</div><div class="line">	set sashelp.class;</div><div class="line">	cum_weight+weight;</div><div class="line">	cnt_weight+1;</div><div class="line">	avg_weight=cum_weight/cnt_weight;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p>RETAIN语句：<strong>RETAIN</strong> &lt;<em>element-list(s)</em>&lt;<em>initial-value(s)|(initial-value-1)|(initial-value-list-1)</em>&gt; &lt;<em>…element-list-n</em>&lt;<em>initial-value-n|(initial-value-n)|(initial-value-list-n)</em>&gt;&gt;&gt;</p>
+<ul>
+<li>element-list：需要保留PDV里的值的参数，可以是变量名、变量列表、数组名</li>
+</ul>
+<ul>
+<li>initial-value：初始值，对应于只有一个参数或者参数列表里的第一个参数</li>
+<li>(initial-value-1)：带括号的初始值</li>
+<li>(initial-value-list-1)：带括号的初始值列表</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">data want;</div><div class="line">	set sashelp.class;</div><div class="line">	retain cum_weight cnt_weight (0 0);</div><div class="line">	cum_weight=cum_weight+weight;</div><div class="line">	cnt_weight=cnt_weight+1;</div><div class="line">	avg_weight=cum_weight/cnt_weight;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p>BY语句的作用是在PROC SORT中排序后，在SET、MERGE、UPDATE以及MODIFY语句中，指定分组变量，产生临时变量FIRST.变量和LAST.变量用以标示观测变量是否为分组变量里的第一条和最后一条。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">proc sort data=sashelp.class out=class;</div><div class="line">	by sex;</div><div class="line">run;</div><div class="line">data want;</div><div class="line">	set class end=last;</div><div class="line">	by sex;</div><div class="line">	if first.sex then do;</div><div class="line">		cum_weight=0;</div><div class="line">		cnt_weight=0;</div><div class="line">	end;</div><div class="line">	cum_weight+weight;</div><div class="line">	cnt_weight+1;</div><div class="line">	if last.sex then do;</div><div class="line">		avg_weight=cum_weight/cnt_weight;</div><div class="line">		output;</div><div class="line">	end;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="隔行取数据"><a href="#隔行取数据" class="headerlink" title="隔行取数据"></a>隔行取数据</h3><p>SAS DATA步是隔行处理数据，一旦一行处理完，读入下一行数据后，前面行的数据就不在PDV里了。</p>
+<ul>
+<li>LAG：把前面任一行的数据在取出来</li>
+<li>DIF：计算目前行与前面任一行的差</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">data want;</div><div class="line">	set sashelp.class;</div><div class="line">	/*前面2人是谁*/</div><div class="line">	pre1name=lag1(name);</div><div class="line">	pre2name=lag2(name);</div><div class="line">	/*与前面两人身高的差*/</div><div class="line">	dif1height=dif1(heigh);</div><div class="line">	dif2hegith=dif2(height);</div><div class="line">run;</div><div class="line">proc print&apos;</div><div class="line">run;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wu-yuanyi.github.io/2017/09/05/SAS编程演义1-4/" data-id="cj7gy4rzy0004yd4mb6evv4j1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -888,7 +887,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/08/02/black production survey/" data-id="cj7gxgjrb0009ry4mjsj8inhc" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/08/02/black production survey/" data-id="cj7gy4s050007yd4mq21cd19k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1034,7 +1033,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/08/01/Event tracking/" data-id="cj7gxgjr00003ry4mj3r8gyj6" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/08/01/Event tracking/" data-id="cj7gy4rzx0003yd4mqflm3j33" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1079,7 +1078,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/08/01/mySQL grammar/" data-id="cj7gxgjrc000ary4mt0yrrg31" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/08/01/mySQL grammar/" data-id="cj7gy4s0c000ayd4m006ce8ug" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1118,7 +1117,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/04/16/利用python 3进行数据分析/" data-id="cj7gxgjre000bry4mklbjs14l" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/04/16/利用python 3进行数据分析/" data-id="cj7gy4s0d000byd4mbwt4fm7y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1187,7 +1186,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/04/11/happybase/" data-id="cj7gxgjra0008ry4mostdyj3q" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/04/11/happybase/" data-id="cj7gy4s0b0009yd4mdxinkp9g" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1445,7 +1444,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Tracking user with browser fingerprint/" data-id="cj7gxgjr60006ry4myz9k05qy" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Tracking user with browser fingerprint/" data-id="cj7gy4s040006yd4mtvub0tay" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1730,7 +1729,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/通过运动传感器来追踪移动网页用户：攻击和防御/" data-id="cj7gxgjrf000cry4mljqzlj2u" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/通过运动传感器来追踪移动网页用户：攻击和防御/" data-id="cj7gy4s0e000cyd4m9v28vi9a" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1830,7 +1829,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Basic Principles of Information Protect/" data-id="cj7gxgjqx0001ry4m71cou4qq" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/Basic Principles of Information Protect/" data-id="cj7gy4rzs0001yd4mu40ixsgt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1874,11 +1873,11 @@
       <ul>
         
           <li>
-            <a href="/2017/09/05/SAS编程演义1-4/">《SAS编程演义》笔记（1-4章）</a>
+            <a href="/2017/09/12/SAS编程演义5-7/">《SAS编程演义》笔记（5-7章）</a>
           </li>
         
           <li>
-            <a href="/2017/09/05/SAS编程演义5-7/">《SAS编程演义》笔记（5-7章）</a>
+            <a href="/2017/09/05/SAS编程演义1-4/">《SAS编程演义》笔记（1-4章）</a>
           </li>
         
           <li>

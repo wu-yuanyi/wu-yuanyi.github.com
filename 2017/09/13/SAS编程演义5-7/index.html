@@ -5,16 +5,16 @@
   
   <title>《SAS编程演义》笔记（5-7章） | My blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set &amp;lt;(data-set-options)&amp;gt; transaction-data-set &amp;lt;(data-set-options)&amp;gt; &amp;lt;CUROBS=variable&amp;gt; &amp;lt; NOBS=variable&amp;gt; &amp;lt;END=variable&amp;gt; &amp;lt;UPDATEMODE=MI">
+  <meta name="description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set &amp;lt;(data-set-options)&amp;gt; transaction-data-set &amp;lt;(data-set-options)&amp;gt; &amp;lt;CUROBS=variable&amp;gt; &amp;lt; NOBS=variable&amp;gt; &amp;lt;END=variable&amp;gt; &amp;lt;UPDATEMOD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《SAS编程演义》笔记（5-7章）">
 <meta property="og:url" content="http://wu-yuanyi.github.io/2017/09/13/SAS编程演义5-7/index.html">
 <meta property="og:site_name" content="My blog">
-<meta property="og:description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set &amp;lt;(data-set-options)&amp;gt; transaction-data-set &amp;lt;(data-set-options)&amp;gt; &amp;lt;CUROBS=variable&amp;gt; &amp;lt; NOBS=variable&amp;gt; &amp;lt;END=variable&amp;gt; &amp;lt;UPDATEMODE=MI">
-<meta property="og:updated_time" content="2017-09-13T09:05:53.000Z">
+<meta property="og:description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set &amp;lt;(data-set-options)&amp;gt; transaction-data-set &amp;lt;(data-set-options)&amp;gt; &amp;lt;CUROBS=variable&amp;gt; &amp;lt; NOBS=variable&amp;gt; &amp;lt;END=variable&amp;gt; &amp;lt;UPDATEMOD">
+<meta property="og:updated_time" content="2017-09-13T10:38:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《SAS编程演义》笔记（5-7章）">
-<meta name="twitter:description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set &amp;lt;(data-set-options)&amp;gt; transaction-data-set &amp;lt;(data-set-options)&amp;gt; &amp;lt;CUROBS=variable&amp;gt; &amp;lt; NOBS=variable&amp;gt; &amp;lt;END=variable&amp;gt; &amp;lt;UPDATEMODE=MI">
+<meta name="twitter:description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set &amp;lt;(data-set-options)&amp;gt; transaction-data-set &amp;lt;(data-set-options)&amp;gt; &amp;lt;CUROBS=variable&amp;gt; &amp;lt; NOBS=variable&amp;gt; &amp;lt;END=variable&amp;gt; &amp;lt;UPDATEMOD">
   
     <link rel="alternate" href="/atom.xml" title="My blog" type="application/atom+xml">
   
@@ -85,7 +85,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="亦应帷幄运鸿筹：数据库集"><a href="#亦应帷幄运鸿筹：数据库集" class="headerlink" title="亦应帷幄运鸿筹：数据库集"></a>亦应帷幄运鸿筹：数据库集</h2><h3 id="修改数据集"><a href="#修改数据集" class="headerlink" title="修改数据集"></a>修改数据集</h3><p><strong>MODIFY</strong> <em>master-data-set</em> &lt;(<em>data-set-options</em>)&gt; <em>transaction-data-set</em> &lt;(<em>data-set-options</em>)&gt; &lt;CUROBS=<em>variable</em>&gt; &lt; NOBS=<em>variable</em>&gt; &lt;END=<em>variable</em>&gt; &lt;UPDATEMODE=MISSINGCHECK|NOMISSINGCHECK&gt;;</p>
+        <link rel="stylesheet" href="https://github.com/codemirror/CodeMirror/blob/master/lib/codemirror.css">
+
+<script src="https://github.com/codemirror/CodeMirror/blob/master/mode/sas/sas.js"></script>
+
+<h2 id="亦应帷幄运鸿筹：数据库集"><a href="#亦应帷幄运鸿筹：数据库集" class="headerlink" title="亦应帷幄运鸿筹：数据库集"></a>亦应帷幄运鸿筹：数据库集</h2><h3 id="修改数据集"><a href="#修改数据集" class="headerlink" title="修改数据集"></a>修改数据集</h3><p><strong>MODIFY</strong> <em>master-data-set</em> &lt;(<em>data-set-options</em>)&gt; <em>transaction-data-set</em> &lt;(<em>data-set-options</em>)&gt; &lt;CUROBS=<em>variable</em>&gt; &lt; NOBS=<em>variable</em>&gt; &lt;END=<em>variable</em>&gt; &lt;UPDATEMODE=MISSINGCHECK|NOMISSINGCHECK&gt;;</p>
 <p><strong>BY</strong> <em>by-variable</em>;</p>
 <ul>
 <li><em>master-data-set</em>：主数据集（Master Dataset），存放原始数据。</li>
@@ -618,12 +622,14 @@
 <h3 id="格式妙用"><a href="#格式妙用" class="headerlink" title="格式妙用"></a>格式妙用</h3><h4 id="格式的使用范围"><a href="#格式的使用范围" class="headerlink" title="格式的使用范围"></a>格式的使用范围</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">data _null_; /*DATA步 PUT语句中指定*/</div><div class="line">	set sashelp.class(obs=5);</div><div class="line">	put name sex $sexf.;</div><div class="line">run;</div><div class="line"></div><div class="line">prco print data=sashelp.class(obs=5); /*PROC步FORMAT语句指定*/</div><div class="line">	var name sex;</div><div class="line">	format sex $sexf.;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sql; /*Proc sql中format选项*/</div><div class="line">	select name, sex format=$sexf. from sashelp.class(obs=5);</div><div class="line">quit;</div></pre></td></tr></table></figure>
 <h4 id="变量重分组"><a href="#变量重分组" class="headerlink" title="变量重分组"></a>变量重分组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">data obese; /*创建测试数据集*/</div><div class="line">	length status $ 15;</div><div class="line">	set sashelp.class;</div><div class="line">	BMI = weight*0.4536/(height*0.0254)**2;</div><div class="line">run;</div><div class="line"></div><div class="line">proc format; /*自定义格式*/</div><div class="line">	value obefmt low-18.5=&quot;Underweight&quot; 18.5-25=&quot;Normal&quot; </div><div class="line">				 25-30=&quot;Overweight&quot; 30-high=&quot;Obese&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc freq data=obese; /*愿变量+格式直接统计新分类的频数*/</div><div class="line">	table bmi;</div><div class="line">	format bmi obefmt.;</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h4 id="统计分析过程"><a href="#统计分析过程" class="headerlink" title="统计分析过程"></a>统计分析过程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/*在统计分析过程里，直接用自定义格式给变量重分组*/</div><div class="line">proc format;</div><div class="line">	value obefmt low-18.5=&quot;Underweight&quot; 18.5-high=&quot;Normal or above&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc logistic data=obese;</div><div class="line">	class sex;</div><div class="line">	model bmi(event=&quot;Underweight&quot;)=age sex;</div><div class="line">	format bmi obefmt.;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h4 id="统计缺失观测"><a href="#统计缺失观测" class="headerlink" title="统计缺失观测"></a>统计缺失观测</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">proc format; /*自定义格式*/</div><div class="line">	value $missfmt &apos; &apos;=&quot;Missing&quot; other=&quot;Not Missing&quot;; /*引号中有多少空格都一样*/</div><div class="line">	value nmissfmt .=&quot;Missing&quot; other=&quot;Not Missing&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">data class; /*创建测试数据集*/</div><div class="line">	set sashelp.class;</div><div class="line">	if rannor(123)&lt;0.5 then call missing(sex);</div><div class="line">	if rannor(456)&lt;0.05 then call missing(age);</div><div class="line">run;</div><div class="line"></div><div class="line">proc freq data=class; /*统计缺失、非缺失频数*/</div><div class="line">    table sex age/missing;</div><div class="line">    format sex $missfmt. age nmissfmt.;</div><div class="line">run;</div><div class="line"></div><div class="line">data cclass;</div><div class="line">    set class;</div><div class="line">    if name=&apos;Henry&apos; then sex=&apos;  &apos;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc freq data=cclass; /*统计缺失、非缺失频数*/</div><div class="line">    table sex age/missing;</div><div class="line">    format sex $missfmt. age nmissfmt.;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h4 id="统计缺失观测"><a href="#统计缺失观测" class="headerlink" title="统计缺失观测"></a>统计缺失观测</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">proc format; /*自定义格式*/</div><div class="line">	value $missfmt &apos; &apos;=&quot;Missing&quot; other=&quot;Not Missing&quot;; /*引号中有多少空格都一样*/</div><div class="line">	value nmissfmt .=&quot;Missing&quot; other=&quot;Not Missing&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">data class; /*创建测试数据集*/</div><div class="line">	set sashelp.class;</div><div class="line">	if rannor(123)&lt;0.5 then call missing(sex);</div><div class="line">	if rannor(456)&lt;0.05 then call missing(age);</div><div class="line">run;</div><div class="line"></div><div class="line">proc freq data=class; /*统计缺失、非缺失频数*/</div><div class="line">	table sex age/missing;</div><div class="line">	format sex $missfmt. age nmissfmt.;</div><div class="line">run;</div><div class="line"></div><div class="line">data cclass;</div><div class="line">	set class;</div><div class="line">	if name=&apos;Henry&apos; then sex=&apos;  &apos;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc freq data=cclass; /*统计缺失、非缺失频数*/</div><div class="line">	table sex age/missing;</div><div class="line">	format sex $missfmt. age nmissfmt.;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h4 id="条件显示"><a href="#条件显示" class="headerlink" title="条件显示"></a>条件显示</h4><p>利用自定义格式，可以依据不同的条件，按不同风格显示值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">proc format;</div><div class="line">	value obefmt low-18.5=&quot;red&quot; 18.5-high=&quot;black&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc report data=obese nowd split=&apos;~&apos; style(report)=[background=white foreground=black];</div><div class="line">	column name sex age bmi;</div><div class="line">	define name/display;</div><div class="line">	define sex/display;</div><div class="line">	define age/display;</div><div class="line">	define bmi/format=4.1 style=[foreground=obefmt.];</div><div class="line">run;</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/09/13/SAS编程演义5-7/" data-id="cj7isxfqn0006r74mn1jcfldy" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/09/13/SAS编程演义5-7/" data-id="cj7iw7wqp0005ds4mzr738no4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -631,6 +637,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2017/09/13/SAS编程演义8-10/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          《SAS编程演义》笔记（8-10章）
+        
+      </div>
+    </a>
   
   
     <a href="/2017/09/13/SAS编程演义1-4/" id="article-nav-older" class="article-nav-link-wrap">
@@ -672,6 +687,10 @@
       <ul>
         
           <li>
+            <a href="/2017/09/13/SAS编程演义8-10/">《SAS编程演义》笔记（8-10章）</a>
+          </li>
+        
+          <li>
             <a href="/2017/09/13/SAS编程演义5-7/">《SAS编程演义》笔记（5-7章）</a>
           </li>
         
@@ -685,10 +704,6 @@
         
           <li>
             <a href="/2017/08/01/Event tracking/">Event tracking</a>
-          </li>
-        
-          <li>
-            <a href="/2017/08/01/mySQL grammar/">MySQL grammer</a>
           </li>
         
       </ul>

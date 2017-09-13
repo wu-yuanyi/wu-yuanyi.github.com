@@ -3,24 +3,18 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Android Emulator on Ubuntu | My blog</title>
+  <title>《SAS编程演义》笔记（8-10章） | My blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="How to Resize Android 4.4 Emulator Internal StorageQuestion on StackOverFlow
-Problem:
-When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot get the internal storage to be anyt">
+  <meta name="description" content="菱花荇蔓随双桨：百变绘图拙中藏巧混天成：统计表格一缕檀烟万佛名：宏中奥秘">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android Emulator on Ubuntu">
-<meta property="og:url" content="http://wu-yuanyi.github.io/2017/03/27/AndroidEmulator/index.html">
+<meta property="og:title" content="《SAS编程演义》笔记（8-10章）">
+<meta property="og:url" content="http://wu-yuanyi.github.io/2017/09/13/SAS编程演义8-10/index.html">
 <meta property="og:site_name" content="My blog">
-<meta property="og:description" content="How to Resize Android 4.4 Emulator Internal StorageQuestion on StackOverFlow
-Problem:
-When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot get the internal storage to be anyt">
-<meta property="og:updated_time" content="2016-07-28T09:51:58.000Z">
+<meta property="og:description" content="菱花荇蔓随双桨：百变绘图拙中藏巧混天成：统计表格一缕檀烟万佛名：宏中奥秘">
+<meta property="og:updated_time" content="2017-09-13T09:46:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android Emulator on Ubuntu">
-<meta name="twitter:description" content="How to Resize Android 4.4 Emulator Internal StorageQuestion on StackOverFlow
-Problem:
-When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot get the internal storage to be anyt">
+<meta name="twitter:title" content="《SAS编程演义》笔记（8-10章）">
+<meta name="twitter:description" content="菱花荇蔓随双桨：百变绘图拙中藏巧混天成：统计表格一缕檀烟万佛名：宏中奥秘">
   
     <link rel="alternate" href="/atom.xml" title="My blog" type="application/atom+xml">
   
@@ -69,10 +63,10 @@ When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot g
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-AndroidEmulator" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-SAS编程演义8-10" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/03/27/AndroidEmulator/" class="article-date">
-  <time datetime="2017-03-27T12:47:22.000Z" itemprop="datePublished">2017-03-27</time>
+    <a href="/2017/09/13/SAS编程演义8-10/" class="article-date">
+  <time datetime="2017-09-13T09:43:19.000Z" itemprop="datePublished">2017-09-13</time>
 </a>
     
   </div>
@@ -83,7 +77,7 @@ When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot g
         
   
     <h1 class="article-title" itemprop="name">
-      Android Emulator on Ubuntu
+      《SAS编程演义》笔记（8-10章）
     </h1>
   
 
@@ -91,30 +85,11 @@ When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot g
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="How-to-Resize-Android-4-4-Emulator-Internal-Storage"><a href="#How-to-Resize-Android-4-4-Emulator-Internal-Storage" class="headerlink" title="How to Resize Android 4.4 Emulator Internal Storage"></a>How to Resize Android 4.4 Emulator Internal Storage</h2><p><a href="http://stackoverflow.com/questions/20579606/android-4-4-virtual-device-internal-storage-will-not-resize#comment44086027_20762411" target="_blank" rel="external">Question on StackOverFlow</a></p>
-<p><strong>Problem</strong>:</p>
-<p>When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot get the internal storage to be anything larger than 200MB.</p>
-<p><strong>Solution</strong>:</p>
-<ul>
-<li>Now that the emulator file system is ext4 I was able to re-size the userdata.img using standard Linux tools.</li>
-<li>Even above suggestion can cause to android emulator hang on boot logo. The reason is that resize2fs do the changes thats are right in general but considered as broken fs by android and prevent it to mount it in rw mode, that hangs up the boot process.</li>
-<li>Event e2fsck does not fix it for android and to workaround it i use tune2fs to change the way how android should continue to mount broken fs.</li>
-</ul>
-<ol>
-<li>start emulator</li>
-<li>cd ~/.android/avd/emulator_name</li>
-<li>rm userdata-qemu.*</li>
-<li>resize2fs userdata.img 1024M</li>
-<li>start than stop emulator</li>
-<li>e2fsck -f userdata-qemu.img</li>
-<li>resize2fs userdata-qemu.img 1024M</li>
-<li>tune2fs -e continue userdata-qemu.img</li>
-</ol>
-
+        <h2 id="菱花荇蔓随双桨：百变绘图"><a href="#菱花荇蔓随双桨：百变绘图" class="headerlink" title="菱花荇蔓随双桨：百变绘图"></a>菱花荇蔓随双桨：百变绘图</h2><h2 id="拙中藏巧混天成：统计表格"><a href="#拙中藏巧混天成：统计表格" class="headerlink" title="拙中藏巧混天成：统计表格"></a>拙中藏巧混天成：统计表格</h2><h2 id="一缕檀烟万佛名：宏中奥秘"><a href="#一缕檀烟万佛名：宏中奥秘" class="headerlink" title="一缕檀烟万佛名：宏中奥秘"></a>一缕檀烟万佛名：宏中奥秘</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/AndroidEmulator/" data-id="cj7iw7wqf0000ds4mkc9ybacp" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/09/13/SAS编程演义8-10/" data-id="cj7iw7wqr0006ds4m4yywq2gb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -123,19 +98,10 @@ When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot g
     
 <nav id="article-nav">
   
-    <a href="/2017/03/27/通过运动传感器来追踪移动网页用户：攻击和防御/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          通过运动传感器来追踪移动网页用户：攻击和防御
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/27/github&hexo/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/09/13/SAS编程演义5-7/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">github&amp;hexo</div>
+      <div class="article-nav-title">《SAS编程演义》笔记（5-7章）</div>
     </a>
   
 </nav>

@@ -8,10 +8,10 @@
   <meta name="description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set &amp;lt;(data-set-options)&amp;gt; transaction-data-set &amp;lt;(data-set-options)&amp;gt; &amp;lt;CUROBS=variable&amp;gt; &amp;lt; NOBS=variable&amp;gt; &amp;lt;END=variable&amp;gt; &amp;lt;UPDATEMODE=MI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《SAS编程演义》笔记（5-7章）">
-<meta property="og:url" content="http://wu-yuanyi.github.io/2017/09/12/SAS编程演义5-7/index.html">
+<meta property="og:url" content="http://wu-yuanyi.github.io/2017/09/13/SAS编程演义5-7/index.html">
 <meta property="og:site_name" content="My blog">
 <meta property="og:description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set &amp;lt;(data-set-options)&amp;gt; transaction-data-set &amp;lt;(data-set-options)&amp;gt; &amp;lt;CUROBS=variable&amp;gt; &amp;lt; NOBS=variable&amp;gt; &amp;lt;END=variable&amp;gt; &amp;lt;UPDATEMODE=MI">
-<meta property="og:updated_time" content="2017-09-12T02:54:40.000Z">
+<meta property="og:updated_time" content="2017-09-13T09:05:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《SAS编程演义》笔记（5-7章）">
 <meta name="twitter:description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set &amp;lt;(data-set-options)&amp;gt; transaction-data-set &amp;lt;(data-set-options)&amp;gt; &amp;lt;CUROBS=variable&amp;gt; &amp;lt; NOBS=variable&amp;gt; &amp;lt;END=variable&amp;gt; &amp;lt;UPDATEMODE=MI">
@@ -65,8 +65,8 @@
       <div class="outer">
         <section id="main"><article id="post-SAS编程演义5-7" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/09/12/SAS编程演义5-7/" class="article-date">
-  <time datetime="2017-09-12T01:39:08.000Z" itemprop="datePublished">2017-09-12</time>
+    <a href="/2017/09/13/SAS编程演义5-7/" class="article-date">
+  <time datetime="2017-09-13T05:31:21.000Z" itemprop="datePublished">2017-09-13</time>
 </a>
     
   </div>
@@ -130,7 +130,7 @@
 <p><strong>COPY</strong> <em>variable(s)</em>;</p>
 <p><strong>ID</strong> <em>variable</em>;</p>
 <p><strong>IDLABEL</strong> <em>variable</em>;</p>
-<p><strong>VAR</strong> <em>variable</em>(<em>s</em>);</p>
+<p><strong>VAR</strong> <em>variable(s)</em>;</p>
 <p><strong>RUN</strong>;</p>
 <ul>
 <li>DATA=input-data-set：待转置数据集名称</li>
@@ -413,11 +413,217 @@
 </tr>
 </tbody>
 </table>
+<h2 id="翩跹翠袖拂云裳：巧用格式"><a href="#翩跹翠袖拂云裳：巧用格式" class="headerlink" title="翩跹翠袖拂云裳：巧用格式"></a>翩跹翠袖拂云裳：巧用格式</h2><h3 id="格式名"><a href="#格式名" class="headerlink" title="格式名"></a>格式名</h3><p>&lt;$&gt;<em>format-name</em>&lt;w&gt;.&lt;d&gt;</p>
+<p>$：标明是否为字符格式，有$的为字符格式，无则为数字格式</p>
+<p><em>format-name</em>：格式名称，可以是SAS系统自带也可以是用户在PROC FORMAT的VALUE语句中自定义的</p>
+<p><em>w</em>：格式的宽度</p>
+<p><em>d</em>：小数的位数</p>
+<p>.：w和d均可以没有，但其之间的点必须保留</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/*获取系统内置格式清单*/</div><div class="line">proc sql;</div><div class="line">	create table SysFormats as select distinct fmtname from dictionary.formats;</div><div class="line">quit;</div><div class="line"></div><div class="line">proc print data= SysFormats;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="常用输入格式"><a href="#常用输入格式" class="headerlink" title="常用输入格式"></a>常用输入格式</h3><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>格式名</th>
+<th>作用简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字符</td>
+<td>$CHARw.</td>
+<td>读入带空格的字符</td>
+</tr>
+<tr>
+<td></td>
+<td>$w.</td>
+<td>标准字符格式</td>
+</tr>
+<tr>
+<td>日期时间</td>
+<td>ANYDTDTEw.</td>
+<td>“万能”读入日期格式</td>
+</tr>
+<tr>
+<td></td>
+<td>ANYDTDTMw.</td>
+<td>“万能”读入日期时间格式</td>
+</tr>
+<tr>
+<td></td>
+<td>ANYDTTMEw.</td>
+<td>“万能”读入时间格式</td>
+</tr>
+<tr>
+<td></td>
+<td>DATEw.</td>
+<td>读入格式为ddmmyy或ddmmyyyy的日期</td>
+</tr>
+<tr>
+<td></td>
+<td>DATETIMEw.</td>
+<td>读入格式为ddmmyy hh:mm:ss或ddmmyyyy hh:mm:ss的日期时间</td>
+</tr>
+<tr>
+<td></td>
+<td>DDMMYYw.</td>
+<td>读入格式为ddmmyy&lt;yy&gt;或者dd-mm-yy&lt;yy&gt;格式的日期，连字符可以是- . /</td>
+</tr>
+<tr>
+<td></td>
+<td>HHMMSSw.</td>
+<td>读入格式为hh:mm:ss或hhmmss的时间</td>
+</tr>
+<tr>
+<td></td>
+<td>MMDDYYw.</td>
+<td>读入格式为mmddyy或mmddyyyy的日期</td>
+</tr>
+<tr>
+<td>数字</td>
+<td>COMMAw.d</td>
+<td>读入数字时移除数字间的逗号</td>
+</tr>
+<tr>
+<td></td>
+<td>w.d</td>
+<td>读入标准数字格式</td>
+</tr>
+<tr>
+<td></td>
+<td>PERCENTw.d</td>
+<td>读入百分比数字</td>
+</tr>
+</tbody>
+</table>
+<h3 id="常用输出格式"><a href="#常用输出格式" class="headerlink" title="常用输出格式"></a>常用输出格式</h3><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>格式名</th>
+<th>作用简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字符</td>
+<td>$w.</td>
+<td>标准字符格式，w表示变量的宽度</td>
+</tr>
+<tr>
+<td></td>
+<td>$IPCASEw.</td>
+<td>把字符转成大写，相当于UPCASE函数</td>
+</tr>
+<tr>
+<td>日期时间</td>
+<td>DATETIMEw.d</td>
+<td>显示日期时间格式为ddmmmyy:hh:mm:ss.ss</td>
+</tr>
+<tr>
+<td></td>
+<td>DATEw.</td>
+<td>显示日期格式为ddmmmyy，ddmmmyyyy，或dd-mmm-yy</td>
+</tr>
+<tr>
+<td></td>
+<td>YYMMDDw.</td>
+<td>显示日期格式为yymmdd或&lt;yy&gt;yy-mm-dd</td>
+</tr>
+<tr>
+<td></td>
+<td>HHMMw.d</td>
+<td>显示时间格式为hh:mm</td>
+</tr>
+<tr>
+<td>数字</td>
+<td>BESTw.</td>
+<td>SAS自动选择最合适的数字格式</td>
+</tr>
+<tr>
+<td></td>
+<td>COMMAw.d</td>
+<td>带千分位的数字格式</td>
+</tr>
+<tr>
+<td></td>
+<td>DOLLARw.d</td>
+<td>带美元符号的格式</td>
+</tr>
+<tr>
+<td></td>
+<td>PERCENTw.d</td>
+<td>显示百分比形式</td>
+</tr>
+<tr>
+<td></td>
+<td>PVALUEw.d</td>
+<td>统计P值显示格式</td>
+</tr>
+<tr>
+<td></td>
+<td>w.d</td>
+<td>标准的数字格式</td>
+</tr>
+<tr>
+<td></td>
+<td>Zw.d</td>
+<td>前面位数不够补0填充</td>
+</tr>
+</tbody>
+</table>
+<h3 id="自定义格式"><a href="#自定义格式" class="headerlink" title="自定义格式"></a>自定义格式</h3><p><strong>PROC FORMAT</strong> &lt;<em>option(s)</em>&gt;;</p>
+<p><strong>EXCLUDE</strong> <em>entry(s)</em>;</p>
+<p><strong>INVALUE</strong> &lt;$&gt;<em>name</em>&lt;(<em>informat-option(s)</em>)&gt;&lt;<em>value-range-set(s)</em>&gt;;</p>
+<p><strong>PICTURE</strong> <em>name</em>&lt;(<em>format-option(s)</em>)&gt; &lt;<em>value-range-set-1</em>&lt;(<em>picture-1-option(s)</em>)&gt; &lt;value-range-set-2&lt;(*picture-2-option(s))&gt;&gt; …&gt;;</p>
+<p><strong>SELECT</strong> <em>entry(s)</em>;</p>
+<p><strong>VALUE</strong>  &lt;$&gt;<em>name</em>&lt;(<em>format-option(s)</em>)&gt; &lt;<em>value-range-set(s)</em>&gt;</p>
+<p><strong>RUN</strong>;</p>
+<ul>
+<li>option(s)：PRCO FORMAT的一些选项，如：<ul>
+<li>library=：指定格式存放位置</li>
+<li>ctnlin=：指定格式定义输入数据集</li>
+<li>ctnlout=：指定格式定义到出数据集</li>
+</ul>
+</li>
+<li><strong>EXCLUDE</strong>：剔除某些条目</li>
+<li><strong>INVALUE</strong>：定义输入格式<ul>
+<li><em>name</em>：输入格式名，前面有$表示为字符格式名</li>
+<li><em>informat-option(s)</em>：输入格式选项</li>
+<li><em>value-range-set(s)</em>：数据映射</li>
+</ul>
+</li>
+<li><strong>PICTURE</strong>：创建打印数字的模版</li>
+<li><strong>VALUE</strong>：定义输出格式<ul>
+<li><em>name</em>：输出格式名，前面有$表示为字符格式名</li>
+<li><em>informat-option(s)</em>：输出格式选项</li>
+<li><em>value-range-set(s)</em>：数据映射，其形式可以是：<em>value-or-range-1 &lt;, value-or-range-2, …&gt;=formatted-value|[existing-format]</em></li>
+</ul>
+</li>
+</ul>
+<p>直接用输入数据来定义格式时，输入数据集里必须包含五个重要字段名：FMTNAME、START、END、LABEL以及TYPE。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">proc format cntlout=fmt; /*自定义格式，导出格式定义数据*/</div><div class="line">	value $sexf F=&quot;男性&quot; M=&quot;女性&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc format library=work cntlin=fmt(keep=fmtname start end label type); /*用数据集定义格式*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<ul>
+<li>格式命名：格式命名长度不得超过32个字符（包括$），且不得以数字结尾</li>
+<li>数据映射中，数据范围写法：<ul>
+<li>单独的值映射：如「F=”男性” M=”女性”」,「1=”低” 2=”中” 3=”高”」</li>
+<li>值范围的映射：如「18.5-24.9=”正常”」,「’A’-‘D’=”Class1”」</li>
+<li>单用连字符“-”时，是闭区间，包括两边边界值。如果希望不包括边界，可在其前加“&lt;”，如：「18.5-&lt;25=”正常”」</li>
+<li>可用关键词LOW，HEIGH，OTHER：如「low-&lt;65=”&lt;65岁” 65-high=”&gt;=65岁”」</li>
+<li>可以嵌套格式名，但是需要将嵌套的格式名置于种括号中或小括号里的双竖线中，如：「.=”缺失” other=[yymmdd10.];」</li>
+</ul>
+</li>
+<li>定义好的格式，如果在DATA步用FORMAT关联变量，则为永久性的；如果只在过程步用FORMAT关联变量，则为临时性的。</li>
+</ul>
+<h3 id="格式妙用"><a href="#格式妙用" class="headerlink" title="格式妙用"></a>格式妙用</h3><h4 id="格式的使用范围"><a href="#格式的使用范围" class="headerlink" title="格式的使用范围"></a>格式的使用范围</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">data _null_; /*DATA步 PUT语句中指定*/</div><div class="line">	set sashelp.class(obs=5);</div><div class="line">	put name sex $sexf.;</div><div class="line">run;</div><div class="line"></div><div class="line">prco print data=sashelp.class(obs=5); /*PROC步FORMAT语句指定*/</div><div class="line">	var name sex;</div><div class="line">	format sex $sexf.;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sql; /*Proc sql中format选项*/</div><div class="line">	select name, sex format=$sexf. from sashelp.class(obs=5);</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<h4 id="变量重分组"><a href="#变量重分组" class="headerlink" title="变量重分组"></a>变量重分组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">data obese; /*创建测试数据集*/</div><div class="line">	length status $ 15;</div><div class="line">	set sashelp.class;</div><div class="line">	BMI = weight*0.4536/(height*0.0254)**2;</div><div class="line">run;</div><div class="line"></div><div class="line">proc format; /*自定义格式*/</div><div class="line">	value obefmt low-18.5=&quot;Underweight&quot; 18.5-25=&quot;Normal&quot; </div><div class="line">				 25-30=&quot;Overweight&quot; 30-high=&quot;Obese&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc freq data=obese; /*愿变量+格式直接统计新分类的频数*/</div><div class="line">	table bmi;</div><div class="line">	format bmi obefmt.;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h4 id="统计分析过程"><a href="#统计分析过程" class="headerlink" title="统计分析过程"></a>统计分析过程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/*在统计分析过程里，直接用自定义格式给变量重分组*/</div><div class="line">proc format;</div><div class="line">	value obefmt low-18.5=&quot;Underweight&quot; 18.5-high=&quot;Normal or above&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc logistic data=obese;</div><div class="line">	class sex;</div><div class="line">	model bmi(event=&quot;Underweight&quot;)=age sex;</div><div class="line">	format bmi obefmt.;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h4 id="统计缺失观测"><a href="#统计缺失观测" class="headerlink" title="统计缺失观测"></a>统计缺失观测</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">proc format; /*自定义格式*/</div><div class="line">	value $missfmt &apos; &apos;=&quot;Missing&quot; other=&quot;Not Missing&quot;; /*引号中有多少空格都一样*/</div><div class="line">	value nmissfmt .=&quot;Missing&quot; other=&quot;Not Missing&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">data class; /*创建测试数据集*/</div><div class="line">	set sashelp.class;</div><div class="line">	if rannor(123)&lt;0.5 then call missing(sex);</div><div class="line">	if rannor(456)&lt;0.05 then call missing(age);</div><div class="line">run;</div><div class="line"></div><div class="line">proc freq data=class; /*统计缺失、非缺失频数*/</div><div class="line">    table sex age/missing;</div><div class="line">    format sex $missfmt. age nmissfmt.;</div><div class="line">run;</div><div class="line"></div><div class="line">data cclass;</div><div class="line">    set class;</div><div class="line">    if name=&apos;Henry&apos; then sex=&apos;  &apos;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc freq data=cclass; /*统计缺失、非缺失频数*/</div><div class="line">    table sex age/missing;</div><div class="line">    format sex $missfmt. age nmissfmt.;</div><div class="line">run;</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/09/12/SAS编程演义5-7/" data-id="cj7h11kjg0005ra4mbc3mhg3y" class="article-share-link">Share</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/09/13/SAS编程演义5-7/" data-id="cj7isxfqn0006r74mn1jcfldy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -427,7 +633,7 @@
 <nav id="article-nav">
   
   
-    <a href="/2017/09/05/SAS编程演义1-4/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/09/13/SAS编程演义1-4/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">《SAS编程演义》笔记（1-4章）</div>
     </a>
@@ -466,11 +672,11 @@
       <ul>
         
           <li>
-            <a href="/2017/09/12/SAS编程演义5-7/">《SAS编程演义》笔记（5-7章）</a>
+            <a href="/2017/09/13/SAS编程演义5-7/">《SAS编程演义》笔记（5-7章）</a>
           </li>
         
           <li>
-            <a href="/2017/09/05/SAS编程演义1-4/">《SAS编程演义》笔记（1-4章）</a>
+            <a href="/2017/09/13/SAS编程演义1-4/">《SAS编程演义》笔记（1-4章）</a>
           </li>
         
           <li>

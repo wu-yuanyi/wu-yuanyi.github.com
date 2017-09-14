@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh_Hans">
+<html class="theme-next muse use-motion" lang="en">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -148,7 +148,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh_Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -197,7 +197,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -207,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            Über
+            About
           </a>
         </li>
       
@@ -227,7 +227,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -274,6 +274,150 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/14/利用python 3进行数据分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/14/利用python 3进行数据分析/" itemprop="url">利用python 3.6进行数据分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-14T10:18:42+08:00">
+                2017-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python3/" itemprop="url" rel="index">
+                    <span itemprop="name">Python3</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pip3 install numpy</div><div class="line">pip3 install scipy</div><div class="line">pip3 install pandas</div><div class="line">pip3 install matplotlib</div></pre></td></tr></table></figure>
+<h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy, matplotlib</div><div class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> pet</div><div class="line">plt.plot(numpy.arange(<span class="number">10</span>))</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<h1 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> scipy</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> json</div><div class="line"></div><div class="line">records = [json.loads(line) <span class="keyword">for</span> line <span class="keyword">in</span> open(path)]</div><div class="line">time_zones = [rec[<span class="string">'tz'</span>] <span class="keyword">for</span> rec <span class="keyword">in</span> records <span class="keyword">if</span> <span class="string">'tz'</span> <span class="keyword">in</span> rec]</div><div class="line"></div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_counts2</span><span class="params">(sequence)</span>:</span></div><div class="line">    counts = defaultdict(int)</div><div class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> sequence:</div><div class="line">        counts[x] +=<span class="number">1</span></div><div class="line">    <span class="keyword">return</span> counts</div><div class="line"><span class="comment"># sequence=[0,0,0,0,1,1,1,1,1]</span></div><div class="line"><span class="comment"># d = get_counts2(sequence)</span></div><div class="line"><span class="comment"># &gt;&gt;&gt; defaultdict(int, &#123;0: 4, 1: 5&#125;)</span></div><div class="line"><span class="comment"># dcit(d.items())</span></div><div class="line"><span class="comment"># &gt;&gt;&gt; &#123;0: 4, 1: 5&#125;</span></div><div class="line"></div><div class="line">counts = get_counts(time_zones)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">top_counts</span><span class="params">(count_dcit, n=<span class="number">10</span>)</span>:</span></div><div class="line">   value_key_pairs = [(count, tz) <span class="keyword">for</span> tz, count <span class="keyword">in</span> count_dict.items()]</div><div class="line">   value_key_pairs.sort()</div><div class="line">   <span class="keyword">return</span> value_key_pairs[-n:]</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/13/SAS编程演义8-10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -303,7 +447,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-13T17:43:19+08:00">
                 2017-09-13
@@ -324,7 +468,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -444,7 +588,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-13T13:31:21+08:00">
                 2017-09-13
@@ -456,6 +600,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SAS/" itemprop="url" rel="index">
+                    <span itemprop="name">SAS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1099,7 +1265,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-13T09:35:24+08:00">
                 2017-09-13
@@ -1111,6 +1277,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SAS/" itemprop="url" rel="index">
+                    <span itemprop="name">SAS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1255,7 +1443,7 @@
 <h3 id="读入CSV文件"><a href="#读入CSV文件" class="headerlink" title="读入CSV文件"></a>读入CSV文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">filename mycsv &quot;D:\Data\Raw|class.csv&quot;;</div><div class="line">proc import </div><div class="line">    datafile=mycsv dbms=csv out=tmp replace;</div><div class="line">getnames=yes;</div><div class="line">guessingrows=20; /*通过前20行确定变量类型*/</div><div class="line">datarow=2; /*数据从第二行开始*/</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h3 id="读入TXT特殊字符分隔的文件"><a href="#读入TXT特殊字符分隔的文件" class="headerlink" title="读入TXT特殊字符分隔的文件"></a>读入TXT特殊字符分隔的文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">filename mytxttab &quot;D:\Data\Raw|class_tab.txt&quot;</div><div class="line">filename mytxtblk &quot;D:\Data\Raw|class_blk.txt&quot;</div><div class="line">proc import</div><div class="line">    datafile=mytxttab dbms=dlm out=tmp replace;</div><div class="line">delimiter=&apos;09&apos;x;</div><div class="line">getnames=yes;</div><div class="line">run;</div><div class="line">proc import</div><div class="line">    datafile=mytxtblk dbms=dlm out=tmp replace;</div><div class="line">delimiter=&apos;20&apos;x;</div><div class="line">getnames=yes;</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h3 id="INPUT语句列表读入式"><a href="#INPUT语句列表读入式" class="headerlink" title="INPUT语句列表读入式"></a>INPUT语句列表读入式</h3><p>适合数据不齐整</p>
-<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable &lt;$&gt; &lt;:|$|~&gt; &lt;<em>informat.</em>&gt; <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x40;&#124;&#64;&#x40;">&#x40;&#124;&#64;&#x40;</a>;</p>
+<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable &lt;$&gt; &lt;:|$|~&gt; &lt;<em>informat.</em>&gt; <a href="&#109;&#97;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x40;&#124;&#x40;&#64;">&#x40;&#124;&#x40;&#64;</a>;</p>
 <ul>
 <li>pointer-control: 控制变量读入点起始位置。针对行: #, /。针对列: @, +。</li>
 <li>variable: 变量列表</li>
@@ -1270,14 +1458,14 @@
 </li>
 </ul>
 <h3 id="INPUT语句列读入式"><a href="#INPUT语句列读入式" class="headerlink" title="INPUT语句列读入式"></a>INPUT语句列读入式</h3><p>适合数据齐整的情况</p>
-<p><strong>INPUT</strong> variable&lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#64;&#x7c;&#x40;&#64;">&#64;&#x7c;&#x40;&#64;</a>;</p>
+<p><strong>INPUT</strong> variable&lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#64;&#x7c;&#64;&#x40;">&#64;&#x7c;&#64;&#x40;</a>;</p>
 <ul>
 <li>start-column&lt;-end-column&gt;: 变量读入点起止列</li>
 <li>.decimals: 小数位数</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">input name $ 1-9 gender $ 11 age 13-14 location $ 16-23;</div><div class="line">YY Wu     M 25 Shanghai</div><div class="line">Yuanyi Wu M 25 Shanghai</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h3 id="INPUT语句格式读入式"><a href="#INPUT语句格式读入式" class="headerlink" title="INPUT语句格式读入式"></a>INPUT语句格式读入式</h3><p>可以对字符变量指定宽度，以及读入非标准形式对数字，如科学计数法、带货币符号、带千分位等。</p>
-<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; <em>variable</em> <em>informat.</em> <a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#58;&#64;&#x7c;&#x40;&#64;">&#64;&#x7c;&#x40;&#64;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (<em>informat-list</em>) <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x40;&#124;&#x40;&#x40;">&#x40;&#124;&#x40;&#x40;</a>;<br><strong>INPUY</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (&lt;<em>n</em>&gt; informat.) <a href="&#x6d;&#97;&#105;&#108;&#116;&#111;&#x3a;&#64;&#124;&#64;&#64;">&#64;&#124;&#64;&#64;</a>;</p>
+<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; <em>variable</em> <em>informat.</em> <a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#x40;&#x7c;&#64;&#64;">&#x40;&#x7c;&#64;&#64;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (<em>informat-list</em>) <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#x40;&#x7c;&#x40;&#64;">&#x40;&#x7c;&#x40;&#64;</a>;<br><strong>INPUY</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (&lt;<em>n</em>&gt; informat.) <a href="&#109;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#x40;&#x7c;&#x40;&#x40;">&#x40;&#x7c;&#x40;&#x40;</a>;</p>
 <ul>
 <li>(variable-list) (informat-list): 变量格式列表<ul>
 <li>编号范围列表：形如x1,x2,x3可缩写为x1-xn</li>
@@ -1289,7 +1477,7 @@
 <li>&lt;<em>n</em>&gt; informat.: 变量格式列表n表示格式重复的次数</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">/*gender虽然只有1列，但声明时要带上其后的一个空格，age，location类似*/</div><div class="line">input name &amp; $10. gender $2. age 3. location $8. fee comma6.;</div><div class="line">datalines;</div><div class="line">YY Wu  M 25 Shanghai 12,345</div><div class="line">Yuanyi Wu  M 25 Shanghai 54,321</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="INPUT语句命名读入式"><a href="#INPUT语句命名读入式" class="headerlink" title="INPUT语句命名读入式"></a>INPUT语句命名读入式</h3><p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= &lt;$&gt; <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#64;&#124;&#64;&#x40;">&#64;&#124;&#64;&#x40;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= informat. <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#x40;&#x7c;&#x40;&#64;">&#x40;&#x7c;&#x40;&#64;</a>;<br><strong>INPUT</strong> variable= &lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#x40;&#124;&#x40;&#x40;">&#x40;&#124;&#x40;&#x40;</a>;</p>
+<h3 id="INPUT语句命名读入式"><a href="#INPUT语句命名读入式" class="headerlink" title="INPUT语句命名读入式"></a>INPUT语句命名读入式</h3><p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= &lt;$&gt; <a href="&#109;&#x61;&#105;&#108;&#x74;&#x6f;&#58;&#x40;&#x7c;&#64;&#64;">&#x40;&#x7c;&#64;&#64;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= informat. <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#x40;&#x7c;&#64;&#x40;">&#x40;&#x7c;&#64;&#x40;</a>;<br><strong>INPUT</strong> variable= &lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#109;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#64;&#x7c;&#64;&#x40;">&#64;&#x7c;&#64;&#x40;</a>;</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">input name= $ gender= $ age= location=$;</div><div class="line">datalines;</div><div class="line">name=WYY gender=M age=25 location=Shanghai</div><div class="line">name=GY gender=F age=24 location=Shanghai</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h3 id="数据导出"><a href="#数据导出" class="headerlink" title="数据导出"></a>数据导出</h3><p><strong>PROC EXPORT DATA</strong>=&lt;<em>libref.</em>&gt;<em>SAS data set</em>&lt;(<em>SAS data set options</em>)&gt;</p>
 <p><strong>OUTFILE</strong>=”filename”|<strong>OUTTABLE</strong>=”tablename”</p>
@@ -1465,7 +1653,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-02T09:31:44+08:00">
                 2017-08-02
@@ -1695,235 +1883,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/08/01/Event tracking/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yuanyi Wu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/01/Event tracking/" itemprop="url">Event tracking</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-01T10:40:06+08:00">
-                2017-08-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="无埋点"><a href="#无埋点" class="headerlink" title="无埋点"></a>无埋点</h2><p>无埋点 = 可视化监测部署 = 所见即所得的监测部署</p>
-<p>无论是监测网站，还是监测App，都必须加上监测代码或SDK，不加就搜集不到数据。</p>
-<p>无论是埋点方法还是不埋点方法，要搜集数据都要加监测代码或SDK，称之为基础代码。要搜集到所有用户行为的数据，光有基础代码是不够的。无论是网站还是App(尤其是App)，总有一些特殊的用户操作行为时不能靠基础代码捕获的。</p>
-<p>不能被基础代码捕获的用户操作行为，称为event(事件)。</p>
-<ul>
-<li>网页：Javascript、Flash、Silverlight、AJAX、各种页面插件的交互等等</li>
-<li>App：包含用户点击在内的所有交互</li>
-<li>凡是遵守http协议的交互（最典型的就是网页的链接），皆是可以由基础监测代码直接监测到数据的。</li>
-<li>非http类型的用户交互，基础监测代码都无能为力。</li>
-</ul>
-<p>每一个需要监测的event互动，都被称为一个“监测点”。Web上需要的监测点较少，App上则布满了监测点。为了搜集这些监测点上的用户数据，必须部署上专用点事件监测代码(event tracking code)。</p>
-<p><strong>事件监测(埋点)只有在基础代码工作的情况下才能发挥作用。</strong></p>
-<p>机构为App配置无埋点监测点两种方法：</p>
-<ul>
-<li>手指取代鼠标，直接在手机上操作设置。</li>
-<li>在电脑浏览器端操作，类似于一个模拟器。</li>
-</ul>
-<p><strong>全埋点</strong>：本质上和无埋点并无不同。因为无埋点就是直接对页面中所有的交互元素的用户行为进行监听。即使App或网页的开发者不需要监测点部分，无埋点也会将用户行为数据和对应的发生地信息照单全收。</p>
-<p>无埋点和埋点点优劣对比</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">优劣</th>
-<th style="text-align:left">无埋点</th>
-<th style="text-align:left">埋点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">是否需要加基础代码</td>
-<td style="text-align:left">要</td>
-<td style="text-align:left">要</td>
-</tr>
-<tr>
-<td style="text-align:left">事件监测部署简便性</td>
-<td style="text-align:left">非常简便，业务人员可以轻松操作</td>
-<td style="text-align:left">复杂，需要工程师帮助</td>
-</tr>
-<tr>
-<td style="text-align:left">事件历史数据回溯</td>
-<td style="text-align:left">可以回溯</td>
-<td style="text-align:left">埋点前点数据不可以回溯</td>
-</tr>
-<tr>
-<td style="text-align:left">事件的属性数据</td>
-<td style="text-align:left">常见的无埋点方法基本不可以添加额外属性</td>
-<td style="text-align:left">可添加或监测数个事件属性</td>
-</tr>
-<tr>
-<td style="text-align:left">事件的分类报告</td>
-<td style="text-align:left">常见的无埋点方法基本不可以实现分类报告</td>
-<td style="text-align:left">可以实现事件的分类报告</td>
-</tr>
-<tr>
-<td style="text-align:left">无明确发生地点的时间监测</td>
-<td style="text-align:left">无法监测</td>
-<td style="text-align:left">可以监测</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>用户的交互行为，如果没有具体的“地点”，无埋点方法不适用。如：用户上滑屏幕时，新内容瀑布流式的底部载入。这种交互没有一个明确的监测点位置，是不可见点。在可视化事件监测设置点界面上找不到这类交互。</li>
-<li>可视化的无埋点部署，能够为交互行为设置的属性非常有限。一般无埋点部署，只能给交互行为起一个名字，然后机械的记录这个交互行为发生的次数。而埋点方法可以非常好的添加event背后的属性。</li>
-<li>埋点方法因为带有多个属性，用户可以轻松的通过这些属性进行分类数据报告的读取。</li>
-</ul>
-<p><a href="http://www.docin.com/p-1531077573.html" target="_blank" rel="external">一种基于App的行为采集系统的设计与实现</a></p>
-<h2 id="App行为数据"><a href="#App行为数据" class="headerlink" title="App行为数据"></a>App行为数据</h2><p>企业数据分为三类：</p>
-<ul>
-<li>企业内部的交易数据，特别是金融企业有丰富的交易数据</li>
-<li>企业和用户之间的交互数据</li>
-<li>第三方数据</li>
-</ul>
-<p>App行为数据特指用户在网站货App中浏览与点击等行为数据，主要用于统计分析App运营情况。用户在社交论坛互动也称为交互数据，此类交互数据在业务场景中更偏向客户关系管理与产品迭代货舆情监控。</p>
-<p>App行为数据分为三个维度：</p>
-<ul>
-<li>时间<blockquote>
-<p>某金融App中，正常交易行为数据流程时间在15秒左右，但部分设备的时间段却集中在2-3秒，明显属于非正常用户行为，通过特征分析针对流程时间段进行标签设置，有助于判断用户是否为欺诈行为。</p>
-</blockquote>
-</li>
-<li>频次<blockquote>
-<p>结合热力图了解产品体验和客户需求，同时也可以用来优化App内部的布局和销售关联产品。<br>频次数据经过进一步分析后可转化为趋势数据，这些数据痛产品转化和客户购买行为具有强相关关系。</p>
-</blockquote>
-</li>
-<li>结果标签<blockquote>
-<p>主要关注是否完成交易，用于判断客户点击浏览的结果。结果数据分为成交和不成交。成交数据可以用于产品体验分析，客户体验分析，渠道ROI分析；不成交数据可以用于二次营销。</p>
-</blockquote>
-</li>
-</ul>
-<p>| KPI | 维度标准|<br>| ：– | ：– |<br>| 访问次数 | 在一定时间范围内，所有的用户对App的使用次数|<br>| UV(独立访客) | 在指定时间段内不重复(仅计数一次)的访问者人数 |<br>| PV(浏览量) | App界面的浏览量，用户每次进入界面即被计数一次 |<br>| 访问深度 | 用户每次使用App进入的界面层数 |<br>| 停留时间 | 用户对App中各界面访问的时长 |<br>| 跳出率 | 单界面访问次数占总访问次数多百分比 |</p>
-<p>用户对于某界面：停留时间 = 进入时间 - 离开时间</p>
-<p>在App端，同一时间只能展示一个界面，故根据这些时间可以推算出用户的界面访问路径。</p>
-<ol>
-<li>App用户使用手机App，产生用户行为，App中行为采集功能根据用户行为的类型采用不同的函数对用户行为进行采集，然后将采集到的数据以二进制文本形式暂存到手机中；</li>
-<li>App读取暂存数据文件，对数据进行合并去冗余处理后，采用一定策略集中发送到后端行为采集服务器；</li>
-<li>采集服务器对行为数据进行拆解，根据数据的类型和时间，将数据保存到不同的日志服务器中；</li>
-<li>日志分析服务器定期抓取数据进行分析，产生分析结果；</li>
-<li>Web服务器读取分析结果，生成图表以供展示；</li>
-</ol>
-<ul>
-<li>提供类库供App调用</li>
-<li>提供用户行为的记录函数<ul>
-<li>记录用户基本信息</li>
-<li>记录用户进入、退出界面时页面驻留时间</li>
-<li>记录用户进行特定操作时的特定事件</li>
-</ul>
-</li>
-<li>提供数据暂存机制</li>
-<li>提供数据发送策略</li>
-<li>提供数据接收拆解存储功能</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1974,7 +1933,7 @@
               <a href="/archives/">
             
                 <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -1984,8 +1943,8 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">Kategorien</span>
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">categories</span>
               </a>
             </div>
           
@@ -2038,7 +1997,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" href="https://hexo.io">Hexo</a></div>
 
   <span class="post-meta-divider">|</span>
 

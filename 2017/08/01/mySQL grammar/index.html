@@ -5,22 +5,34 @@
   
   <title>MySQL grammer | My blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SQL基础Select123select column1, column2, ... from table_name;select * from table_name;
-Distinct12select distinct column1, column2, ... from table_name;
-Where123select column1, column2, ... from table_na">
+  <meta name="description" content="SQL基础
+Select
+123select column1, column2, ... from table_name;select * from table_name;
+Distinct
+12select distinct column1, column2, ... from table_name;
+Where
+123select column1, column2, ... from tabl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL grammer">
 <meta property="og:url" content="http://wu-yuanyi.github.io/2017/08/01/mySQL grammar/index.html">
 <meta property="og:site_name" content="My blog">
-<meta property="og:description" content="SQL基础Select123select column1, column2, ... from table_name;select * from table_name;
-Distinct12select distinct column1, column2, ... from table_name;
-Where123select column1, column2, ... from table_na">
+<meta property="og:description" content="SQL基础
+Select
+123select column1, column2, ... from table_name;select * from table_name;
+Distinct
+12select distinct column1, column2, ... from table_name;
+Where
+123select column1, column2, ... from tabl">
 <meta property="og:updated_time" content="2017-08-01T02:13:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL grammer">
-<meta name="twitter:description" content="SQL基础Select123select column1, column2, ... from table_name;select * from table_name;
-Distinct12select distinct column1, column2, ... from table_name;
-Where123select column1, column2, ... from table_na">
+<meta name="twitter:description" content="SQL基础
+Select
+123select column1, column2, ... from table_name;select * from table_name;
+Distinct
+12select distinct column1, column2, ... from table_name;
+Where
+123select column1, column2, ... from tabl">
   
     <link rel="alternate" href="/atom.xml" title="My blog" type="application/atom+xml">
   
@@ -58,9 +70,9 @@ Where123select column1, column2, ... from table_na">
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wu-yuanyi.github.io"></form>
@@ -91,20 +103,30 @@ Where123select column1, column2, ... from table_na">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="SQL基础"><a href="#SQL基础" class="headerlink" title="SQL基础"></a>SQL基础</h1><h2 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name;</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table_name;</div></pre></td></tr></table></figure>
-<h2 id="Distinct"><a href="#Distinct" class="headerlink" title="Distinct"></a>Distinct</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name;</div></pre></td></tr></table></figure>
-<h2 id="Where"><a href="#Where" class="headerlink" title="Where"></a>Where</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure>
-<h2 id="And-Or-Not"><a href="#And-Or-Not" class="headerlink" title="And , Or, Not"></a>And , Or, Not</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition1 <span class="keyword">and</span> condition2 <span class="keyword">and</span> condition3 ...;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition1 <span class="keyword">or</span> condition2 <span class="keyword">or</span> condition3 ...;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> <span class="keyword">not</span> condition;</div></pre></td></tr></table></figure>
-<h2 id="Order-By"><a href="#Order-By" class="headerlink" title="Order By"></a>Order By</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> column1, column2, ... <span class="keyword">ASC</span>|<span class="keyword">DESC</span>;</div></pre></td></tr></table></figure>
-<h2 id="Insert-Into"><a href="#Insert-Into" class="headerlink" title="Insert Into"></a>Insert Into</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name </div><div class="line"><span class="keyword">values</span> (value1, value2, value3, ...);</div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name (column1, column2, column3, ...) </div><div class="line"><span class="keyword">values</span> (value1, value2, value3, ...);</div></pre></td></tr></table></figure>
-<h2 id="Null-Values"><a href="#Null-Values" class="headerlink" title="Null Values"></a>Null Values</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column_names</div><div class="line"><span class="keyword">from</span> table_name</div><div class="line"><span class="keyword">where</span> column_name <span class="keyword">is</span> <span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column_names</div><div class="line"><span class="keyword">from</span> table_name</div><div class="line"><span class="keyword">where</span> column_name <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span>;</div></pre></td></tr></table></figure>
-<h2 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">update</span> table_name </div><div class="line"><span class="keyword">set</span> column1 = value1, column2 = value2, ... </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure>
-<h2 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure>
+        <h1>SQL基础</h1>
+<h2>Select</h2>
+<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name;</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table_name;</div></pre></td></tr></table></figure></p>
+<h2>Distinct</h2>
+<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name;</div></pre></td></tr></table></figure></p>
+<h2>Where</h2>
+<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure></p>
+<h2>And , Or, Not</h2>
+<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition1 <span class="keyword">and</span> condition2 <span class="keyword">and</span> condition3 ...;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition1 <span class="keyword">or</span> condition2 <span class="keyword">or</span> condition3 ...;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> <span class="keyword">not</span> condition;</div></pre></td></tr></table></figure></p>
+<h2>Order By</h2>
+<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> column1, column2, ... <span class="keyword">ASC</span>|<span class="keyword">DESC</span>;</div></pre></td></tr></table></figure></p>
+<h2>Insert Into</h2>
+<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name </div><div class="line"><span class="keyword">values</span> (value1, value2, value3, ...);</div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name (column1, column2, column3, ...) </div><div class="line"><span class="keyword">values</span> (value1, value2, value3, ...);</div></pre></td></tr></table></figure></p>
+<h2>Null Values</h2>
+<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column_names</div><div class="line"><span class="keyword">from</span> table_name</div><div class="line"><span class="keyword">where</span> column_name <span class="keyword">is</span> <span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column_names</div><div class="line"><span class="keyword">from</span> table_name</div><div class="line"><span class="keyword">where</span> column_name <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span>;</div></pre></td></tr></table></figure></p>
+<h2>Update</h2>
+<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">update</span> table_name </div><div class="line"><span class="keyword">set</span> column1 = value1, column2 = value2, ... </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure></p>
+<h2>Delete</h2>
+<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/08/01/mySQL grammar/" data-id="cj7iz1k4s0009mo4ml0li0z1a" class="article-share-link">Partager</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/08/01/mySQL grammar/" data-id="cj7js1376000c7k4mr290k860" class="article-share-link">Share</a>
       
       
     </footer>
@@ -114,7 +136,7 @@ Where123select column1, column2, ... from table_na">
 <nav id="article-nav">
   
     <a href="/2017/08/01/Event tracking/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           Event tracking
@@ -124,7 +146,7 @@ Where123select column1, column2, ... from table_na">
   
   
     <a href="/2017/04/16/利用python 3进行数据分析/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ancien</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">利用python 3.6进行数据分析</div>
     </a>
   
@@ -157,7 +179,7 @@ Where123select column1, column2, ... from table_na">
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -194,7 +216,7 @@ Where123select column1, column2, ... from table_na">
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 Yuanyi Wu<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

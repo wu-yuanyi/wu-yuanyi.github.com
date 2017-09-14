@@ -5,19 +5,28 @@
   
   <title>github&amp;hexo | My blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Setting up a Github Pages blog with Hexo on MacInstallInstall node.js1brew install nodejs
-Installing Node.js and NPM is pretty straightforward using Homebrew. Homebrew handles downloading, unpacking a">
+  <meta name="description" content="Setting up a Github Pages blog with Hexo on Mac
+Install
+Install node.js
+1brew install nodejs
+Installing Node.js and NPM is pretty straightforward using Homebrew. Homebrew handles downloading, unpackin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="github&hexo">
 <meta property="og:url" content="http://wu-yuanyi.github.io/2017/03/27/github&hexo/index.html">
 <meta property="og:site_name" content="My blog">
-<meta property="og:description" content="Setting up a Github Pages blog with Hexo on MacInstallInstall node.js1brew install nodejs
-Installing Node.js and NPM is pretty straightforward using Homebrew. Homebrew handles downloading, unpacking a">
+<meta property="og:description" content="Setting up a Github Pages blog with Hexo on Mac
+Install
+Install node.js
+1brew install nodejs
+Installing Node.js and NPM is pretty straightforward using Homebrew. Homebrew handles downloading, unpackin">
 <meta property="og:updated_time" content="2017-03-27T07:35:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="github&hexo">
-<meta name="twitter:description" content="Setting up a Github Pages blog with Hexo on MacInstallInstall node.js1brew install nodejs
-Installing Node.js and NPM is pretty straightforward using Homebrew. Homebrew handles downloading, unpacking a">
+<meta name="twitter:description" content="Setting up a Github Pages blog with Hexo on Mac
+Install
+Install node.js
+1brew install nodejs
+Installing Node.js and NPM is pretty straightforward using Homebrew. Homebrew handles downloading, unpackin">
   
     <link rel="alternate" href="/atom.xml" title="My blog" type="application/atom+xml">
   
@@ -55,9 +64,9 @@ Installing Node.js and NPM is pretty straightforward using Homebrew. Homebrew ha
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wu-yuanyi.github.io"></form>
@@ -88,36 +97,49 @@ Installing Node.js and NPM is pretty straightforward using Homebrew. Homebrew ha
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Setting-up-a-Github-Pages-blog-with-Hexo-on-Mac"><a href="#Setting-up-a-Github-Pages-blog-with-Hexo-on-Mac" class="headerlink" title="Setting up a Github Pages blog with Hexo on Mac"></a>Setting up a Github Pages blog with Hexo on Mac</h1><h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><h3 id="Install-node-js"><a href="#Install-node-js" class="headerlink" title="Install node.js"></a>Install node.js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install nodejs</div></pre></td></tr></table></figure>
+        <h1>Setting up a Github Pages blog with Hexo on Mac</h1>
+<h2>Install</h2>
+<h3>Install node.js</h3>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install nodejs</div></pre></td></tr></table></figure></p>
 <p>Installing Node.js and NPM is pretty straightforward using Homebrew. Homebrew handles downloading, unpacking and installing Node and NPM on your system. The whole process (after you have XCode and Homebrew installed) should only take you a few minutes.</p>
 <ul>
-<li>To see if Node is installed, type <code>node -v</code> in iTerm. This should print the version number so you’ll see something like this <code>v7.7.4</code>.</li>
-<li>To see if NPM is installed, type <code>npm -v</code> in iTerm. This should print the version number so you’ll see something like this <code>4.1.2</code>.</li>
+<li>To see if Node is installed, type <code>node -v</code> in iTerm. This should print the version number so you'll see something like this <code>v7.7.4</code>.</li>
+<li>To see if NPM is installed, type <code>npm -v</code> in iTerm. This should print the version number so you'll see something like this <code>4.1.2</code>.</li>
 </ul>
-<h3 id="Install-Hexo"><a href="#Install-Hexo" class="headerlink" title="Install Hexo"></a>Install Hexo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
+<h3>Install Hexo</h3>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure></p>
 <ul>
 <li>To see if Hexo is installed, type <code>hexo -v</code> in iTerm.</li>
 </ul>
-<h2 id="Setup-Hexo"><a href="#Setup-Hexo" class="headerlink" title="Setup Hexo"></a>Setup Hexo</h2><p>Once you’ve got Hexo installed, you can simply run:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo init username.github.com</div><div class="line">$ cd username.github.com</div><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
-<p>Next, we need to configure a couple of things so open up the config file:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vim _config.yml</div></pre></td></tr></table></figure></p>
-<p>Some items you’ll want to immediately change are:</p>
+<h2>Setup Hexo</h2>
+<p>Once you've got Hexo installed, you can simply run:
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo init username.github.com</div><div class="line">$ cd username.github.com</div><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
+<p>Next, we need to configure a couple of things so open up the config file:
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vim _config.yml</div></pre></td></tr></table></figure></p>
+<p>Some items you'll want to immediately change are:</p>
 <ul>
 <li>title</li>
 <li>description</li>
 <li>author</li>
-<li>url<br>To make Github deployments work with <code>hexo deploy</code> you’ll want to make sure that the <code># Deployment</code> section looks something like:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># Deployment</div><div class="line">## Docs: https://hexo.io/docs/deployment.html</div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/username/username.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
-</li>
+<li>url
+To make Github deployments work with <code>hexo deploy</code> you'll want to make sure that the <code># Deployment</code> section looks something like:
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># Deployment</div><div class="line">## Docs: https://hexo.io/docs/deployment.html</div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/username/username.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="Setup-Github"><a href="#Setup-Github" class="headerlink" title="Setup Github"></a>Setup Github</h2><p>Github provides hosting for static websites via <a href="https://pages.github.com/" target="_blank" rel="external">Github Pages</a>. As long as you have an index.html in the root of your repo, Github will serve up the static files for you.</p>
-<h3 id="Create-a-new-repository-for-your-blog"><a href="#Create-a-new-repository-for-your-blog" class="headerlink" title="Create a new repository for your blog"></a>Create a new repository for your blog</h3><p>You can get this setup by creating the required repository for your new blog, simply create a new repo with the name format as <strong>\<github username\="">.github.com</github></strong>, for example: <strong>wu-yuanyi.github.com</strong>.</p>
-<h2 id="Generate-some-content"><a href="#Generate-some-content" class="headerlink" title="Generate some content"></a>Generate some content</h2><p>Now that everything is assembled in place, it’s time to flesh out the blog. To generate a new post in Hexo simply issue:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new &#123;postname&#125;</div></pre></td></tr></table></figure></p>
-<p>Now you can go ahead and add your content, and then when finished, simply run:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo generate</div><div class="line">$ hexo deploy</div></pre></td></tr></table></figure></p>
-<p>And your new blog will be live at <a href="http://username.github.com" target="_blank" rel="external">http://username.github.com</a></p>
+<h2>Setup Github</h2>
+<p>Github provides hosting for static websites via <a href="https://pages.github.com/" target="_blank" rel="external">Github Pages</a>. As long as you have an index.html in the root of your repo, Github will serve up the static files for you.</p>
+<h3>Create a new repository for your blog</h3>
+<p>You can get this setup by creating the required repository for your new blog, simply create a new repo with the name format as <strong>&lt;github username&gt;.github.com</strong>, for example: <strong>wu-yuanyi.github.com</strong>.</p>
+<h2>Generate some content</h2>
+<p>Now that everything is assembled in place, it's time to flesh out the blog. To generate a new post in Hexo simply issue:
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new &#123;postname&#125;</div></pre></td></tr></table></figure></p>
+<p>Now you can go ahead and add your content, and then when finished, simply run:
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo generate</div><div class="line">$ hexo deploy</div></pre></td></tr></table></figure></p>
+<p>And your new blog will be live at http://username.github.com</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/github&hexo/" data-id="cj7iz1k4r0008mo4mt63wzyd0" class="article-share-link">Partager</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/github&hexo/" data-id="cj7js136q00047k4m8w48tcvp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -127,7 +149,7 @@ Installing Node.js and NPM is pretty straightforward using Homebrew. Homebrew ha
 <nav id="article-nav">
   
     <a href="/2017/03/27/AndroidEmulator/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           Android Emulator on Ubuntu
@@ -165,7 +187,7 @@ Installing Node.js and NPM is pretty straightforward using Homebrew. Homebrew ha
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -202,7 +224,7 @@ Installing Node.js and NPM is pretty straightforward using Homebrew. Homebrew ha
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 Yuanyi Wu<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

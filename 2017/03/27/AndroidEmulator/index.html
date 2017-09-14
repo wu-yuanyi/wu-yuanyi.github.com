@@ -5,22 +5,25 @@
   
   <title>Android Emulator on Ubuntu | My blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="How to Resize Android 4.4 Emulator Internal StorageQuestion on StackOverFlow
+  <meta name="description" content="How to Resize Android 4.4 Emulator Internal Storage
+Question on StackOverFlow
 Problem:
-When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot get the internal storage to be anyt">
+When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot get the internal storage to be any">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android Emulator on Ubuntu">
 <meta property="og:url" content="http://wu-yuanyi.github.io/2017/03/27/AndroidEmulator/index.html">
 <meta property="og:site_name" content="My blog">
-<meta property="og:description" content="How to Resize Android 4.4 Emulator Internal StorageQuestion on StackOverFlow
+<meta property="og:description" content="How to Resize Android 4.4 Emulator Internal Storage
+Question on StackOverFlow
 Problem:
-When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot get the internal storage to be anyt">
+When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot get the internal storage to be any">
 <meta property="og:updated_time" content="2016-07-28T09:51:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Emulator on Ubuntu">
-<meta name="twitter:description" content="How to Resize Android 4.4 Emulator Internal StorageQuestion on StackOverFlow
+<meta name="twitter:description" content="How to Resize Android 4.4 Emulator Internal Storage
+Question on StackOverFlow
 Problem:
-When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot get the internal storage to be anyt">
+When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot get the internal storage to be any">
   
     <link rel="alternate" href="/atom.xml" title="My blog" type="application/atom+xml">
   
@@ -58,9 +61,9 @@ When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot g
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wu-yuanyi.github.io"></form>
@@ -91,7 +94,8 @@ When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot g
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="How-to-Resize-Android-4-4-Emulator-Internal-Storage"><a href="#How-to-Resize-Android-4-4-Emulator-Internal-Storage" class="headerlink" title="How to Resize Android 4.4 Emulator Internal Storage"></a>How to Resize Android 4.4 Emulator Internal Storage</h2><p><a href="http://stackoverflow.com/questions/20579606/android-4-4-virtual-device-internal-storage-will-not-resize#comment44086027_20762411" target="_blank" rel="external">Question on StackOverFlow</a></p>
+        <h2>How to Resize Android 4.4 Emulator Internal Storage</h2>
+<p><a href="http://stackoverflow.com/questions/20579606/android-4-4-virtual-device-internal-storage-will-not-resize#comment44086027_20762411" target="_blank" rel="external">Question on StackOverFlow</a></p>
 <p><strong>Problem</strong>:</p>
 <p>When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot get the internal storage to be anything larger than 200MB.</p>
 <p><strong>Solution</strong>:</p>
@@ -100,7 +104,7 @@ When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot g
 <li>Even above suggestion can cause to android emulator hang on boot logo. The reason is that resize2fs do the changes thats are right in general but considered as broken fs by android and prevent it to mount it in rw mode, that hangs up the boot process.</li>
 <li>Event e2fsck does not fix it for android and to workaround it i use tune2fs to change the way how android should continue to mount broken fs.</li>
 </ul>
-<ol>
+<ol start="0">
 <li>start emulator</li>
 <li>cd ~/.android/avd/emulator_name</li>
 <li>rm userdata-qemu.*</li>
@@ -114,7 +118,7 @@ When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot g
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wu-yuanyi.github.io/2017/03/27/AndroidEmulator/" data-id="cj7iz1k480000mo4m64frqugv" class="article-share-link">Partager</a>
+      <a data-url="http://wu-yuanyi.github.io/2017/03/27/AndroidEmulator/" data-id="cj7js136700007k4myp1nj22e" class="article-share-link">Share</a>
       
       
     </footer>
@@ -124,7 +128,7 @@ When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot g
 <nav id="article-nav">
   
     <a href="/2017/03/27/Basic Principles of Information Protect/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           Basic Principles of Information Protect
@@ -134,7 +138,7 @@ When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot g
   
   
     <a href="/2017/03/27/github&hexo/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ancien</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">github&amp;hexo</div>
     </a>
   
@@ -167,7 +171,7 @@ When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot g
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -204,7 +208,7 @@ When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot g
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 Yuanyi Wu<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

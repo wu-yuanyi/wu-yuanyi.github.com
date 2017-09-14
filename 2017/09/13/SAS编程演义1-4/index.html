@@ -470,7 +470,7 @@
 <h3 id="读入CSV文件"><a href="#读入CSV文件" class="headerlink" title="读入CSV文件"></a>读入CSV文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">filename mycsv &quot;D:\Data\Raw|class.csv&quot;;</div><div class="line">proc import </div><div class="line">    datafile=mycsv dbms=csv out=tmp replace;</div><div class="line">getnames=yes;</div><div class="line">guessingrows=20; /*通过前20行确定变量类型*/</div><div class="line">datarow=2; /*数据从第二行开始*/</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h3 id="读入TXT特殊字符分隔的文件"><a href="#读入TXT特殊字符分隔的文件" class="headerlink" title="读入TXT特殊字符分隔的文件"></a>读入TXT特殊字符分隔的文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">filename mytxttab &quot;D:\Data\Raw|class_tab.txt&quot;</div><div class="line">filename mytxtblk &quot;D:\Data\Raw|class_blk.txt&quot;</div><div class="line">proc import</div><div class="line">    datafile=mytxttab dbms=dlm out=tmp replace;</div><div class="line">delimiter=&apos;09&apos;x;</div><div class="line">getnames=yes;</div><div class="line">run;</div><div class="line">proc import</div><div class="line">    datafile=mytxtblk dbms=dlm out=tmp replace;</div><div class="line">delimiter=&apos;20&apos;x;</div><div class="line">getnames=yes;</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h3 id="INPUT语句列表读入式"><a href="#INPUT语句列表读入式" class="headerlink" title="INPUT语句列表读入式"></a>INPUT语句列表读入式</h3><p>适合数据不齐整</p>
-<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable &lt;$&gt; &lt;:|$|~&gt; &lt;<em>informat.</em>&gt; <a href="&#x6d;&#97;&#105;&#108;&#116;&#111;&#58;&#64;&#124;&#x40;&#64;">&#64;&#124;&#x40;&#64;</a>;</p>
+<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable &lt;$&gt; &lt;:|$|~&gt; &lt;<em>informat.</em>&gt; <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x40;&#124;&#64;&#x40;">&#x40;&#124;&#64;&#x40;</a>;</p>
 <ul>
 <li>pointer-control: 控制变量读入点起始位置。针对行: #, /。针对列: @, +。</li>
 <li>variable: 变量列表</li>
@@ -485,14 +485,14 @@
 </li>
 </ul>
 <h3 id="INPUT语句列读入式"><a href="#INPUT语句列读入式" class="headerlink" title="INPUT语句列读入式"></a>INPUT语句列读入式</h3><p>适合数据齐整的情况</p>
-<p><strong>INPUT</strong> variable&lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#x40;&#x7c;&#x40;&#64;">&#x40;&#x7c;&#x40;&#64;</a>;</p>
+<p><strong>INPUT</strong> variable&lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#64;&#x7c;&#x40;&#64;">&#64;&#x7c;&#x40;&#64;</a>;</p>
 <ul>
 <li>start-column&lt;-end-column&gt;: 变量读入点起止列</li>
 <li>.decimals: 小数位数</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">input name $ 1-9 gender $ 11 age 13-14 location $ 16-23;</div><div class="line">YY Wu     M 25 Shanghai</div><div class="line">Yuanyi Wu M 25 Shanghai</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h3 id="INPUT语句格式读入式"><a href="#INPUT语句格式读入式" class="headerlink" title="INPUT语句格式读入式"></a>INPUT语句格式读入式</h3><p>可以对字符变量指定宽度，以及读入非标准形式对数字，如科学计数法、带货币符号、带千分位等。</p>
-<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; <em>variable</em> <em>informat.</em> <a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#x6f;&#x3a;&#64;&#124;&#64;&#x40;">&#64;&#124;&#64;&#x40;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (<em>informat-list</em>) <a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;&#x3a;&#64;&#124;&#64;&#x40;">&#64;&#124;&#64;&#x40;</a>;<br><strong>INPUY</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (&lt;<em>n</em>&gt; informat.) <a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#64;&#x7c;&#x40;&#64;">&#64;&#x7c;&#x40;&#64;</a>;</p>
+<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; <em>variable</em> <em>informat.</em> <a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#58;&#64;&#x7c;&#x40;&#64;">&#64;&#x7c;&#x40;&#64;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (<em>informat-list</em>) <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x40;&#124;&#x40;&#x40;">&#x40;&#124;&#x40;&#x40;</a>;<br><strong>INPUY</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (&lt;<em>n</em>&gt; informat.) <a href="&#x6d;&#97;&#105;&#108;&#116;&#111;&#x3a;&#64;&#124;&#64;&#64;">&#64;&#124;&#64;&#64;</a>;</p>
 <ul>
 <li>(variable-list) (informat-list): 变量格式列表<ul>
 <li>编号范围列表：形如x1,x2,x3可缩写为x1-xn</li>
@@ -504,7 +504,7 @@
 <li>&lt;<em>n</em>&gt; informat.: 变量格式列表n表示格式重复的次数</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">/*gender虽然只有1列，但声明时要带上其后的一个空格，age，location类似*/</div><div class="line">input name &amp; $10. gender $2. age 3. location $8. fee comma6.;</div><div class="line">datalines;</div><div class="line">YY Wu  M 25 Shanghai 12,345</div><div class="line">Yuanyi Wu  M 25 Shanghai 54,321</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="INPUT语句命名读入式"><a href="#INPUT语句命名读入式" class="headerlink" title="INPUT语句命名读入式"></a>INPUT语句命名读入式</h3><p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= &lt;$&gt; <a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#64;&#124;&#64;&#x40;">&#64;&#124;&#64;&#x40;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= informat. <a href="&#109;&#x61;&#105;&#x6c;&#116;&#x6f;&#x3a;&#64;&#124;&#x40;&#64;">&#64;&#124;&#x40;&#64;</a>;<br><strong>INPUT</strong> variable= &lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#x6f;&#x3a;&#64;&#124;&#64;&#64;">&#64;&#124;&#64;&#64;</a>;</p>
+<h3 id="INPUT语句命名读入式"><a href="#INPUT语句命名读入式" class="headerlink" title="INPUT语句命名读入式"></a>INPUT语句命名读入式</h3><p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= &lt;$&gt; <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#64;&#124;&#64;&#x40;">&#64;&#124;&#64;&#x40;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= informat. <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#x40;&#x7c;&#x40;&#64;">&#x40;&#x7c;&#x40;&#64;</a>;<br><strong>INPUT</strong> variable= &lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#x40;&#124;&#x40;&#x40;">&#x40;&#124;&#x40;&#x40;</a>;</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">input name= $ gender= $ age= location=$;</div><div class="line">datalines;</div><div class="line">name=WYY gender=M age=25 location=Shanghai</div><div class="line">name=GY gender=F age=24 location=Shanghai</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h3 id="数据导出"><a href="#数据导出" class="headerlink" title="数据导出"></a>数据导出</h3><p><strong>PROC EXPORT DATA</strong>=&lt;<em>libref.</em>&gt;<em>SAS data set</em>&lt;(<em>SAS data set options</em>)&gt;</p>
 <p><strong>OUTFILE</strong>=”filename”|<strong>OUTTABLE</strong>=”tablename”</p>
@@ -721,6 +721,15 @@
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">Kategorien</span>
+              </a>
+            </div>
           
 
           

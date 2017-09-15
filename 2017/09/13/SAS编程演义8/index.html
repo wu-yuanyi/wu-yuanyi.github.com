@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="菱花荇蔓随双桨：百变绘图ODS Graphics System
+ODS Graphics System的语法简介统一，易于学习
+ODS Graphics System已包含在BASE模块中，不像GRAPH还要单独购买
+
+ODS Graphics System的五大部件：
+
+ODS Graphics 语句
+通过ON或OFF开关启用ODS Graphics
+通过统计过程选项PLOTS选项创建ODS G">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《SAS编程演义》笔记（8-10章）">
+<meta property="og:url" content="http://wu-yuanyi.github.io/2017/09/13/SAS编程演义8/index.html">
+<meta property="og:site_name" content="My blog">
+<meta property="og:description" content="菱花荇蔓随双桨：百变绘图ODS Graphics System
+ODS Graphics System的语法简介统一，易于学习
+ODS Graphics System已包含在BASE模块中，不像GRAPH还要单独购买
+
+ODS Graphics System的五大部件：
+
+ODS Graphics 语句
+通过ON或OFF开关启用ODS Graphics
+通过统计过程选项PLOTS选项创建ODS G">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/1.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/2.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/3.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/4.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/5.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/6.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/7.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/8.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/9.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/10.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/11.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/12.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/13.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/14.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/15.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/16.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/17.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/18.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/19.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/20.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/21.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/22.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/23.png">
+<meta property="og:updated_time" content="2017-09-15T12:10:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《SAS编程演义》笔记（8-10章）">
+<meta name="twitter:description" content="菱花荇蔓随双桨：百变绘图ODS Graphics System
+ODS Graphics System的语法简介统一，易于学习
+ODS Graphics System已包含在BASE模块中，不像GRAPH还要单独购买
+
+ODS Graphics System的五大部件：
+
+ODS Graphics 语句
+通过ON或OFF开关启用ODS Graphics
+通过统计过程选项PLOTS选项创建ODS G">
+<meta name="twitter:image" content="http://wu-yuanyi.github.io/../pic/2a7e75ed5d6edc334251e4eaabae1cf4/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wu-yuanyi.github.io/2017/09/13/SAS编程演义8/"/>
+
+
+
+
+
+  <title>《SAS编程演义》笔记（8-10章） | My blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            Schedule
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/13/SAS编程演义8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《SAS编程演义》笔记（8-10章）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-13T17:43:19+08:00">
+                2017-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SAS/" itemprop="url" rel="index">
+                    <span itemprop="name">SAS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="菱花荇蔓随双桨：百变绘图"><a href="#菱花荇蔓随双桨：百变绘图" class="headerlink" title="菱花荇蔓随双桨：百变绘图"></a>菱花荇蔓随双桨：百变绘图</h2><h3 id="ODS-Graphics-System"><a href="#ODS-Graphics-System" class="headerlink" title="ODS Graphics System"></a>ODS Graphics System</h3><ul>
+<li>ODS Graphics System的语法简介统一，易于学习</li>
+<li>ODS Graphics System已包含在BASE模块中，不像GRAPH还要单独购买</li>
+</ul>
+<p>ODS Graphics System的五大部件：</p>
+<ul>
+<li>ODS Graphics 语句<ul>
+<li>通过ON或OFF开关启用ODS Graphics</li>
+<li>通过统计过程选项PLOTS选项创建ODS Graphics</li>
+<li>通过BRODER、WIDTH、HEIGHT、OUTPUTFMT、IMAGENAME等控制边框、宽、高、输出格式、以及图片名称。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/*ODS GRAPHICS语句设置图片的宽、高、边界、名字、格式，并要求绘制累积事件*/</div><div class="line">ods graphics on / width=20cm height=18cm noborder imagename=&quot;failureplot&quot; outputfmt=jpg;</div><div class="line">proc lifetest data=sashelp.bmt plots=(s(f));</div><div class="line">    time t*status(0);</div><div class="line">    strata group;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<ul>
+<li>ODS Graphics设计器：通过图形化交互式界面创建、设计个性化的ODS Graphics，并自动生成GTL<ul>
+<li>运行SAS自带的宏程序%sddesign来启动</li>
+<li>菜单-&gt;工具-&gt;SAS ODS Graphics设计器启动</li>
+</ul>
+</li>
+<li>ODS Graphics编辑器：通过图形化的交互式界面修改ODS Graphics的元素</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">/*在ODS Destination中用sge-on来打开，再生成ODS Graphics时，就会生成可编辑的SGE文件*/</div><div class="line">ods html sge=on;</div><div class="line">ods graphics on / width=20cm height=18cm noborder imagename=&quot;failureplot&quot; outputfmt=jpg;</div><div class="line">proc lifetest data=sashelp.bmt plots=(s(f));</div><div class="line">    time t*status(0);</div><div class="line">    strata group;</div><div class="line">run;</div><div class="line">ods html sge=off;</div></pre></td></tr></table></figure>
+<ul>
+<li>ODS Graphics 过程：通过简单、简洁的语法创建各式各样的统计图形，包括5个过程：<ul>
+<li>SGPLOT：创建多种多样的单个图（单格图）</li>
+<li>SGPANEL：创建面板图（多格图）</li>
+<li>SGSCATTER：创建矩阵散点图</li>
+<li>SGDESIGN：基于SAS ODS Graphics 设计器文件创建图形</li>
+<li>SGRENDER：基于图形模版语言（GTL）和SGE文件创建图形</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.class;</div><div class="line">    scatter x=height y=weight;</div><div class="line">    reg x=height y=weight / cli clm;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.class;</div><div class="line">    vbar sex / respose=weight;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>SAS GTL：图形模版语言，一种创建复杂的、个性化图形的绘图语言。具体使用时先通过TEMPLATE过程定义，再通过SGRENDER加载渲染。</p>
+<ol>
+<li>定义，在PROC TEMPLATE过程中用DEFINE STARTGRAPH语句块定义绘图模版。</li>
+</ol>
+<p><strong>proc template</strong>;</p>
+<p>​    define statgraph template-name;</p>
+<p>​        begin graph / &lt;options&gt;;</p>
+<p>​            &lt;gtl statements to define the graph&gt;</p>
+<p>​        endgraph;</p>
+<p>​    end;</p>
+<p><strong>run</strong>;</p>
+<ol>
+<li>渲染，用PROC SGRENDER关联绘图数据与绘图模版，渲染生成图形。</li>
+</ol>
+<p><strong>proc serenader</strong> data=data-set-name</p>
+<p>​    template=template-name;</p>
+<p><strong>run</strong>;</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">proc template;</div><div class="line">    define statgraph scatterreg;</div><div class="line">        begingraph;</div><div class="line">            layout overlay;</div><div class="line">                scatterplot x=height y=weight;</div><div class="line">                regressionplot x=height y=weight / name=&quot;fitline&quot; legendlabel=&quot;Regression line&quot; clm=&quot;clm&quot; cli=&quot;cli&quot;;</div><div class="line">                modelband &quot;clm&quot; / name=&quot;bandclm&quot; legendlabel=&quot;95% CLM&quot; datatransparency=0.3;</div><div class="line">                modelband &quot;cli&quot; / name=&quot;bandcli&quot; legendlabel=&quot;95% CLI&quot; display=(outline);</div><div class="line">                discreatelegend &quot;fitline&quot; &quot;bandclm&quot; &quot;bandcli&quot;;</div><div class="line">            endlayout;</div><div class="line">        endgraph;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgrender data=sashelp.class template=scatterreg;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><ul>
+<li>Less is more</li>
+<li>点：让每一个点清晰可见。</li>
+<li>线：不同组的线条应该用不同颜色或不同样式区分，可依据需要添加趋势线和参考线。</li>
+<li>条：一般不给条加边框，不建议条之间重叠，条与条之间间隔比例为1:1.5～1:0.5为宜；建议颜色填充而非样式，可用颜色强度代表重要程度；如果希望显示排名顺序或分类标签太长、分类太多，建议用横向条图。</li>
+<li>刻度线：刻度尺过于离散，建议用Log转换，一般情况下，纵坐标刻度要从零开始</li>
+<li>图例：确实需要说明时才增加图例；为不使图例喧宾夺主，一般不加边框；图例一般置于图右侧，若图较宽、图例文字较长时，图例横向置于图内的上／下方。</li>
+<li>其他：不建议用饼图、不建议用3D图</li>
+</ul>
+<h3 id="条图系列"><a href="#条图系列" class="headerlink" title="条图系列"></a>条图系列</h3><h4 id="单式条图"><a href="#单式条图" class="headerlink" title="单式条图"></a>单式条图</h4><p>要分析的变量就一个分类变量时，此时适用单式条图或百分比条图。</p>
+<ul>
+<li>HBAR：横向条图</li>
+</ul>
+<ul>
+<li>VBAR：纵向条图</li>
+<li>CATEGORYORDER=：排序方式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    hbar DriveTrain / categoryorder=respdesc; /*横向 响应值降序*/</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbar DriveTrain / categoryorder=respssc; /*纵向 响应值升序*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/1.png" alt="横向条图"></p>
+<h4 id="频数图"><a href="#频数图" class="headerlink" title="频数图"></a>频数图</h4><p>使PROC FREQ里TABLE语句的选项PLOTS=FREQPLOTS，此选项会自动调用ODS Graphics System绘制频数图。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc freq data=sashelp.cars;</div><div class="line">    table DriveTrain / plots=freqplots;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/2.png" alt="频数图"></p>
+<h4 id="带误差限的单式条图"><a href="#带误差限的单式条图" class="headerlink" title="带误差限的单式条图"></a>带误差限的单式条图</h4><ul>
+<li>RESPONSE：指定连续变量</li>
+<li>STAT=：指定统计指标</li>
+<li>LIMITSTAT=：stddev, stderr, clm 指定限制线统计量</li>
+<li>LIMITS=：upper, lower, both 指定限制线展示形式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbar type /response=msrp stat=mean limitstat=stddev limits=upper;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/3.png" alt="带误差限的单式条图条图"></p>
+<h4 id="单式百分比条图"><a href="#单式百分比条图" class="headerlink" title="单式百分比条图"></a>单式百分比条图</h4><p>单式百分比条图在绘制时需要先增加辅助分组变量，而后通过PROC SGPLOT的HBAR或VBAR实现。</p>
+<ul>
+<li>GROUP=：指定分组变量</li>
+<li>GROUPDISPLAY=：指定为堆叠方式显示</li>
+<li>STAT=PERCENT：指定统计指标为百分比</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">data cars;</div><div class="line">    set sashelp.cars;</div><div class="line">    Drive_Train=&quot;Drive Type&quot;; /**/</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=cars noborder;</div><div class="line">    hbar Drive_Train / group=DriveTrain groupdisplay=stack stat=percent categoryorder=respdesc;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/4.png" alt="单式百分比条图"></p>
+<h4 id="簇拥式复式条图"><a href="#簇拥式复式条图" class="headerlink" title="簇拥式复式条图"></a>簇拥式复式条图</h4><p>单式百分比条图就是复式条图的一种特例。</p>
+<ul>
+<li>GROUP=：指定分组变量</li>
+<li>GROUPDISPLAY=：控制分组显示方式，簇拥式（cluster），堆叠式（stack）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbar origin / group=DriveTrain groupdisplay=cluster;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/5.png" alt="簇拥式复式条图"></p>
+<h4 id="簇拥式复式误差限条图"><a href="#簇拥式复式误差限条图" class="headerlink" title="簇拥式复式误差限条图"></a>簇拥式复式误差限条图</h4><ul>
+<li>RESPONSE：指定连续变量</li>
+<li>STAT=：指定统计指标</li>
+<li>LIMITSTAT=：stddev, stderr, clm 指定限制线统计量</li>
+<li>LIMITS=：upper, lower, both 指定限制线展示形式</li>
+<li>GROUP=：指定分组变量</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbar origin / response=msrp stat=mean group=type groupdisplay=cluster limitstat=stddev limits=lower;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/6.png" alt="簇拥式复式误差限条图"></p>
+<h4 id="复式百分比条图"><a href="#复式百分比条图" class="headerlink" title="复式百分比条图"></a>复式百分比条图</h4><ul>
+<li>PCTLEVEL=GROUP：控制百分比为分组的百分比</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars pctlevel=group;</div><div class="line">    vbar origin / group=DriveTrain groupdisplay=cluster stat=percent; /*簇拥式*/</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars pctlevel=group;</div><div class="line">    vbar origin / group=DriveTrain groupdisplay=stack stat=percent; /*堆叠式*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/7.png" alt="簇拥式复式误差限条图"></p>
+<h4 id="马赛克图"><a href="#马赛克图" class="headerlink" title="马赛克图"></a>马赛克图</h4><p>使PROC FREQ里TABLE语句的选项PLOTS=MAOSAICPLOT，此选项会自动调用ODS Graphics System绘马赛克图。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc freq data=sashelp.cars;</div><div class="line">    table origin*DriveTrain / plots=mosaicplot;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/8.png" alt="马赛克图"></p>
+<h4 id="镜面式复式条图"><a href="#镜面式复式条图" class="headerlink" title="镜面式复式条图"></a>镜面式复式条图</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">data pop; /*创建测试数据集*/</div><div class="line">    length AgeGroup $12;</div><div class="line">    do AgeGroup=&apos;Pre Teen&apos;, &apos;Teen&apos;, &apos;Young Adult&apos;, &apos;Adult&apos;, &apos;Senior&apos;;</div><div class="line">        Male=round(500*(1+ranuni(2)));</div><div class="line">        Female=round(400*(1+ranuni(2)));</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">data butterfly; /*变换镜面数据*/</div><div class="line">    set pop;</div><div class="line">    Male=-male;</div><div class="line">    zero=0;</div><div class="line">run;</div><div class="line"></div><div class="line">proc format; /**/</div><div class="line">    picture positive low-&lt;0=&apos;0000&apos; 0&lt;-high=&apos;0000&apos;;</div><div class="line">    /*0-high包含0  0&lt;-high不包含0*/</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=ButterFly; /*横向镜面*/</div><div class="line">    format male female positive.;</div><div class="line">    hbarparm category=agegroup response=male;</div><div class="line">    hbarparm category=agegroup response=female;</div><div class="line">    xaxis display=(noline nolabel) values=(-1000 to 1000 by 200);</div><div class="line">    yaxis display=(noline nolabel);</div><div class="line">    keylegend / position=right across=1 noopaque;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=ButterFly; /*纵向镜面*/</div><div class="line">    format male female positive.;</div><div class="line">    vbarparm category=agegroup response=male;</div><div class="line">    vbarparm category=agegroup response=female;</div><div class="line">    xaxis display=(noline nolabel);</div><div class="line">    yaxis display=(noline nolabel) values=(-1000 to 1000 by 200);</div><div class="line">    keylegend / position=right across=1 noopaque;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/9.png" alt="横向镜面复式条图"></p>
+<h4 id="面板条图"><a href="#面板条图" class="headerlink" title="面板条图"></a>面板条图</h4><p>通过PROC SGPANEL实现面板条图，用PANELBY语句指定面板分量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">proc sgpanel data=sashelp.cars pctlevel=group; /**/</div><div class="line">    panelby type;</div><div class="line">    vbar origin / group=DriveTrain groupdisplay=cluster stat=percent;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgpanel data=sashelp.cars pctlevel=group; /**/</div><div class="line">    panelby type;</div><div class="line">    vbar origin / group=DriveTrain groupdisplay=stack stat=percent categoryorder=respdesc;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/10.png" alt="簇拥式面板条图"></p>
+<h3 id="直方图系列"><a href="#直方图系列" class="headerlink" title="直方图系列"></a>直方图系列</h3><h4 id="简单直方图"><a href="#简单直方图" class="headerlink" title="简单直方图"></a>简单直方图</h4><ul>
+<li>NBINS：直方的数量</li>
+<li>BINWIDTH：直方的宽度</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars; /*简单直方图（sgplot）*/</div><div class="line">    histogram msrp / nbins =20;</div><div class="line">run;</div><div class="line"></div><div class="line">proc univariate data=sashelp.cars; /*简单直方图（univariate）*/</div><div class="line">    histogram msrp;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/11.png" alt="简单直方图"></p>
+<h4 id="重叠直方图"><a href="#重叠直方图" class="headerlink" title="重叠直方图"></a>重叠直方图</h4><ul>
+<li>可以用GROUP设置分组变量，也可以用多个HISTOGRAM语句叠加</li>
+<li>使用TRANSPARENCY设置透明度</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars; /*通过group设置分组变量*/</div><div class="line">    histogram msrp / nbins=20 group=type;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars; /*多个histogram叠加*/</div><div class="line">    histogram mpg_city / binstart=0 binwidth=2 transparency=0.5;</div><div class="line">    histogram mpg_highway / binstart=0 binwidth=2 transparency=0.5;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/12.png" alt="重叠直方图"></p>
+<h4 id="镜面直方图"><a href="#镜面直方图" class="headerlink" title="镜面直方图"></a>镜面直方图</h4><p>无法通过 SGPLOT直接实现，需要借助GTL语言。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">/*定义模版*/</div><div class="line">proc template;</div><div class="line">    define statgraph MirrorHistogramVert;</div><div class="line">        dynamic _binwidth;</div><div class="line">            begingraph; </div><div class="line">            entrytitle &quot;Mileage distribution&quot;;</div><div class="line">            /*定义布局*/</div><div class="line">            layout lattice / columndatarange=union rowgutter=0;</div><div class="line">                /*定义横轴*/</div><div class="line">                columnases;</div><div class="line">                columnaxis / display=(tickvalues) griddisplay=on linearopts=(tickvaluesequence=(start=0 end=60 increment=10) tickvaluepriority=true);</div><div class="line">                endcolumnases;</div><div class="line">                /*上部分直方图*/</div><div class="line">                layout overlay / walldisplay=none xaxisopts=(griddisplay=on) yaxisopts=(griddisplay=on display=(tickvalues label) linearopts=(tickvaluesequence=(start=5 end=25 increment=5) tickvaluepriority=true));</div><div class="line">                histogram mpg_city/binstart=0 binwidth=_binwidth binaxis=false fillattrs=graphdata1 datatransparency=0.3;</div><div class="line">                entry halign=right &quot;City Mileage&quot; / valign=top;</div><div class="line">                endlayout;</div><div class="line">                /*下部分直方图*/</div><div class="line">                layout overlay / walldisplay=none xaxisopts=(griddisplay=on) yaxisopts=(reverse=true griddisplay=on display=(tickvalues label) linearopts=(tickvaluesequence=(start=5 end=25 increment=5) tickvaluepriority=true));</div><div class="line">                histogram mpg_highway/binstart=0 binwidth=_binwidth binaxis=false fillattrs=graphdata2 datatransparency=0.3;</div><div class="line">                entry halign=right &quot;City Mileage&quot; / valign=top;</div><div class="line">                endlayout;</div><div class="line">            endlayout;</div><div class="line">        endgraph;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">/*渲染模版*/</div><div class="line">ods graphics / NOBORDER reset width=5in height=3in imagename=&quot;MirrorHistogramVert&quot;;</div><div class="line">proc sgrender data=sashelp.cars template=MirrorHistogramVert;</div><div class="line">    dynamic _binwidth=2;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/13.png" alt="镜面直方图"></p>
+<h4 id="面板直方图"><a href="#面板直方图" class="headerlink" title="面板直方图"></a>面板直方图</h4><p>通过PROC SGPANEL和HISTOGRAM语句来实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">proc sgpanel data=sashelp.cars;</div><div class="line">    panelby origin / layout=columnlattice;</div><div class="line">    histogram mpg_city / binstart=0 binwidth=2 transparency=0.5;</div><div class="line">    histogram mpg_highway / binstart=0 binwidth=2 transparency=0.5;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/14.png" alt="面板直方图"></p>
+<h3 id="箱型图系列"><a href="#箱型图系列" class="headerlink" title="箱型图系列"></a>箱型图系列</h3><p>箱线图提供了更为明确的统计量信息，如均数，P25，P50以及P75。箱线图可以通过PROC SGPLOT的VBOX或HBOX实现。</p>
+<h4 id="简单箱型图"><a href="#简单箱型图" class="headerlink" title="简单箱型图"></a>简单箱型图</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbox msrp; /*纵向*/</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    hbox msrp; /*横向*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/15.png" alt="简单箱型图"></p>
+<h4 id="分组箱型图"><a href="#分组箱型图" class="headerlink" title="分组箱型图"></a>分组箱型图</h4><p>分组箱形图的绘制只需在VBOX或HBOX语句中增加用GROUP分组变量即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbox msrp / group=type;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/16.png" alt="分组箱型图"></p>
+<h4 id="面板箱型图"><a href="#面板箱型图" class="headerlink" title="面板箱型图"></a>面板箱型图</h4><p>面板箱型图可通过PROC SGPANEL过程实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc sgpanel data=sashelp.cars;</div><div class="line">    panelby origin / layout=columnlattice;</div><div class="line">    vbox msrp / group=type;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/17.png" alt="面板箱型图"></p>
+<h3 id="散点图系列"><a href="#散点图系列" class="headerlink" title="散点图系列"></a>散点图系列</h3><h4 id="X-Y散点图"><a href="#X-Y散点图" class="headerlink" title="X-Y散点图"></a>X-Y散点图</h4><p>X-Y散点图可通过PROC SGPLOT的SCATTER语句实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    scatter x=horsepower y=mpg_highway;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/18.png" alt="X-Y散点图"></p>
+<h4 id="X-Y散点回归图"><a href="#X-Y散点回归图" class="headerlink" title="X-Y散点回归图"></a>X-Y散点回归图</h4><ul>
+<li>使用REG语句增加回归线</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    scatter x=horsepower y=mpg_highway;</div><div class="line">    reg x=horsepower y=mpg_highway;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/19.png" alt="X-Y散点回归图"></p>
+<h4 id="分组散点图"><a href="#分组散点图" class="headerlink" title="分组散点图"></a>分组散点图</h4><ul>
+<li>使用GROUP选项增绘制分组散点图</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    scatter x=horsepower y=mpg_highway / group=type;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/20.png" alt="分组散点图"></p>
+<h4 id="面板散点图"><a href="#面板散点图" class="headerlink" title="面板散点图"></a>面板散点图</h4><p>在PROC SGPANEL中用PANELBY语句指定分面变量，而后用SCATTER语句绘制散点图。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc sgpanel data=sashelp.cars;</div><div class="line">    panelby origin / layout=columnlattice;</div><div class="line">    scatter x=horsepower y=mpg_highway / group=type;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/21.png" alt="面板散点图"></p>
+<h4 id="泡泡图"><a href="#泡泡图" class="headerlink" title="泡泡图"></a>泡泡图</h4><p>增加一个变量控制散点图中点的大小，通过PROC SGPLOT中的BUBBLE实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    bubble x=horsepower y=mpg_highway size=cylinders;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/22.png" alt="泡泡图"></p>
+<h4 id="矩阵散点图"><a href="#矩阵散点图" class="headerlink" title="矩阵散点图"></a>矩阵散点图</h4><p>探查多个变量之间两两的关系。通过PROC SGSCATTER实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgscatter data=sashelp.cars;</div><div class="line">    matrix mpg_highway horsepower enginesize / diagonal=(histogram noraml);</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/23.png" alt="矩阵散点图"></p>
+<h3 id="折线图系列"><a href="#折线图系列" class="headerlink" title="折线图系列"></a>折线图系列</h3><h4 id="简单折线图"><a href="#简单折线图" class="headerlink" title="简单折线图"></a>简单折线图</h4><h4 id="误差折线图"><a href="#误差折线图" class="headerlink" title="误差折线图"></a>误差折线图</h4><h4 id="分组误差折线图"><a href="#分组误差折线图" class="headerlink" title="分组误差折线图"></a>分组误差折线图</h4><h4 id="面板误差折线图"><a href="#面板误差折线图" class="headerlink" title="面板误差折线图"></a>面板误差折线图</h4><h3 id="面积图系列"><a href="#面积图系列" class="headerlink" title="面积图系列"></a>面积图系列</h3><h4 id="面积图"><a href="#面积图" class="headerlink" title="面积图"></a>面积图</h4><h4 id="带状图"><a href="#带状图" class="headerlink" title="带状图"></a>带状图</h4><h3 id="拟合图系列"><a href="#拟合图系列" class="headerlink" title="拟合图系列"></a>拟合图系列</h3><h4 id="密度曲线"><a href="#密度曲线" class="headerlink" title="密度曲线"></a>密度曲线</h4><h4 id="回归线"><a href="#回归线" class="headerlink" title="回归线"></a>回归线</h4><h4 id="ROC曲线"><a href="#ROC曲线" class="headerlink" title="ROC曲线"></a>ROC曲线</h4><h4 id="Kaplan-Meier曲线"><a href="#Kaplan-Meier曲线" class="headerlink" title="Kaplan-Meier曲线"></a>Kaplan-Meier曲线</h4><h4 id="LOESS曲线"><a href="#LOESS曲线" class="headerlink" title="LOESS曲线"></a>LOESS曲线</h4><h4 id="Spline曲线"><a href="#Spline曲线" class="headerlink" title="Spline曲线"></a>Spline曲线</h4><h3 id="森林图系列"><a href="#森林图系列" class="headerlink" title="森林图系列"></a>森林图系列</h3><h4 id="简单森林图"><a href="#简单森林图" class="headerlink" title="简单森林图"></a>简单森林图</h4><h4 id="亚组分析森林图"><a href="#亚组分析森林图" class="headerlink" title="亚组分析森林图"></a>亚组分析森林图</h4><h3 id="地图系列"><a href="#地图系列" class="headerlink" title="地图系列"></a>地图系列</h3><h4 id="纯地图"><a href="#纯地图" class="headerlink" title="纯地图"></a>纯地图</h4><h4 id="统计地图"><a href="#统计地图" class="headerlink" title="统计地图"></a>统计地图</h4><h4 id="热力地图"><a href="#热力地图" class="headerlink" title="热力地图"></a>热力地图</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/13/SAS编程演义5-7/" rel="next" title="《SAS编程演义》笔记（5-7章）">
+                <i class="fa fa-chevron-left"></i> 《SAS编程演义》笔记（5-7章）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/14/利用python 3进行数据分析/" rel="prev" title="利用python 3.6进行数据分析">
+                利用python 3.6进行数据分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <p class="site-author-name" itemprop="name">Yuanyi Wu</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#菱花荇蔓随双桨：百变绘图"><span class="nav-number">1.</span> <span class="nav-text">菱花荇蔓随双桨：百变绘图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ODS-Graphics-System"><span class="nav-number">1.1.</span> <span class="nav-text">ODS Graphics System</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计原则"><span class="nav-number">1.2.</span> <span class="nav-text">设计原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条图系列"><span class="nav-number">1.3.</span> <span class="nav-text">条图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单式条图"><span class="nav-number">1.3.1.</span> <span class="nav-text">单式条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#频数图"><span class="nav-number">1.3.2.</span> <span class="nav-text">频数图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#带误差限的单式条图"><span class="nav-number">1.3.3.</span> <span class="nav-text">带误差限的单式条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单式百分比条图"><span class="nav-number">1.3.4.</span> <span class="nav-text">单式百分比条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#簇拥式复式条图"><span class="nav-number">1.3.5.</span> <span class="nav-text">簇拥式复式条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#簇拥式复式误差限条图"><span class="nav-number">1.3.6.</span> <span class="nav-text">簇拥式复式误差限条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复式百分比条图"><span class="nav-number">1.3.7.</span> <span class="nav-text">复式百分比条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#马赛克图"><span class="nav-number">1.3.8.</span> <span class="nav-text">马赛克图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#镜面式复式条图"><span class="nav-number">1.3.9.</span> <span class="nav-text">镜面式复式条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面板条图"><span class="nav-number">1.3.10.</span> <span class="nav-text">面板条图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直方图系列"><span class="nav-number">1.4.</span> <span class="nav-text">直方图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单直方图"><span class="nav-number">1.4.1.</span> <span class="nav-text">简单直方图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重叠直方图"><span class="nav-number">1.4.2.</span> <span class="nav-text">重叠直方图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#镜面直方图"><span class="nav-number">1.4.3.</span> <span class="nav-text">镜面直方图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面板直方图"><span class="nav-number">1.4.4.</span> <span class="nav-text">面板直方图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#箱型图系列"><span class="nav-number">1.5.</span> <span class="nav-text">箱型图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单箱型图"><span class="nav-number">1.5.1.</span> <span class="nav-text">简单箱型图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分组箱型图"><span class="nav-number">1.5.2.</span> <span class="nav-text">分组箱型图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面板箱型图"><span class="nav-number">1.5.3.</span> <span class="nav-text">面板箱型图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散点图系列"><span class="nav-number">1.6.</span> <span class="nav-text">散点图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#X-Y散点图"><span class="nav-number">1.6.1.</span> <span class="nav-text">X-Y散点图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#X-Y散点回归图"><span class="nav-number">1.6.2.</span> <span class="nav-text">X-Y散点回归图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分组散点图"><span class="nav-number">1.6.3.</span> <span class="nav-text">分组散点图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面板散点图"><span class="nav-number">1.6.4.</span> <span class="nav-text">面板散点图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#泡泡图"><span class="nav-number">1.6.5.</span> <span class="nav-text">泡泡图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#矩阵散点图"><span class="nav-number">1.6.6.</span> <span class="nav-text">矩阵散点图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#折线图系列"><span class="nav-number">1.7.</span> <span class="nav-text">折线图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单折线图"><span class="nav-number">1.7.1.</span> <span class="nav-text">简单折线图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#误差折线图"><span class="nav-number">1.7.2.</span> <span class="nav-text">误差折线图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分组误差折线图"><span class="nav-number">1.7.3.</span> <span class="nav-text">分组误差折线图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面板误差折线图"><span class="nav-number">1.7.4.</span> <span class="nav-text">面板误差折线图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面积图系列"><span class="nav-number">1.8.</span> <span class="nav-text">面积图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#面积图"><span class="nav-number">1.8.1.</span> <span class="nav-text">面积图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#带状图"><span class="nav-number">1.8.2.</span> <span class="nav-text">带状图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟合图系列"><span class="nav-number">1.9.</span> <span class="nav-text">拟合图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#密度曲线"><span class="nav-number">1.9.1.</span> <span class="nav-text">密度曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回归线"><span class="nav-number">1.9.2.</span> <span class="nav-text">回归线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ROC曲线"><span class="nav-number">1.9.3.</span> <span class="nav-text">ROC曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kaplan-Meier曲线"><span class="nav-number">1.9.4.</span> <span class="nav-text">Kaplan-Meier曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LOESS曲线"><span class="nav-number">1.9.5.</span> <span class="nav-text">LOESS曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spline曲线"><span class="nav-number">1.9.6.</span> <span class="nav-text">Spline曲线</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#森林图系列"><span class="nav-number">1.10.</span> <span class="nav-text">森林图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单森林图"><span class="nav-number">1.10.1.</span> <span class="nav-text">简单森林图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#亚组分析森林图"><span class="nav-number">1.10.2.</span> <span class="nav-text">亚组分析森林图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地图系列"><span class="nav-number">1.11.</span> <span class="nav-text">地图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#纯地图"><span class="nav-number">1.11.1.</span> <span class="nav-text">纯地图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计地图"><span class="nav-number">1.11.2.</span> <span class="nav-text">统计地图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#热力地图"><span class="nav-number">1.11.3.</span> <span class="nav-text">热力地图</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuanyi Wu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" href="https://hexo.io">Hexo</a></div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

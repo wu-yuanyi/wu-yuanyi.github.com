@@ -115,7 +115,7 @@
 规则作为一种知识，其典型运用就是通过实际情况，根据给定的一组规则，得出结论。这个结论可能是某种静态的结果，也可能是需要进行的一组操作。
 规则语言可以分为结构化的（Structured)和基于标记的（Markup，通常为xml）。
 常见的结构化">
-<meta property="og:updated_time" content="2017-09-19T04:00:46.000Z">
+<meta property="og:updated_time" content="2017-09-19T05:59:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="规则引擎与Drools">
 <meta name="twitter:description" content="1 简介1.1 规则
@@ -470,12 +470,12 @@
 </ul>
 <h5 id="2-3-2-4-kcontext宏对象"><a href="#2-3-2-4-kcontext宏对象" class="headerlink" title="2.3.2.4 kcontext宏对象"></a>2.3.2.4 kcontext宏对象</h5><p>用来得到当前的KnowledgeRuntime对象，KnowledgeRuntime对象可以实现与引擎的各种交互。</p>
 <h4 id="2-3-3-规则属性"><a href="#2-3-3-规则属性" class="headerlink" title="2.3.3 规则属性"></a>2.3.3 规则属性</h4><ul>
-<li>salience：设置规则执行的优先级，默认值为0。数字越大越先执行，可以设置为负数，数字相同的使用随机顺序。</li>
+<li>salience：设置规则执行的优先级，默认值为0。数字越大越先执行，可以设置为负数，数字相同的使用随机顺序。设置该属性<code>salience 10</code>.</li>
 <li>no-loop：默认为false。设置为true时，表示该规则只会被引擎检查一次。引擎内部对Fact更新时，忽略本规则的再次检查。</li>
 <li>date-effective：设置规则的开始生效日期，默认接受“dd-MMM-yyyy”格式的字符串。修改日期格式：<code>System.setProperty(&quot;drools.dateformat&quot;,&quot;yyyy-MM-dd&quot;)</code></li>
 <li>data-expires：设置规则的过期日期，默认接受“dd-MMM-yyyy”格式的字符串。修改日期格式：<code>System.setProperty(&quot;drools.dateformat&quot;,&quot;yyyy-MM-dd&quot;)</code>。</li>
 <li>enabled：设置规则是否可用，默认为true。</li>
-<li>dialect：设置规则中使用的编程语言，默认为java，可设置为mvel。获取该属性的设置：<code>drools.getRule().getDialect()</code>。</li>
+<li>dialect：设置规则中使用的编程语言，默认为java，可设置为mvel。获取该属性的设置：<code>drools.getRule().getDialect()</code>，设置该属性<code>dialect mvel</code></li>
 <li>duration：指定延迟时间，在另一个线程中触发规则，单位为毫秒。</li>
 <li>activation-group：为规则划指定一个活动组（组名为字符串）。同一个活动组中的规则只执行一个，根据优先级(salience)来决定执行哪一个规则。</li>
 <li>agenda-group：为规则指定一个议程(agenda)组。指定了议程组的规则只有在该议程组得到焦点时才被触发。</li>
@@ -535,6 +535,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/25/SAS编程演义9-10/" rel="prev" title="《SAS编程演义》笔记（9-10章）">
+                《SAS编程演义》笔记（9-10章） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -610,7 +614,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

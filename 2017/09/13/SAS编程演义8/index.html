@@ -160,7 +160,7 @@ ODS Graphics 语句
 <meta property="og:image" content="http://wu-yuanyi.github.io/..//Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/41.png">
 <meta property="og:image" content="http://wu-yuanyi.github.io/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/42.png">
 <meta property="og:image" content="http://wu-yuanyi.github.io/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/43.png">
-<meta property="og:updated_time" content="2017-09-16T13:02:38.000Z">
+<meta property="og:updated_time" content="2017-09-25T03:07:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《SAS编程演义》笔记（8章）">
 <meta name="twitter:description" content="菱花荇蔓随双桨：百变绘图ODS Graphics System
@@ -676,7 +676,155 @@ ODS Graphics 语句
 <h4 id="热力地图"><a href="#热力地图" class="headerlink" title="热力地图"></a>热力地图</h4><p>CHORO</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">proc gmap map=maps.us data=sample;</div><div class="line">    id state;</div><div class="line">    choro pop2010 / level=6;</div><div class="line">    format est2015 pop2010 comma12.;</div><div class="line">run;</div><div class="line">quit;</div></pre></td></tr></table></figure>
 <p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/43.png" alt="热力地图"></p>
-
+<h3 id="PROC-SGPLOT总结"><a href="#PROC-SGPLOT总结" class="headerlink" title="PROC SGPLOT总结"></a>PROC SGPLOT总结</h3><p><strong>PROC SGPLOT</strong> &lt;*option(s)&gt;;</p>
+<p>​    <strong>STYLEATTRS </strong> &lt;/*option(s)&gt;;</p>
+<p>​    <strong>PLOT STATEMENT</strong> &lt;/*option(s)&gt;;</p>
+<p>​    <strong>XAXIS</strong> &lt;*option(s)&gt;;</p>
+<p>​    <strong>X2AXIS</strong> &lt;*option(s)&gt;;</p>
+<p>​    <strong>YAXIS</strong> &lt;*option(s)&gt;;</p>
+<p>​    <strong>Y2AXIS</strong> &lt;*option(s)&gt;;</p>
+<p>​    <strong>KEYLEGEND</strong> &lt;<em>“name-1” … “name-n”</em>&gt; &lt;/*option(s)&gt;;</p>
+<p>​    <strong>GRADLEGEND</strong> &lt;<em>“name”</em>&gt; &lt;/*option(s)&gt;;</p>
+<p><strong>RUN</strong>;</p>
+<p><a href="http://support.sas.com/resources/papers/proceedings12/259-2012.pdf" target="_blank" rel="external">SGPLOT and SGPANEL plot statements and selected options</a></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>syntax</th>
+<th>selected options</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCATTER</td>
+<td>scatter x=var y=var / options;</td>
+<td>datalabel=var</td>
+<td>Displays a label for each data point</td>
+</tr>
+<tr>
+<td>SERIES</td>
+<td>series x=var y=var / options;</td>
+<td>break</td>
+<td>Creates a break in the line for each missing value</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>curvelabel</td>
+<td>Labels the series curve using the Y variable label</td>
+</tr>
+<tr>
+<td>STEP</td>
+<td>step x=var y=var / options;</td>
+<td>break</td>
+<td>Creates a break in the line for each missing value</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>curvelabel</td>
+<td>Labels the series curve using the Y variable label</td>
+</tr>
+<tr>
+<td>NEEDLE</td>
+<td>needle x=var y=var / options;</td>
+<td>baseline=val</td>
+<td>specifies a numeric value on the Y axis for the baseline</td>
+</tr>
+<tr>
+<td>VECTOR</td>
+<td>vector x=var y=var / options;</td>
+<td>xorigin=val</td>
+<td>specifies Xcoordinate for origin either numeric value or numeric variable</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>yorigin=val</td>
+<td>specifies Ycoordinate for origin either numeric value or numeric variable</td>
+</tr>
+<tr>
+<td>BUBBLE</td>
+<td>bubble x=var y=var size=var / options;</td>
+<td>fill</td>
+<td>specifies fill is visible</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>nofill</td>
+<td>specifies fill is not visible</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>outline</td>
+<td>specifies outline is visible</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>nooutline</td>
+<td>specifies outline is not visible</td>
+</tr>
+<tr>
+<td>BAND</td>
+<td>band x=var upper=var lower=var / options;</td>
+<td>fill</td>
+<td>specifies fill is visible</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>nofill</td>
+<td>specifies fill is not visible</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>outline</td>
+<td>specifies outline is visible</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>nooutline</td>
+<td>specifies outline is not visible</td>
+</tr>
+<tr>
+<td>HIGHLOW</td>
+<td>highlow x=var high=var lo=var / options;</td>
+<td>highcap=val</td>
+<td>specifies type of cap to use at end of bar or line</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>lowcap=val</td>
+<td>specifies type of cap to use at end of bar or line</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>type=val</td>
+<td>specifie how to draw glot with a: BAR or LINE(default)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="图片属性控制"><a href="#图片属性控制" class="headerlink" title="图片属性控制"></a>图片属性控制</h3><ul>
+<li>GPATH：存储位置</li>
+<li>DPI：分辨率</li>
+<li>WIDTH：宽</li>
+<li>HEIGHT：高</li>
+<li>OUTPUTFMT：格式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ods html style=ggStyle gpath=&apos;d:\StatsGraph&apos; dpi=600;</div><div class="line">ods graphics / width=14cm height=10cm outputfmt=jpg;</div></pre></td></tr></table></figure>
+<p>输出终端LISTING既支持EPS矢量图，也支持TIF位图。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">ods listing gpath=&quot;D:\myGraph&quot; dpi=300;</div><div class="line"></div><div class="line">ods graphics on / imagename=&quot;eps&quot; outputfmt=EPS; /*矢量图*/</div><div class="line">绘图语句;</div><div class="line"></div><div class="line">ods graphics on / imagename=&quot;tif&quot; outputfmt=TIF; /*位图*/</div><div class="line">绘图语句;</div><div class="line"></div><div class="line">ods listing close;</div></pre></td></tr></table></figure>
+<p>PRINTER终端的优势是可以在一个语句里同时设置格式和分辨率，但劣势是绘制的图片仅仅是其输出的一部分区域。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ods printer printer=Postscript FILE=&quot;D:\eps.eps&quot; dpi=300; /*矢量图*/</div><div class="line">绘图语句</div><div class="line">ods printer close;</div><div class="line"></div><div class="line">ods printer printer=tiff FILE=&quot;D:\tif.tif&quot; dpi=300; /*位图*/</div><div class="line">绘图语句</div><div class="line">ods printer close;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -788,7 +936,7 @@ ODS Graphics 语句
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -836,7 +984,7 @@ ODS Graphics 语句
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#菱花荇蔓随双桨：百变绘图"><span class="nav-number">1.</span> <span class="nav-text">菱花荇蔓随双桨：百变绘图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ODS-Graphics-System"><span class="nav-number">1.1.</span> <span class="nav-text">ODS Graphics System</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计原则"><span class="nav-number">1.2.</span> <span class="nav-text">设计原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条图系列"><span class="nav-number">1.3.</span> <span class="nav-text">条图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单式条图"><span class="nav-number">1.3.1.</span> <span class="nav-text">单式条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#频数图"><span class="nav-number">1.3.2.</span> <span class="nav-text">频数图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#带误差限的单式条图"><span class="nav-number">1.3.3.</span> <span class="nav-text">带误差限的单式条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单式百分比条图"><span class="nav-number">1.3.4.</span> <span class="nav-text">单式百分比条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#簇拥式复式条图"><span class="nav-number">1.3.5.</span> <span class="nav-text">簇拥式复式条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#簇拥式复式误差限条图"><span class="nav-number">1.3.6.</span> <span class="nav-text">簇拥式复式误差限条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复式百分比条图"><span class="nav-number">1.3.7.</span> <span class="nav-text">复式百分比条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#马赛克图"><span class="nav-number">1.3.8.</span> <span class="nav-text">马赛克图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#镜面式复式条图"><span class="nav-number">1.3.9.</span> <span class="nav-text">镜面式复式条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面板条图"><span class="nav-number">1.3.10.</span> <span class="nav-text">面板条图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直方图系列"><span class="nav-number">1.4.</span> <span class="nav-text">直方图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单直方图"><span class="nav-number">1.4.1.</span> <span class="nav-text">简单直方图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重叠直方图"><span class="nav-number">1.4.2.</span> <span class="nav-text">重叠直方图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#镜面直方图"><span class="nav-number">1.4.3.</span> <span class="nav-text">镜面直方图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面板直方图"><span class="nav-number">1.4.4.</span> <span class="nav-text">面板直方图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#箱型图系列"><span class="nav-number">1.5.</span> <span class="nav-text">箱型图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单箱型图"><span class="nav-number">1.5.1.</span> <span class="nav-text">简单箱型图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分组箱型图"><span class="nav-number">1.5.2.</span> <span class="nav-text">分组箱型图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面板箱型图"><span class="nav-number">1.5.3.</span> <span class="nav-text">面板箱型图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散点图系列"><span class="nav-number">1.6.</span> <span class="nav-text">散点图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#X-Y散点图"><span class="nav-number">1.6.1.</span> <span class="nav-text">X-Y散点图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#X-Y散点回归图"><span class="nav-number">1.6.2.</span> <span class="nav-text">X-Y散点回归图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分组散点图"><span class="nav-number">1.6.3.</span> <span class="nav-text">分组散点图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面板散点图"><span class="nav-number">1.6.4.</span> <span class="nav-text">面板散点图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#泡泡图"><span class="nav-number">1.6.5.</span> <span class="nav-text">泡泡图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#矩阵散点图"><span class="nav-number">1.6.6.</span> <span class="nav-text">矩阵散点图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#折线图系列"><span class="nav-number">1.7.</span> <span class="nav-text">折线图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单折线图"><span class="nav-number">1.7.1.</span> <span class="nav-text">简单折线图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#误差折线图"><span class="nav-number">1.7.2.</span> <span class="nav-text">误差折线图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分组误差折线图"><span class="nav-number">1.7.3.</span> <span class="nav-text">分组误差折线图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面板误差折线图"><span class="nav-number">1.7.4.</span> <span class="nav-text">面板误差折线图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面积图系列"><span class="nav-number">1.8.</span> <span class="nav-text">面积图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#面积图"><span class="nav-number">1.8.1.</span> <span class="nav-text">面积图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#带状图"><span class="nav-number">1.8.2.</span> <span class="nav-text">带状图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟合图系列"><span class="nav-number">1.9.</span> <span class="nav-text">拟合图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#密度曲线"><span class="nav-number">1.9.1.</span> <span class="nav-text">密度曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回归线"><span class="nav-number">1.9.2.</span> <span class="nav-text">回归线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#椭圆曲线"><span class="nav-number">1.9.3.</span> <span class="nav-text">椭圆曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ROC曲线"><span class="nav-number">1.9.4.</span> <span class="nav-text">ROC曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kaplan-Meier曲线"><span class="nav-number">1.9.5.</span> <span class="nav-text">Kaplan-Meier曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LOESS曲线"><span class="nav-number">1.9.6.</span> <span class="nav-text">LOESS曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spline曲线"><span class="nav-number">1.9.7.</span> <span class="nav-text">Spline曲线</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#森林图系列"><span class="nav-number">1.10.</span> <span class="nav-text">森林图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单森林图"><span class="nav-number">1.10.1.</span> <span class="nav-text">简单森林图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#亚组分析森林图"><span class="nav-number">1.10.2.</span> <span class="nav-text">亚组分析森林图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地图系列"><span class="nav-number">1.11.</span> <span class="nav-text">地图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#纯地图"><span class="nav-number">1.11.1.</span> <span class="nav-text">纯地图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计地图"><span class="nav-number">1.11.2.</span> <span class="nav-text">统计地图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#热力地图"><span class="nav-number">1.11.3.</span> <span class="nav-text">热力地图</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#菱花荇蔓随双桨：百变绘图"><span class="nav-number">1.</span> <span class="nav-text">菱花荇蔓随双桨：百变绘图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ODS-Graphics-System"><span class="nav-number">1.1.</span> <span class="nav-text">ODS Graphics System</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计原则"><span class="nav-number">1.2.</span> <span class="nav-text">设计原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条图系列"><span class="nav-number">1.3.</span> <span class="nav-text">条图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单式条图"><span class="nav-number">1.3.1.</span> <span class="nav-text">单式条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#频数图"><span class="nav-number">1.3.2.</span> <span class="nav-text">频数图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#带误差限的单式条图"><span class="nav-number">1.3.3.</span> <span class="nav-text">带误差限的单式条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单式百分比条图"><span class="nav-number">1.3.4.</span> <span class="nav-text">单式百分比条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#簇拥式复式条图"><span class="nav-number">1.3.5.</span> <span class="nav-text">簇拥式复式条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#簇拥式复式误差限条图"><span class="nav-number">1.3.6.</span> <span class="nav-text">簇拥式复式误差限条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复式百分比条图"><span class="nav-number">1.3.7.</span> <span class="nav-text">复式百分比条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#马赛克图"><span class="nav-number">1.3.8.</span> <span class="nav-text">马赛克图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#镜面式复式条图"><span class="nav-number">1.3.9.</span> <span class="nav-text">镜面式复式条图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面板条图"><span class="nav-number">1.3.10.</span> <span class="nav-text">面板条图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直方图系列"><span class="nav-number">1.4.</span> <span class="nav-text">直方图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单直方图"><span class="nav-number">1.4.1.</span> <span class="nav-text">简单直方图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重叠直方图"><span class="nav-number">1.4.2.</span> <span class="nav-text">重叠直方图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#镜面直方图"><span class="nav-number">1.4.3.</span> <span class="nav-text">镜面直方图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面板直方图"><span class="nav-number">1.4.4.</span> <span class="nav-text">面板直方图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#箱型图系列"><span class="nav-number">1.5.</span> <span class="nav-text">箱型图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单箱型图"><span class="nav-number">1.5.1.</span> <span class="nav-text">简单箱型图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分组箱型图"><span class="nav-number">1.5.2.</span> <span class="nav-text">分组箱型图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面板箱型图"><span class="nav-number">1.5.3.</span> <span class="nav-text">面板箱型图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散点图系列"><span class="nav-number">1.6.</span> <span class="nav-text">散点图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#X-Y散点图"><span class="nav-number">1.6.1.</span> <span class="nav-text">X-Y散点图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#X-Y散点回归图"><span class="nav-number">1.6.2.</span> <span class="nav-text">X-Y散点回归图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分组散点图"><span class="nav-number">1.6.3.</span> <span class="nav-text">分组散点图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面板散点图"><span class="nav-number">1.6.4.</span> <span class="nav-text">面板散点图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#泡泡图"><span class="nav-number">1.6.5.</span> <span class="nav-text">泡泡图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#矩阵散点图"><span class="nav-number">1.6.6.</span> <span class="nav-text">矩阵散点图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#折线图系列"><span class="nav-number">1.7.</span> <span class="nav-text">折线图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单折线图"><span class="nav-number">1.7.1.</span> <span class="nav-text">简单折线图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#误差折线图"><span class="nav-number">1.7.2.</span> <span class="nav-text">误差折线图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分组误差折线图"><span class="nav-number">1.7.3.</span> <span class="nav-text">分组误差折线图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面板误差折线图"><span class="nav-number">1.7.4.</span> <span class="nav-text">面板误差折线图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面积图系列"><span class="nav-number">1.8.</span> <span class="nav-text">面积图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#面积图"><span class="nav-number">1.8.1.</span> <span class="nav-text">面积图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#带状图"><span class="nav-number">1.8.2.</span> <span class="nav-text">带状图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拟合图系列"><span class="nav-number">1.9.</span> <span class="nav-text">拟合图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#密度曲线"><span class="nav-number">1.9.1.</span> <span class="nav-text">密度曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回归线"><span class="nav-number">1.9.2.</span> <span class="nav-text">回归线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#椭圆曲线"><span class="nav-number">1.9.3.</span> <span class="nav-text">椭圆曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ROC曲线"><span class="nav-number">1.9.4.</span> <span class="nav-text">ROC曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kaplan-Meier曲线"><span class="nav-number">1.9.5.</span> <span class="nav-text">Kaplan-Meier曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LOESS曲线"><span class="nav-number">1.9.6.</span> <span class="nav-text">LOESS曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spline曲线"><span class="nav-number">1.9.7.</span> <span class="nav-text">Spline曲线</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#森林图系列"><span class="nav-number">1.10.</span> <span class="nav-text">森林图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单森林图"><span class="nav-number">1.10.1.</span> <span class="nav-text">简单森林图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#亚组分析森林图"><span class="nav-number">1.10.2.</span> <span class="nav-text">亚组分析森林图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地图系列"><span class="nav-number">1.11.</span> <span class="nav-text">地图系列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#纯地图"><span class="nav-number">1.11.1.</span> <span class="nav-text">纯地图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计地图"><span class="nav-number">1.11.2.</span> <span class="nav-text">统计地图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#热力地图"><span class="nav-number">1.11.3.</span> <span class="nav-text">热力地图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PROC-SGPLOT总结"><span class="nav-number">1.12.</span> <span class="nav-text">PROC SGPLOT总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片属性控制"><span class="nav-number">1.13.</span> <span class="nav-text">图片属性控制</span></a></li></ol></li></ol></div>
             
 
           </div>

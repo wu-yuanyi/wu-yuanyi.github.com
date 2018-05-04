@@ -95,22 +95,37 @@
 
 
 
-<meta name="description" content="环境部署1234pip3 install numpypip3 install scipypip3 install pandaspip3 install matplotlib
-第一章1234import numpy, matplotlibfrom matplotlib import pyplot as petplt.plot(numpy.arange(10))plt.show()
-第二章123456">
+<meta name="description" content="中文分词的基本原则
+颗粒度越大越好
+
+分词结果的颗粒度越大（即单词的字数越多），所能表示的含义越确切。如：“公安局长”可以分为“公安 局长”、“公安局 长”、“公安局长”，但是要用于语义分析，则“公安局长”的分词结果最好（前提是所使用的词典中有这个词）。
+
+切分结果中非词典词越少越好，单字词典词数越少越好
+非词典词：不包含在词典中的单字
+单字词典词：可以独立运用的单字，如：的、了、和、你、我、他">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用python 3.6进行数据分析">
-<meta property="og:url" content="http://wu-yuanyi.github.io/2017/09/14/利用python 3进行数据分析/index.html">
+<meta property="og:title" content="中文地址清洗">
+<meta property="og:url" content="http://wu-yuanyi.github.io/2017/11/21/地址清洗/index.html">
 <meta property="og:site_name" content="My blog">
-<meta property="og:description" content="环境部署1234pip3 install numpypip3 install scipypip3 install pandaspip3 install matplotlib
-第一章1234import numpy, matplotlibfrom matplotlib import pyplot as petplt.plot(numpy.arange(10))plt.show()
-第二章123456">
-<meta property="og:updated_time" content="2017-09-14T02:18:42.000Z">
+<meta property="og:description" content="中文分词的基本原则
+颗粒度越大越好
+
+分词结果的颗粒度越大（即单词的字数越多），所能表示的含义越确切。如：“公安局长”可以分为“公安 局长”、“公安局 长”、“公安局长”，但是要用于语义分析，则“公安局长”的分词结果最好（前提是所使用的词典中有这个词）。
+
+切分结果中非词典词越少越好，单字词典词数越少越好
+非词典词：不包含在词典中的单字
+单字词典词：可以独立运用的单字，如：的、了、和、你、我、他">
+<meta property="og:updated_time" content="2017-11-21T11:45:20.302Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用python 3.6进行数据分析">
-<meta name="twitter:description" content="环境部署1234pip3 install numpypip3 install scipypip3 install pandaspip3 install matplotlib
-第一章1234import numpy, matplotlibfrom matplotlib import pyplot as petplt.plot(numpy.arange(10))plt.show()
-第二章123456">
+<meta name="twitter:title" content="中文地址清洗">
+<meta name="twitter:description" content="中文分词的基本原则
+颗粒度越大越好
+
+分词结果的颗粒度越大（即单词的字数越多），所能表示的含义越确切。如：“公安局长”可以分为“公安 局长”、“公安局 长”、“公安局长”，但是要用于语义分析，则“公安局长”的分词结果最好（前提是所使用的词典中有这个词）。
+
+切分结果中非词典词越少越好，单字词典词数越少越好
+非词典词：不包含在词典中的单字
+单字词典词：可以独立运用的单字，如：的、了、和、你、我、他">
 
 
 
@@ -140,13 +155,13 @@
 
 
 
-  <link rel="canonical" href="http://wu-yuanyi.github.io/2017/09/14/利用python 3进行数据分析/"/>
+  <link rel="canonical" href="http://wu-yuanyi.github.io/2017/11/21/地址清洗/"/>
 
 
 
 
 
-  <title>利用python 3.6进行数据分析 | My blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>中文地址清洗 | My blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -283,7 +298,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/14/利用python 3进行数据分析/">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/11/21/地址清洗/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuanyi Wu">
@@ -300,7 +315,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">利用python 3.6进行数据分析</h1>
+          <h1 class="post-title" itemprop="name headline">中文地址清洗</h1>
         
 
         <div class="post-meta">
@@ -312,8 +327,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-14T10:18:42+08:00">
-                2017-09-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-21T13:50:20+08:00">
+                2017-11-21
               </time>
             
 
@@ -322,28 +337,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python3/" itemprop="url" rel="index">
-                    <span itemprop="name">Python3</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -372,9 +365,81 @@
       
 
       
-        <h1 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pip3 install numpy</div><div class="line">pip3 install scipy</div><div class="line">pip3 install pandas</div><div class="line">pip3 install matplotlib</div></pre></td></tr></table></figure>
-<h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy, matplotlib</div><div class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> pet</div><div class="line">plt.plot(numpy.arange(<span class="number">10</span>))</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
-<h1 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> scipy</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> json</div><div class="line"></div><div class="line">records = [json.loads(line) <span class="keyword">for</span> line <span class="keyword">in</span> open(path)]</div><div class="line">time_zones = [rec[<span class="string">'tz'</span>] <span class="keyword">for</span> rec <span class="keyword">in</span> records <span class="keyword">if</span> <span class="string">'tz'</span> <span class="keyword">in</span> rec]</div><div class="line"></div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_counts2</span><span class="params">(sequence)</span>:</span></div><div class="line">    counts = defaultdict(int)</div><div class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> sequence:</div><div class="line">        counts[x] +=<span class="number">1</span></div><div class="line">    <span class="keyword">return</span> counts</div><div class="line"><span class="comment"># sequence=[0,0,0,0,1,1,1,1,1]</span></div><div class="line"><span class="comment"># d = get_counts2(sequence)</span></div><div class="line"><span class="comment"># &gt;&gt;&gt; defaultdict(int, &#123;0: 4, 1: 5&#125;)</span></div><div class="line"><span class="comment"># dcit(d.items())</span></div><div class="line"><span class="comment"># &gt;&gt;&gt; &#123;0: 4, 1: 5&#125;</span></div><div class="line"></div><div class="line">counts = get_counts(time_zones)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">top_counts</span><span class="params">(count_dcit, n=<span class="number">10</span>)</span>:</span></div><div class="line">   value_key_pairs = [(count, tz) <span class="keyword">for</span> tz, count <span class="keyword">in</span> count_dict.items()]</div><div class="line">   value_key_pairs.sort()</div><div class="line">   <span class="keyword">return</span> value_key_pairs[-n:]</div></pre></td></tr></table></figure>
+        <h2 id="中文分词的基本原则"><a href="#中文分词的基本原则" class="headerlink" title="中文分词的基本原则"></a>中文分词的基本原则</h2><ul>
+<li>颗粒度越大越好</li>
+</ul>
+<p>分词结果的颗粒度越大（即单词的字数越多），所能表示的含义越确切。如：“公安局长”可以分为“公安 局长”、“公安局 长”、“公安局长”，但是要用于语义分析，则“公安局长”的分词结果最好（前提是所使用的词典中有这个词）。</p>
+<ul>
+<li>切分结果中非词典词越少越好，单字词典词数越少越好<ul>
+<li>非词典词：不包含在词典中的单字</li>
+<li>单字词典词：可以独立运用的单字，如：的、了、和、你、我、他</li>
+</ul>
+</li>
+</ul>
+<p>如：“技术和服务”，可以分为“技术 和服 务”以及“技术 和 服务”。“务”字无法独立成词（即词典中没有），但“和”字可以单独成词（词典中要包含），因此“技术 和服 务”有1个非词典词，而“技术 和 服务”有0个非词典词，因此选用后者。</p>
+<ul>
+<li>总体词数越少越好</li>
+</ul>
+<p>在相同字数的情况下，总词数越少，说明语义单元越少，那么相对的单个语义单元的权重会越大，因此准确性会越高。</p>
+<h2 id="匹配算法"><a href="#匹配算法" class="headerlink" title="匹配算法"></a>匹配算法</h2><h3 id="最大匹配算法"><a href="#最大匹配算法" class="headerlink" title="最大匹配算法"></a>最大匹配算法</h3><p>最大匹配是指以词典为依据，取词典中最长单词为第一个次取字数量的扫描串，在词典中进行扫描（为提升扫描效率，还可以跟据字数多少设计多个字典，然后根据字数分别从不同字典中进行扫描）。例如：词典中最长词为“中华人民共和国”共7个汉字，则最大匹配起始字数为7个汉字。然后逐字递减，在对应的词典中进行查找。</p>
+<h3 id="正向最大匹配算法"><a href="#正向最大匹配算法" class="headerlink" title="正向最大匹配算法"></a>正向最大匹配算法</h3><p>以“我们在野生动物园”为例，词典中最长词为“中华人民共和国”。</p>
+<p>正向即从前往后取词，从7-&gt;1，每次减一个字，直到词典命中或剩下1个单字。</p>
+<p>第1轮第1次：7字词典中扫描“我们在野生动物”，无；</p>
+<p>第1轮第2次：6字词典中扫描“我们在野生动”，无；</p>
+<p>第1轮第3次：5字词典中扫描“我们在野生”，无；</p>
+<p>第1轮第4次：4字词典中扫描“我们在野”，无；</p>
+<p>第1轮第5次：3字词典中扫描“我们在”，无；</p>
+<p>第1轮第6次：2字词典中扫描“我们”，有；</p>
+<p>扫描中止，输出第1个词为“我们”，去除第1个词后开始第2轮扫描。</p>
+<p>第2轮第1次：7字词典中扫描“在野生动物园玩”，无；</p>
+<p>第2轮第2次：6字词典中扫描“在野生动物园”，无；</p>
+<p>第2轮第3次：5字词典中扫描“在野生动物”，无；</p>
+<p>第2轮第4次：4字词典中扫描“在野生动”，无；</p>
+<p>第2轮第5次：3字词典中扫描“在野生”，无；</p>
+<p>第2轮第6次：2字词典中扫描“在野”，有；</p>
+<p>扫描中止，输出第2个词为“在野”，去除第2个词后开始第3轮扫描。</p>
+<p>第3轮第1次：5字词典中扫描“生动物园玩”，无；</p>
+<p>第3轮第2次：4字词典中扫描“生动物园”，无；</p>
+<p>第3轮第3次：3字词典中扫描“生动物”，无；</p>
+<p>第3轮第4次：2字词典中扫描“生动”，有；</p>
+<p>扫描中止，输出第3个词为“生动”，去除第3个词后开始第4轮扫描。</p>
+<p>第4轮第1次：3字词典中扫描“物园玩”，无；</p>
+<p>第4轮第2次：2字词典中扫描“物园”，无；</p>
+<p>第4轮第3次：1字词典中扫描“物”，无；</p>
+<p>扫描中止，输出第4个词为“物”，非词典词数加1，去除第4个词后开始第5轮扫描。</p>
+<p>第5轮第1次：2字词典中扫描“园玩”，无；</p>
+<p>第5轮第2次：1字词典中扫描“园”，有；</p>
+<p>扫描中止，输出第5个词为“园”，单字词典词数加1，去除第5个词后开始第6轮扫描。</p>
+<p>第6轮第1次：1字词典中扫描“玩”，有；</p>
+<p>扫描中止，输出第6个词为“园”，单字词典词数加1，扫描结束。</p>
+<p>最终切分结果为：“我们/在野/生动/物/园/玩”，其中，单字词典词数为2，非词典词数为1。</p>
+<h3 id="逆向最大匹配算法"><a href="#逆向最大匹配算法" class="headerlink" title="逆向最大匹配算法"></a>逆向最大匹配算法</h3><p>以“我们在野生动物园”为例，词典中最长词为“中华人民共和国”。</p>
+<p>逆向即从后往前取词，从7-&gt;1，每次减一个字，直到词典命中或剩下1个单字。</p>
+<p>第1轮第1次：7字词典中扫描“在野生动物园玩”，无；</p>
+<p>第1轮第2次：6字词典中扫描“野生动物园玩”，无；</p>
+<p>第1轮第3次：5字词典中扫描“生动物园玩”，无；</p>
+<p>第1轮第4次：4字词典中扫描“动物园玩”，无；</p>
+<p>第1轮第5次：3字词典中扫描“物园玩”，无；</p>
+<p>第1轮第6次：2字词典中扫描“园玩”，无；</p>
+<p>第1轮第7次：1字词典中扫描“玩”，有；</p>
+<p>扫描中止，输出第1个词为“玩”，单字词典词数加1，去除第1个词后开始第2轮扫描。</p>
+<p>第2轮第1次：7字词典中扫描“们在野生动物园”，无；</p>
+<p>第2轮第2次：6字词典中扫描“在野生动物园”，无；</p>
+<p>第2轮第3次：5字词典中扫描“野生动物园”，有；</p>
+<p>扫描中止，输出第2个词为“动物”，去除第2个词后开始第3轮扫描。</p>
+<p>第3轮第1次：3字词典中扫描“我们在”，无；</p>
+<p>第3轮第2次：2字词典中扫描“们在”，无；</p>
+<p>第3轮第3次：1字词典中扫描“在”，有；</p>
+<p>扫描中止，输出第3个词为“玩”，单字词典词数加1，去除第3个词后开始第4轮扫描。</p>
+<p>第4轮第1次：2字词典中扫描“我们”，有；</p>
+<p>扫描中止，输出第4个词为“我们”，扫描结束。</p>
+<p>最终切分结果为：“我们/在/野生动物园/玩”，其中，单字词典词数为2，非词典词数为0。</p>
+<h3 id="双向最大匹配算法"><a href="#双向最大匹配算法" class="headerlink" title="双向最大匹配算法"></a>双向最大匹配算法</h3><p>正向、逆向两种算法都切一遍，然后根据大颗粒度词越多越好，非词典词和单字词越少越好的原则，选取其中一种分词结果输出。</p>
+<ul>
+<li>非词典词数：越少越好</li>
+<li>单字词典词数：越少越好</li>
+<li>总词数：越少越好</li>
+</ul>
 
       
     </div>
@@ -399,8 +464,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/13/SAS编程演义8/" rel="next" title="《SAS编程演义》笔记（8章）">
-                <i class="fa fa-chevron-left"></i> 《SAS编程演义》笔记（8章）
+              <a href="/2017/09/25/SAS编程演义9-10/" rel="next" title="《SAS编程演义》笔记（9-10章）">
+                <i class="fa fa-chevron-left"></i> 《SAS编程演义》笔记（9-10章）
               </a>
             
           </div>
@@ -409,8 +474,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/19/规则引擎与Drools/" rel="prev" title="规则引擎与Drools">
-                规则引擎与Drools <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/20/人行报告(详版)/" rel="prev" title="人行报告专业版">
+                人行报告专业版 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -535,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境部署"><span class="nav-number">1.</span> <span class="nav-text">环境部署</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章"><span class="nav-number">2.</span> <span class="nav-text">第一章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章"><span class="nav-number">3.</span> <span class="nav-text">第二章</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#中文分词的基本原则"><span class="nav-number">1.</span> <span class="nav-text">中文分词的基本原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配算法"><span class="nav-number">2.</span> <span class="nav-text">匹配算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最大匹配算法"><span class="nav-number">2.1.</span> <span class="nav-text">最大匹配算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正向最大匹配算法"><span class="nav-number">2.2.</span> <span class="nav-text">正向最大匹配算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逆向最大匹配算法"><span class="nav-number">2.3.</span> <span class="nav-text">逆向最大匹配算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向最大匹配算法"><span class="nav-number">2.4.</span> <span class="nav-text">双向最大匹配算法</span></a></li></ol></li></ol></div>
             
 
           </div>

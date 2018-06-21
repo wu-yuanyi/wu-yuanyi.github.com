@@ -222,6 +222,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -260,6 +270,262 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/19/规则引擎与Drools/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/19/规则引擎与Drools/" itemprop="url">规则引擎与Drools</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-19T12:00:46+08:00">
+                2017-09-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Drools/" itemprop="url" rel="index">
+                    <span itemprop="name">Drools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h2><h3 id="1-1-规则"><a href="#1-1-规则" class="headerlink" title="1.1 规则"></a>1.1 规则</h3><ul>
+<li>每条规则都是一组条件决定的一系列结果</li>
+<li>一条规则可能与其他规则共同决定最终结果</li>
+<li>可能存在条件互相交叉的规则，此时有必要规定规则的优先级</li>
+</ul>
+<p>规则作为一种知识，其典型运用就是通过实际情况，根据给定的一组规则，得出结论。这个结论可能是某种静态的结果，也可能是需要进行的一组操作。</p>
+<p>规则语言可以分为结构化的（Structured)和基于标记的（Markup，通常为xml）。</p>
+<p>常见的结构化的规则描述语言:</p>
+<ul>
+<li>srl（Structured Rule Language）</li>
+<li>drl（Drools Rule Language）</li>
+</ul>
+<p>常见的基于标记的规则描述语言:</p>
+<ul>
+<li>RuleML（Rule Markup Language）</li>
+<li>SRML（Simple Rule Markup Language）</li>
+<li>BRML（Business Rules Markup Language）</li>
+<li>SWRL（A Semantic Web Rule Language）</li>
+</ul>
+<h3 id="1-2-推理机"><a href="#1-2-推理机" class="headerlink" title="1.2 推理机"></a>1.2 推理机</h3><p>运用过程叫做推理。如果由程序来处理推理过程，那么这个程序就叫做推理机/推理引擎（Inference Engine）。推理机是专家系统（专家系统是人工智能的一个分支）的核心模块。</p>
+<p>推理引擎根据知识表示的不同采取的控制策略也是不同的，常见的类型包括基于神经网络、基于案例和基于规则的推理机。</p>
+<h3 id="1-3-规则引擎"><a href="#1-3-规则引擎" class="headerlink" title="1.3 规则引擎"></a>1.3 规则引擎</h3><p>基于规则的推理机易于理解、易于获取、易于管理，被广泛采用。这种推理引擎被称为“规则引擎”。</p>
+<p>在规则引擎中，将知识表达为规则（rules），要分析的情况定义为事实（facts）。二者在内存中的存储分别称为Production Memory和Working Memory。</p>
+<ul>
+<li>rules和facts：规则引擎接受的输入参数</li>
+<li>Pattern Matcher：根据facts找到匹配的rules<ul>
+<li>正向推理（Forward-Chaining）：正向推理也叫演绎法，由事实驱动，从 一个初始的事实出发，不断地应用规则得出结论。首先在候选队列中选择一条规则作为启用规则进行推理，记录其结论作为下一步推理时的证据。如此重复这个过程，直到再无可用规则可被选用或者求得了所要求的解为止。</li>
+<li>反向推理（Backward-Chaining）：反向推理也叫归纳法，由目标驱动，首先提出某个假设，然后寻找支持该假设的证据，若所需的证据都能找到，说明原假设是正确的；若无论如何都找不到所需要的证据，则说明原假设不成立，此时需要另做新的假设。</li>
+</ul>
+</li>
+<li>Agenda：管理PatternMatcher挑选出来的规则的执行次序</li>
+<li>Execution Engine：在外围负责根据Agenda输出的rules执行具体的操作</li>
+</ul>
+<h3 id="1-4-规则引擎的作用"><a href="#1-4-规则引擎的作用" class="headerlink" title="1.4 规则引擎的作用"></a>1.4 规则引擎的作用</h3><p>规则引擎可以将规则的定义从代码中分离出来，将推理过程封装到规则引擎内部进行处理，这带来几个好处：</p>
+<ul>
+<li>规则外部化，即有利于规则知识的复用，也可避免改变规则时带来的代码变更问题</li>
+<li>由规则引擎使用某种算法进行推理过程，不需要编写复杂晦涩的逻辑判断代码</li>
+<li>开发人员的不需要过多关注逻辑判断，可以专注于逻辑处理</li>
+</ul>
+<h2 id="2-Drools"><a href="#2-Drools" class="headerlink" title="2 Drools"></a>2 Drools</h2><p><a href="https://www.tutorialspoint.com/drools/pdf/drools_sample_drools_program.pdf" target="_blank" rel="external">DROOLS - SAMPLE DROOLS PROGRAM</a></p>
+<h3 id="2-1-概览"><a href="#2-1-概览" class="headerlink" title="2.1 概览"></a>2.1 概览</h3><p>完整的drl文件包含以下几个部分：package，import，declares，globals，functions，queries，rules。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.sample</div><div class="line"><span class="keyword">import</span> com.sample.DroolsTest.Message;</div><div class="line"></div><div class="line">rule <span class="string">"Hello World"</span></div><div class="line">  when</div><div class="line">    m : Message(status == Message.HELLO, myMessage : message)</div><div class="line">  then</div><div class="line">    System.out.println(myMessage);</div><div class="line">    m.setMessage(<span class="string">"Goodbye cruel world"</span>);</div><div class="line">    m.setStatus(Message.GOODBYE);</div><div class="line">    update(m);</div><div class="line">end</div><div class="line"></div><div class="line">rule <span class="string">"GoodBye"</span></div><div class="line">  <span class="function">when</span></div><div class="line">    <span class="title">Message</span><span class="params">(status==Message.GOODBYE, myMessage:message)</span></div><div class="line">   then</div><div class="line">    System.out.<span class="title">println</span><span class="params">(myMessage)</span>;</div><div class="line">end</div></pre></td></tr></table></figure>
+<h3 id="2-2-package和import"><a href="#2-2-package和import" class="headerlink" title="2.2 package和import"></a>2.2 package和import</h3><p>与Java类似，drools头部必须要有一个package声明和import声明，且package声明必须放在规则文件的第一行。</p>
+<h3 id="2-3-规则定义"><a href="#2-3-规则定义" class="headerlink" title="2.3 规则定义"></a>2.3 规则定义</h3><p>一个规则通常包含三个部分：attribute（属性），LHS（条件部分），RHS（结果部分）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">rule <span class="string">"name"</span></div><div class="line">  attributes</div><div class="line">  when</div><div class="line">    LHS</div><div class="line">  then</div><div class="line">    RHS</div><div class="line">end</div></pre></td></tr></table></figure>
+<h4 id="2-3-1-LHS（条件部分）"><a href="#2-3-1-LHS（条件部分）" class="headerlink" title="2.3.1 LHS（条件部分）"></a>2.3.1 LHS（条件部分）</h4><ul>
+<li>可以包含多个条件，若条件部分为空的话，引擎自动添加一个eval(true)的条件。</li>
+<li>多个条件之间可使用and或or连接，默认是and关系。</li>
+<li>条件的语法：[绑定变量名:]\Object([field约束])<ul>
+<li>绑定变量名：可在该LHS后续的条件中引用</li>
+<li>field约束：当前对象里相关字段的条件限制，多个约束之间用”&amp;&amp;”(and)，”||”(or)和”,”(and)连接。约束中可使用的比较操作符包括：&gt;, &gt;=, &lt;, &lt;=, ==, !=, contains, not contains, memberof, not memberof, matches, not matchers</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">when</div><div class="line">  order:Order();</div><div class="line">then</div><div class="line">  ...</div><div class="line"></div><div class="line">when</div><div class="line">  $room : Room( )  #变量名可以是$开头</div><div class="line">  $sprinkler : Sprinkler( room == $room, on == true )</div><div class="line">  not Fire( room == $room )</div><div class="line">then</div><div class="line">  modify( $sprinkler ) &#123; setOn( false ) &#125;;</div><div class="line">  System.out.println( "Turn off the sprinkler for room " + $room.getName() );</div></pre></td></tr></table></figure>
+<h4 id="2-3-2-RHS（结果部分）"><a href="#2-3-2-RHS（结果部分）" class="headerlink" title="2.3.2 RHS（结果部分）"></a>2.3.2 RHS（结果部分）</h4><ul>
+<li>RHS部分定义了当LHS满足时要进行的操作</li>
+<li>RHS中可以编写代码，可以使用LHS部分中定义的绑定变量名以及drl头部定义的全局变量。</li>
+<li>虽然可以在RHS中直接写java代码，但不建议代码中有条件判断，否则就违背了使用规则的初衷。</li>
+</ul>
+<h5 id="2-3-2-1-使用宏函数"><a href="#2-3-2-1-使用宏函数" class="headerlink" title="2.3.2.1 使用宏函数"></a>2.3.2.1 使用宏函数</h5><p>RHS中可以使用宏函数对工作空间进行操作。当调用宏函数后，所有为设置“no-loop”属性的规则都会呗重新分配，符合条件的重新触发。</p>
+<p>宏函数都是StatefulSession中定义的方法，包括：</p>
+<ul>
+<li>insert：将一个Fact对象插入到当前的Working Memory</li>
+<li>update：对当前Working Memory中的Fact进行更新</li>
+<li>retract：从Working Memory中删除某个Fact对象</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">when</div><div class="line">  ...</div><div class="line">then</div><div class="line">  Customer cus=new Customer();</div><div class="line">  cus.setName("张三");</div><div class="line">  insert(cus);</div><div class="line"></div><div class="line">when </div><div class="line">  $customer:Customer(name=="张三", age&lt;10)</div><div class="line">then</div><div class="line">  $customer.setAge(customer.getAge()+1);</div><div class="line">  update(customer);</div><div class="line"></div><div class="line">when</div><div class="line">  $customer:Customer(name=="张三",age&lt;10)</div><div class="line">then</div><div class="line">  Customer customer=new Customer();</div><div class="line">  customer.setName("张三");</div><div class="line">  customer.setAge($customer.getAge()+1);</div><div class="line">  # 用新对象替换Working Memory中的旧对象</div><div class="line">  update(drools.getWorkingMemory().getFactHandleByIdentity($customer),customer);</div><div class="line"></div><div class="line"></div><div class="line">when</div><div class="line">  $customer:Customer(name=="张三")</div><div class="line">then</div><div class="line">  retract($customer);</div></pre></td></tr></table></figure>
+<h5 id="2-3-2-2-modify代码块"><a href="#2-3-2-2-modify代码块" class="headerlink" title="2.3.2.2 modify代码块"></a>2.3.2.2 modify代码块</h5><p>modify代码块用于快速修改并更新(update)某个 Fact 对象的多个属性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">modify(fact-expression)&#123;</div><div class="line">  &lt;修改 Fact 属性的表达式&gt;[,&lt;修改 Fact 属性的表达式&gt;*]</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">when</div><div class="line">  $customer:Customer(name==<span class="string">"张三"</span>,age==<span class="number">20</span>);</div><div class="line"><span class="function">then</span></div><div class="line">  <span class="title">modify</span><span class="params">($customer)</span>&#123;</div><div class="line">    setId(<span class="string">"super man"</span>),</div><div class="line">    setAge(<span class="number">30</span>)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h5 id="2-3-2-3-drools宏对象"><a href="#2-3-2-3-drools宏对象" class="headerlink" title="2.3.2.3 drools宏对象"></a>2.3.2.3 drools宏对象</h5><p>通过使用drools宏对象可以实现在规则文件里直接访问 Working Memory，从而获取对当前的 Working Memory的更多控制。</p>
+<p>drools宏对象的常用方法包括：</p>
+<ul>
+<li>drools.getWorkingMemory()：获取当前的 WorkingMemory对象</li>
+<li>drools.halt()：在当前规则执行完成后，不再执行 其它未执行的规则</li>
+<li>drools.getRule()：得到当前的规则对象</li>
+<li>drools.insert(new Object)：向当前的WorkingMemory 当中插入指定的对象，功能与宏函数insert相同</li>
+<li>drools.update(new Object)：更新当前的WorkingMemory中指定的对象，功能与宏函数update相同</li>
+<li>drools.update(FactHandle Object)：更新当前的WorkingMemory中指定的对象，功能与宏函数update相同</li>
+<li>drools.retract(new Object)：从当前的WorkingMemory中删除指 定的对象，功能与宏函数retract相同</li>
+</ul>
+<h5 id="2-3-2-4-kcontext宏对象"><a href="#2-3-2-4-kcontext宏对象" class="headerlink" title="2.3.2.4 kcontext宏对象"></a>2.3.2.4 kcontext宏对象</h5><p>用来得到当前的KnowledgeRuntime对象，KnowledgeRuntime对象可以实现与引擎的各种交互。</p>
+<h4 id="2-3-3-规则属性"><a href="#2-3-3-规则属性" class="headerlink" title="2.3.3 规则属性"></a>2.3.3 规则属性</h4><ul>
+<li>salience：设置规则执行的优先级，默认值为0。数字越大越先执行，可以设置为负数，数字相同的使用随机顺序。设置该属性<code>salience 10</code>.</li>
+<li>no-loop：默认为false。设置为true时，表示该规则只会被引擎检查一次。引擎内部对Fact更新时，忽略本规则的再次检查。</li>
+<li>date-effective：设置规则的开始生效日期，默认接受“dd-MMM-yyyy”格式的字符串。修改日期格式：<code>System.setProperty(&quot;drools.dateformat&quot;,&quot;yyyy-MM-dd&quot;)</code></li>
+<li>data-expires：设置规则的过期日期，默认接受“dd-MMM-yyyy”格式的字符串。修改日期格式：<code>System.setProperty(&quot;drools.dateformat&quot;,&quot;yyyy-MM-dd&quot;)</code>。</li>
+<li>enabled：设置规则是否可用，默认为true。</li>
+<li>dialect：设置规则中使用的编程语言，默认为java，可设置为mvel。获取该属性的设置：<code>drools.getRule().getDialect()</code>，设置该属性<code>dialect mvel</code></li>
+<li>duration：指定延迟时间，在另一个线程中触发规则，单位为毫秒。</li>
+<li>activation-group：为规则划指定一个活动组（组名为字符串）。同一个活动组中的规则只执行一个，根据优先级(salience)来决定执行哪一个规则。</li>
+<li>agenda-group：为规则指定一个议程(agenda)组。指定了议程组的规则只有在该议程组得到焦点时才被触发。</li>
+<li>auto-focus：指定了auto-focus属性为true，则该规则自动得到焦点。</li>
+<li>ruleflow-group：指定规则流组。</li>
+<li>lock-on-active：当在规则上使用ruleflow-group属性或agenda-group属性的时候，将lock-on-action属性 的值设置为 true，可避免因某些 Fact 对象被修改而使已经执行过的规则再次被激活执行。</li>
+<li>when</li>
+</ul>
+<h3 id="2-4-注释"><a href="#2-4-注释" class="headerlink" title="2.4 注释"></a>2.4 注释</h3><ul>
+<li>多行注释：<code>/*注释*/</code></li>
+<li>单行注视：<code>#注释</code>或 <code>//注释</code></li>
+</ul>
+<h3 id="2-5-类型声明"><a href="#2-5-类型声明" class="headerlink" title="2.5 类型声明"></a>2.5 类型声明</h3><p>todo</p>
+<h3 id="2-6-全局变量"><a href="#2-6-全局变量" class="headerlink" title="2.6 全局变量"></a>2.6 全局变量</h3><p>todo</p>
+<h3 id="2-7-函数和import-function"><a href="#2-7-函数和import-function" class="headerlink" title="2.7 函数和import function"></a>2.7 函数和import function</h3><h4 id="2-7-1-函数的定义和使用"><a href="#2-7-1-函数的定义和使用" class="headerlink" title="2.7.1 函数的定义和使用"></a>2.7.1 函数的定义和使用</h4><p>函数是定义在规则文件中的一段代码，用于将规则文件中会被若干个规则复用的业务操作封装起来，减少规则编写的工作量。函数的可见范围是规则函数所在的规则文件。</p>
+<p>函数以function定义。可以是void，也可以有返回值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> test</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"></div><div class="line"><span class="function">function <span class="keyword">void</span> <span class="title">setOrder</span><span class="params">(Customer customer, <span class="keyword">int</span> orderSize)</span> </span>&#123;</div><div class="line">  List ls = <span class="keyword">new</span> ArrayList();</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;orderSize; i++)&#123;</div><div class="line">    Order order=<span class="keyword">new</span> Order();</div><div class="line">    ls.add(order);</div><div class="line">  &#125;</div><div class="line">  customer.setOrder(ls);</div><div class="line">&#125;</div><div class="line"></div><div class="line">rule <span class="string">"rule1"</span></div><div class="line">  when</div><div class="line">    $customer:Customer()</div><div class="line">  <span class="function">then</span></div><div class="line">    <span class="title">setOrder</span><span class="params">($customer,<span class="number">5</span>)</span>;</div><div class="line">    System.out.println(<span class="string">"rule 1 customer has order size:"</span>+$customer.getOrders().size());</div><div class="line">end</div><div class="line"></div><div class="line">rule <span class="string">"rule2"</span></div><div class="line">  when</div><div class="line">    $customer :Customer()</div><div class="line">  <span class="function">then</span></div><div class="line">    <span class="title">setOrder</span><span class="params">($customer,<span class="number">10</span>)</span>;</div><div class="line">    System.out.println(<span class="string">"rule 2 customer has order size:"</span>+$customer.getOrders().size());</div><div class="line">end</div></pre></td></tr></table></figure>
+<h4 id="2-7-2-引入静态方法"><a href="#2-7-2-引入静态方法" class="headerlink" title="2.7.2 引入静态方法"></a>2.7.2 引入静态方法</h4><p>实际应用当中，可以考虑使用在java类当中定义静态方法的办法来替代在规则文件当中定义函数。</p>
+<p>Drools 提供了一个特殊的 import 语句：import function。通过该 import 语句，可以实现将一个java类中静态方法引入到一个规则文件当中，使得该文件当中的规则可以像使用普通的Drools函数一样来使用java类中某个静态方法。</p>
+<h3 id="2-8-查询定义"><a href="#2-8-查询定义" class="headerlink" title="2.8 查询定义"></a>2.8 查询定义</h3><p>查询用于根据条件在当前的 WorkingMemory 当中查找 Fact。</p>
+<p>Drools 当中查询可分为两种：</p>
+<ul>
+<li>不需要外部传入参数</li>
+<li>需要外部传入参数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">query <span class="string">"testQuery"</span></div><div class="line">  customer:Customer(age&gt;<span class="number">30</span>,orders.size &gt;<span class="number">10</span>)</div><div class="line">end</div><div class="line"></div><div class="line">query <span class="string">"testQuery2"</span>(<span class="keyword">int</span> $age,String $gender)</div><div class="line">  customer:Customer(age&gt;$age,gender==$gender)</div><div class="line">end</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -418,7 +684,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/13/SAS编程演义8/">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuanyi Wu">
@@ -437,7 +703,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/13/SAS编程演义8/" itemprop="url">《SAS编程演义》笔记（8章）</a></h1>
+                <a class="post-title-link" href="/2017/09/13/SAS/SAS编程演义8/" itemprop="url">《SAS编程演义》笔记（8章）</a></h1>
         
 
         <div class="post-meta">
@@ -584,10 +850,10 @@
 <li>CATEGORYORDER=：排序方式</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    hbar DriveTrain / categoryorder=respdesc; /*横向 响应值降序*/</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbar DriveTrain / categoryorder=respssc; /*纵向 响应值升序*/</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/1.png" alt="横向条图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/1.png" alt="横向条图"></p>
 <h4 id="频数图"><a href="#频数图" class="headerlink" title="频数图"></a>频数图</h4><p>使PROC FREQ里TABLE语句的选项PLOTS=FREQPLOTS，此选项会自动调用ODS Graphics System绘制频数图。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc freq data=sashelp.cars;</div><div class="line">    table DriveTrain / plots=freqplots;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/2.png" alt="频数图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/2.png" alt="频数图"></p>
 <h4 id="带误差限的单式条图"><a href="#带误差限的单式条图" class="headerlink" title="带误差限的单式条图"></a>带误差限的单式条图</h4><ul>
 <li>RESPONSE：指定连续变量</li>
 <li>STAT=：指定统计指标</li>
@@ -595,7 +861,7 @@
 <li>LIMITS=：upper, lower, both 指定限制线展示形式</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbar type /response=msrp stat=mean limitstat=stddev limits=upper;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/3.png" alt="带误差限的单式条图条图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/3.png" alt="带误差限的单式条图条图"></p>
 <h4 id="单式百分比条图"><a href="#单式百分比条图" class="headerlink" title="单式百分比条图"></a>单式百分比条图</h4><p>单式百分比条图在绘制时需要先增加辅助分组变量，而后通过PROC SGPLOT的HBAR或VBAR实现。</p>
 <ul>
 <li>GROUP=：指定分组变量</li>
@@ -603,14 +869,14 @@
 <li>STAT=PERCENT：指定统计指标为百分比</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">data cars;</div><div class="line">    set sashelp.cars;</div><div class="line">    Drive_Train=&quot;Drive Type&quot;; /**/</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=cars noborder;</div><div class="line">    hbar Drive_Train / group=DriveTrain groupdisplay=stack stat=percent categoryorder=respdesc;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/4.png" alt="单式百分比条图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/4.png" alt="单式百分比条图"></p>
 <h4 id="簇拥式复式条图"><a href="#簇拥式复式条图" class="headerlink" title="簇拥式复式条图"></a>簇拥式复式条图</h4><p>单式百分比条图就是复式条图的一种特例。</p>
 <ul>
 <li>GROUP=：指定分组变量</li>
 <li>GROUPDISPLAY=：控制分组显示方式，簇拥式（cluster），堆叠式（stack）</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbar origin / group=DriveTrain groupdisplay=cluster;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/5.png" alt="簇拥式复式条图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/5.png" alt="簇拥式复式条图"></p>
 <h4 id="簇拥式复式误差限条图"><a href="#簇拥式复式误差限条图" class="headerlink" title="簇拥式复式误差限条图"></a>簇拥式复式误差限条图</h4><ul>
 <li>RESPONSE：指定连续变量</li>
 <li>STAT=：指定统计指标</li>
@@ -619,117 +885,117 @@
 <li>GROUP=：指定分组变量</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbar origin / response=msrp stat=mean group=type groupdisplay=cluster limitstat=stddev limits=lower;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/6.png" alt="簇拥式复式误差限条图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/6.png" alt="簇拥式复式误差限条图"></p>
 <h4 id="复式百分比条图"><a href="#复式百分比条图" class="headerlink" title="复式百分比条图"></a>复式百分比条图</h4><ul>
 <li>PCTLEVEL=GROUP：控制百分比为分组的百分比</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars pctlevel=group;</div><div class="line">    vbar origin / group=DriveTrain groupdisplay=cluster stat=percent; /*簇拥式*/</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars pctlevel=group;</div><div class="line">    vbar origin / group=DriveTrain groupdisplay=stack stat=percent; /*堆叠式*/</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/7.png" alt="簇拥式复式误差限条图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/7.png" alt="簇拥式复式误差限条图"></p>
 <h4 id="马赛克图"><a href="#马赛克图" class="headerlink" title="马赛克图"></a>马赛克图</h4><p>使PROC FREQ里TABLE语句的选项PLOTS=MAOSAICPLOT，此选项会自动调用ODS Graphics System绘马赛克图。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc freq data=sashelp.cars;</div><div class="line">    table origin*DriveTrain / plots=mosaicplot;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/8.png" alt="马赛克图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/8.png" alt="马赛克图"></p>
 <h4 id="镜面式复式条图"><a href="#镜面式复式条图" class="headerlink" title="镜面式复式条图"></a>镜面式复式条图</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">data pop; /*创建测试数据集*/</div><div class="line">    length AgeGroup $12;</div><div class="line">    do AgeGroup=&apos;Pre Teen&apos;, &apos;Teen&apos;, &apos;Young Adult&apos;, &apos;Adult&apos;, &apos;Senior&apos;;</div><div class="line">        Male=round(500*(1+ranuni(2)));</div><div class="line">        Female=round(400*(1+ranuni(2)));</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">data butterfly; /*变换镜面数据*/</div><div class="line">    set pop;</div><div class="line">    Male=-male;</div><div class="line">    zero=0;</div><div class="line">run;</div><div class="line"></div><div class="line">proc format; /**/</div><div class="line">    picture positive low-&lt;0=&apos;0000&apos; 0&lt;-high=&apos;0000&apos;;</div><div class="line">    /*0-high包含0  0&lt;-high不包含0*/</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=ButterFly; /*横向镜面*/</div><div class="line">    format male female positive.;</div><div class="line">    hbarparm category=agegroup response=male;</div><div class="line">    hbarparm category=agegroup response=female;</div><div class="line">    xaxis display=(noline nolabel) values=(-1000 to 1000 by 200);</div><div class="line">    yaxis display=(noline nolabel);</div><div class="line">    keylegend / position=right across=1 noopaque;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=ButterFly; /*纵向镜面*/</div><div class="line">    format male female positive.;</div><div class="line">    vbarparm category=agegroup response=male;</div><div class="line">    vbarparm category=agegroup response=female;</div><div class="line">    xaxis display=(noline nolabel);</div><div class="line">    yaxis display=(noline nolabel) values=(-1000 to 1000 by 200);</div><div class="line">    keylegend / position=right across=1 noopaque;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/9.png" alt="横向镜面复式条图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/9.png" alt="横向镜面复式条图"></p>
 <h4 id="面板条图"><a href="#面板条图" class="headerlink" title="面板条图"></a>面板条图</h4><p>通过PROC SGPANEL实现面板条图，用PANELBY语句指定面板分量。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">proc sgpanel data=sashelp.cars pctlevel=group; /**/</div><div class="line">    panelby type;</div><div class="line">    vbar origin / group=DriveTrain groupdisplay=cluster stat=percent;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgpanel data=sashelp.cars pctlevel=group; /**/</div><div class="line">    panelby type;</div><div class="line">    vbar origin / group=DriveTrain groupdisplay=stack stat=percent categoryorder=respdesc;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/10.png" alt="簇拥式面板条图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/10.png" alt="簇拥式面板条图"></p>
 <h3 id="直方图系列"><a href="#直方图系列" class="headerlink" title="直方图系列"></a>直方图系列</h3><h4 id="简单直方图"><a href="#简单直方图" class="headerlink" title="简单直方图"></a>简单直方图</h4><ul>
 <li>NBINS：直方的数量</li>
 <li>BINWIDTH：直方的宽度</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars; /*简单直方图（sgplot）*/</div><div class="line">    histogram msrp / nbins =20;</div><div class="line">run;</div><div class="line"></div><div class="line">proc univariate data=sashelp.cars; /*简单直方图（univariate）*/</div><div class="line">    histogram msrp;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/11.png" alt="简单直方图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/11.png" alt="简单直方图"></p>
 <h4 id="重叠直方图"><a href="#重叠直方图" class="headerlink" title="重叠直方图"></a>重叠直方图</h4><ul>
 <li>可以用GROUP设置分组变量，也可以用多个HISTOGRAM语句叠加</li>
 <li>使用TRANSPARENCY设置透明度</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars; /*通过group设置分组变量*/</div><div class="line">    histogram msrp / nbins=20 group=type;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars; /*多个histogram叠加*/</div><div class="line">    histogram mpg_city / binstart=0 binwidth=2 transparency=0.5;</div><div class="line">    histogram mpg_highway / binstart=0 binwidth=2 transparency=0.5;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/12.png" alt="重叠直方图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/12.png" alt="重叠直方图"></p>
 <h4 id="镜面直方图"><a href="#镜面直方图" class="headerlink" title="镜面直方图"></a>镜面直方图</h4><p>无法通过 SGPLOT直接实现，需要借助GTL语言。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">/*定义模版*/</div><div class="line">proc template;</div><div class="line">    define statgraph MirrorHistogramVert;</div><div class="line">        dynamic _binwidth;</div><div class="line">            begingraph; </div><div class="line">            entrytitle &quot;Mileage distribution&quot;;</div><div class="line">            /*定义布局*/</div><div class="line">            layout lattice / columndatarange=union rowgutter=0;</div><div class="line">                /*定义横轴*/</div><div class="line">                columnases;</div><div class="line">                columnaxis / display=(tickvalues) griddisplay=on linearopts=(tickvaluesequence=(start=0 end=60 increment=10) tickvaluepriority=true);</div><div class="line">                endcolumnases;</div><div class="line">                /*上部分直方图*/</div><div class="line">                layout overlay / walldisplay=none xaxisopts=(griddisplay=on) yaxisopts=(griddisplay=on display=(tickvalues label) linearopts=(tickvaluesequence=(start=5 end=25 increment=5) tickvaluepriority=true));</div><div class="line">                histogram mpg_city/binstart=0 binwidth=_binwidth binaxis=false fillattrs=graphdata1 datatransparency=0.3;</div><div class="line">                entry halign=right &quot;City Mileage&quot; / valign=top;</div><div class="line">                endlayout;</div><div class="line">                /*下部分直方图*/</div><div class="line">                layout overlay / walldisplay=none xaxisopts=(griddisplay=on) yaxisopts=(reverse=true griddisplay=on display=(tickvalues label) linearopts=(tickvaluesequence=(start=5 end=25 increment=5) tickvaluepriority=true));</div><div class="line">                histogram mpg_highway/binstart=0 binwidth=_binwidth binaxis=false fillattrs=graphdata2 datatransparency=0.3;</div><div class="line">                entry halign=right &quot;City Mileage&quot; / valign=top;</div><div class="line">                endlayout;</div><div class="line">            endlayout;</div><div class="line">        endgraph;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">/*渲染模版*/</div><div class="line">ods graphics / NOBORDER reset width=5in height=3in imagename=&quot;MirrorHistogramVert&quot;;</div><div class="line">proc sgrender data=sashelp.cars template=MirrorHistogramVert;</div><div class="line">    dynamic _binwidth=2;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/13.png" alt="镜面直方图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/13.png" alt="镜面直方图"></p>
 <h4 id="面板直方图"><a href="#面板直方图" class="headerlink" title="面板直方图"></a>面板直方图</h4><p>通过PROC SGPANEL和HISTOGRAM语句来实现</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">proc sgpanel data=sashelp.cars;</div><div class="line">    panelby origin / layout=columnlattice;</div><div class="line">    histogram mpg_city / binstart=0 binwidth=2 transparency=0.5;</div><div class="line">    histogram mpg_highway / binstart=0 binwidth=2 transparency=0.5;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/14.png" alt="面板直方图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/14.png" alt="面板直方图"></p>
 <h3 id="箱型图系列"><a href="#箱型图系列" class="headerlink" title="箱型图系列"></a>箱型图系列</h3><p>箱线图提供了更为明确的统计量信息，如均数，P25，P50以及P75。箱线图可以通过PROC SGPLOT的VBOX或HBOX实现。</p>
 <h4 id="简单箱型图"><a href="#简单箱型图" class="headerlink" title="简单箱型图"></a>简单箱型图</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbox msrp; /*纵向*/</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    hbox msrp; /*横向*/</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/15.png" alt="简单箱型图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/15.png" alt="简单箱型图"></p>
 <h4 id="分组箱型图"><a href="#分组箱型图" class="headerlink" title="分组箱型图"></a>分组箱型图</h4><p>分组箱形图的绘制只需在VBOX或HBOX语句中增加用GROUP分组变量即可。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbox msrp / group=type;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/16.png" alt="分组箱型图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/16.png" alt="分组箱型图"></p>
 <h4 id="面板箱型图"><a href="#面板箱型图" class="headerlink" title="面板箱型图"></a>面板箱型图</h4><p>面板箱型图可通过PROC SGPANEL过程实现。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc sgpanel data=sashelp.cars;</div><div class="line">    panelby origin / layout=columnlattice;</div><div class="line">    vbox msrp / group=type;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/17.png" alt="面板箱型图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/17.png" alt="面板箱型图"></p>
 <h3 id="散点图系列"><a href="#散点图系列" class="headerlink" title="散点图系列"></a>散点图系列</h3><h4 id="X-Y散点图"><a href="#X-Y散点图" class="headerlink" title="X-Y散点图"></a>X-Y散点图</h4><p>X-Y散点图可通过PROC SGPLOT的SCATTER语句实现。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    scatter x=horsepower y=mpg_highway;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/18.png" alt="X-Y散点图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/18.png" alt="X-Y散点图"></p>
 <h4 id="X-Y散点回归图"><a href="#X-Y散点回归图" class="headerlink" title="X-Y散点回归图"></a>X-Y散点回归图</h4><ul>
 <li>使用REG语句增加回归线</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    scatter x=horsepower y=mpg_highway;</div><div class="line">    reg x=horsepower y=mpg_highway;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/19.png" alt="X-Y散点回归图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/19.png" alt="X-Y散点回归图"></p>
 <h4 id="分组散点图"><a href="#分组散点图" class="headerlink" title="分组散点图"></a>分组散点图</h4><ul>
 <li>使用GROUP选项增绘制分组散点图</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    scatter x=horsepower y=mpg_highway / group=type;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/20.png" alt="分组散点图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/20.png" alt="分组散点图"></p>
 <h4 id="面板散点图"><a href="#面板散点图" class="headerlink" title="面板散点图"></a>面板散点图</h4><p>在PROC SGPANEL中用PANELBY语句指定分面变量，而后用SCATTER语句绘制散点图。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc sgpanel data=sashelp.cars;</div><div class="line">    panelby origin / layout=columnlattice;</div><div class="line">    scatter x=horsepower y=mpg_highway / group=type;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/21.png" alt="面板散点图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/21.png" alt="面板散点图"></p>
 <h4 id="泡泡图"><a href="#泡泡图" class="headerlink" title="泡泡图"></a>泡泡图</h4><p>增加一个变量控制散点图中点的大小，通过PROC SGPLOT中的BUBBLE实现。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    bubble x=horsepower y=mpg_highway size=cylinders;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/22.png" alt="泡泡图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/22.png" alt="泡泡图"></p>
 <h4 id="矩阵散点图"><a href="#矩阵散点图" class="headerlink" title="矩阵散点图"></a>矩阵散点图</h4><p>探查多个变量之间两两的关系。通过PROC SGSCATTER实现。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgscatter data=sashelp.cars;</div><div class="line">    matrix mpg_highway horsepower enginesize / diagonal=(histogram noraml);</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/23.png" alt="矩阵散点图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/23.png" alt="矩阵散点图"></p>
 <h3 id="折线图系列"><a href="#折线图系列" class="headerlink" title="折线图系列"></a>折线图系列</h3><h4 id="简单折线图"><a href="#简单折线图" class="headerlink" title="简单折线图"></a>简单折线图</h4><p>若X与Y一一对应，可以用SERIES语句绘制。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.stocks (where=(date &gt;= &quot;01jan2002&quot;d and stock=&quot;IBM&quot;));</div><div class="line">    series x=date y=close;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/24.png" alt="简单折线图（X与Y一一对应）"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/24.png" alt="简单折线图（X与Y一一对应）"></p>
 <p>若X与Y不是一一对应，可以用VLINE或HLINE语句绘制。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vline cylinders / response=msrp stat=mean markers;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/25.png" alt="简单折线图（X与Y不是一一对应）"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/25.png" alt="简单折线图（X与Y不是一一对应）"></p>
 <h4 id="误差折线图"><a href="#误差折线图" class="headerlink" title="误差折线图"></a>误差折线图</h4><p>使用LIMITS和LIMITSTAT。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vline cylinders / response=msrp stat=mean limits=both limitstat=stddev markers;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/26.png" alt="误差折线图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/26.png" alt="误差折线图"></p>
 <h4 id="分组误差折线图"><a href="#分组误差折线图" class="headerlink" title="分组误差折线图"></a>分组误差折线图</h4><p>用GROUP选项指定分组变量。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vline cylinders / response=msrp stat=mean group=type limits=both limitstat=stddev markers;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/27.png" alt="分组误差折线图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/27.png" alt="分组误差折线图"></p>
 <h4 id="面板误差折线图"><a href="#面板误差折线图" class="headerlink" title="面板误差折线图"></a>面板误差折线图</h4><p>PROC SGPANEL过程中使用PANELBY语句。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc sgpanel data=sashelp.cars;</div><div class="line">    panelby origin / layout=columnlattice;</div><div class="line">    vline cylinders / response=msrp stat=mean group=type limit=both limitstat=stddev markers;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/28.png" alt="面板误差折线图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/28.png" alt="面板误差折线图"></p>
 <h3 id="面积图系列"><a href="#面积图系列" class="headerlink" title="面积图系列"></a>面积图系列</h3><h4 id="面积图"><a href="#面积图" class="headerlink" title="面积图"></a>面积图</h4><p>通过PROC SGPLOT的BAND语句实现。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/*重叠面积图*/</div><div class="line">proc sgplot data=sashelp.stocks(where=(date&gt;=&quot;01jan2002&quot;d and stock=&quot;IBM&quot;));</div><div class="line">    band x=date lower=0 upper=high / legendlabel=&quot;High&quot;;</div><div class="line">    band x=date lower=0 upper=low / legendlabel=&quot;Low&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">/*非重叠面积图*/</div><div class="line">proc sgplot data=sashelp.stocks(where=(date&gt;=&quot;01jan2002&quot;d and stock=&quot;IBM&quot;));</div><div class="line">    band x=date lower=0 upper=high / legendlabel=&quot;High&quot;;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/29.png" alt="面积图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/29.png" alt="面积图"></p>
 <h4 id="带状图"><a href="#带状图" class="headerlink" title="带状图"></a>带状图</h4><p>通过PROC SGPLOT的BAND语句实现。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.stocks(where=(date&gt;=&quot;01jan2002&quot;d and stock=&quot;IBM&quot;));</div><div class="line">    band x=date lower=low upper=high / legendlabel=&quot;High&quot;;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/30.png" alt="带状图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/30.png" alt="带状图"></p>
 <h3 id="拟合图系列"><a href="#拟合图系列" class="headerlink" title="拟合图系列"></a>拟合图系列</h3><h4 id="密度曲线"><a href="#密度曲线" class="headerlink" title="密度曲线"></a>密度曲线</h4><p>可以用PROC UNIVARIATE过程中的HISTOGRAM语句，也可以用PROCSGPLOT的DENSITY语句。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">proc univariate data=sashelp.cars; /*统计过程*/</div><div class="line">    histogram msrp / normal;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars; /*绘图过程*/</div><div class="line">    histogram msrp / nbins=20;</div><div class="line">    density msrp;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/31.png" alt="密度曲线"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/31.png" alt="密度曲线"></p>
 <h4 id="回归线"><a href="#回归线" class="headerlink" title="回归线"></a>回归线</h4><p>可以用PROC REG过程中的PLOTS选项，也可以用PROC SGPLOT的REG语句。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">proc reg data=sashelp.cars plots(only)=fitplot; /*统计过程*/</div><div class="line">    model mpg_highway=horsepower;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars; /*绘图过程*/</div><div class="line">    scatter x=horsepower y=mpg_highway;</div><div class="line">    reg x=horsepower y=mpg_highway / cli clm;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/32.png" alt="回归线"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/32.png" alt="回归线"></p>
 <h4 id="椭圆曲线"><a href="#椭圆曲线" class="headerlink" title="椭圆曲线"></a>椭圆曲线</h4><p>通过PROC SGPLOT的ELLIPSE语句实现。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    scatter x=horsepower y=mpg_highway;</div><div class="line">    ellipse x=horsepower y=mpg_highway;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/33.png" alt="椭圆曲线"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/33.png" alt="椭圆曲线"></p>
 <h4 id="ROC曲线"><a href="#ROC曲线" class="headerlink" title="ROC曲线"></a>ROC曲线</h4><p>通过PROC LOGISTIC回归的PLOTS选项实现。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc logistic data=sashelp.heart plots=roc;</div><div class="line">    class sex Chol_Status BP_Status Weight_Status Smoking_Status;</div><div class="line">    model Status(event=&quot;Dead&quot;)=AgeAtStart sex Chol_Status BP_Status Weight_Status Smoking_Status;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/34.png" alt="ROC曲线"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/34.png" alt="ROC曲线"></p>
 <h4 id="Kaplan-Meier曲线"><a href="#Kaplan-Meier曲线" class="headerlink" title="Kaplan-Meier曲线"></a>Kaplan-Meier曲线</h4><p>通过PROC LIFETEST的PLOTS选项实现。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/*生存曲线*/</div><div class="line">proc lifetest data=sashelp.bmt plots=s;</div><div class="line">    time t*status(0);</div><div class="line">    strata group;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/35.png" alt="生存曲线"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/35.png" alt="生存曲线"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/*累积事件*/</div><div class="line">proc lifetest data=sashelp.bmt plots=s(failure);</div><div class="line">    time t*status(0);</div><div class="line">    strata group;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/36.png" alt="累积事件"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/36.png" alt="累积事件"></p>
 <h4 id="LOESS曲线"><a href="#LOESS曲线" class="headerlink" title="LOESS曲线"></a>LOESS曲线</h4><p>局部加权回归散点发（Locally Weighted Scattered Plot Smoothing, LOESS）</p>
 <ul>
 <li>PROC LOESS过程的PLOTS语句，AICC选项指定平滑程度</li>
 <li>PROC SGPLOT过程的LOESS语句，SMOOTH选项指定平滑程度</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proc loess data=sashelp.cars plots(only)=(FItPlot);</div><div class="line">    model mpg_highway=horsepower / select=AICC alpha=0.05 all;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    loess x=horsepower y=mpg_highway;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/37.png" alt="LOESS曲线"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/37.png" alt="LOESS曲线"></p>
 <h4 id="Spline曲线"><a href="#Spline曲线" class="headerlink" title="Spline曲线"></a>Spline曲线</h4><p>SAS中最容易实现的样条函数是Penalized B-Spline Curve，可通过PROC SGPLOT里的PBSPLINE语句绘制。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    pbspline x=horsepower y=mpg_highway;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/38.png" alt="LOESS曲线"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/38.png" alt="LOESS曲线"></p>
 <h3 id="森林图系列"><a href="#森林图系列" class="headerlink" title="森林图系列"></a>森林图系列</h3><p>通过PROC SGPLOT的SCATTER语句及其XERRORUPPER和XERRORLOWER选项绘制，或通过highlow语句绘制。</p>
 <h4 id="简单森林图"><a href="#简单森林图" class="headerlink" title="简单森林图"></a>简单森林图</h4><ul>
 <li>用HIGHLOW语句绘制效应值机器95%CI</li>
@@ -746,13 +1012,13 @@
 <li>添加各州名称标注：用US<em>attr</em>这个属性数据集，并利用SAS自带的宏给地图增加标签说明文字，生成标注数据集，然后绘制地图时用ANNO选项指定标注数据集。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">%annomac</div><div class="line">%maplabel(mapsgfk.us, mapsgfk.us_states_attr(keep-id idname), anno_label,idname, id)</div><div class="line"></div><div class="line">proc gmap map=maps.us data=maps.us;</div><div class="line">    id state;</div><div class="line">    choro state / nolegend anno=anno_label;</div><div class="line">run;</div><div class="line">quit;</div><div class="line"></div><div class="line">proc gmap map=maps.us data=maps.us;</div><div class="line">    id state;</div><div class="line">    choro state / nolegend;</div><div class="line">run;</div><div class="line">quit;</div><div class="line"></div><div class="line">proc gmap map=mapsgfk.us data=mapsgfk.us;</div><div class="line">    id id;</div><div class="line">    choro id / nolegend;</div><div class="line">run;</div><div class="line">quit;</div></pre></td></tr></table></figure>
-<p><img src="..//Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/41.png" alt="纯地图"></p>
+<p><img src="..//Users/wuyuanyi/workspace/github/blog/source/pic/sas/41.png" alt="纯地图"></p>
 <h4 id="统计地图"><a href="#统计地图" class="headerlink" title="统计地图"></a>统计地图</h4><p>BLOCK</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">data sample;</div><div class="line">    input st $  pop2010 @@;</div><div class="line">    state=stfips(st);</div><div class="line">    datalines;</div><div class="line">    AL 4779 Ak 710 AZ 6392 AR 2815 CA 37253 CO 5029 CT 3574 DE 897 DC 601 FL 18801</div><div class="line">    GA 9687 HI 1360 ID 1567 IL 12830 IN 6483 IA 3046 KS 2853 KY 43339 LA 4533</div><div class="line">    ME 1328 MD 5773 MA 6547 MI 9883 MN 5303 MS 2967 MO 5988 MT 989 NE 1826 NV 2700</div><div class="line">    NH 1316 NJ 8791 NM 2059 NY 19378 NC 9535 ND 672 OH 11536 OK 3751 OR 3831 </div><div class="line">    PA 12702 RI 1052 SC 4625 SD 814 TN 6346 TX 25145 UT 2763 VT 6257 VA 8001 </div><div class="line">    WA 6724 WV 1852 WI 5686 WY 563 PR 3725</div><div class="line">    ;</div><div class="line">run;</div><div class="line"></div><div class="line">proc gmap map=maps.us data=sample;</div><div class="line">    id state;</div><div class="line">    block pop2010 / level=6;</div><div class="line">    format est2015 pop2010 comma12.;</div><div class="line">run;</div><div class="line">quit;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/42.png" alt="统计地图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/42.png" alt="统计地图"></p>
 <h4 id="热力地图"><a href="#热力地图" class="headerlink" title="热力地图"></a>热力地图</h4><p>CHORO</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">proc gmap map=maps.us data=sample;</div><div class="line">    id state;</div><div class="line">    choro pop2010 / level=6;</div><div class="line">    format est2015 pop2010 comma12.;</div><div class="line">run;</div><div class="line">quit;</div></pre></td></tr></table></figure>
-<p><img src="/Users/wuyuanyi/workspace/wu-yuanyi.github.io/source/pic/2a7e75ed5d6edc334251e4eaabae1cf4/43.png" alt="热力地图"></p>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/pic/sas/43.png" alt="热力地图"></p>
 <h3 id="PROC-SGPLOT总结"><a href="#PROC-SGPLOT总结" class="headerlink" title="PROC SGPLOT总结"></a>PROC SGPLOT总结</h3><p><strong>PROC SGPLOT</strong> &lt;*option(s)&gt;;</p>
 <p>​    <strong>STYLEATTRS </strong> &lt;/*option(s)&gt;;</p>
 <p>​    <strong>PLOT STATEMENT</strong> &lt;/*option(s)&gt;;</p>
@@ -949,7 +1215,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/13/SAS编程演义5-7/">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义5-7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuanyi Wu">
@@ -968,7 +1234,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/13/SAS编程演义5-7/" itemprop="url">《SAS编程演义》笔记（5-7章）</a></h1>
+                <a class="post-title-link" href="/2017/09/13/SAS/SAS编程演义5-7/" itemprop="url">《SAS编程演义》笔记（5-7章）</a></h1>
         
 
         <div class="post-meta">
@@ -1626,7 +1892,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/13/SAS编程演义1-4/">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义1-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuanyi Wu">
@@ -1645,7 +1911,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/13/SAS编程演义1-4/" itemprop="url">《SAS编程演义》笔记（1-4章）</a></h1>
+                <a class="post-title-link" href="/2017/09/13/SAS/SAS编程演义1-4/" itemprop="url">《SAS编程演义》笔记（1-4章）</a></h1>
         
 
         <div class="post-meta">
@@ -1834,7 +2100,7 @@
 <h3 id="读入CSV文件"><a href="#读入CSV文件" class="headerlink" title="读入CSV文件"></a>读入CSV文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">filename mycsv &quot;D:\Data\Raw|class.csv&quot;;</div><div class="line">proc import </div><div class="line">    datafile=mycsv dbms=csv out=tmp replace;</div><div class="line">getnames=yes;</div><div class="line">guessingrows=20; /*通过前20行确定变量类型*/</div><div class="line">datarow=2; /*数据从第二行开始*/</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h3 id="读入TXT特殊字符分隔的文件"><a href="#读入TXT特殊字符分隔的文件" class="headerlink" title="读入TXT特殊字符分隔的文件"></a>读入TXT特殊字符分隔的文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">filename mytxttab &quot;D:\Data\Raw|class_tab.txt&quot;</div><div class="line">filename mytxtblk &quot;D:\Data\Raw|class_blk.txt&quot;</div><div class="line">proc import</div><div class="line">    datafile=mytxttab dbms=dlm out=tmp replace;</div><div class="line">delimiter=&apos;09&apos;x;</div><div class="line">getnames=yes;</div><div class="line">run;</div><div class="line">proc import</div><div class="line">    datafile=mytxtblk dbms=dlm out=tmp replace;</div><div class="line">delimiter=&apos;20&apos;x;</div><div class="line">getnames=yes;</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h3 id="INPUT语句列表读入式"><a href="#INPUT语句列表读入式" class="headerlink" title="INPUT语句列表读入式"></a>INPUT语句列表读入式</h3><p>适合数据不齐整</p>
-<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable &lt;$&gt; &lt;:|$|~&gt; &lt;<em>informat.</em>&gt; <a href="&#109;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#x40;&#124;&#x40;&#x40;">&#x40;&#124;&#x40;&#x40;</a>;</p>
+<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable &lt;$&gt; &lt;:|$|~&gt; &lt;<em>informat.</em>&gt; <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#58;&#64;&#124;&#x40;&#64;">&#64;&#124;&#x40;&#64;</a>;</p>
 <ul>
 <li>pointer-control: 控制变量读入点起始位置。针对行: #, /。针对列: @, +。</li>
 <li>variable: 变量列表</li>
@@ -1849,14 +2115,14 @@
 </li>
 </ul>
 <h3 id="INPUT语句列读入式"><a href="#INPUT语句列读入式" class="headerlink" title="INPUT语句列读入式"></a>INPUT语句列读入式</h3><p>适合数据齐整的情况</p>
-<p><strong>INPUT</strong> variable&lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#x40;&#124;&#64;&#x40;">&#x40;&#124;&#64;&#x40;</a>;</p>
+<p><strong>INPUT</strong> variable&lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#64;&#x7c;&#64;&#64;">&#64;&#x7c;&#64;&#64;</a>;</p>
 <ul>
 <li>start-column&lt;-end-column&gt;: 变量读入点起止列</li>
 <li>.decimals: 小数位数</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">input name $ 1-9 gender $ 11 age 13-14 location $ 16-23;</div><div class="line">YY Wu     M 25 Shanghai</div><div class="line">Yuanyi Wu M 25 Shanghai</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h3 id="INPUT语句格式读入式"><a href="#INPUT语句格式读入式" class="headerlink" title="INPUT语句格式读入式"></a>INPUT语句格式读入式</h3><p>可以对字符变量指定宽度，以及读入非标准形式对数字，如科学计数法、带货币符号、带千分位等。</p>
-<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; <em>variable</em> <em>informat.</em> <a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#58;&#x40;&#124;&#64;&#x40;">&#x40;&#124;&#64;&#x40;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (<em>informat-list</em>) <a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#x6f;&#58;&#x40;&#x7c;&#64;&#x40;">&#x40;&#x7c;&#64;&#x40;</a>;<br><strong>INPUY</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (&lt;<em>n</em>&gt; informat.) <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#58;&#64;&#x7c;&#64;&#x40;">&#64;&#x7c;&#64;&#x40;</a>;</p>
+<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; <em>variable</em> <em>informat.</em> <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x40;&#124;&#64;&#64;">&#x40;&#124;&#64;&#64;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (<em>informat-list</em>) <a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#x40;&#124;&#64;&#x40;">&#x40;&#124;&#64;&#x40;</a>;<br><strong>INPUY</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (&lt;<em>n</em>&gt; informat.) <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#x40;&#124;&#x40;&#x40;">&#x40;&#124;&#x40;&#x40;</a>;</p>
 <ul>
 <li>(variable-list) (informat-list): 变量格式列表<ul>
 <li>编号范围列表：形如x1,x2,x3可缩写为x1-xn</li>
@@ -1868,7 +2134,7 @@
 <li>&lt;<em>n</em>&gt; informat.: 变量格式列表n表示格式重复的次数</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">/*gender虽然只有1列，但声明时要带上其后的一个空格，age，location类似*/</div><div class="line">input name &amp; $10. gender $2. age 2. +1 location $8. fee comma6.;</div><div class="line">datalines;</div><div class="line">YY Wu  M 25 Shanghai 12,345</div><div class="line">Yuanyi Wu  M 25 Shanghai 54,321</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="INPUT语句命名读入式"><a href="#INPUT语句命名读入式" class="headerlink" title="INPUT语句命名读入式"></a>INPUT语句命名读入式</h3><p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= &lt;$&gt; <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#64;&#x7c;&#x40;&#64;">&#64;&#x7c;&#x40;&#64;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= informat. <a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#58;&#x40;&#x7c;&#x40;&#x40;">&#x40;&#x7c;&#x40;&#x40;</a>;<br><strong>INPUT</strong> variable= &lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#58;&#x40;&#124;&#x40;&#64;">&#x40;&#124;&#x40;&#64;</a>;</p>
+<h3 id="INPUT语句命名读入式"><a href="#INPUT语句命名读入式" class="headerlink" title="INPUT语句命名读入式"></a>INPUT语句命名读入式</h3><p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= &lt;$&gt; <a href="&#109;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#64;&#124;&#x40;&#64;">&#64;&#124;&#x40;&#64;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= informat. <a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;&#58;&#x40;&#x7c;&#x40;&#64;">&#x40;&#x7c;&#x40;&#64;</a>;<br><strong>INPUT</strong> variable= &lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#x3a;&#x40;&#x7c;&#x40;&#x40;">&#x40;&#x7c;&#x40;&#x40;</a>;</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">input name= $ gender= $ age= location=$;</div><div class="line">datalines;</div><div class="line">name=WYY gender=M age=25 location=Shanghai</div><div class="line">name=GY gender=F age=24 location=Shanghai</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h3 id="数据导出"><a href="#数据导出" class="headerlink" title="数据导出"></a>数据导出</h3><p><strong>PROC EXPORT DATA</strong>=&lt;<em>libref.</em>&gt;<em>SAS data set</em>&lt;(<em>SAS data set options</em>)&gt;</p>
 <p><strong>OUTFILE</strong>=”filename”|<strong>OUTTABLE</strong>=”tablename”</p>
@@ -2002,278 +2268,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/08/02/black production survey/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yuanyi Wu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/02/black production survey/" itemprop="url">网贷黑中介调研</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-02T09:31:44+08:00">
-                2017-08-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近进入了互联网金融行业，继续做一些反欺诈相关的工作。知己知彼，百战不殆。</p>
-<h1 id="网贷技术"><a href="#网贷技术" class="headerlink" title="网贷技术"></a>网贷技术</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="客户的详细版征信"><a href="#客户的详细版征信" class="headerlink" title="客户的详细版征信"></a>客户的详细版征信</h3><p>不查征信的小贷，另当别论。要求客户打印详细版征信；没有的话，一定要让客户如是交代最近的申请记录以及单位信息。</p>
-<h3 id="删除贷款相关信息"><a href="#删除贷款相关信息" class="headerlink" title="删除贷款相关信息"></a>删除贷款相关信息</h3><ul>
-<li>贷款App：删除客户手机里所有贷款相关的App</li>
-<li>手机短信：删除所有信贷相关的短信，包括网贷平台的验证码、批准、被拒短信；信用卡催收短信，包括带有“如已还款请忽略”的。</li>
-<li>通话记录：删除一切与信贷公司、银行相关的通话记录。更不可将号码保存到通讯录。</li>
-<li>信用卡账单：删除逾期账单、未满六个月的信用卡的账单、非详版账单，只保留符合要求且用卡状况良好的账单。</li>
-<li>淘宝交易记录：删除充值点卡、购买虚拟物品，非客户本人收货地址、收货人电话与申请人不一致的交易。</li>
-</ul>
-<h2 id="包装客户"><a href="#包装客户" class="headerlink" title="包装客户"></a>包装客户</h2><p>年龄、学历、单位、公积金、社保、征信情况、车贷、房贷、信用卡种类、贷款记录、打卡工资、是否有保单、实名制手机、芝麻分、电商账号。</p>
-<ul>
-<li>年龄：一般18-60周岁，大部分网贷已经限制到22-40周岁。</li>
-<li>征信：纯白户或黑户，做黑白户小贷的口子。</li>
-<li>信用卡：3-6月或以上的客户，大部分口子都可以操作。</li>
-<li>账单：一些口子要6个月以上的连续账单，如叮当贷、爱钱进、宜人极速贷。</li>
-<li>车贷、房贷：可以做易分期，也可以办卡。办卡的话，基本上都可以下。</li>
-<li>保单：平安人寿的保单贷、太平洋的保单贷。</li>
-<li>社保、公积金：有地区限制，51公积金app，宜人贷公积金模式、网易小贷。</li>
-<li>学历：浦发青春贷、闪银，交通、光大办信用卡。</li>
-<li>在校大学生：本科学历可以做10-50万贷款。</li>
-</ul>
-<h2 id="贷款实操"><a href="#贷款实操" class="headerlink" title="贷款实操"></a>贷款实操</h2><ul>
-<li>单位好直接使用，无单位就要包装单位。</li>
-<li>做工牌认证、银行流水账单。</li>
-<li>培训客户，做好回访。</li>
-<li>坐等下款，收钱。</li>
-</ul>
-<h2 id="申请贷款的10个细节"><a href="#申请贷款的10个细节" class="headerlink" title="申请贷款的10个细节"></a>申请贷款的10个细节</h2><ul>
-<li>实名制手机：每个月必须有通话记录，证明这个电话是经常使用的。</li>
-<li>联系人：必须能在最近通话记录中找到的联系人。</li>
-<li>工作信息：很多网贷会共享资料，因此工作信息不要经常换，最好提供一年以上的。如果没有工作，自己准备一个固话，搜索附近的公司（网上没电话的那种），用这家公司的名字在网上发布招聘信息，留下准备的固化。当然工作合同证明也可以这样。</li>
-<li>信用卡账单邮箱：账单必须连续多月，若有多张信用卡，保留信用最好的一张卡就行。</li>
-<li>阿里系验证：淘宝支付宝一定要实名验证，最近两个月一定要有实物消费记录。保留一个常用地址，其他全部删除。</li>
-<li>工作证明、名片、工牌：</li>
-<li>回访电话：一定要接到电话，有的网贷公司两次没接到就会直接拒。回答问题一定不要犹豫，必须和资料相符。</li>
-<li>回访联系人：回访联系人的网贷不是很急不用去申请。申请前对手机里的联系人进行整理，并提前打好招呼。</li>
-<li>回访内容<ul>
-<li>父母：</li>
-<li>公司：本人接最好，本人没接到，一定要让接电话的人说是单位电话。</li>
-<li>配偶：一定是本人接听，不是本人则100%拒贷。</li>
-<li>申请人：聊工作，聊生活，也可以反问能否批，什么时候批。</li>
-</ul>
-</li>
-<li>信用卡回访<ul>
-<li>资料写小纸条上，随身携带以免忘记。</li>
-<li>不清楚如何回答时，借口信号不好，过几分钟再打来，趁机熟悉资料。</li>
-<li>卡片寄哪里？一定要寄往资料上的公司或住址。</li>
-<li>要和申卡时填写的联系人提前说明，以免挂掉。</li>
-<li>问认识单位谁谁谁时，若不认识，可回答“或许有，公司人多不熟悉”。</li>
-</ul>
-</li>
-</ul>
-<h2 id="不上征信的小贷"><a href="#不上征信的小贷" class="headerlink" title="不上征信的小贷"></a>不上征信的小贷</h2><p>宜人贷、功夫贷、拍拍贷、信用钱包、发薪贷、现金巴士、亲亲小贷、达飞云贷、手机贷、小花钱包贷、闪电借款、用钱宝、你我贷、指尖贷、曹操贷、积木盒子、麦芽贷、闪银、名校贷、神灯小贷、玖富叮当贷、么么贷、魔法现金、给你花、屌丝贷、51人品贷、融360、月光足</p>
-<h2 id="上征信的贷款"><a href="#上征信的贷款" class="headerlink" title="上征信的贷款"></a>上征信的贷款</h2><p>微粒贷(深圳前海微众银行)、借呗(网商贷)、捷信(中银、北银、马上)、消费金融、佰仟金融(哈尔滨银行)、省呗(包商银行)、拉卡拉、卡卡贷、贷款王、证大、中安信业、平安、布丁小贷、豆豆钱、唯信旗下系列产品、信而富现金贷、马上金融、安逸花</p>
-<h2 id="不查征信的网贷"><a href="#不查征信的网贷" class="headerlink" title="不查征信的网贷"></a>不查征信的网贷</h2><p>手机贷、发薪贷、信用钱包、现金巴士、拍拍贷、人人贷、信闪贷、用钱宝、鼎及贷、mo9、曹操贷、亲亲小贷、原子贷、闪银、嗨秒贷、闪电借款、钱站、读秒、我来贷、指尖贷、小花钱包、小米金融、么么贷、魔法现金贷、给你花、趣借吧、玖富叮当贷、功夫贷、达飞云贷、51人品贷、58消费金融、融360、月光足、信而富现金贷</p>
-<h2 id="无视黑白的贷款"><a href="#无视黑白的贷款" class="headerlink" title="无视黑白的贷款"></a>无视黑白的贷款</h2><p>拍拍贷、现金巴士、手机贷、马上金融、父母贷、发薪贷、闪银奇异、平安普惠、我来贷、给你花、信闪贷、贷款王、用钱宝、鼎及贷、mo9、曹操贷、亲亲小贷、原子贷、嗨秒贷、微信马上贷</p>
-<h2 id="信用卡口子"><a href="#信用卡口子" class="headerlink" title="信用卡口子"></a>信用卡口子</h2><p>卡卡贷、闪电借款、钱站、宜人贷、省呗、积木盒子、读秒贷、你我贷-嘉卡贷、功夫贷、51人品贷、小赢卡贷、还呗</p>
-<h2 id="公积金口子"><a href="#公积金口子" class="headerlink" title="公积金口子"></a>公积金口子</h2><ul>
-<li>江苏银行app：金E融 (地区限制：江苏)</li>
-<li>51公积金app：很多公积金贷款通道</li>
-<li>网易小贷：微信关注</li>
-<li>你我贷app：嘉英贷</li>
-<li>宜人贷app：公积金模式</li>
-<li>中信银行公积金贷款：网银申请，公积金缴存两年以上</li>
-<li>有鱼公积金app：公积金缴存6个月以上</li>
-</ul>
-<p>防止银行降额封卡和冻结的方法：</p>
-<ul>
-<li>预约分期(打电话给银行客服，这比消费预约3-6期的分期)</li>
-<li>全额还款<ul>
-<li>账单日和最后还款日的修改功能</li>
-<li>最后还款日后已经开始收利息了</li>
-<li>免息天数 = (最后还款日 - 账单日)[20天] + 银行宽限期限[2-3天]</li>
-</ul>
-</li>
-<li>选择五台不同商户的POS机(一机一码)，五台一组，一天两到三次，循环的刷出来再循环的还进去。分10笔或者11笔，周期为10天。最后还款日前三天完成。甚至有可能提升额度。</li>
-</ul>
-<p>消除不良记录</p>
-<ul>
-<li>银行有征信更新的权限</li>
-<li>银行权限内，自己都可以处理</li>
-<li>银行权限外，谁都不行</li>
-</ul>
-<p>三类人群</p>
-<ul>
-<li>有信用卡，有申请记录，征信报告有记录</li>
-<li>有在银行递交过申请资料</li>
-<li>三无人员，无向银行递交申请资料，无网贷</li>
-</ul>
-<h2 id="中国建设银行"><a href="#中国建设银行" class="headerlink" title="中国建设银行"></a>中国建设银行</h2><h3 id="优质客户办卡"><a href="#优质客户办卡" class="headerlink" title="优质客户办卡"></a>优质客户办卡</h3><ol>
-<li>申请一张建设银行龙腾理财金卡(要求开通网银，获得U盾、密码器)<ul>
-<li>功能：贷卡合一、理财、储蓄</li>
-<li>条件：存五万</li>
-<li>漏洞：小城市小网点可以免费办理</li>
-</ul>
-</li>
-<li>把所有钱都集中到建设银行</li>
-<li>购买建设银行的理财(速盈理财)</li>
-<li>购买速盈理财7天，产生一个周期的收益。7天后收到短信“您是我行理财优质客户，邀请申请龙卡JOY”。如果没有收到短信，把理财的钱取出来，再买一个周期。</li>
-</ol>
-<h3 id="建设银行代发工资、团办申卡"><a href="#建设银行代发工资、团办申卡" class="headerlink" title="建设银行代发工资、团办申卡"></a>建设银行代发工资、团办申卡</h3><h4 id="有公司的人-代发工资业务"><a href="#有公司的人-代发工资业务" class="headerlink" title="有公司的人[代发工资业务]"></a>有公司的人[代发工资业务]</h4><ul>
-<li>条件<ul>
-<li>必须有公司正常营业，正常注册时间越久越好</li>
-<li>人数：30人左右(各地人数不一样)</li>
-<li>被代发人必须在建设银行具有储蓄卡</li>
-<li>代发金额：3600 - 8000</li>
-<li>代发时间：6-12个月</li>
-<li>每月代发时间：给员工发工资的前一天，把代发的钱打入银行代发账号</li>
-<li>代发费用：建设银行每个人4-5元</li>
-</ul>
-</li>
-<li>申请代发金额的1.5-2倍的信用卡。10个人，每人代发3600，下个月每人可申请3万的信用卡。公司就有30万可以使用。</li>
-<li>工资袋最高额度30万</li>
-</ul>
-<h4 id="白户"><a href="#白户" class="headerlink" title="白户"></a>白户</h4><ul>
-<li>众筹：筹人、筹资金、筹公司。然后按第一种方法。</li>
-</ul>
-<h3 id="有建设银行ETC信用卡的人"><a href="#有建设银行ETC信用卡的人" class="headerlink" title="有建设银行ETC信用卡的人"></a>有建设银行ETC信用卡的人</h3><p>区县换卡</p>
-<h2 id="建设银行实操"><a href="#建设银行实操" class="headerlink" title="建设银行实操"></a>建设银行实操</h2><ol>
-<li>下载中国建设银行客户端</li>
-<li>绑定龙腾理财金卡的手机注册登陆</li>
-<li>买入速盈理财7天，直到收到邀请短信。</li>
-<li>信用卡管理页面中可以看到预审批额度查询。如果额度低，循环买卖理财。</li>
-<li>信用卡管理页面中找到卡片推荐，35岁以下的龙卡JOY。</li>
-</ol>
-<h2 id="造假"><a href="#造假" class="headerlink" title="造假"></a>造假</h2><ul>
-<li>工作<ul>
-<li>挂靠熟人公司</li>
-<li>自行挂靠：借助企信宝、天眼查</li>
-</ul>
-</li>
-<li>座机<ol>
-<li>找移动联通购买座机</li>
-<li>招淘宝做彩铃</li>
-<li>淘宝买座机绑定手机呼叫转移</li>
-</ol>
-</li>
-<li>住宅<ul>
-<li>借助58同城、赶集网</li>
-</ul>
-</li>
-<li>控卡 异地挂靠申请</li>
-</ul>
-<h4 id="提额"><a href="#提额" class="headerlink" title="提额"></a>提额</h4><p>绑定建设银行的手机，打95533。转2号线，嘟一声立刻挂断。编辑短信<code>CCTE#卡号后四位#额度的两倍</code>发送到95533。</p>
-<h3 id="交通银行第三次融资"><a href="#交通银行第三次融资" class="headerlink" title="交通银行第三次融资"></a>交通银行第三次融资</h3><ol>
-<li>微信添加“交通银行信用卡|买单吧”公众号</li>
-<li>点击“方便用”-“分期借款”-“好享贷”-“登录”</li>
-<li>有缘分告诉你怎么刷爆好享贷<h3 id="怎么使用"><a href="#怎么使用" class="headerlink" title="怎么使用"></a>怎么使用</h3></li>
-</ol>
-<ul>
-<li>分6-12期。分期越久，提额周期越久，风控风险越高。</li>
-<li>3-5台pos机将固定额度刷出来；好享贷分到固定额度，再多笔刷出来</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2323,7 +2317,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

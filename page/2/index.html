@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/14/利用python 3进行数据分析/">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/19/Loan/规则引擎与Drools/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuanyi Wu">
@@ -306,7 +306,263 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/14/利用python 3进行数据分析/" itemprop="url">利用python 3.6进行数据分析</a></h1>
+                <a class="post-title-link" href="/2017/09/19/Loan/规则引擎与Drools/" itemprop="url">规则引擎与Drools</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-19T12:00:46+08:00">
+                2017-09-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Loan/" itemprop="url" rel="index">
+                    <span itemprop="name">Loan</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h2><h3 id="1-1-规则"><a href="#1-1-规则" class="headerlink" title="1.1 规则"></a>1.1 规则</h3><ul>
+<li>每条规则都是一组条件决定的一系列结果</li>
+<li>一条规则可能与其他规则共同决定最终结果</li>
+<li>可能存在条件互相交叉的规则，此时有必要规定规则的优先级</li>
+</ul>
+<p>规则作为一种知识，其典型运用就是通过实际情况，根据给定的一组规则，得出结论。这个结论可能是某种静态的结果，也可能是需要进行的一组操作。</p>
+<p>规则语言可以分为结构化的（Structured)和基于标记的（Markup，通常为xml）。</p>
+<p>常见的结构化的规则描述语言:</p>
+<ul>
+<li>srl（Structured Rule Language）</li>
+<li>drl（Drools Rule Language）</li>
+</ul>
+<p>常见的基于标记的规则描述语言:</p>
+<ul>
+<li>RuleML（Rule Markup Language）</li>
+<li>SRML（Simple Rule Markup Language）</li>
+<li>BRML（Business Rules Markup Language）</li>
+<li>SWRL（A Semantic Web Rule Language）</li>
+</ul>
+<h3 id="1-2-推理机"><a href="#1-2-推理机" class="headerlink" title="1.2 推理机"></a>1.2 推理机</h3><p>运用过程叫做推理。如果由程序来处理推理过程，那么这个程序就叫做推理机/推理引擎（Inference Engine）。推理机是专家系统（专家系统是人工智能的一个分支）的核心模块。</p>
+<p>推理引擎根据知识表示的不同采取的控制策略也是不同的，常见的类型包括基于神经网络、基于案例和基于规则的推理机。</p>
+<h3 id="1-3-规则引擎"><a href="#1-3-规则引擎" class="headerlink" title="1.3 规则引擎"></a>1.3 规则引擎</h3><p>基于规则的推理机易于理解、易于获取、易于管理，被广泛采用。这种推理引擎被称为“规则引擎”。</p>
+<p>在规则引擎中，将知识表达为规则（rules），要分析的情况定义为事实（facts）。二者在内存中的存储分别称为Production Memory和Working Memory。</p>
+<ul>
+<li>rules和facts：规则引擎接受的输入参数</li>
+<li>Pattern Matcher：根据facts找到匹配的rules<ul>
+<li>正向推理（Forward-Chaining）：正向推理也叫演绎法，由事实驱动，从 一个初始的事实出发，不断地应用规则得出结论。首先在候选队列中选择一条规则作为启用规则进行推理，记录其结论作为下一步推理时的证据。如此重复这个过程，直到再无可用规则可被选用或者求得了所要求的解为止。</li>
+<li>反向推理（Backward-Chaining）：反向推理也叫归纳法，由目标驱动，首先提出某个假设，然后寻找支持该假设的证据，若所需的证据都能找到，说明原假设是正确的；若无论如何都找不到所需要的证据，则说明原假设不成立，此时需要另做新的假设。</li>
+</ul>
+</li>
+<li>Agenda：管理PatternMatcher挑选出来的规则的执行次序</li>
+<li>Execution Engine：在外围负责根据Agenda输出的rules执行具体的操作</li>
+</ul>
+<h3 id="1-4-规则引擎的作用"><a href="#1-4-规则引擎的作用" class="headerlink" title="1.4 规则引擎的作用"></a>1.4 规则引擎的作用</h3><p>规则引擎可以将规则的定义从代码中分离出来，将推理过程封装到规则引擎内部进行处理，这带来几个好处：</p>
+<ul>
+<li>规则外部化，即有利于规则知识的复用，也可避免改变规则时带来的代码变更问题</li>
+<li>由规则引擎使用某种算法进行推理过程，不需要编写复杂晦涩的逻辑判断代码</li>
+<li>开发人员的不需要过多关注逻辑判断，可以专注于逻辑处理</li>
+</ul>
+<h2 id="2-Drools"><a href="#2-Drools" class="headerlink" title="2 Drools"></a>2 Drools</h2><p><a href="https://www.tutorialspoint.com/drools/pdf/drools_sample_drools_program.pdf" target="_blank" rel="external">DROOLS - SAMPLE DROOLS PROGRAM</a></p>
+<h3 id="2-1-概览"><a href="#2-1-概览" class="headerlink" title="2.1 概览"></a>2.1 概览</h3><p>完整的drl文件包含以下几个部分：package，import，declares，globals，functions，queries，rules。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.sample</div><div class="line"><span class="keyword">import</span> com.sample.DroolsTest.Message;</div><div class="line"></div><div class="line">rule <span class="string">"Hello World"</span></div><div class="line">  when</div><div class="line">    m : Message(status == Message.HELLO, myMessage : message)</div><div class="line">  then</div><div class="line">    System.out.println(myMessage);</div><div class="line">    m.setMessage(<span class="string">"Goodbye cruel world"</span>);</div><div class="line">    m.setStatus(Message.GOODBYE);</div><div class="line">    update(m);</div><div class="line">end</div><div class="line"></div><div class="line">rule <span class="string">"GoodBye"</span></div><div class="line">  <span class="function">when</span></div><div class="line">    <span class="title">Message</span><span class="params">(status==Message.GOODBYE, myMessage:message)</span></div><div class="line">   then</div><div class="line">    System.out.<span class="title">println</span><span class="params">(myMessage)</span>;</div><div class="line">end</div></pre></td></tr></table></figure>
+<h3 id="2-2-package和import"><a href="#2-2-package和import" class="headerlink" title="2.2 package和import"></a>2.2 package和import</h3><p>与Java类似，drools头部必须要有一个package声明和import声明，且package声明必须放在规则文件的第一行。</p>
+<h3 id="2-3-规则定义"><a href="#2-3-规则定义" class="headerlink" title="2.3 规则定义"></a>2.3 规则定义</h3><p>一个规则通常包含三个部分：attribute（属性），LHS（条件部分），RHS（结果部分）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">rule <span class="string">"name"</span></div><div class="line">  attributes</div><div class="line">  when</div><div class="line">    LHS</div><div class="line">  then</div><div class="line">    RHS</div><div class="line">end</div></pre></td></tr></table></figure>
+<h4 id="2-3-1-LHS（条件部分）"><a href="#2-3-1-LHS（条件部分）" class="headerlink" title="2.3.1 LHS（条件部分）"></a>2.3.1 LHS（条件部分）</h4><ul>
+<li>可以包含多个条件，若条件部分为空的话，引擎自动添加一个eval(true)的条件。</li>
+<li>多个条件之间可使用and或or连接，默认是and关系。</li>
+<li>条件的语法：[绑定变量名:]\Object([field约束])<ul>
+<li>绑定变量名：可在该LHS后续的条件中引用</li>
+<li>field约束：当前对象里相关字段的条件限制，多个约束之间用”&amp;&amp;”(and)，”||”(or)和”,”(and)连接。约束中可使用的比较操作符包括：&gt;, &gt;=, &lt;, &lt;=, ==, !=, contains, not contains, memberof, not memberof, matches, not matchers</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">when</div><div class="line">  order:Order();</div><div class="line">then</div><div class="line">  ...</div><div class="line"></div><div class="line">when</div><div class="line">  $room : Room( )  #变量名可以是$开头</div><div class="line">  $sprinkler : Sprinkler( room == $room, on == true )</div><div class="line">  not Fire( room == $room )</div><div class="line">then</div><div class="line">  modify( $sprinkler ) &#123; setOn( false ) &#125;;</div><div class="line">  System.out.println( "Turn off the sprinkler for room " + $room.getName() );</div></pre></td></tr></table></figure>
+<h4 id="2-3-2-RHS（结果部分）"><a href="#2-3-2-RHS（结果部分）" class="headerlink" title="2.3.2 RHS（结果部分）"></a>2.3.2 RHS（结果部分）</h4><ul>
+<li>RHS部分定义了当LHS满足时要进行的操作</li>
+<li>RHS中可以编写代码，可以使用LHS部分中定义的绑定变量名以及drl头部定义的全局变量。</li>
+<li>虽然可以在RHS中直接写java代码，但不建议代码中有条件判断，否则就违背了使用规则的初衷。</li>
+</ul>
+<h5 id="2-3-2-1-使用宏函数"><a href="#2-3-2-1-使用宏函数" class="headerlink" title="2.3.2.1 使用宏函数"></a>2.3.2.1 使用宏函数</h5><p>RHS中可以使用宏函数对工作空间进行操作。当调用宏函数后，所有为设置“no-loop”属性的规则都会呗重新分配，符合条件的重新触发。</p>
+<p>宏函数都是StatefulSession中定义的方法，包括：</p>
+<ul>
+<li>insert：将一个Fact对象插入到当前的Working Memory</li>
+<li>update：对当前Working Memory中的Fact进行更新</li>
+<li>retract：从Working Memory中删除某个Fact对象</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">when</div><div class="line">  ...</div><div class="line">then</div><div class="line">  Customer cus=new Customer();</div><div class="line">  cus.setName("张三");</div><div class="line">  insert(cus);</div><div class="line"></div><div class="line">when </div><div class="line">  $customer:Customer(name=="张三", age&lt;10)</div><div class="line">then</div><div class="line">  $customer.setAge(customer.getAge()+1);</div><div class="line">  update(customer);</div><div class="line"></div><div class="line">when</div><div class="line">  $customer:Customer(name=="张三",age&lt;10)</div><div class="line">then</div><div class="line">  Customer customer=new Customer();</div><div class="line">  customer.setName("张三");</div><div class="line">  customer.setAge($customer.getAge()+1);</div><div class="line">  # 用新对象替换Working Memory中的旧对象</div><div class="line">  update(drools.getWorkingMemory().getFactHandleByIdentity($customer),customer);</div><div class="line"></div><div class="line"></div><div class="line">when</div><div class="line">  $customer:Customer(name=="张三")</div><div class="line">then</div><div class="line">  retract($customer);</div></pre></td></tr></table></figure>
+<h5 id="2-3-2-2-modify代码块"><a href="#2-3-2-2-modify代码块" class="headerlink" title="2.3.2.2 modify代码块"></a>2.3.2.2 modify代码块</h5><p>modify代码块用于快速修改并更新(update)某个 Fact 对象的多个属性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">modify(fact-expression)&#123;</div><div class="line">  &lt;修改 Fact 属性的表达式&gt;[,&lt;修改 Fact 属性的表达式&gt;*]</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">when</div><div class="line">  $customer:Customer(name==<span class="string">"张三"</span>,age==<span class="number">20</span>);</div><div class="line"><span class="function">then</span></div><div class="line">  <span class="title">modify</span><span class="params">($customer)</span>&#123;</div><div class="line">    setId(<span class="string">"super man"</span>),</div><div class="line">    setAge(<span class="number">30</span>)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h5 id="2-3-2-3-drools宏对象"><a href="#2-3-2-3-drools宏对象" class="headerlink" title="2.3.2.3 drools宏对象"></a>2.3.2.3 drools宏对象</h5><p>通过使用drools宏对象可以实现在规则文件里直接访问 Working Memory，从而获取对当前的 Working Memory的更多控制。</p>
+<p>drools宏对象的常用方法包括：</p>
+<ul>
+<li>drools.getWorkingMemory()：获取当前的 WorkingMemory对象</li>
+<li>drools.halt()：在当前规则执行完成后，不再执行 其它未执行的规则</li>
+<li>drools.getRule()：得到当前的规则对象</li>
+<li>drools.insert(new Object)：向当前的WorkingMemory 当中插入指定的对象，功能与宏函数insert相同</li>
+<li>drools.update(new Object)：更新当前的WorkingMemory中指定的对象，功能与宏函数update相同</li>
+<li>drools.update(FactHandle Object)：更新当前的WorkingMemory中指定的对象，功能与宏函数update相同</li>
+<li>drools.retract(new Object)：从当前的WorkingMemory中删除指 定的对象，功能与宏函数retract相同</li>
+</ul>
+<h5 id="2-3-2-4-kcontext宏对象"><a href="#2-3-2-4-kcontext宏对象" class="headerlink" title="2.3.2.4 kcontext宏对象"></a>2.3.2.4 kcontext宏对象</h5><p>用来得到当前的KnowledgeRuntime对象，KnowledgeRuntime对象可以实现与引擎的各种交互。</p>
+<h4 id="2-3-3-规则属性"><a href="#2-3-3-规则属性" class="headerlink" title="2.3.3 规则属性"></a>2.3.3 规则属性</h4><ul>
+<li>salience：设置规则执行的优先级，默认值为0。数字越大越先执行，可以设置为负数，数字相同的使用随机顺序。设置该属性<code>salience 10</code>.</li>
+<li>no-loop：默认为false。设置为true时，表示该规则只会被引擎检查一次。引擎内部对Fact更新时，忽略本规则的再次检查。</li>
+<li>date-effective：设置规则的开始生效日期，默认接受“dd-MMM-yyyy”格式的字符串。修改日期格式：<code>System.setProperty(&quot;drools.dateformat&quot;,&quot;yyyy-MM-dd&quot;)</code></li>
+<li>data-expires：设置规则的过期日期，默认接受“dd-MMM-yyyy”格式的字符串。修改日期格式：<code>System.setProperty(&quot;drools.dateformat&quot;,&quot;yyyy-MM-dd&quot;)</code>。</li>
+<li>enabled：设置规则是否可用，默认为true。</li>
+<li>dialect：设置规则中使用的编程语言，默认为java，可设置为mvel。获取该属性的设置：<code>drools.getRule().getDialect()</code>，设置该属性<code>dialect mvel</code></li>
+<li>duration：指定延迟时间，在另一个线程中触发规则，单位为毫秒。</li>
+<li>activation-group：为规则划指定一个活动组（组名为字符串）。同一个活动组中的规则只执行一个，根据优先级(salience)来决定执行哪一个规则。</li>
+<li>agenda-group：为规则指定一个议程(agenda)组。指定了议程组的规则只有在该议程组得到焦点时才被触发。</li>
+<li>auto-focus：指定了auto-focus属性为true，则该规则自动得到焦点。</li>
+<li>ruleflow-group：指定规则流组。</li>
+<li>lock-on-active：当在规则上使用ruleflow-group属性或agenda-group属性的时候，将lock-on-action属性 的值设置为 true，可避免因某些 Fact 对象被修改而使已经执行过的规则再次被激活执行。</li>
+<li>when</li>
+</ul>
+<h3 id="2-4-注释"><a href="#2-4-注释" class="headerlink" title="2.4 注释"></a>2.4 注释</h3><ul>
+<li>多行注释：<code>/*注释*/</code></li>
+<li>单行注视：<code>#注释</code>或 <code>//注释</code></li>
+</ul>
+<h3 id="2-5-类型声明"><a href="#2-5-类型声明" class="headerlink" title="2.5 类型声明"></a>2.5 类型声明</h3><p>todo</p>
+<h3 id="2-6-全局变量"><a href="#2-6-全局变量" class="headerlink" title="2.6 全局变量"></a>2.6 全局变量</h3><p>todo</p>
+<h3 id="2-7-函数和import-function"><a href="#2-7-函数和import-function" class="headerlink" title="2.7 函数和import function"></a>2.7 函数和import function</h3><h4 id="2-7-1-函数的定义和使用"><a href="#2-7-1-函数的定义和使用" class="headerlink" title="2.7.1 函数的定义和使用"></a>2.7.1 函数的定义和使用</h4><p>函数是定义在规则文件中的一段代码，用于将规则文件中会被若干个规则复用的业务操作封装起来，减少规则编写的工作量。函数的可见范围是规则函数所在的规则文件。</p>
+<p>函数以function定义。可以是void，也可以有返回值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> test</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"></div><div class="line"><span class="function">function <span class="keyword">void</span> <span class="title">setOrder</span><span class="params">(Customer customer, <span class="keyword">int</span> orderSize)</span> </span>&#123;</div><div class="line">  List ls = <span class="keyword">new</span> ArrayList();</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;orderSize; i++)&#123;</div><div class="line">    Order order=<span class="keyword">new</span> Order();</div><div class="line">    ls.add(order);</div><div class="line">  &#125;</div><div class="line">  customer.setOrder(ls);</div><div class="line">&#125;</div><div class="line"></div><div class="line">rule <span class="string">"rule1"</span></div><div class="line">  when</div><div class="line">    $customer:Customer()</div><div class="line">  <span class="function">then</span></div><div class="line">    <span class="title">setOrder</span><span class="params">($customer,<span class="number">5</span>)</span>;</div><div class="line">    System.out.println(<span class="string">"rule 1 customer has order size:"</span>+$customer.getOrders().size());</div><div class="line">end</div><div class="line"></div><div class="line">rule <span class="string">"rule2"</span></div><div class="line">  when</div><div class="line">    $customer :Customer()</div><div class="line">  <span class="function">then</span></div><div class="line">    <span class="title">setOrder</span><span class="params">($customer,<span class="number">10</span>)</span>;</div><div class="line">    System.out.println(<span class="string">"rule 2 customer has order size:"</span>+$customer.getOrders().size());</div><div class="line">end</div></pre></td></tr></table></figure>
+<h4 id="2-7-2-引入静态方法"><a href="#2-7-2-引入静态方法" class="headerlink" title="2.7.2 引入静态方法"></a>2.7.2 引入静态方法</h4><p>实际应用当中，可以考虑使用在java类当中定义静态方法的办法来替代在规则文件当中定义函数。</p>
+<p>Drools 提供了一个特殊的 import 语句：import function。通过该 import 语句，可以实现将一个java类中静态方法引入到一个规则文件当中，使得该文件当中的规则可以像使用普通的Drools函数一样来使用java类中某个静态方法。</p>
+<h3 id="2-8-查询定义"><a href="#2-8-查询定义" class="headerlink" title="2.8 查询定义"></a>2.8 查询定义</h3><p>查询用于根据条件在当前的 WorkingMemory 当中查找 Fact。</p>
+<p>Drools 当中查询可分为两种：</p>
+<ul>
+<li>不需要外部传入参数</li>
+<li>需要外部传入参数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">query <span class="string">"testQuery"</span></div><div class="line">  customer:Customer(age&gt;<span class="number">30</span>,orders.size &gt;<span class="number">10</span>)</div><div class="line">end</div><div class="line"></div><div class="line">query <span class="string">"testQuery2"</span>(<span class="keyword">int</span> $age,String $gender)</div><div class="line">  customer:Customer(age&gt;$age,gender==$gender)</div><div class="line">end</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/14/DataAnalysis/利用python 3进行数据分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WYY's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/14/DataAnalysis/利用python 3进行数据分析/" itemprop="url">利用python 3.6进行数据分析</a></h1>
         
 
         <div class="post-meta">
@@ -341,8 +597,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python3/" itemprop="url" rel="index">
-                    <span itemprop="name">Python3</span>
+                  <a href="/categories/Data-Analysis/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Analysis</span>
                   </a>
                 </span>
 
@@ -383,6 +639,1214 @@
             <h1 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pip3 install numpy</div><div class="line">pip3 install scipy</div><div class="line">pip3 install pandas</div><div class="line">pip3 install matplotlib</div></pre></td></tr></table></figure>
 <h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy, matplotlib</div><div class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> pet</div><div class="line">plt.plot(numpy.arange(<span class="number">10</span>))</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
 <h1 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> scipy</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> json</div><div class="line"></div><div class="line">records = [json.loads(line) <span class="keyword">for</span> line <span class="keyword">in</span> open(path)]</div><div class="line">time_zones = [rec[<span class="string">'tz'</span>] <span class="keyword">for</span> rec <span class="keyword">in</span> records <span class="keyword">if</span> <span class="string">'tz'</span> <span class="keyword">in</span> rec]</div><div class="line"></div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_counts2</span><span class="params">(sequence)</span>:</span></div><div class="line">    counts = defaultdict(int)</div><div class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> sequence:</div><div class="line">        counts[x] +=<span class="number">1</span></div><div class="line">    <span class="keyword">return</span> counts</div><div class="line"><span class="comment"># sequence=[0,0,0,0,1,1,1,1,1]</span></div><div class="line"><span class="comment"># d = get_counts2(sequence)</span></div><div class="line"><span class="comment"># &gt;&gt;&gt; defaultdict(int, &#123;0: 4, 1: 5&#125;)</span></div><div class="line"><span class="comment"># dcit(d.items())</span></div><div class="line"><span class="comment"># &gt;&gt;&gt; &#123;0: 4, 1: 5&#125;</span></div><div class="line"></div><div class="line">counts = get_counts(time_zones)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">top_counts</span><span class="params">(count_dcit, n=<span class="number">10</span>)</span>:</span></div><div class="line">   value_key_pairs = [(count, tz) <span class="keyword">for</span> tz, count <span class="keyword">in</span> count_dict.items()]</div><div class="line">   value_key_pairs.sort()</div><div class="line">   <span class="keyword">return</span> value_key_pairs[-n:]</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WYY's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/13/SAS/SAS编程演义8/" itemprop="url">《SAS编程演义》笔记（8章）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-13T17:43:19+08:00">
+                2017-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SAS/" itemprop="url" rel="index">
+                    <span itemprop="name">SAS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="菱花荇蔓随双桨：百变绘图"><a href="#菱花荇蔓随双桨：百变绘图" class="headerlink" title="菱花荇蔓随双桨：百变绘图"></a>菱花荇蔓随双桨：百变绘图</h2><h3 id="ODS-Graphics-System"><a href="#ODS-Graphics-System" class="headerlink" title="ODS Graphics System"></a>ODS Graphics System</h3><ul>
+<li>ODS Graphics System的语法简介统一，易于学习</li>
+<li>ODS Graphics System已包含在BASE模块中，不像GRAPH还要单独购买</li>
+</ul>
+<p>ODS Graphics System的五大部件：</p>
+<ul>
+<li>ODS Graphics 语句<ul>
+<li>通过ON或OFF开关启用ODS Graphics</li>
+<li>通过统计过程选项PLOTS选项创建ODS Graphics</li>
+<li>通过BRODER、WIDTH、HEIGHT、OUTPUTFMT、IMAGENAME等控制边框、宽、高、输出格式、以及图片名称。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/*ODS GRAPHICS语句设置图片的宽、高、边界、名字、格式，并要求绘制累积事件*/</div><div class="line">ods graphics on / width=20cm height=18cm noborder imagename=&quot;failureplot&quot; outputfmt=jpg;</div><div class="line">proc lifetest data=sashelp.bmt plots=(s(f));</div><div class="line">    time t*status(0);</div><div class="line">    strata group;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<ul>
+<li>ODS Graphics设计器：通过图形化交互式界面创建、设计个性化的ODS Graphics，并自动生成GTL<ul>
+<li>运行SAS自带的宏程序%sddesign来启动</li>
+<li>菜单-&gt;工具-&gt;SAS ODS Graphics设计器启动</li>
+</ul>
+</li>
+<li>ODS Graphics编辑器：通过图形化的交互式界面修改ODS Graphics的元素</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">/*在ODS Destination中用sge-on来打开，再生成ODS Graphics时，就会生成可编辑的SGE文件*/</div><div class="line">ods html sge=on;</div><div class="line">ods graphics on / width=20cm height=18cm noborder imagename=&quot;failureplot&quot; outputfmt=jpg;</div><div class="line">proc lifetest data=sashelp.bmt plots=(s(f));</div><div class="line">    time t*status(0);</div><div class="line">    strata group;</div><div class="line">run;</div><div class="line">ods html sge=off;</div></pre></td></tr></table></figure>
+<ul>
+<li>ODS Graphics 过程：通过简单、简洁的语法创建各式各样的统计图形，包括5个过程：<ul>
+<li>SGPLOT：创建多种多样的单个图（单格图）</li>
+<li>SGPANEL：创建面板图（多格图）</li>
+<li>SGSCATTER：创建矩阵散点图</li>
+<li>SGDESIGN：基于SAS ODS Graphics 设计器文件创建图形</li>
+<li>SGRENDER：基于图形模版语言（GTL）和SGE文件创建图形</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.class;</div><div class="line">    scatter x=height y=weight;</div><div class="line">    reg x=height y=weight / cli clm;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.class;</div><div class="line">    vbar sex / respose=weight;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>SAS GTL：图形模版语言，一种创建复杂的、个性化图形的绘图语言。具体使用时先通过TEMPLATE过程定义，再通过SGRENDER加载渲染。</p>
+<ol>
+<li>定义，在PROC TEMPLATE过程中用DEFINE STARTGRAPH语句块定义绘图模版。</li>
+</ol>
+<p><strong>proc template</strong>;</p>
+<p>​    define statgraph template-name;</p>
+<p>​        begin graph / &lt;options&gt;;</p>
+<p>​            &lt;gtl statements to define the graph&gt;</p>
+<p>​        endgraph;</p>
+<p>​    end;</p>
+<p><strong>run</strong>;</p>
+<ol>
+<li>渲染，用PROC SGRENDER关联绘图数据与绘图模版，渲染生成图形。</li>
+</ol>
+<p><strong>proc serenader</strong> data=data-set-name</p>
+<p>​    template=template-name;</p>
+<p><strong>run</strong>;</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">proc template;</div><div class="line">    define statgraph scatterreg;</div><div class="line">        begingraph;</div><div class="line">            layout overlay;</div><div class="line">                scatterplot x=height y=weight;</div><div class="line">                regressionplot x=height y=weight / name=&quot;fitline&quot; legendlabel=&quot;Regression line&quot; clm=&quot;clm&quot; cli=&quot;cli&quot;;</div><div class="line">                modelband &quot;clm&quot; / name=&quot;bandclm&quot; legendlabel=&quot;95% CLM&quot; datatransparency=0.3;</div><div class="line">                modelband &quot;cli&quot; / name=&quot;bandcli&quot; legendlabel=&quot;95% CLI&quot; display=(outline);</div><div class="line">                discreatelegend &quot;fitline&quot; &quot;bandclm&quot; &quot;bandcli&quot;;</div><div class="line">            endlayout;</div><div class="line">        endgraph;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgrender data=sashelp.class template=scatterreg;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><ul>
+<li>Less is more</li>
+<li>点：让每一个点清晰可见。</li>
+<li>线：不同组的线条应该用不同颜色或不同样式区分，可依据需要添加趋势线和参考线。</li>
+<li>条：一般不给条加边框，不建议条之间重叠，条与条之间间隔比例为1:1.5～1:0.5为宜；建议颜色填充而非样式，可用颜色强度代表重要程度；如果希望显示排名顺序或分类标签太长、分类太多，建议用横向条图。</li>
+<li>刻度线：刻度尺过于离散，建议用Log转换，一般情况下，纵坐标刻度要从零开始</li>
+<li>图例：确实需要说明时才增加图例；为不使图例喧宾夺主，一般不加边框；图例一般置于图右侧，若图较宽、图例文字较长时，图例横向置于图内的上／下方。</li>
+<li>其他：不建议用饼图、不建议用3D图</li>
+</ul>
+<h3 id="条图系列"><a href="#条图系列" class="headerlink" title="条图系列"></a>条图系列</h3><h4 id="单式条图"><a href="#单式条图" class="headerlink" title="单式条图"></a>单式条图</h4><p>要分析的变量就一个分类变量时，此时适用单式条图或百分比条图。</p>
+<ul>
+<li>HBAR：横向条图</li>
+</ul>
+<ul>
+<li>VBAR：纵向条图</li>
+<li>CATEGORYORDER=：排序方式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    hbar DriveTrain / categoryorder=respdesc; /*横向 响应值降序*/</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbar DriveTrain / categoryorder=respssc; /*纵向 响应值升序*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/1.png" alt="横向条图"></p>
+<h4 id="频数图"><a href="#频数图" class="headerlink" title="频数图"></a>频数图</h4><p>使PROC FREQ里TABLE语句的选项PLOTS=FREQPLOTS，此选项会自动调用ODS Graphics System绘制频数图。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc freq data=sashelp.cars;</div><div class="line">    table DriveTrain / plots=freqplots;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/2.png" alt="频数图"></p>
+<h4 id="带误差限的单式条图"><a href="#带误差限的单式条图" class="headerlink" title="带误差限的单式条图"></a>带误差限的单式条图</h4><ul>
+<li>RESPONSE：指定连续变量</li>
+<li>STAT=：指定统计指标</li>
+<li>LIMITSTAT=：stddev, stderr, clm 指定限制线统计量</li>
+<li>LIMITS=：upper, lower, both 指定限制线展示形式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbar type /response=msrp stat=mean limitstat=stddev limits=upper;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/3.png" alt="带误差限的单式条图条图"></p>
+<h4 id="单式百分比条图"><a href="#单式百分比条图" class="headerlink" title="单式百分比条图"></a>单式百分比条图</h4><p>单式百分比条图在绘制时需要先增加辅助分组变量，而后通过PROC SGPLOT的HBAR或VBAR实现。</p>
+<ul>
+<li>GROUP=：指定分组变量</li>
+<li>GROUPDISPLAY=：指定为堆叠方式显示</li>
+<li>STAT=PERCENT：指定统计指标为百分比</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">data cars;</div><div class="line">    set sashelp.cars;</div><div class="line">    Drive_Train=&quot;Drive Type&quot;; /**/</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=cars noborder;</div><div class="line">    hbar Drive_Train / group=DriveTrain groupdisplay=stack stat=percent categoryorder=respdesc;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/4.png" alt="单式百分比条图"></p>
+<h4 id="簇拥式复式条图"><a href="#簇拥式复式条图" class="headerlink" title="簇拥式复式条图"></a>簇拥式复式条图</h4><p>单式百分比条图就是复式条图的一种特例。</p>
+<ul>
+<li>GROUP=：指定分组变量</li>
+<li>GROUPDISPLAY=：控制分组显示方式，簇拥式（cluster），堆叠式（stack）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbar origin / group=DriveTrain groupdisplay=cluster;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/5.png" alt="簇拥式复式条图"></p>
+<h4 id="簇拥式复式误差限条图"><a href="#簇拥式复式误差限条图" class="headerlink" title="簇拥式复式误差限条图"></a>簇拥式复式误差限条图</h4><ul>
+<li>RESPONSE：指定连续变量</li>
+<li>STAT=：指定统计指标</li>
+<li>LIMITSTAT=：stddev, stderr, clm 指定限制线统计量</li>
+<li>LIMITS=：upper, lower, both 指定限制线展示形式</li>
+<li>GROUP=：指定分组变量</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbar origin / response=msrp stat=mean group=type groupdisplay=cluster limitstat=stddev limits=lower;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/6.png" alt="簇拥式复式误差限条图"></p>
+<h4 id="复式百分比条图"><a href="#复式百分比条图" class="headerlink" title="复式百分比条图"></a>复式百分比条图</h4><ul>
+<li>PCTLEVEL=GROUP：控制百分比为分组的百分比</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars pctlevel=group;</div><div class="line">    vbar origin / group=DriveTrain groupdisplay=cluster stat=percent; /*簇拥式*/</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars pctlevel=group;</div><div class="line">    vbar origin / group=DriveTrain groupdisplay=stack stat=percent; /*堆叠式*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/7.png" alt="簇拥式复式误差限条图"></p>
+<h4 id="马赛克图"><a href="#马赛克图" class="headerlink" title="马赛克图"></a>马赛克图</h4><p>使PROC FREQ里TABLE语句的选项PLOTS=MAOSAICPLOT，此选项会自动调用ODS Graphics System绘马赛克图。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc freq data=sashelp.cars;</div><div class="line">    table origin*DriveTrain / plots=mosaicplot;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/8.png" alt="马赛克图"></p>
+<h4 id="镜面式复式条图"><a href="#镜面式复式条图" class="headerlink" title="镜面式复式条图"></a>镜面式复式条图</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">data pop; /*创建测试数据集*/</div><div class="line">    length AgeGroup $12;</div><div class="line">    do AgeGroup=&apos;Pre Teen&apos;, &apos;Teen&apos;, &apos;Young Adult&apos;, &apos;Adult&apos;, &apos;Senior&apos;;</div><div class="line">        Male=round(500*(1+ranuni(2)));</div><div class="line">        Female=round(400*(1+ranuni(2)));</div><div class="line">        output;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">data butterfly; /*变换镜面数据*/</div><div class="line">    set pop;</div><div class="line">    Male=-male;</div><div class="line">    zero=0;</div><div class="line">run;</div><div class="line"></div><div class="line">proc format; /**/</div><div class="line">    picture positive low-&lt;0=&apos;0000&apos; 0&lt;-high=&apos;0000&apos;;</div><div class="line">    /*0-high包含0  0&lt;-high不包含0*/</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=ButterFly; /*横向镜面*/</div><div class="line">    format male female positive.;</div><div class="line">    hbarparm category=agegroup response=male;</div><div class="line">    hbarparm category=agegroup response=female;</div><div class="line">    xaxis display=(noline nolabel) values=(-1000 to 1000 by 200);</div><div class="line">    yaxis display=(noline nolabel);</div><div class="line">    keylegend / position=right across=1 noopaque;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=ButterFly; /*纵向镜面*/</div><div class="line">    format male female positive.;</div><div class="line">    vbarparm category=agegroup response=male;</div><div class="line">    vbarparm category=agegroup response=female;</div><div class="line">    xaxis display=(noline nolabel);</div><div class="line">    yaxis display=(noline nolabel) values=(-1000 to 1000 by 200);</div><div class="line">    keylegend / position=right across=1 noopaque;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/9.png" alt="横向镜面复式条图"></p>
+<h4 id="面板条图"><a href="#面板条图" class="headerlink" title="面板条图"></a>面板条图</h4><p>通过PROC SGPANEL实现面板条图，用PANELBY语句指定面板分量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">proc sgpanel data=sashelp.cars pctlevel=group; /**/</div><div class="line">    panelby type;</div><div class="line">    vbar origin / group=DriveTrain groupdisplay=cluster stat=percent;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgpanel data=sashelp.cars pctlevel=group; /**/</div><div class="line">    panelby type;</div><div class="line">    vbar origin / group=DriveTrain groupdisplay=stack stat=percent categoryorder=respdesc;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/10.png" alt="簇拥式面板条图"></p>
+<h3 id="直方图系列"><a href="#直方图系列" class="headerlink" title="直方图系列"></a>直方图系列</h3><h4 id="简单直方图"><a href="#简单直方图" class="headerlink" title="简单直方图"></a>简单直方图</h4><ul>
+<li>NBINS：直方的数量</li>
+<li>BINWIDTH：直方的宽度</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars; /*简单直方图（sgplot）*/</div><div class="line">    histogram msrp / nbins =20;</div><div class="line">run;</div><div class="line"></div><div class="line">proc univariate data=sashelp.cars; /*简单直方图（univariate）*/</div><div class="line">    histogram msrp;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/11.png" alt="简单直方图"></p>
+<h4 id="重叠直方图"><a href="#重叠直方图" class="headerlink" title="重叠直方图"></a>重叠直方图</h4><ul>
+<li>可以用GROUP设置分组变量，也可以用多个HISTOGRAM语句叠加</li>
+<li>使用TRANSPARENCY设置透明度</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars; /*通过group设置分组变量*/</div><div class="line">    histogram msrp / nbins=20 group=type;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars; /*多个histogram叠加*/</div><div class="line">    histogram mpg_city / binstart=0 binwidth=2 transparency=0.5;</div><div class="line">    histogram mpg_highway / binstart=0 binwidth=2 transparency=0.5;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/12.png" alt="重叠直方图"></p>
+<h4 id="镜面直方图"><a href="#镜面直方图" class="headerlink" title="镜面直方图"></a>镜面直方图</h4><p>无法通过 SGPLOT直接实现，需要借助GTL语言。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">/*定义模版*/</div><div class="line">proc template;</div><div class="line">    define statgraph MirrorHistogramVert;</div><div class="line">        dynamic _binwidth;</div><div class="line">            begingraph; </div><div class="line">            entrytitle &quot;Mileage distribution&quot;;</div><div class="line">            /*定义布局*/</div><div class="line">            layout lattice / columndatarange=union rowgutter=0;</div><div class="line">                /*定义横轴*/</div><div class="line">                columnases;</div><div class="line">                columnaxis / display=(tickvalues) griddisplay=on linearopts=(tickvaluesequence=(start=0 end=60 increment=10) tickvaluepriority=true);</div><div class="line">                endcolumnases;</div><div class="line">                /*上部分直方图*/</div><div class="line">                layout overlay / walldisplay=none xaxisopts=(griddisplay=on) yaxisopts=(griddisplay=on display=(tickvalues label) linearopts=(tickvaluesequence=(start=5 end=25 increment=5) tickvaluepriority=true));</div><div class="line">                histogram mpg_city/binstart=0 binwidth=_binwidth binaxis=false fillattrs=graphdata1 datatransparency=0.3;</div><div class="line">                entry halign=right &quot;City Mileage&quot; / valign=top;</div><div class="line">                endlayout;</div><div class="line">                /*下部分直方图*/</div><div class="line">                layout overlay / walldisplay=none xaxisopts=(griddisplay=on) yaxisopts=(reverse=true griddisplay=on display=(tickvalues label) linearopts=(tickvaluesequence=(start=5 end=25 increment=5) tickvaluepriority=true));</div><div class="line">                histogram mpg_highway/binstart=0 binwidth=_binwidth binaxis=false fillattrs=graphdata2 datatransparency=0.3;</div><div class="line">                entry halign=right &quot;City Mileage&quot; / valign=top;</div><div class="line">                endlayout;</div><div class="line">            endlayout;</div><div class="line">        endgraph;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">/*渲染模版*/</div><div class="line">ods graphics / NOBORDER reset width=5in height=3in imagename=&quot;MirrorHistogramVert&quot;;</div><div class="line">proc sgrender data=sashelp.cars template=MirrorHistogramVert;</div><div class="line">    dynamic _binwidth=2;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/13.png" alt="镜面直方图"></p>
+<h4 id="面板直方图"><a href="#面板直方图" class="headerlink" title="面板直方图"></a>面板直方图</h4><p>通过PROC SGPANEL和HISTOGRAM语句来实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">proc sgpanel data=sashelp.cars;</div><div class="line">    panelby origin / layout=columnlattice;</div><div class="line">    histogram mpg_city / binstart=0 binwidth=2 transparency=0.5;</div><div class="line">    histogram mpg_highway / binstart=0 binwidth=2 transparency=0.5;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/14.png" alt="面板直方图"></p>
+<h3 id="箱型图系列"><a href="#箱型图系列" class="headerlink" title="箱型图系列"></a>箱型图系列</h3><p>箱线图提供了更为明确的统计量信息，如均数，P25，P50以及P75。箱线图可以通过PROC SGPLOT的VBOX或HBOX实现。</p>
+<h4 id="简单箱型图"><a href="#简单箱型图" class="headerlink" title="简单箱型图"></a>简单箱型图</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbox msrp; /*纵向*/</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    hbox msrp; /*横向*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/15.png" alt="简单箱型图"></p>
+<h4 id="分组箱型图"><a href="#分组箱型图" class="headerlink" title="分组箱型图"></a>分组箱型图</h4><p>分组箱形图的绘制只需在VBOX或HBOX语句中增加用GROUP分组变量即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbox msrp / group=type;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/16.png" alt="分组箱型图"></p>
+<h4 id="面板箱型图"><a href="#面板箱型图" class="headerlink" title="面板箱型图"></a>面板箱型图</h4><p>面板箱型图可通过PROC SGPANEL过程实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc sgpanel data=sashelp.cars;</div><div class="line">    panelby origin / layout=columnlattice;</div><div class="line">    vbox msrp / group=type;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/17.png" alt="面板箱型图"></p>
+<h3 id="散点图系列"><a href="#散点图系列" class="headerlink" title="散点图系列"></a>散点图系列</h3><h4 id="X-Y散点图"><a href="#X-Y散点图" class="headerlink" title="X-Y散点图"></a>X-Y散点图</h4><p>X-Y散点图可通过PROC SGPLOT的SCATTER语句实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    scatter x=horsepower y=mpg_highway;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/18.png" alt="X-Y散点图"></p>
+<h4 id="X-Y散点回归图"><a href="#X-Y散点回归图" class="headerlink" title="X-Y散点回归图"></a>X-Y散点回归图</h4><ul>
+<li>使用REG语句增加回归线</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    scatter x=horsepower y=mpg_highway;</div><div class="line">    reg x=horsepower y=mpg_highway;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/19.png" alt="X-Y散点回归图"></p>
+<h4 id="分组散点图"><a href="#分组散点图" class="headerlink" title="分组散点图"></a>分组散点图</h4><ul>
+<li>使用GROUP选项增绘制分组散点图</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    scatter x=horsepower y=mpg_highway / group=type;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/20.png" alt="分组散点图"></p>
+<h4 id="面板散点图"><a href="#面板散点图" class="headerlink" title="面板散点图"></a>面板散点图</h4><p>在PROC SGPANEL中用PANELBY语句指定分面变量，而后用SCATTER语句绘制散点图。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc sgpanel data=sashelp.cars;</div><div class="line">    panelby origin / layout=columnlattice;</div><div class="line">    scatter x=horsepower y=mpg_highway / group=type;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/21.png" alt="面板散点图"></p>
+<h4 id="泡泡图"><a href="#泡泡图" class="headerlink" title="泡泡图"></a>泡泡图</h4><p>增加一个变量控制散点图中点的大小，通过PROC SGPLOT中的BUBBLE实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    bubble x=horsepower y=mpg_highway size=cylinders;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/22.png" alt="泡泡图"></p>
+<h4 id="矩阵散点图"><a href="#矩阵散点图" class="headerlink" title="矩阵散点图"></a>矩阵散点图</h4><p>探查多个变量之间两两的关系。通过PROC SGSCATTER实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgscatter data=sashelp.cars;</div><div class="line">    matrix mpg_highway horsepower enginesize / diagonal=(histogram noraml);</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/23.png" alt="矩阵散点图"></p>
+<h3 id="折线图系列"><a href="#折线图系列" class="headerlink" title="折线图系列"></a>折线图系列</h3><h4 id="简单折线图"><a href="#简单折线图" class="headerlink" title="简单折线图"></a>简单折线图</h4><p>若X与Y一一对应，可以用SERIES语句绘制。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.stocks (where=(date &gt;= &quot;01jan2002&quot;d and stock=&quot;IBM&quot;));</div><div class="line">    series x=date y=close;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/24.png" alt="简单折线图（X与Y一一对应）"></p>
+<p>若X与Y不是一一对应，可以用VLINE或HLINE语句绘制。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vline cylinders / response=msrp stat=mean markers;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/25.png" alt="简单折线图（X与Y不是一一对应）"></p>
+<h4 id="误差折线图"><a href="#误差折线图" class="headerlink" title="误差折线图"></a>误差折线图</h4><p>使用LIMITS和LIMITSTAT。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vline cylinders / response=msrp stat=mean limits=both limitstat=stddev markers;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/26.png" alt="误差折线图"></p>
+<h4 id="分组误差折线图"><a href="#分组误差折线图" class="headerlink" title="分组误差折线图"></a>分组误差折线图</h4><p>用GROUP选项指定分组变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vline cylinders / response=msrp stat=mean group=type limits=both limitstat=stddev markers;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/27.png" alt="分组误差折线图"></p>
+<h4 id="面板误差折线图"><a href="#面板误差折线图" class="headerlink" title="面板误差折线图"></a>面板误差折线图</h4><p>PROC SGPANEL过程中使用PANELBY语句。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc sgpanel data=sashelp.cars;</div><div class="line">    panelby origin / layout=columnlattice;</div><div class="line">    vline cylinders / response=msrp stat=mean group=type limit=both limitstat=stddev markers;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/28.png" alt="面板误差折线图"></p>
+<h3 id="面积图系列"><a href="#面积图系列" class="headerlink" title="面积图系列"></a>面积图系列</h3><h4 id="面积图"><a href="#面积图" class="headerlink" title="面积图"></a>面积图</h4><p>通过PROC SGPLOT的BAND语句实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/*重叠面积图*/</div><div class="line">proc sgplot data=sashelp.stocks(where=(date&gt;=&quot;01jan2002&quot;d and stock=&quot;IBM&quot;));</div><div class="line">    band x=date lower=0 upper=high / legendlabel=&quot;High&quot;;</div><div class="line">    band x=date lower=0 upper=low / legendlabel=&quot;Low&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">/*非重叠面积图*/</div><div class="line">proc sgplot data=sashelp.stocks(where=(date&gt;=&quot;01jan2002&quot;d and stock=&quot;IBM&quot;));</div><div class="line">    band x=date lower=0 upper=high / legendlabel=&quot;High&quot;;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/29.png" alt="面积图"></p>
+<h4 id="带状图"><a href="#带状图" class="headerlink" title="带状图"></a>带状图</h4><p>通过PROC SGPLOT的BAND语句实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.stocks(where=(date&gt;=&quot;01jan2002&quot;d and stock=&quot;IBM&quot;));</div><div class="line">    band x=date lower=low upper=high / legendlabel=&quot;High&quot;;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/30.png" alt="带状图"></p>
+<h3 id="拟合图系列"><a href="#拟合图系列" class="headerlink" title="拟合图系列"></a>拟合图系列</h3><h4 id="密度曲线"><a href="#密度曲线" class="headerlink" title="密度曲线"></a>密度曲线</h4><p>可以用PROC UNIVARIATE过程中的HISTOGRAM语句，也可以用PROCSGPLOT的DENSITY语句。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">proc univariate data=sashelp.cars; /*统计过程*/</div><div class="line">    histogram msrp / normal;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars; /*绘图过程*/</div><div class="line">    histogram msrp / nbins=20;</div><div class="line">    density msrp;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/31.png" alt="密度曲线"></p>
+<h4 id="回归线"><a href="#回归线" class="headerlink" title="回归线"></a>回归线</h4><p>可以用PROC REG过程中的PLOTS选项，也可以用PROC SGPLOT的REG语句。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">proc reg data=sashelp.cars plots(only)=fitplot; /*统计过程*/</div><div class="line">    model mpg_highway=horsepower;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars; /*绘图过程*/</div><div class="line">    scatter x=horsepower y=mpg_highway;</div><div class="line">    reg x=horsepower y=mpg_highway / cli clm;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/32.png" alt="回归线"></p>
+<h4 id="椭圆曲线"><a href="#椭圆曲线" class="headerlink" title="椭圆曲线"></a>椭圆曲线</h4><p>通过PROC SGPLOT的ELLIPSE语句实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    scatter x=horsepower y=mpg_highway;</div><div class="line">    ellipse x=horsepower y=mpg_highway;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/33.png" alt="椭圆曲线"></p>
+<h4 id="ROC曲线"><a href="#ROC曲线" class="headerlink" title="ROC曲线"></a>ROC曲线</h4><p>通过PROC LOGISTIC回归的PLOTS选项实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc logistic data=sashelp.heart plots=roc;</div><div class="line">    class sex Chol_Status BP_Status Weight_Status Smoking_Status;</div><div class="line">    model Status(event=&quot;Dead&quot;)=AgeAtStart sex Chol_Status BP_Status Weight_Status Smoking_Status;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/34.png" alt="ROC曲线"></p>
+<h4 id="Kaplan-Meier曲线"><a href="#Kaplan-Meier曲线" class="headerlink" title="Kaplan-Meier曲线"></a>Kaplan-Meier曲线</h4><p>通过PROC LIFETEST的PLOTS选项实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/*生存曲线*/</div><div class="line">proc lifetest data=sashelp.bmt plots=s;</div><div class="line">    time t*status(0);</div><div class="line">    strata group;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/35.png" alt="生存曲线"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/*累积事件*/</div><div class="line">proc lifetest data=sashelp.bmt plots=s(failure);</div><div class="line">    time t*status(0);</div><div class="line">    strata group;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/36.png" alt="累积事件"></p>
+<h4 id="LOESS曲线"><a href="#LOESS曲线" class="headerlink" title="LOESS曲线"></a>LOESS曲线</h4><p>局部加权回归散点发（Locally Weighted Scattered Plot Smoothing, LOESS）</p>
+<ul>
+<li>PROC LOESS过程的PLOTS语句，AICC选项指定平滑程度</li>
+<li>PROC SGPLOT过程的LOESS语句，SMOOTH选项指定平滑程度</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proc loess data=sashelp.cars plots(only)=(FItPlot);</div><div class="line">    model mpg_highway=horsepower / select=AICC alpha=0.05 all;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    loess x=horsepower y=mpg_highway;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/37.png" alt="LOESS曲线"></p>
+<h4 id="Spline曲线"><a href="#Spline曲线" class="headerlink" title="Spline曲线"></a>Spline曲线</h4><p>SAS中最容易实现的样条函数是Penalized B-Spline Curve，可通过PROC SGPLOT里的PBSPLINE语句绘制。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    pbspline x=horsepower y=mpg_highway;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="./pic/38.png" alt="LOESS曲线"></p>
+<h3 id="森林图系列"><a href="#森林图系列" class="headerlink" title="森林图系列"></a>森林图系列</h3><p>通过PROC SGPLOT的SCATTER语句及其XERRORUPPER和XERRORLOWER选项绘制，或通过highlow语句绘制。</p>
+<h4 id="简单森林图"><a href="#简单森林图" class="headerlink" title="简单森林图"></a>简单森林图</h4><ul>
+<li>用HIGHLOW语句绘制效应值机器95%CI</li>
+<li>文字部分借助9.4的新语句YAXISTABLE直接插入文字变量</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=fr noautolegend nocycleattrs nowall noborder;</div><div class="line">/*文字*/</div><div class="line">yaxistable Study CABG PCI_DES RR / position=left labelattrs=(size=7);</div><div class="line">/*图*/</div><div class="line">scatter y=study x=rr_m / markerattrs=graphadata2(symbol=squarefilled);</div><div class="line">scatter y=study x=rr_2 / markerattrs=graphadata2(symbol=diamondfilled size=10);</div><div class="line">highlow y=study low=rr_1 high=rr_u / type=line;</div><div class="line">/*坐标轴*/</div><div class="line">xaxis values=(0 to 3 by 1) display=(nolabel) valueattrs=(size=7);</div><div class="line">yaxis display=none fitpolicy=none reverse colorbands=even valueattrs=(size=7) colorbandattrs=Graphdatadefault(transparency=0.8);</div><div class="line">/*参考线*/</div><div class="line">refline 1 /axis=x noclip;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/39.png" alt="简单森林图"></p>
+<h4 id="亚组分析森林图"><a href="#亚组分析森林图" class="headerlink" title="亚组分析森林图"></a>亚组分析森林图</h4><p>SAS 9.40M3的STYLEATTRS语句新增了AXISEXTENT选项，YAXISTABLE语句增加了INDENTWEIGHT和PAD选项，可以单凭SGPLOT完美实现亚组分析森林图。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=forest_subgroup_2 nowall noborder nocycleattrs dattrmap=attrmap noautolegend;</div><div class="line">    styleattrs axisextent=data;</div><div class="line">    /*左边的文字*/</div><div class="line">    yaxistable subgroup / location=inside position=left textgroup=id labelattrs=(size=7) textgroupid=text indentweight=indentWt;</div><div class="line">    yaxistable countpct / location=inside position=left labelattrs=(size=7) valueattrs=(size=7);</div><div class="line">    yaxistable PCIGroup group pvalue / location=inside position=right pad=(right=15px) labelattrs=(size=7) valueattrs=(size=7);</div><div class="line">    /*绘制95%CIBAR*/</div><div class="line">    highlow y=obsid low=low high=high; </div><div class="line">    /*绘制Bar的中点*/</div><div class="line">    scatter y=obsid x=mean / markerattrs=(symbol=squarefilled);</div><div class="line">    /*二次绘制Bar中点，关联x2axis*/</div><div class="line">    scatter y=obsid x=mean / markerattrs=(size=0) x2axis;</div><div class="line">    /*底部文字*/</div><div class="line">    text x=xl y=obsid text=text / position=bottom contributeoffsets=none strip;</div><div class="line">    format text $txt.;</div><div class="line">    /*坐标轴*/</div><div class="line">    yaxis reverse display=none colorbands=odd colorbandsattrs=(transparency=1) offsetmin=0.0;</div><div class="line">    xaxis display=(nolabel) values=(0.0 0.5 1.0 1.5 2.0 2.5);</div><div class="line">    x2axis label=&apos;Hazard Ratio&apos; display=(noline noticks novalues) labelattrs=(size=8);</div><div class="line">    /*参考线*/</div><div class="line">    refline 1 / axis=x;</div><div class="line">    refline ref / lineattrs=(thickness=13 color=cxf0f0f7);</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p><img src="../pic/2a7e75ed5d6edc334251e4eaabae1cf4/40.png" alt="亚组分析森林图"></p>
+<h3 id="地图系列"><a href="#地图系列" class="headerlink" title="地图系列"></a>地图系列</h3><h4 id="纯地图"><a href="#纯地图" class="headerlink" title="纯地图"></a>纯地图</h4><ul>
+<li>MAP：指定地图数据集</li>
+<li>DATA：指定反应数据集，即使不在地图上绘制反应变量，仍需指定反应数据集（反应数据集可以和地图数据集是一个数据集）</li>
+<li>添加各州名称标注：用US<em>attr</em>这个属性数据集，并利用SAS自带的宏给地图增加标签说明文字，生成标注数据集，然后绘制地图时用ANNO选项指定标注数据集。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">%annomac</div><div class="line">%maplabel(mapsgfk.us, mapsgfk.us_states_attr(keep-id idname), anno_label,idname, id)</div><div class="line"></div><div class="line">proc gmap map=maps.us data=maps.us;</div><div class="line">    id state;</div><div class="line">    choro state / nolegend anno=anno_label;</div><div class="line">run;</div><div class="line">quit;</div><div class="line"></div><div class="line">proc gmap map=maps.us data=maps.us;</div><div class="line">    id state;</div><div class="line">    choro state / nolegend;</div><div class="line">run;</div><div class="line">quit;</div><div class="line"></div><div class="line">proc gmap map=mapsgfk.us data=mapsgfk.us;</div><div class="line">    id id;</div><div class="line">    choro id / nolegend;</div><div class="line">run;</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<p><img src=".././pic/41.png" alt="纯地图"></p>
+<h4 id="统计地图"><a href="#统计地图" class="headerlink" title="统计地图"></a>统计地图</h4><p>BLOCK</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">data sample;</div><div class="line">    input st $  pop2010 @@;</div><div class="line">    state=stfips(st);</div><div class="line">    datalines;</div><div class="line">    AL 4779 Ak 710 AZ 6392 AR 2815 CA 37253 CO 5029 CT 3574 DE 897 DC 601 FL 18801</div><div class="line">    GA 9687 HI 1360 ID 1567 IL 12830 IN 6483 IA 3046 KS 2853 KY 43339 LA 4533</div><div class="line">    ME 1328 MD 5773 MA 6547 MI 9883 MN 5303 MS 2967 MO 5988 MT 989 NE 1826 NV 2700</div><div class="line">    NH 1316 NJ 8791 NM 2059 NY 19378 NC 9535 ND 672 OH 11536 OK 3751 OR 3831 </div><div class="line">    PA 12702 RI 1052 SC 4625 SD 814 TN 6346 TX 25145 UT 2763 VT 6257 VA 8001 </div><div class="line">    WA 6724 WV 1852 WI 5686 WY 563 PR 3725</div><div class="line">    ;</div><div class="line">run;</div><div class="line"></div><div class="line">proc gmap map=maps.us data=sample;</div><div class="line">    id state;</div><div class="line">    block pop2010 / level=6;</div><div class="line">    format est2015 pop2010 comma12.;</div><div class="line">run;</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<p><img src="./pic/42.png" alt="统计地图"></p>
+<h4 id="热力地图"><a href="#热力地图" class="headerlink" title="热力地图"></a>热力地图</h4><p>CHORO</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">proc gmap map=maps.us data=sample;</div><div class="line">    id state;</div><div class="line">    choro pop2010 / level=6;</div><div class="line">    format est2015 pop2010 comma12.;</div><div class="line">run;</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<p><img src="./pic/43.png" alt="热力地图"></p>
+<h3 id="PROC-SGPLOT总结"><a href="#PROC-SGPLOT总结" class="headerlink" title="PROC SGPLOT总结"></a>PROC SGPLOT总结</h3><p><strong>PROC SGPLOT</strong> &lt;*option(s)&gt;;</p>
+<p>​    <strong>STYLEATTRS </strong> &lt;/*option(s)&gt;;</p>
+<p>​    <strong>PLOT STATEMENT</strong> &lt;/*option(s)&gt;;</p>
+<p>​    <strong>XAXIS</strong> &lt;*option(s)&gt;;</p>
+<p>​    <strong>X2AXIS</strong> &lt;*option(s)&gt;;</p>
+<p>​    <strong>YAXIS</strong> &lt;*option(s)&gt;;</p>
+<p>​    <strong>Y2AXIS</strong> &lt;*option(s)&gt;;</p>
+<p>​    <strong>KEYLEGEND</strong> &lt;<em>“name-1” … “name-n”</em>&gt; &lt;/*option(s)&gt;;</p>
+<p>​    <strong>GRADLEGEND</strong> &lt;<em>“name”</em>&gt; &lt;/*option(s)&gt;;</p>
+<p><strong>RUN</strong>;</p>
+<p><a href="http://support.sas.com/resources/papers/proceedings12/259-2012.pdf" target="_blank" rel="external">SGPLOT and SGPANEL plot statements and selected options</a></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>syntax</th>
+<th>selected options</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCATTER</td>
+<td>scatter x=var y=var / options;</td>
+<td>datalabel=var</td>
+<td>Displays a label for each data point</td>
+</tr>
+<tr>
+<td>SERIES</td>
+<td>series x=var y=var / options;</td>
+<td>break</td>
+<td>Creates a break in the line for each missing value</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>curvelabel</td>
+<td>Labels the series curve using the Y variable label</td>
+</tr>
+<tr>
+<td>STEP</td>
+<td>step x=var y=var / options;</td>
+<td>break</td>
+<td>Creates a break in the line for each missing value</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>curvelabel</td>
+<td>Labels the series curve using the Y variable label</td>
+</tr>
+<tr>
+<td>NEEDLE</td>
+<td>needle x=var y=var / options;</td>
+<td>baseline=val</td>
+<td>specifies a numeric value on the Y axis for the baseline</td>
+</tr>
+<tr>
+<td>VECTOR</td>
+<td>vector x=var y=var / options;</td>
+<td>xorigin=val</td>
+<td>specifies Xcoordinate for origin either numeric value or numeric variable</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>yorigin=val</td>
+<td>specifies Ycoordinate for origin either numeric value or numeric variable</td>
+</tr>
+<tr>
+<td>BUBBLE</td>
+<td>bubble x=var y=var size=var / options;</td>
+<td>fill</td>
+<td>specifies fill is visible</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>nofill</td>
+<td>specifies fill is not visible</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>outline</td>
+<td>specifies outline is visible</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>nooutline</td>
+<td>specifies outline is not visible</td>
+</tr>
+<tr>
+<td>BAND</td>
+<td>band x=var upper=var lower=var / options;</td>
+<td>fill</td>
+<td>specifies fill is visible</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>nofill</td>
+<td>specifies fill is not visible</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>outline</td>
+<td>specifies outline is visible</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>nooutline</td>
+<td>specifies outline is not visible</td>
+</tr>
+<tr>
+<td>HIGHLOW</td>
+<td>highlow x=var high=var lo=var / options;</td>
+<td>highcap=val</td>
+<td>specifies type of cap to use at end of bar or line</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>lowcap=val</td>
+<td>specifies type of cap to use at end of bar or line</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>type=val</td>
+<td>specifie how to draw glot with a: BAR or LINE(default)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="图片属性控制"><a href="#图片属性控制" class="headerlink" title="图片属性控制"></a>图片属性控制</h3><ul>
+<li>GPATH：存储位置</li>
+<li>DPI：分辨率</li>
+<li>WIDTH：宽</li>
+<li>HEIGHT：高</li>
+<li>OUTPUTFMT：格式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ods html style=ggStyle gpath=&apos;d:\StatsGraph&apos; dpi=600;</div><div class="line">ods graphics / width=14cm height=10cm outputfmt=jpg;</div></pre></td></tr></table></figure>
+<p>输出终端LISTING既支持EPS矢量图，也支持TIF位图。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">ods listing gpath=&quot;D:\myGraph&quot; dpi=300;</div><div class="line"></div><div class="line">ods graphics on / imagename=&quot;eps&quot; outputfmt=EPS; /*矢量图*/</div><div class="line">绘图语句;</div><div class="line"></div><div class="line">ods graphics on / imagename=&quot;tif&quot; outputfmt=TIF; /*位图*/</div><div class="line">绘图语句;</div><div class="line"></div><div class="line">ods listing close;</div></pre></td></tr></table></figure>
+<p>PRINTER终端的优势是可以在一个语句里同时设置格式和分辨率，但劣势是绘制的图片仅仅是其输出的一部分区域。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ods printer printer=Postscript FILE=&quot;D:\eps.eps&quot; dpi=300; /*矢量图*/</div><div class="line">绘图语句</div><div class="line">ods printer close;</div><div class="line"></div><div class="line">ods printer printer=tiff FILE=&quot;D:\tif.tif&quot; dpi=300; /*位图*/</div><div class="line">绘图语句</div><div class="line">ods printer close;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义5-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WYY's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/13/SAS/SAS编程演义5-7/" itemprop="url">《SAS编程演义》笔记（5-7章）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-13T13:31:21+08:00">
+                2017-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SAS/" itemprop="url" rel="index">
+                    <span itemprop="name">SAS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="亦应帷幄运鸿筹：数据库集"><a href="#亦应帷幄运鸿筹：数据库集" class="headerlink" title="亦应帷幄运鸿筹：数据库集"></a>亦应帷幄运鸿筹：数据库集</h2><h3 id="修改数据集"><a href="#修改数据集" class="headerlink" title="修改数据集"></a>修改数据集</h3><p><strong>MODIFY</strong> <em>master-data-set</em> &lt;(<em>data-set-options</em>)&gt; <em>transaction-data-set</em> &lt;(<em>data-set-options</em>)&gt; &lt;CUROBS=<em>variable</em>&gt; &lt; NOBS=<em>variable</em>&gt; &lt;END=<em>variable</em>&gt; &lt;UPDATEMODE=MISSINGCHECK|NOMISSINGCHECK&gt;;</p>
+<p><strong>BY</strong> <em>by-variable</em>;</p>
+<ul>
+<li><em>master-data-set</em>：主数据集（Master Dataset），存放原始数据。</li>
+<li><em>transaction-data-set</em>：事物数据集（Transaction Dataset），存放匹配变量、需要修改的变量及其新值。</li>
+<li>CUROBS=<em>variable</em>：将当前生成的数据集观测存储到临时变量variable中</li>
+<li>NOBS=<em>variable</em>：将主数据集和事物数据集总观测数存储到临时变量variable中</li>
+<li>END=<em>variable</em>：创建并命名一个临时变量variable，用1和0标记是否为最后一条记录。</li>
+</ul>
+<p><strong>MODIFY</strong> <em>master-data-set</em> &lt;(<em>data-set-options</em>)&gt; KEY=<em>index</em> &lt;/UNIQUE&gt; &lt;KEYRESET=<em>variable</em>&gt; &lt;NOBS=<em>variable</em>&gt; &lt;END=<em>variable</em>&gt;;</p>
+<ul>
+<li>KEY=<em>index</em>：指定索引</li>
+<li>KEYRESET=<em>variable</em>：是否从索引头部查找</li>
+</ul>
+<p><strong>MODIFY</strong> <em>master-data-set</em> &lt;(<em>data-set-options</em>)&gt; &lt;NOBS=variable&gt; POINT=<em>variable</em>;</p>
+<ul>
+<li>POINT=<em>variable</em>：随机读取由variable指定的观测</li>
+</ul>
+<p><strong>MODIFY</strong> <em>master-data-set</em> &lt;(<em>data-set-options</em>)&gt; &lt;NOBS=<em>variable</em>&gt; &lt;END=<em>variable</em>&gt;</p>
+<p>MODIFY比SET更高效。MODIFY语句直接修改原数据集，不生成新数据集。SET语句打开原数据集，重新生成一份新数据集（即使新数据集与原数据集同名）。因此使用MODIFY语句时，DATA语句后必须是原数据集，但使用SET语句时则无所谓。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">data class;</div><div class="line">    set sashelp.class;</div><div class="line">    weight = weight*0.4536; /*lbs-&gt;kg*/</div><div class="line">    height = height*0.0254; /*in-&gt;m*/</div><div class="line">run;</div><div class="line"></div><div class="line">data sashelp.class;</div><div class="line">    modify sashelp.class;</div><div class="line">    weight = weight*0.4536; /*lbs-&gt;kg*/</div><div class="line">    height = height*0.0254; /*in-&gt;m*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p>MODIFY比MERGE更高效。MODIFY语句进行匹配修改观测时，因其采用动态WHERE语句，不像MERGE需要事先排序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">data raw;/*主数据集*/</div><div class="line">    name=&quot;吴源燚&quot;;gender=&quot;&quot;;age=2;Location=&quot;SH&quot;;output;</div><div class="line">    name=&quot;WUYY&quot;;gender=&quot;M&quot;;age=.;Location=&quot;SH&quot;;output;</div><div class="line">run;</div><div class="line"></div><div class="line">data new;/*事物数据集*/</div><div class="line">    name=&quot;吴源燚&quot;;gender=&quot;M&quot;;</div><div class="line">    name=&quot;WUYY&quot;;age=25;output;</div><div class="line">    name=&quot;WUYY&quot;;age=30;output;</div><div class="line">run;</div><div class="line"></div><div class="line">data raw;</div><div class="line">    modify raw new;</div><div class="line">    by name;</div><div class="line">    replace; /*默认可省略*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p>MODIFY语句是对原数据集里观测进行修改，但是不能改变数据集结构，即不能新增变量也不能新增观察。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">data sashelp.class class_female;</div><div class="line">    modify sashelp.class;</div><div class="line">    if sex =&quot;F&quot; then do;</div><div class="line">        output class_female;</div><div class="line">        remove sashelp.class;</div><div class="line">    end;</div><div class="line">    else do;</div><div class="line">        height=height+5;</div><div class="line">        replace sashelp.class;</div><div class="line">    end;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="更新数据集"><a href="#更新数据集" class="headerlink" title="更新数据集"></a>更新数据集</h3><p><strong>UPDATE</strong> <em>master-data-set</em> &lt;(<em>data-set-options</em>)&gt; <em>transaction-data-set</em> &lt;(<em>data-set-options</em>)&gt; &lt;END=<em>variable</em>&gt; &lt;UPDATEMODE=MISSINGCHECK|NOMISSINGCHECK&gt;;</p>
+<p><strong>BY</strong> <em>by-variable</em>;</p>
+<ul>
+<li><em>master-data-set</em>：主数据集，存放原始数据。</li>
+<li><em>transaction-data-set</em>：事物数据集，存放匹配变量、需要修改的变量及其新值。</li>
+<li>END=<em>variable</em>：创建并命名一个临时变量variable，用1和0标记是否为最后一条记录。</li>
+<li>UPDATEMODE：是否用事物数据集里的缺失值更新主数据集<ul>
+<li>是：NOMISSINGCHECK</li>
+<li>否：MISSINGCHECK</li>
+</ul>
+</li>
+<li><em>by-variable</em>：指定匹配变量，主数据集和事物数据集按变量的值 匹配</li>
+</ul>
+<p>主数据集和事物数据集需先按BY变量排序；UPDTATE只有一种用法，其后必须跟BY语句；主数据集中，BY变量的值应该唯一，否则只会更新相同值的首条记录，事物数据集中BY变量值可以不唯一，更新的数据集最终会以最后一条为准。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">data raw;/*主数据集*/</div><div class="line">    name=&quot;吴源燚&quot;;gender=&quot;&quot;;age=2;Location=&quot;SH&quot;;output;</div><div class="line">    name=&quot;WUYY&quot;;gender=&quot;M&quot;;age=.;Location=&quot;SH&quot;;output;</div><div class="line">run;</div><div class="line"></div><div class="line">data new;/*事物数据集*/</div><div class="line">    name=&quot;吴源燚&quot;;gender=&quot;M&quot;;</div><div class="line">    name=&quot;WUYY&quot;;age=25;output;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sort data=raw; /*排序*/</div><div class="line">    by name;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sort data=new;</div><div class="line">    by name;</div><div class="line">run;</div><div class="line"></div><div class="line">data want; /*用事物数据集更新主数据集*/</div><div class="line">    update raw new;</div><div class="line">    by name;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="行列转置"><a href="#行列转置" class="headerlink" title="行列转置"></a>行列转置</h3><p><strong>PROC TRANSPOSE</strong> &lt;DATA=<em>input-data-set</em>&gt; &lt;DELIMITER=<em>delimiter</em>&gt; &lt;LABEL=<em>label</em>&gt; &lt;LET&gt; &lt;NAME=<em>name</em>&gt; &lt;OUT=<em>output-data-set</em>&gt; &lt;PREFIX=<em>prefix</em>&gt; &lt;SUFFIX=<em>suffix</em>&gt;;</p>
+<p><strong>BY</strong> &lt;DESCENDING&gt; <em>variable-1</em> &lt;&lt;DESCENDING&gt; <em>variable-2</em>&gt; &lt;NOTSTORED&gt;;</p>
+<p><strong>COPY</strong> <em>variable(s)</em>;</p>
+<p><strong>ID</strong> <em>variable</em>;</p>
+<p><strong>IDLABEL</strong> <em>variable</em>;</p>
+<p><strong>VAR</strong> <em>variable(s)</em>;</p>
+<p><strong>RUN</strong>;</p>
+<ul>
+<li>DATA=input-data-set：待转置数据集名称</li>
+<li>DELIMITER=<em>delimiter</em>：ID语句有多个变量时，变量值之间所加的连字符</li>
+<li>LABEL=<em>label</em>：转置变量的标签存储在新数据集中的变量名，默认_LABEL_</li>
+<li>LET：当ID变量的值有重复时使用，此时只有每组ID的最后一条观测被转置</li>
+<li>NAME=<em>name</em>：转置变量在新数据集中的名字，默认为_NAME_</li>
+<li>OUT=<em>output-data-set</em>：转置后数据集名称</li>
+<li>PREFIX=<em>prefix</em>：给转置变量在新数据集中的变量名加前缀</li>
+<li>SUFFIX=<em>suffix</em>：给转置变量在新数据集中的变量名加后缀</li>
+<li>BY：制定分组转置的变量，如果没有加NOTSTORED选项，原数据集应该先用PRCO SORT语句按BY语句指定的变量排序</li>
+<li>COPY：拷贝变量，此变量不转置，直接拷贝到新数据集中</li>
+<li>ID：标识变量，用此变量的值标识转置后变量的名称，多个标识变量时，需要DELIMITER指定连字符</li>
+<li>IDLABEL：给转置后的变量添加标签</li>
+<li>VAR：待转置的变量，SAS将对此变量进行行列互换操作</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">data wide; /*创建宽表*/</div><div class="line">input SID $  Programming Stats English;</div><div class="line">datalines;</div><div class="line">S01 98 100 80</div><div class="line">S02 84 98 94</div><div class="line">S03 89 92 88</div><div class="line">;</div><div class="line">run;</div><div class="line"></div><div class="line">proc transpose data=wide out=long(rename=(_name_=Coursename col1=Score));</div><div class="line">    var Programming Stats English;</div><div class="line">    by SID;</div><div class="line">run;</div><div class="line"></div><div class="line">data long(keep= SID Coursename Score);</div><div class="line">    set wide;</div><div class="line">    array scores&#123;*&#125; Programming Stats English;</div><div class="line">    do i=1 to dim(scores);</div><div class="line">        Coursename=vname(scores&#123;i&#125;);</div><div class="line">        Score=Scores&#123;i&#125;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">proc transpose data=long out=Rewide(drop=_name_);</div><div class="line">    var Score;</div><div class="line">    by SID;</div><div class="line">    id Coursename;</div><div class="line">run;</div><div class="line"></div><div class="line">data Rewide(keep=SID Programming Stats English);</div><div class="line">    format SID Programming Stats English;</div><div class="line">    array Course&#123;3&#125; Programming Stats English;</div><div class="line">    do i=1 to 3;</div><div class="line">        set long;</div><div class="line">        Course&#123;i&#125;=Score;</div><div class="line">    end;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="横向拼接（并接）"><a href="#横向拼接（并接）" class="headerlink" title="横向拼接（并接）"></a>横向拼接（并接）</h3><h4 id="一对一读入（One-to-one-Reading）"><a href="#一对一读入（One-to-one-Reading）" class="headerlink" title="一对一读入（One-to-one Reading）"></a>一对一读入（One-to-one Reading）</h4><ul>
+<li>用多SET语句并接多个数据集，当数据集里的观测数不等时，SAS读完观测数最少的那个数据集后即停止执行。</li>
+<li>当多个数据集里的变量有重复时，后面的值会覆盖前面的值。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">data class1(keep=name sex) class2(keep=age height weighr); </div><div class="line">    set sashelp.class;</div><div class="line">    output class1;</div><div class="line">    output class2;</div><div class="line">run;</div><div class="line"></div><div class="line">data class;</div><div class="line">    set class1;</div><div class="line">    set class2;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h4 id="一对一并接（One-to-one-Merging）"><a href="#一对一并接（One-to-one-Merging）" class="headerlink" title="一对一并接（One-to-one Merging）"></a>一对一并接（One-to-one Merging）</h4><ul>
+<li>数据不对等时，不会停止执行。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">data class;</div><div class="line">    merge class1; class2;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h4 id="匹配并接（Matching-Merging）"><a href="#匹配并接（Matching-Merging）" class="headerlink" title="匹配并接（Matching Merging）"></a>匹配并接（Matching Merging）</h4><ul>
+<li>在使用MERGE语句前需用PROC SORT过程给匹配变量排序，在其之后需紧接BY语句指定匹配变量。</li>
+<li>可同时MERGE多个数据集，对于相同的变量，后一个数据集里的值会覆盖前一个数据的值。</li>
+<li>并接两个数据集时，BY变量可能不唯一。一个数据集重复的BY值有m个，另一数据集重复的BY值有n个，则MERGE后，这些重复的BY值将产生m*n条结果。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">data class1(keep=name sex) class2(keep=name age height weight);</div><div class="line">    set sashelp.class;</div><div class="line">    out class1;</div><div class="line">    if _n_ in (1, 5, 10, 15) then output class2;</div><div class="line">run;</div><div class="line"></div><div class="line">data class2;</div><div class="line">    ser class2;</div><div class="line">    if name=&quot;Janet&quot; then name=&quot;Janey&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sort data=class2;</div><div class="line">    by name;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sort data=class2;</div><div class="line">    by name;</div><div class="line">run;</div><div class="line"></div><div class="line">data class_left; /*左连接*/</div><div class="line">    merge class1(in=ds1) class2(in=ds2);</div><div class="line">    by name;</div><div class="line">    if ds1;</div><div class="line">run;</div><div class="line"></div><div class="line">data class_right; /*右连接*/</div><div class="line">    merge class1(in=ds1) class2(in=ds2);</div><div class="line">    by name;</div><div class="line">    if ds2;</div><div class="line">run;</div><div class="line"></div><div class="line">data class_inner; /*内连接*/</div><div class="line">    merge class1(in=ds1) class2(in=ds2);</div><div class="line">    by name;</div><div class="line">    if ds1 and ds2;</div><div class="line">run;</div><div class="line"></div><div class="line">data class_full; /*全连接*/</div><div class="line">    merge class1(in=ds1) class2(in=ds2);</div><div class="line">    by name;</div><div class="line">    if ds1 or ds2;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="纵向拼接（串接）"><a href="#纵向拼接（串接）" class="headerlink" title="纵向拼接（串接）"></a>纵向拼接（串接）</h3><h4 id="SET语句"><a href="#SET语句" class="headerlink" title="SET语句"></a>SET语句</h4><ul>
+<li>SET语句后可以跟多个数据集或数据集列表</li>
+<li>最终的数据集不会自动剔除重复行</li>
+<li>为匹配的列值为空</li>
+<li>字符型变量的长度为第一次出现的数据中的定义长度，后面相同的字段如果比前面更长，则会被截断，因此建议在SET语句前先用LENGTH语句申明其长度。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">data class1 class2 class3(keep=name sex) class4(keep=name age height weight);</div><div class="line">    set sashelp.class;</div><div class="line">    if _n_ &lt; 10 then do;</div><div class="line">        output class1;</div><div class="line">        output class2;</div><div class="line">    end;</div><div class="line">    else do;</div><div class="line">        output class2;</div><div class="line">        output class4;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">data class;</div><div class="line">    set class1 class2;</div><div class="line">run;</div><div class="line"></div><div class="line">data class;</div><div class="line">    set class2 class4;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h4 id="PROC-APPEND"><a href="#PROC-APPEND" class="headerlink" title="PROC APPEND"></a>PROC APPEND</h4><p><strong>PROC APPEND</strong> BASE=&lt;<em>libref.</em>&gt;SAS-data-set &lt;APPENDVER=V6&gt; &lt;DATA=&lt;<em>libref.</em>&gt;SAS-data-set&gt; &lt;ENCRYPTKEY=<em>key-value</em>&gt; &lt;FROCE&gt; &lt;GETSORT&gt; &lt;NOWARN&gt;;</p>
+<p><strong>RUN</strong>;</p>
+<ul>
+<li>BASE=&lt;<em>libref.</em>&gt;SAS-data-set：指定基础数据集，追加数据集的观测将写入此数据集中</li>
+<li>APPENDVER：指定追加机制的版本，可以是V6或V7</li>
+<li>DATA=&lt;<em>libref.</em>&gt;SAS-data-set：指定待追加数据集</li>
+<li>ENCRYPTKEY=<em>key-value</em>：AES加密键值</li>
+<li>FORECE：当追加数据集里的变量不在BASE数据集，或者变量类型和长度不同时，强制追加，不过此时LOG中会有警告信息，可以用NOWARN屏蔽</li>
+<li>GETSORT：把BASE数据集的排序标识复制到追加数据集中</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">proc append base=class3 data=class4 force;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="制作变量字典"><a href="#制作变量字典" class="headerlink" title="制作变量字典"></a>制作变量字典</h3><p>利用ODS OUTPUT语句抓取PROC CONTENTS背后的数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ods output Position=codebook；</div><div class="line">proc contents data=sashelp.cars order=varnum;</div><div class="line">run;</div><div class="line"></div><div class="line">proc export data=codebook outfile=&quot;d:\codeBook.csv&quot; dbms=csv replace;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="数据集信息"><a href="#数据集信息" class="headerlink" title="数据集信息"></a>数据集信息</h3><p>数据集权限有读、写、修改和全局四种，分别用READ=、WRITE=、ALTER=、PW=来设置。格式为：密码1/密码2，具体有五种形式：</p>
+<ul>
+<li>密码1：设置密码</li>
+<li>密码1/密码2：修改密码1为密码2</li>
+<li>密码2：不管旧密码是什么，设置新密码为密码2</li>
+<li>密码1/：删除密码</li>
+<li>/：删除密码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proc datasets lib=sashelp; /*获取描述信息*/</div><div class="line">    contents data=class;</div><div class="line">run;</div><div class="line"></div><div class="line">proc datasets lib=sashelp;/*修改描述信息*/</div><div class="line">    modify class(label=&quot;学生测试数据集&quot; read=r2017);</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<h3 id="数据集操作"><a href="#数据集操作" class="headerlink" title="数据集操作"></a>数据集操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">proc datasets;</div><div class="line">    copy in=sashelp out=work; /*数据集集体拷贝*/</div><div class="line">    select class; /*选择数据集*/</div><div class="line">quit;</div><div class="line"></div><div class="line">proc datasets lib=work;</div><div class="line">    change class=student; /*数据集改名*/</div><div class="line">quit;</div><div class="line"></div><div class="line">proc datasets lib=work;</div><div class="line">    delete students; /*删除数据集*/</div><div class="line">quit;</div><div class="line"></div><div class="line">proc datasets lib=work kill memtype=data; /*删除Work库中所有数据集*/</div><div class="line">run;</div><div class="line"></div><div class="line">proc datasets lib=work;</div><div class="line">    save class; /*仅保留class*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="变量信息"><a href="#变量信息" class="headerlink" title="变量信息"></a>变量信息</h3><p>PROC DATASETS不是打开数据集，逐行操作，而是对数据集的描述信息直接操作，或者直接操作整体数据集。因此相比逐条操作的SET语句，PROC DATASETS在效率上要高很多。</p>
+<p>PROC DATASETS配合MODIFY语句，可以修改变量的格式、标签以及重命名变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">proc  datasets;</div><div class="line">    modify sashelp.class;</div><div class="line">        format height weight 3.0;</div><div class="line">        rename sex=gender;</div><div class="line">        label name=&quot;姓名&quot; gender=&quot;性别&quot;;</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<h3 id="SAS字典"><a href="#SAS字典" class="headerlink" title="SAS字典"></a>SAS字典</h3><p>SAS Dictionary库是一个只读的SAS逻辑库，里面包含了与SAS会话相关的元数据（描述数据的数据），如数据集名、变量名、变量类型以及变量长度等这些描述变量的变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc sql;</div><div class="line">    title &quot;Dictionary库中所有的表&quot;;</div><div class="line">    select unique memname memlabel from dictionary.dictionaries;</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<p>SAS字典库里的表与其对应的SASHELP库下的视图</p>
+<table>
+<thead>
+<tr>
+<th>Dictionary库下的表名</th>
+<th>SASHELP库下的视图名</th>
+<th>主要作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TABLES</td>
+<td>Vtable</td>
+<td>包含了诸如逻辑库名、数据文件名、数据文件的类型、观测值数、变量数等诸多信息</td>
+</tr>
+<tr>
+<td>COLUMNS</td>
+<td>Vcolumn</td>
+<td>包含了变量名称、类型、长度和格式以及标签等诸多信息</td>
+</tr>
+<tr>
+<td>MEMBERS</td>
+<td>Vmember</td>
+<td>包含了逻辑库名称、数据文件名、数据类型、路径等诸多信息</td>
+</tr>
+<tr>
+<td>FORMATS</td>
+<td>Vformat</td>
+<td>包含了系统自带的格式信息</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sql;</div><div class="line">    describe table dictionary.column; /*查看columns表结构*/</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<p>在指定逻辑库、数据集以及数据文件类型时，需用引号，且引号里面的字母是大学。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">proc sql; /*从字典库中获取SASHELP库下所有数据集信息*/</div><div class="line">    create tables desds as select memname, nobs, nvar from dictionary.tables</div><div class="line">    where libname=&quot;SASHELP&quot; and memtype=&quot;DATA&quot;;</div><div class="line">quit;</div><div class="line"></div><div class="line">proc sql; /*从视图中获取SASHELP库下所有数据集信息*/</div><div class="line">    create tables desds as select memname, nobs, nvar from sashelp.vtable</div><div class="line">    where libname=&quot;SASHELP&quot; and memtype=&quot;DATA&quot;;</div><div class="line">quit;</div><div class="line"></div><div class="line">proc sql; /*从字典库中获取数据集CARS的所有变量信息*/</div><div class="line">    create table varlist as select name, type, length, label from dictionary.columns</div><div class="line">    where libname=&quot;SASHELP&quot; and memname=&quot;CARS&quot;;</div><div class="line">quit;</div><div class="line"></div><div class="line">proc sql; /*从视图中获取数据集CARS的所有变量信息*/</div><div class="line">    create table varlist as select name, type, length, label from sashelp.vcolumn</div><div class="line">    where libname=&quot;SASHELP&quot; and memname=&quot;CARS&quot;;</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<h2 id="间有山川亦奇秀：函数例程"><a href="#间有山川亦奇秀：函数例程" class="headerlink" title="间有山川亦奇秀：函数例程"></a>间有山川亦奇秀：函数例程</h2><h3 id="函数语法"><a href="#函数语法" class="headerlink" title="函数语法"></a>函数语法</h3><p>可用于DATA步赋值语句、IF语句、WHERE表达式（语句或选项）、宏语句、PROC REPORT以及PROC SQL语句中。PRCO SQL的SELECT语句里的函数作用是纵向的，而其他函数的作用则是横向的。</p>
+<p><em>function-name</em>(<em>argument-1</em>&lt;…*argument-n&gt;)</p>
+<p><em>function-name</em>(OF <em>variable-list</em>)</p>
+<p><em>function-name</em>(OF <em>array-name</em>[*])</p>
+<p><em>function-name</em>(&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]&gt; &lt;…, &lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]&gt;&gt;)</p>
+<ul>
+<li>function-name：函数名称</li>
+<li>argument：参数，可以是变量名、常数、表达式、甚至还可以是其他函数</li>
+<li>OF <em>variable-list</em>：参数列表</li>
+<li>OF <em>array-name</em>[*]：数组名称，注意要带[*]</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">data _null_;</div><div class="line">    array ex&#123;7&#125; (95 93 92 99 98 85 94);</div><div class="line">    avg_function1=mean(ex1, ex2, ex3, ex4, ex5, ex6, ex7); /*单个参数*/</div><div class="line">    avg_function2=mean(of ex1 ex2 ex3 ex4 ex5 ex6 ex7); /*变量清单*/</div><div class="line">    avg_function3=mean(of ex1-ex7); /*变量清单*/</div><div class="line">    avg_function4=mean(of ex:); /*变量清单*/</div><div class="line">    avg_function5=mean(of ex[*]; /*数组名*/</div><div class="line">    put (avg_function1 avg_function2 avg_function3 avg_function4 avg_function5) (=);</div><div class="line">    put avg_function1= avg_function2= avg_function3= avg_function4= avg_function5=;</div><div class="line">    /*put avg_function1 avg_function2 avg_function3 avg_function4 avg_function5;*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="例程语法"><a href="#例程语法" class="headerlink" title="例程语法"></a>例程语法</h3><p>主要用于DATA步的CALL语句中，不能用于赋值语句和表达式。</p>
+<p>CALL <em>routine-name</em>(<em>argument-1</em>&lt;…*argument-n&gt;)</p>
+<p>CALL <em>routine-name</em>(OF <em>variable-list</em>)</p>
+<p>CALL <em>routine-name</em>(OF <em>array-name</em>[*])</p>
+<p>CALL <em>routine-name</em>(&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]&gt; &lt;…, &lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]&gt;&gt;)</p>
+<ul>
+<li>routine-name：函数名称</li>
+<li>argument：参数，可以是变量名、常数、表达式、甚至还可以是其他函数</li>
+<li>OF <em>variable-list</em>：参数列表</li>
+<li>OF <em>array-name</em>[*]：数组名称，注意要带[*]</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">    array str&#123;3&#125; $20 (&quot;统计思维&quot;,&quot;SAS编程演义&quot;,&quot;数据整理与图标呈现&quot;);</div><div class="line">    length result1-result5 $50;</div><div class="line">    call catx(&quot;-&quot;, result1, str1, str2, atr3);</div><div class="line">    call catx(&quot;-&quot;, result2, of str1 str2 atr3);</div><div class="line">    call catx(&quot;-&quot;, result3, of str1-atr3);</div><div class="line">    call catx(&quot;-&quot;, result4, of str:);</div><div class="line">    call catx(&quot;-&quot;, result5, of str[*]);</div><div class="line">    put (result1 result2 result3 result4 result5) (=);</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h3><p>借助PROC FCMP的FUNCTION语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">proc fcmp outlib=sasuser.funcs.trial;</div><div class="line">    function study_day(intervention_date, event_date); /*定义函数study_day*/</div><div class="line">        n=event_date - intervention_date;</div><div class="line">        if n &gt;= 0 then</div><div class="line">            n = n + 1;</div><div class="line">        return(n);</div><div class="line">    endsub;</div><div class="line">run;</div><div class="line"></div><div class="line">options cmplib=sasuser.funcs;</div><div class="line">data _null_;</div><div class="line">    start=&apos;15Feb2010&apos;d;</div><div class="line">    today=&apos;27Mar2010&apos;d;</div><div class="line">    sd=study_day(start, today);</div><div class="line">    put sd=;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="高频函数和例程"><a href="#高频函数和例程" class="headerlink" title="高频函数和例程"></a>高频函数和例程</h3><table>
+<thead>
+<tr>
+<th>功能类别</th>
+<th>函数名及其功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数组处理</td>
+<td>DIM：返回数组元素个数</td>
+</tr>
+<tr>
+<td></td>
+<td>HBOULD：返回数组上界</td>
+</tr>
+<tr>
+<td></td>
+<td>LBOULD：返回数组下界</td>
+</tr>
+<tr>
+<td>字符处理</td>
+<td>STRIP：掐头去尾移除空格</td>
+</tr>
+<tr>
+<td></td>
+<td>SUBSTR：提取、置换字符</td>
+</tr>
+<tr>
+<td></td>
+<td>TRANSLATE、TRANSTRN、TRANWRD：替换、移除字符</td>
+</tr>
+<tr>
+<td></td>
+<td>UPCASE、LOWCASE、PROPCASE：大小写转换</td>
+</tr>
+<tr>
+<td></td>
+<td>SCAN：扫描整个字符串，返回某部分字符串</td>
+</tr>
+<tr>
+<td></td>
+<td>FIND、FINDC、FINDW：查找字符，返回其位置</td>
+</tr>
+<tr>
+<td></td>
+<td>INDEX、INDEXC、INDEXW：查找字符，返回其位置</td>
+</tr>
+<tr>
+<td></td>
+<td>CATS、CATT、CATX及其CALL例程：字符串拼接</td>
+</tr>
+<tr>
+<td>日期时间</td>
+<td>DATE、TODAY：获取当前日期</td>
+</tr>
+<tr>
+<td></td>
+<td>YEAR、MONTH、DAY：分别截取年、月、日</td>
+</tr>
+<tr>
+<td></td>
+<td>MDY：月、日、年组合成完整日期</td>
+</tr>
+<tr>
+<td></td>
+<td>HOUR、MINUTE、SECOND：分别截取时、分、秒</td>
+</tr>
+<tr>
+<td></td>
+<td>HMS：时、分、秒组合成完整时间</td>
+</tr>
+<tr>
+<td></td>
+<td>INTCK：计算日期、时间、日期时间间的间隔</td>
+</tr>
+<tr>
+<td></td>
+<td>INTNX：给定间隔的下一个日期、时间、日期时间</td>
+</tr>
+<tr>
+<td>统计描述</td>
+<td>N、NMISS：分别统计非缺失、缺失的个数</td>
+</tr>
+<tr>
+<td></td>
+<td>SUM：求和</td>
+</tr>
+<tr>
+<td></td>
+<td>MEAN：均数</td>
+</tr>
+<tr>
+<td></td>
+<td>STD、STDERR：标准差、标准误</td>
+</tr>
+<tr>
+<td></td>
+<td>CV：变异系数</td>
+</tr>
+<tr>
+<td></td>
+<td>IQR：分位数间隔</td>
+</tr>
+<tr>
+<td></td>
+<td>MISSING：判断是否缺失</td>
+</tr>
+<tr>
+<td>宏函数</td>
+<td>CALL SYMPUT、CALL SYMPUTX：DATA步赋值宏变量</td>
+</tr>
+<tr>
+<td></td>
+<td>SYMEXIT：判断宏变量是否存在</td>
+</tr>
+<tr>
+<td></td>
+<td>SYMGET：DATA步运行阶段获取宏变量值</td>
+</tr>
+<tr>
+<td>截断函数</td>
+<td>TRAN：强行截断</td>
+</tr>
+<tr>
+<td></td>
+<td>ROUND：四舍五入</td>
+</tr>
+<tr>
+<td></td>
+<td>INT、CELL、FLOOR：直接取整、向上取整、向下取整</td>
+</tr>
+<tr>
+<td>变量信息</td>
+<td>VNAME：获取变量名</td>
+</tr>
+<tr>
+<td></td>
+<td>VTYPE：获取变量类型</td>
+</tr>
+<tr>
+<td></td>
+<td>VLABEL：获取变量标签</td>
+</tr>
+<tr>
+<td>特殊函数</td>
+<td>INPUT、PUT：数据类型转换</td>
+</tr>
+<tr>
+<td></td>
+<td>LAG、DIF：不同观测号间的值与差值</td>
+</tr>
+</tbody>
+</table>
+<h2 id="翩跹翠袖拂云裳：巧用格式"><a href="#翩跹翠袖拂云裳：巧用格式" class="headerlink" title="翩跹翠袖拂云裳：巧用格式"></a>翩跹翠袖拂云裳：巧用格式</h2><h3 id="格式名"><a href="#格式名" class="headerlink" title="格式名"></a>格式名</h3><p>&lt;$&gt;<em>format-name</em>&lt;w&gt;.&lt;d&gt;</p>
+<p>$：标明是否为字符格式，有$的为字符格式，无则为数字格式</p>
+<p><em>format-name</em>：格式名称，可以是SAS系统自带也可以是用户在PROC FORMAT的VALUE语句中自定义的</p>
+<p><em>w</em>：格式的宽度</p>
+<p><em>d</em>：小数的位数</p>
+<p>.：w和d均可以没有，但其之间的点必须保留</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/*获取系统内置格式清单*/</div><div class="line">proc sql;</div><div class="line">    create table SysFormats as select distinct fmtname from dictionary.formats;</div><div class="line">quit;</div><div class="line"></div><div class="line">proc print data= SysFormats;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="常用输入格式"><a href="#常用输入格式" class="headerlink" title="常用输入格式"></a>常用输入格式</h3><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>格式名</th>
+<th>作用简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字符</td>
+<td>$CHARw.</td>
+<td>读入带空格的字符</td>
+</tr>
+<tr>
+<td></td>
+<td>$w.</td>
+<td>标准字符格式</td>
+</tr>
+<tr>
+<td>日期时间</td>
+<td>ANYDTDTEw.</td>
+<td>“万能”读入日期格式</td>
+</tr>
+<tr>
+<td></td>
+<td>ANYDTDTMw.</td>
+<td>“万能”读入日期时间格式</td>
+</tr>
+<tr>
+<td></td>
+<td>ANYDTTMEw.</td>
+<td>“万能”读入时间格式</td>
+</tr>
+<tr>
+<td></td>
+<td>DATEw.</td>
+<td>读入格式为ddmmyy或ddmmyyyy的日期</td>
+</tr>
+<tr>
+<td></td>
+<td>DATETIMEw.</td>
+<td>读入格式为ddmmyy hh:mm:ss或ddmmyyyy hh:mm:ss的日期时间</td>
+</tr>
+<tr>
+<td></td>
+<td>DDMMYYw.</td>
+<td>读入格式为ddmmyy&lt;yy&gt;或者dd-mm-yy&lt;yy&gt;格式的日期，连字符可以是- . /</td>
+</tr>
+<tr>
+<td></td>
+<td>HHMMSSw.</td>
+<td>读入格式为hh:mm:ss或hhmmss的时间</td>
+</tr>
+<tr>
+<td></td>
+<td>MMDDYYw.</td>
+<td>读入格式为mmddyy或mmddyyyy的日期</td>
+</tr>
+<tr>
+<td>数字</td>
+<td>COMMAw.d</td>
+<td>读入数字时移除数字间的逗号</td>
+</tr>
+<tr>
+<td></td>
+<td>w.d</td>
+<td>读入标准数字格式</td>
+</tr>
+<tr>
+<td></td>
+<td>PERCENTw.d</td>
+<td>读入百分比数字</td>
+</tr>
+</tbody>
+</table>
+<h3 id="常用输出格式"><a href="#常用输出格式" class="headerlink" title="常用输出格式"></a>常用输出格式</h3><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>格式名</th>
+<th>作用简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字符</td>
+<td>$w.</td>
+<td>标准字符格式，w表示变量的宽度</td>
+</tr>
+<tr>
+<td></td>
+<td>$IPCASEw.</td>
+<td>把字符转成大写，相当于UPCASE函数</td>
+</tr>
+<tr>
+<td>日期时间</td>
+<td>DATETIMEw.d</td>
+<td>显示日期时间格式为ddmmmyy:hh:mm:ss.ss</td>
+</tr>
+<tr>
+<td></td>
+<td>DATEw.</td>
+<td>显示日期格式为ddmmmyy，ddmmmyyyy，或dd-mmm-yy</td>
+</tr>
+<tr>
+<td></td>
+<td>YYMMDDw.</td>
+<td>显示日期格式为yymmdd或&lt;yy&gt;yy-mm-dd</td>
+</tr>
+<tr>
+<td></td>
+<td>HHMMw.d</td>
+<td>显示时间格式为hh:mm</td>
+</tr>
+<tr>
+<td>数字</td>
+<td>BESTw.</td>
+<td>SAS自动选择最合适的数字格式</td>
+</tr>
+<tr>
+<td></td>
+<td>COMMAw.d</td>
+<td>带千分位的数字格式</td>
+</tr>
+<tr>
+<td></td>
+<td>DOLLARw.d</td>
+<td>带美元符号的格式</td>
+</tr>
+<tr>
+<td></td>
+<td>PERCENTw.d</td>
+<td>显示百分比形式</td>
+</tr>
+<tr>
+<td></td>
+<td>PVALUEw.d</td>
+<td>统计P值显示格式</td>
+</tr>
+<tr>
+<td></td>
+<td>w.d</td>
+<td>标准的数字格式</td>
+</tr>
+<tr>
+<td></td>
+<td>Zw.d</td>
+<td>前面位数不够补0填充</td>
+</tr>
+</tbody>
+</table>
+<h3 id="自定义格式"><a href="#自定义格式" class="headerlink" title="自定义格式"></a>自定义格式</h3><p><strong>PROC FORMAT</strong> &lt;<em>option(s)</em>&gt;;</p>
+<p><strong>EXCLUDE</strong> <em>entry(s)</em>;</p>
+<p><strong>INVALUE</strong> &lt;$&gt;<em>name</em>&lt;(<em>informat-option(s)</em>)&gt;&lt;<em>value-range-set(s)</em>&gt;;</p>
+<p><strong>PICTURE</strong> <em>name</em>&lt;(<em>format-option(s)</em>)&gt; &lt;<em>value-range-set-1</em>&lt;(<em>picture-1-option(s)</em>)&gt; &lt;value-range-set-2&lt;(*picture-2-option(s))&gt;&gt; …&gt;;</p>
+<p><strong>SELECT</strong> <em>entry(s)</em>;</p>
+<p><strong>VALUE</strong>  &lt;$&gt;<em>name</em>&lt;(<em>format-option(s)</em>)&gt; &lt;<em>value-range-set(s)</em>&gt;</p>
+<p><strong>RUN</strong>;</p>
+<ul>
+<li>option(s)：PRCO FORMAT的一些选项，如：<ul>
+<li>library=：指定格式存放位置</li>
+<li>ctnlin=：指定格式定义输入数据集</li>
+<li>ctnlout=：指定格式定义到出数据集</li>
+</ul>
+</li>
+<li><strong>EXCLUDE</strong>：剔除某些条目</li>
+<li><strong>INVALUE</strong>：定义输入格式<ul>
+<li><em>name</em>：输入格式名，前面有$表示为字符格式名</li>
+<li><em>informat-option(s)</em>：输入格式选项</li>
+<li><em>value-range-set(s)</em>：数据映射</li>
+</ul>
+</li>
+<li><strong>PICTURE</strong>：创建打印数字的模版</li>
+<li><strong>VALUE</strong>：定义输出格式<ul>
+<li><em>name</em>：输出格式名，前面有$表示为字符格式名</li>
+<li><em>informat-option(s)</em>：输出格式选项</li>
+<li><em>value-range-set(s)</em>：数据映射，其形式可以是：<em>value-or-range-1 &lt;, value-or-range-2, …&gt;=formatted-value|[existing-format]</em></li>
+</ul>
+</li>
+</ul>
+<p>直接用输入数据来定义格式时，输入数据集里必须包含五个重要字段名：FMTNAME、START、END、LABEL以及TYPE。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">proc format cntlout=fmt; /*自定义格式，导出格式定义数据*/</div><div class="line">    value $sexf F=&quot;男性&quot; M=&quot;女性&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc format library=work cntlin=fmt(keep=fmtname start end label type); /*用数据集定义格式*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<ul>
+<li>格式命名：格式命名长度不得超过32个字符（包括$），且不得以数字结尾</li>
+<li>数据映射中，数据范围写法：<ul>
+<li>单独的值映射：如「F=”男性” M=”女性”」,「1=”低” 2=”中” 3=”高”」</li>
+<li>值范围的映射：如「18.5-24.9=”正常”」,「’A’-‘D’=”Class1”」</li>
+<li>单用连字符“-”时，是闭区间，包括两边边界值。如果希望不包括边界，可在其前加“&lt;”，如：「18.5-&lt;25=”正常”」</li>
+<li>可用关键词LOW，HEIGH，OTHER：如「low-&lt;65=”&lt;65岁” 65-high=”&gt;=65岁”」</li>
+<li>可以嵌套格式名，但是需要将嵌套的格式名置于中括号内或小括号里的双竖线中，如：「.=”缺失” other=[yymmdd10.];」</li>
+</ul>
+</li>
+<li>定义好的格式，如果在DATA步用FORMAT关联变量，则为永久性的；如果只在过程步用FORMAT关联变量，则为临时性的。</li>
+</ul>
+<h3 id="格式妙用"><a href="#格式妙用" class="headerlink" title="格式妙用"></a>格式妙用</h3><h4 id="格式的使用范围"><a href="#格式的使用范围" class="headerlink" title="格式的使用范围"></a>格式的使用范围</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">data _null_; /*DATA步 PUT语句中指定*/</div><div class="line">    set sashelp.class(obs=5);</div><div class="line">    put name sex $sexf.;</div><div class="line">run;</div><div class="line"></div><div class="line">prco print data=sashelp.class(obs=5); /*PROC步FORMAT语句指定*/</div><div class="line">    var name sex;</div><div class="line">    format sex $sexf.;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sql; /*Proc sql中format选项*/</div><div class="line">    select name, sex format=$sexf. from sashelp.class(obs=5);</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<h4 id="变量重分组"><a href="#变量重分组" class="headerlink" title="变量重分组"></a>变量重分组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">data obese; /*创建测试数据集*/</div><div class="line">    length status $ 15;</div><div class="line">    set sashelp.class;</div><div class="line">    BMI = weight*0.4536/(height*0.0254)**2;</div><div class="line">run;</div><div class="line"></div><div class="line">proc format; /*自定义格式*/</div><div class="line">    value obefmt low-18.5=&quot;Underweight&quot; 18.5-25=&quot;Normal&quot; </div><div class="line">                 25-30=&quot;Overweight&quot; 30-high=&quot;Obese&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc freq data=obese; /*愿变量+格式直接统计新分类的频数*/</div><div class="line">    table bmi;</div><div class="line">    format bmi obefmt.;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h4 id="统计分析过程"><a href="#统计分析过程" class="headerlink" title="统计分析过程"></a>统计分析过程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/*在统计分析过程里，直接用自定义格式给变量重分组*/</div><div class="line">proc format;</div><div class="line">    value obefmt low-18.5=&quot;Underweight&quot; 18.5-high=&quot;Normal or above&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc logistic data=obese;</div><div class="line">    class sex;</div><div class="line">    model bmi(event=&quot;Underweight&quot;)=age sex;</div><div class="line">    format bmi obefmt.;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h4 id="统计缺失观测"><a href="#统计缺失观测" class="headerlink" title="统计缺失观测"></a>统计缺失观测</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">proc format; /*自定义格式*/</div><div class="line">    value $missfmt &apos; &apos;=&quot;Missing&quot; other=&quot;Not Missing&quot;; /*引号中有多少空格都一样*/</div><div class="line">    value nmissfmt .=&quot;Missing&quot; other=&quot;Not Missing&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">data class; /*创建测试数据集*/</div><div class="line">    set sashelp.class;</div><div class="line">    if rannor(123)&lt;0.5 then call missing(sex);</div><div class="line">    if rannor(456)&lt;0.05 then call missing(age);</div><div class="line">run;</div><div class="line"></div><div class="line">proc freq data=class; /*统计缺失、非缺失频数*/</div><div class="line">    table sex age/missing;</div><div class="line">    format sex $missfmt. age nmissfmt.;</div><div class="line">run;</div><div class="line"></div><div class="line">data cclass;</div><div class="line">    set class;</div><div class="line">    if name=&apos;Henry&apos; then sex=&apos;  &apos;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc freq data=cclass; /*统计缺失、非缺失频数*/</div><div class="line">    table sex age/missing;</div><div class="line">    format sex $missfmt. age nmissfmt.;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h4 id="条件显示"><a href="#条件显示" class="headerlink" title="条件显示"></a>条件显示</h4><p>利用自定义格式，可以依据不同的条件，按不同风格显示值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">proc format;</div><div class="line">    value obefmt low-18.5=&quot;red&quot; 18.5-high=&quot;black&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc report data=obese nowd split=&apos;~&apos; style(report)=[background=white foreground=black];</div><div class="line">    column name sex age bmi;</div><div class="line">    define name/display;</div><div class="line">    define sex/display;</div><div class="line">    define age/display;</div><div class="line">    define bmi/format=4.1 style=[foreground=obefmt.];</div><div class="line">run;</div></pre></td></tr></table></figure>
 
           
         
@@ -639,7 +2103,7 @@
 <h3 id="读入CSV文件"><a href="#读入CSV文件" class="headerlink" title="读入CSV文件"></a>读入CSV文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">filename mycsv &quot;D:\Data\Raw|class.csv&quot;;</div><div class="line">proc import </div><div class="line">    datafile=mycsv dbms=csv out=tmp replace;</div><div class="line">getnames=yes;</div><div class="line">guessingrows=20; /*通过前20行确定变量类型*/</div><div class="line">datarow=2; /*数据从第二行开始*/</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h3 id="读入TXT特殊字符分隔的文件"><a href="#读入TXT特殊字符分隔的文件" class="headerlink" title="读入TXT特殊字符分隔的文件"></a>读入TXT特殊字符分隔的文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">filename mytxttab &quot;D:\Data\Raw|class_tab.txt&quot;</div><div class="line">filename mytxtblk &quot;D:\Data\Raw|class_blk.txt&quot;</div><div class="line">proc import</div><div class="line">    datafile=mytxttab dbms=dlm out=tmp replace;</div><div class="line">delimiter=&apos;09&apos;x;</div><div class="line">getnames=yes;</div><div class="line">run;</div><div class="line">proc import</div><div class="line">    datafile=mytxtblk dbms=dlm out=tmp replace;</div><div class="line">delimiter=&apos;20&apos;x;</div><div class="line">getnames=yes;</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h3 id="INPUT语句列表读入式"><a href="#INPUT语句列表读入式" class="headerlink" title="INPUT语句列表读入式"></a>INPUT语句列表读入式</h3><p>适合数据不齐整</p>
-<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable &lt;$&gt; &lt;:|$|~&gt; &lt;<em>informat.</em>&gt; <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#58;&#64;&#x7c;&#64;&#64;">&#64;&#x7c;&#64;&#64;</a>;</p>
+<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable &lt;$&gt; &lt;:|$|~&gt; &lt;<em>informat.</em>&gt; <a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#x40;&#124;&#x40;&#x40;">&#x40;&#124;&#x40;&#x40;</a>;</p>
 <ul>
 <li>pointer-control: 控制变量读入点起始位置。针对行: #, /。针对列: @, +。</li>
 <li>variable: 变量列表</li>
@@ -654,14 +2118,14 @@
 </li>
 </ul>
 <h3 id="INPUT语句列读入式"><a href="#INPUT语句列读入式" class="headerlink" title="INPUT语句列读入式"></a>INPUT语句列读入式</h3><p>适合数据齐整的情况</p>
-<p><strong>INPUT</strong> variable&lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#58;&#64;&#x7c;&#64;&#64;">&#64;&#x7c;&#64;&#64;</a>;</p>
+<p><strong>INPUT</strong> variable&lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#x40;&#124;&#64;&#x40;">&#x40;&#124;&#64;&#x40;</a>;</p>
 <ul>
 <li>start-column&lt;-end-column&gt;: 变量读入点起止列</li>
 <li>.decimals: 小数位数</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">input name $ 1-9 gender $ 11 age 13-14 location $ 16-23;</div><div class="line">YY Wu     M 25 Shanghai</div><div class="line">Yuanyi Wu M 25 Shanghai</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h3 id="INPUT语句格式读入式"><a href="#INPUT语句格式读入式" class="headerlink" title="INPUT语句格式读入式"></a>INPUT语句格式读入式</h3><p>可以对字符变量指定宽度，以及读入非标准形式对数字，如科学计数法、带货币符号、带千分位等。</p>
-<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; <em>variable</em> <em>informat.</em> <a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#58;&#64;&#x7c;&#64;&#x40;">&#64;&#x7c;&#64;&#x40;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (<em>informat-list</em>) <a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#58;&#64;&#x7c;&#64;&#64;">&#64;&#x7c;&#64;&#64;</a>;<br><strong>INPUY</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (&lt;<em>n</em>&gt; informat.) <a href="&#x6d;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x40;&#x7c;&#x40;&#64;">&#x40;&#x7c;&#x40;&#64;</a>;</p>
+<p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; <em>variable</em> <em>informat.</em> <a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#64;&#124;&#64;&#64;">&#64;&#124;&#64;&#64;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (<em>informat-list</em>) <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#58;&#x40;&#x7c;&#x40;&#x40;">&#x40;&#x7c;&#x40;&#x40;</a>;<br><strong>INPUY</strong> &lt;<em>pointer-control</em>&gt; (<em>variable-list</em>) (&lt;<em>n</em>&gt; informat.) <a href="&#x6d;&#x61;&#105;&#108;&#x74;&#111;&#x3a;&#x40;&#124;&#x40;&#64;">&#x40;&#124;&#x40;&#64;</a>;</p>
 <ul>
 <li>(variable-list) (informat-list): 变量格式列表<ul>
 <li>编号范围列表：形如x1,x2,x3可缩写为x1-xn</li>
@@ -673,7 +2137,7 @@
 <li>&lt;<em>n</em>&gt; informat.: 变量格式列表n表示格式重复的次数</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">/*gender虽然只有1列，但声明时要带上其后的一个空格，age，location类似*/</div><div class="line">input name &amp; $10. gender $2. age 2. +1 location $8. fee comma6.;</div><div class="line">datalines;</div><div class="line">YY Wu  M 25 Shanghai 12,345</div><div class="line">Yuanyi Wu  M 25 Shanghai 54,321</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="INPUT语句命名读入式"><a href="#INPUT语句命名读入式" class="headerlink" title="INPUT语句命名读入式"></a>INPUT语句命名读入式</h3><p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= &lt;$&gt; <a href="&#109;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#64;&#124;&#64;&#64;">&#64;&#124;&#64;&#64;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= informat. <a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#x3a;&#64;&#124;&#x40;&#64;">&#64;&#124;&#x40;&#64;</a>;<br><strong>INPUT</strong> variable= &lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#x40;&#124;&#x40;&#x40;">&#x40;&#124;&#x40;&#x40;</a>;</p>
+<h3 id="INPUT语句命名读入式"><a href="#INPUT语句命名读入式" class="headerlink" title="INPUT语句命名读入式"></a>INPUT语句命名读入式</h3><p><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= &lt;$&gt; <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x40;&#124;&#x40;&#x40;">&#x40;&#124;&#x40;&#x40;</a>;<br><strong>INPUT</strong> &lt;<em>pointer-control</em>&gt; variable= informat. <a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#x40;&#x7c;&#64;&#x40;">&#x40;&#x7c;&#64;&#x40;</a>;<br><strong>INPUT</strong> variable= &lt;$&gt; start-column&lt;-end-column&gt; &lt;.decimals&gt; <a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#64;&#124;&#x40;&#64;">&#64;&#124;&#x40;&#64;</a>;</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">input name= $ gender= $ age= location=$;</div><div class="line">datalines;</div><div class="line">name=WYY gender=M age=25 location=Shanghai</div><div class="line">name=GY gender=F age=24 location=Shanghai</div><div class="line">;</div><div class="line">run;</div></pre></td></tr></table></figure>
 <h3 id="数据导出"><a href="#数据导出" class="headerlink" title="数据导出"></a>数据导出</h3><p><strong>PROC EXPORT DATA</strong>=&lt;<em>libref.</em>&gt;<em>SAS data set</em>&lt;(<em>SAS data set options</em>)&gt;</p>
 <p><strong>OUTFILE</strong>=”filename”|<strong>OUTTABLE</strong>=”tablename”</p>
@@ -807,635 +2271,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/08/02/black production survey/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yuanyi Wu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WYY's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/02/black production survey/" itemprop="url">网贷黑中介调研</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-02T09:31:44+08:00">
-                2017-08-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近进入了互联网金融行业，继续做一些反欺诈相关的工作。知己知彼，百战不殆。</p>
-<h1 id="网贷技术"><a href="#网贷技术" class="headerlink" title="网贷技术"></a>网贷技术</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="客户的详细版征信"><a href="#客户的详细版征信" class="headerlink" title="客户的详细版征信"></a>客户的详细版征信</h3><p>不查征信的小贷，另当别论。要求客户打印详细版征信；没有的话，一定要让客户如是交代最近的申请记录以及单位信息。</p>
-<h3 id="删除贷款相关信息"><a href="#删除贷款相关信息" class="headerlink" title="删除贷款相关信息"></a>删除贷款相关信息</h3><ul>
-<li>贷款App：删除客户手机里所有贷款相关的App</li>
-<li>手机短信：删除所有信贷相关的短信，包括网贷平台的验证码、批准、被拒短信；信用卡催收短信，包括带有“如已还款请忽略”的。</li>
-<li>通话记录：删除一切与信贷公司、银行相关的通话记录。更不可将号码保存到通讯录。</li>
-<li>信用卡账单：删除逾期账单、未满六个月的信用卡的账单、非详版账单，只保留符合要求且用卡状况良好的账单。</li>
-<li>淘宝交易记录：删除充值点卡、购买虚拟物品，非客户本人收货地址、收货人电话与申请人不一致的交易。</li>
-</ul>
-<h2 id="包装客户"><a href="#包装客户" class="headerlink" title="包装客户"></a>包装客户</h2><p>年龄、学历、单位、公积金、社保、征信情况、车贷、房贷、信用卡种类、贷款记录、打卡工资、是否有保单、实名制手机、芝麻分、电商账号。</p>
-<ul>
-<li>年龄：一般18-60周岁，大部分网贷已经限制到22-40周岁。</li>
-<li>征信：纯白户或黑户，做黑白户小贷的口子。</li>
-<li>信用卡：3-6月或以上的客户，大部分口子都可以操作。</li>
-<li>账单：一些口子要6个月以上的连续账单，如叮当贷、爱钱进、宜人极速贷。</li>
-<li>车贷、房贷：可以做易分期，也可以办卡。办卡的话，基本上都可以下。</li>
-<li>保单：平安人寿的保单贷、太平洋的保单贷。</li>
-<li>社保、公积金：有地区限制，51公积金app，宜人贷公积金模式、网易小贷。</li>
-<li>学历：浦发青春贷、闪银，交通、光大办信用卡。</li>
-<li>在校大学生：本科学历可以做10-50万贷款。</li>
-</ul>
-<h2 id="贷款实操"><a href="#贷款实操" class="headerlink" title="贷款实操"></a>贷款实操</h2><ul>
-<li>单位好直接使用，无单位就要包装单位。</li>
-<li>做工牌认证、银行流水账单。</li>
-<li>培训客户，做好回访。</li>
-<li>坐等下款，收钱。</li>
-</ul>
-<h2 id="申请贷款的10个细节"><a href="#申请贷款的10个细节" class="headerlink" title="申请贷款的10个细节"></a>申请贷款的10个细节</h2><ul>
-<li>实名制手机：每个月必须有通话记录，证明这个电话是经常使用的。</li>
-<li>联系人：必须能在最近通话记录中找到的联系人。</li>
-<li>工作信息：很多网贷会共享资料，因此工作信息不要经常换，最好提供一年以上的。如果没有工作，自己准备一个固话，搜索附近的公司（网上没电话的那种），用这家公司的名字在网上发布招聘信息，留下准备的固化。当然工作合同证明也可以这样。</li>
-<li>信用卡账单邮箱：账单必须连续多月，若有多张信用卡，保留信用最好的一张卡就行。</li>
-<li>阿里系验证：淘宝支付宝一定要实名验证，最近两个月一定要有实物消费记录。保留一个常用地址，其他全部删除。</li>
-<li>工作证明、名片、工牌：</li>
-<li>回访电话：一定要接到电话，有的网贷公司两次没接到就会直接拒。回答问题一定不要犹豫，必须和资料相符。</li>
-<li>回访联系人：回访联系人的网贷不是很急不用去申请。申请前对手机里的联系人进行整理，并提前打好招呼。</li>
-<li>回访内容<ul>
-<li>父母：</li>
-<li>公司：本人接最好，本人没接到，一定要让接电话的人说是单位电话。</li>
-<li>配偶：一定是本人接听，不是本人则100%拒贷。</li>
-<li>申请人：聊工作，聊生活，也可以反问能否批，什么时候批。</li>
-</ul>
-</li>
-<li>信用卡回访<ul>
-<li>资料写小纸条上，随身携带以免忘记。</li>
-<li>不清楚如何回答时，借口信号不好，过几分钟再打来，趁机熟悉资料。</li>
-<li>卡片寄哪里？一定要寄往资料上的公司或住址。</li>
-<li>要和申卡时填写的联系人提前说明，以免挂掉。</li>
-<li>问认识单位谁谁谁时，若不认识，可回答“或许有，公司人多不熟悉”。</li>
-</ul>
-</li>
-</ul>
-<h2 id="不上征信的小贷"><a href="#不上征信的小贷" class="headerlink" title="不上征信的小贷"></a>不上征信的小贷</h2><p>宜人贷、功夫贷、拍拍贷、信用钱包、发薪贷、现金巴士、亲亲小贷、达飞云贷、手机贷、小花钱包贷、闪电借款、用钱宝、你我贷、指尖贷、曹操贷、积木盒子、麦芽贷、闪银、名校贷、神灯小贷、玖富叮当贷、么么贷、魔法现金、给你花、屌丝贷、51人品贷、融360、月光足</p>
-<h2 id="上征信的贷款"><a href="#上征信的贷款" class="headerlink" title="上征信的贷款"></a>上征信的贷款</h2><p>微粒贷(深圳前海微众银行)、借呗(网商贷)、捷信(中银、北银、马上)、消费金融、佰仟金融(哈尔滨银行)、省呗(包商银行)、拉卡拉、卡卡贷、贷款王、证大、中安信业、平安、布丁小贷、豆豆钱、唯信旗下系列产品、信而富现金贷、马上金融、安逸花</p>
-<h2 id="不查征信的网贷"><a href="#不查征信的网贷" class="headerlink" title="不查征信的网贷"></a>不查征信的网贷</h2><p>手机贷、发薪贷、信用钱包、现金巴士、拍拍贷、人人贷、信闪贷、用钱宝、鼎及贷、mo9、曹操贷、亲亲小贷、原子贷、闪银、嗨秒贷、闪电借款、钱站、读秒、我来贷、指尖贷、小花钱包、小米金融、么么贷、魔法现金贷、给你花、趣借吧、玖富叮当贷、功夫贷、达飞云贷、51人品贷、58消费金融、融360、月光足、信而富现金贷</p>
-<h2 id="无视黑白的贷款"><a href="#无视黑白的贷款" class="headerlink" title="无视黑白的贷款"></a>无视黑白的贷款</h2><p>拍拍贷、现金巴士、手机贷、马上金融、父母贷、发薪贷、闪银奇异、平安普惠、我来贷、给你花、信闪贷、贷款王、用钱宝、鼎及贷、mo9、曹操贷、亲亲小贷、原子贷、嗨秒贷、微信马上贷</p>
-<h2 id="信用卡口子"><a href="#信用卡口子" class="headerlink" title="信用卡口子"></a>信用卡口子</h2><p>卡卡贷、闪电借款、钱站、宜人贷、省呗、积木盒子、读秒贷、你我贷-嘉卡贷、功夫贷、51人品贷、小赢卡贷、还呗</p>
-<h2 id="公积金口子"><a href="#公积金口子" class="headerlink" title="公积金口子"></a>公积金口子</h2><ul>
-<li>江苏银行app：金E融 (地区限制：江苏)</li>
-<li>51公积金app：很多公积金贷款通道</li>
-<li>网易小贷：微信关注</li>
-<li>你我贷app：嘉英贷</li>
-<li>宜人贷app：公积金模式</li>
-<li>中信银行公积金贷款：网银申请，公积金缴存两年以上</li>
-<li>有鱼公积金app：公积金缴存6个月以上</li>
-</ul>
-<p>防止银行降额封卡和冻结的方法：</p>
-<ul>
-<li>预约分期(打电话给银行客服，这比消费预约3-6期的分期)</li>
-<li>全额还款<ul>
-<li>账单日和最后还款日的修改功能</li>
-<li>最后还款日后已经开始收利息了</li>
-<li>免息天数 = (最后还款日 - 账单日)[20天] + 银行宽限期限[2-3天]</li>
-</ul>
-</li>
-<li>选择五台不同商户的POS机(一机一码)，五台一组，一天两到三次，循环的刷出来再循环的还进去。分10笔或者11笔，周期为10天。最后还款日前三天完成。甚至有可能提升额度。</li>
-</ul>
-<p>消除不良记录</p>
-<ul>
-<li>银行有征信更新的权限</li>
-<li>银行权限内，自己都可以处理</li>
-<li>银行权限外，谁都不行</li>
-</ul>
-<p>三类人群</p>
-<ul>
-<li>有信用卡，有申请记录，征信报告有记录</li>
-<li>有在银行递交过申请资料</li>
-<li>三无人员，无向银行递交申请资料，无网贷</li>
-</ul>
-<h2 id="中国建设银行"><a href="#中国建设银行" class="headerlink" title="中国建设银行"></a>中国建设银行</h2><h3 id="优质客户办卡"><a href="#优质客户办卡" class="headerlink" title="优质客户办卡"></a>优质客户办卡</h3><ol>
-<li>申请一张建设银行龙腾理财金卡(要求开通网银，获得U盾、密码器)<ul>
-<li>功能：贷卡合一、理财、储蓄</li>
-<li>条件：存五万</li>
-<li>漏洞：小城市小网点可以免费办理</li>
-</ul>
-</li>
-<li>把所有钱都集中到建设银行</li>
-<li>购买建设银行的理财(速盈理财)</li>
-<li>购买速盈理财7天，产生一个周期的收益。7天后收到短信“您是我行理财优质客户，邀请申请龙卡JOY”。如果没有收到短信，把理财的钱取出来，再买一个周期。</li>
-</ol>
-<h3 id="建设银行代发工资、团办申卡"><a href="#建设银行代发工资、团办申卡" class="headerlink" title="建设银行代发工资、团办申卡"></a>建设银行代发工资、团办申卡</h3><h4 id="有公司的人-代发工资业务"><a href="#有公司的人-代发工资业务" class="headerlink" title="有公司的人[代发工资业务]"></a>有公司的人[代发工资业务]</h4><ul>
-<li>条件<ul>
-<li>必须有公司正常营业，正常注册时间越久越好</li>
-<li>人数：30人左右(各地人数不一样)</li>
-<li>被代发人必须在建设银行具有储蓄卡</li>
-<li>代发金额：3600 - 8000</li>
-<li>代发时间：6-12个月</li>
-<li>每月代发时间：给员工发工资的前一天，把代发的钱打入银行代发账号</li>
-<li>代发费用：建设银行每个人4-5元</li>
-</ul>
-</li>
-<li>申请代发金额的1.5-2倍的信用卡。10个人，每人代发3600，下个月每人可申请3万的信用卡。公司就有30万可以使用。</li>
-<li>工资袋最高额度30万</li>
-</ul>
-<h4 id="白户"><a href="#白户" class="headerlink" title="白户"></a>白户</h4><ul>
-<li>众筹：筹人、筹资金、筹公司。然后按第一种方法。</li>
-</ul>
-<h3 id="有建设银行ETC信用卡的人"><a href="#有建设银行ETC信用卡的人" class="headerlink" title="有建设银行ETC信用卡的人"></a>有建设银行ETC信用卡的人</h3><p>区县换卡</p>
-<h2 id="建设银行实操"><a href="#建设银行实操" class="headerlink" title="建设银行实操"></a>建设银行实操</h2><ol>
-<li>下载中国建设银行客户端</li>
-<li>绑定龙腾理财金卡的手机注册登陆</li>
-<li>买入速盈理财7天，直到收到邀请短信。</li>
-<li>信用卡管理页面中可以看到预审批额度查询。如果额度低，循环买卖理财。</li>
-<li>信用卡管理页面中找到卡片推荐，35岁以下的龙卡JOY。</li>
-</ol>
-<h2 id="造假"><a href="#造假" class="headerlink" title="造假"></a>造假</h2><ul>
-<li>工作<ul>
-<li>挂靠熟人公司</li>
-<li>自行挂靠：借助企信宝、天眼查</li>
-</ul>
-</li>
-<li>座机<ol>
-<li>找移动联通购买座机</li>
-<li>招淘宝做彩铃</li>
-<li>淘宝买座机绑定手机呼叫转移</li>
-</ol>
-</li>
-<li>住宅<ul>
-<li>借助58同城、赶集网</li>
-</ul>
-</li>
-<li>控卡 异地挂靠申请</li>
-</ul>
-<h4 id="提额"><a href="#提额" class="headerlink" title="提额"></a>提额</h4><p>绑定建设银行的手机，打95533。转2号线，嘟一声立刻挂断。编辑短信<code>CCTE#卡号后四位#额度的两倍</code>发送到95533。</p>
-<h3 id="交通银行第三次融资"><a href="#交通银行第三次融资" class="headerlink" title="交通银行第三次融资"></a>交通银行第三次融资</h3><ol>
-<li>微信添加“交通银行信用卡|买单吧”公众号</li>
-<li>点击“方便用”-“分期借款”-“好享贷”-“登录”</li>
-<li>有缘分告诉你怎么刷爆好享贷<h3 id="怎么使用"><a href="#怎么使用" class="headerlink" title="怎么使用"></a>怎么使用</h3></li>
-</ol>
-<ul>
-<li>分6-12期。分期越久，提额周期越久，风控风险越高。</li>
-<li>3-5台pos机将固定额度刷出来；好享贷分到固定额度，再多笔刷出来</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/08/01/Event tracking/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yuanyi Wu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WYY's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/01/Event tracking/" itemprop="url">Event tracking</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-01T10:40:06+08:00">
-                2017-08-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="无埋点"><a href="#无埋点" class="headerlink" title="无埋点"></a>无埋点</h2><p>无埋点 = 可视化监测部署 = 所见即所得的监测部署</p>
-<p>无论是监测网站，还是监测App，都必须加上监测代码或SDK，不加就搜集不到数据。</p>
-<p>无论是埋点方法还是不埋点方法，要搜集数据都要加监测代码或SDK，称之为基础代码。要搜集到所有用户行为的数据，光有基础代码是不够的。无论是网站还是App(尤其是App)，总有一些特殊的用户操作行为时不能靠基础代码捕获的。</p>
-<p>不能被基础代码捕获的用户操作行为，称为event(事件)。</p>
-<ul>
-<li>网页：Javascript、Flash、Silverlight、AJAX、各种页面插件的交互等等</li>
-<li>App：包含用户点击在内的所有交互</li>
-<li>凡是遵守http协议的交互（最典型的就是网页的链接），皆是可以由基础监测代码直接监测到数据的。</li>
-<li>非http类型的用户交互，基础监测代码都无能为力。</li>
-</ul>
-<p>每一个需要监测的event互动，都被称为一个“监测点”。Web上需要的监测点较少，App上则布满了监测点。为了搜集这些监测点上的用户数据，必须部署上专用点事件监测代码(event tracking code)。</p>
-<p><strong>事件监测(埋点)只有在基础代码工作的情况下才能发挥作用。</strong></p>
-<p>机构为App配置无埋点监测点两种方法：</p>
-<ul>
-<li>手指取代鼠标，直接在手机上操作设置。</li>
-<li>在电脑浏览器端操作，类似于一个模拟器。</li>
-</ul>
-<p><strong>全埋点</strong>：本质上和无埋点并无不同。因为无埋点就是直接对页面中所有的交互元素的用户行为进行监听。即使App或网页的开发者不需要监测点部分，无埋点也会将用户行为数据和对应的发生地信息照单全收。</p>
-<p>无埋点和埋点点优劣对比</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">优劣</th>
-<th style="text-align:left">无埋点</th>
-<th style="text-align:left">埋点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">是否需要加基础代码</td>
-<td style="text-align:left">要</td>
-<td style="text-align:left">要</td>
-</tr>
-<tr>
-<td style="text-align:left">事件监测部署简便性</td>
-<td style="text-align:left">非常简便，业务人员可以轻松操作</td>
-<td style="text-align:left">复杂，需要工程师帮助</td>
-</tr>
-<tr>
-<td style="text-align:left">事件历史数据回溯</td>
-<td style="text-align:left">可以回溯</td>
-<td style="text-align:left">埋点前点数据不可以回溯</td>
-</tr>
-<tr>
-<td style="text-align:left">事件的属性数据</td>
-<td style="text-align:left">常见的无埋点方法基本不可以添加额外属性</td>
-<td style="text-align:left">可添加或监测数个事件属性</td>
-</tr>
-<tr>
-<td style="text-align:left">事件的分类报告</td>
-<td style="text-align:left">常见的无埋点方法基本不可以实现分类报告</td>
-<td style="text-align:left">可以实现事件的分类报告</td>
-</tr>
-<tr>
-<td style="text-align:left">无明确发生地点的时间监测</td>
-<td style="text-align:left">无法监测</td>
-<td style="text-align:left">可以监测</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>用户的交互行为，如果没有具体的“地点”，无埋点方法不适用。如：用户上滑屏幕时，新内容瀑布流式的底部载入。这种交互没有一个明确的监测点位置，是不可见点。在可视化事件监测设置点界面上找不到这类交互。</li>
-<li>可视化的无埋点部署，能够为交互行为设置的属性非常有限。一般无埋点部署，只能给交互行为起一个名字，然后机械的记录这个交互行为发生的次数。而埋点方法可以非常好的添加event背后的属性。</li>
-<li>埋点方法因为带有多个属性，用户可以轻松的通过这些属性进行分类数据报告的读取。</li>
-</ul>
-<p><a href="http://www.docin.com/p-1531077573.html" target="_blank" rel="external">一种基于App的行为采集系统的设计与实现</a></p>
-<h2 id="App行为数据"><a href="#App行为数据" class="headerlink" title="App行为数据"></a>App行为数据</h2><p>企业数据分为三类：</p>
-<ul>
-<li>企业内部的交易数据，特别是金融企业有丰富的交易数据</li>
-<li>企业和用户之间的交互数据</li>
-<li>第三方数据</li>
-</ul>
-<p>App行为数据特指用户在网站货App中浏览与点击等行为数据，主要用于统计分析App运营情况。用户在社交论坛互动也称为交互数据，此类交互数据在业务场景中更偏向客户关系管理与产品迭代货舆情监控。</p>
-<p>App行为数据分为三个维度：</p>
-<ul>
-<li>时间<blockquote>
-<p>某金融App中，正常交易行为数据流程时间在15秒左右，但部分设备的时间段却集中在2-3秒，明显属于非正常用户行为，通过特征分析针对流程时间段进行标签设置，有助于判断用户是否为欺诈行为。</p>
-</blockquote>
-</li>
-<li>频次<blockquote>
-<p>结合热力图了解产品体验和客户需求，同时也可以用来优化App内部的布局和销售关联产品。<br>频次数据经过进一步分析后可转化为趋势数据，这些数据痛产品转化和客户购买行为具有强相关关系。</p>
-</blockquote>
-</li>
-<li>结果标签<blockquote>
-<p>主要关注是否完成交易，用于判断客户点击浏览的结果。结果数据分为成交和不成交。成交数据可以用于产品体验分析，客户体验分析，渠道ROI分析；不成交数据可以用于二次营销。</p>
-</blockquote>
-</li>
-</ul>
-<p>| KPI | 维度标准|<br>| ：– | ：– |<br>| 访问次数 | 在一定时间范围内，所有的用户对App的使用次数|<br>| UV(独立访客) | 在指定时间段内不重复(仅计数一次)的访问者人数 |<br>| PV(浏览量) | App界面的浏览量，用户每次进入界面即被计数一次 |<br>| 访问深度 | 用户每次使用App进入的界面层数 |<br>| 停留时间 | 用户对App中各界面访问的时长 |<br>| 跳出率 | 单界面访问次数占总访问次数多百分比 |</p>
-<p>用户对于某界面：停留时间 = 进入时间 - 离开时间</p>
-<p>在App端，同一时间只能展示一个界面，故根据这些时间可以推算出用户的界面访问路径。</p>
-<ol>
-<li>App用户使用手机App，产生用户行为，App中行为采集功能根据用户行为的类型采用不同的函数对用户行为进行采集，然后将采集到的数据以二进制文本形式暂存到手机中；</li>
-<li>App读取暂存数据文件，对数据进行合并去冗余处理后，采用一定策略集中发送到后端行为采集服务器；</li>
-<li>采集服务器对行为数据进行拆解，根据数据的类型和时间，将数据保存到不同的日志服务器中；</li>
-<li>日志分析服务器定期抓取数据进行分析，产生分析结果；</li>
-<li>Web服务器读取分析结果，生成图表以供展示；</li>
-</ol>
-<ul>
-<li>提供类库供App调用</li>
-<li>提供用户行为的记录函数<ul>
-<li>记录用户基本信息</li>
-<li>记录用户进入、退出界面时页面驻留时间</li>
-<li>记录用户进行特定操作时的特定事件</li>
-</ul>
-</li>
-<li>提供数据暂存机制</li>
-<li>提供数据发送策略</li>
-<li>提供数据接收拆解存储功能</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/08/01/mySQL grammar/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yuanyi Wu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WYY's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/01/mySQL grammar/" itemprop="url">MySQL grammer</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-01T10:13:36+08:00">
-                2017-08-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="SQL基础"><a href="#SQL基础" class="headerlink" title="SQL基础"></a>SQL基础</h1><h2 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name;</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table_name;</div></pre></td></tr></table></figure>
-<h2 id="Distinct"><a href="#Distinct" class="headerlink" title="Distinct"></a>Distinct</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name;</div></pre></td></tr></table></figure>
-<h2 id="Where"><a href="#Where" class="headerlink" title="Where"></a>Where</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure>
-<h2 id="And-Or-Not"><a href="#And-Or-Not" class="headerlink" title="And , Or, Not"></a>And , Or, Not</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition1 <span class="keyword">and</span> condition2 <span class="keyword">and</span> condition3 ...;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition1 <span class="keyword">or</span> condition2 <span class="keyword">or</span> condition3 ...;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> <span class="keyword">not</span> condition;</div></pre></td></tr></table></figure>
-<h2 id="Order-By"><a href="#Order-By" class="headerlink" title="Order By"></a>Order By</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> column1, column2, ... <span class="keyword">ASC</span>|<span class="keyword">DESC</span>;</div></pre></td></tr></table></figure>
-<h2 id="Insert-Into"><a href="#Insert-Into" class="headerlink" title="Insert Into"></a>Insert Into</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name </div><div class="line"><span class="keyword">values</span> (value1, value2, value3, ...);</div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name (column1, column2, column3, ...) </div><div class="line"><span class="keyword">values</span> (value1, value2, value3, ...);</div></pre></td></tr></table></figure>
-<h2 id="Null-Values"><a href="#Null-Values" class="headerlink" title="Null Values"></a>Null Values</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column_names</div><div class="line"><span class="keyword">from</span> table_name</div><div class="line"><span class="keyword">where</span> column_name <span class="keyword">is</span> <span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column_names</div><div class="line"><span class="keyword">from</span> table_name</div><div class="line"><span class="keyword">where</span> column_name <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span>;</div></pre></td></tr></table></figure>
-<h2 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">update</span> table_name </div><div class="line"><span class="keyword">set</span> column1 = value1, column2 = value2, ... </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure>
-<h2 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1485,7 +2320,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1496,12 +2331,21 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
           
 
         </nav>

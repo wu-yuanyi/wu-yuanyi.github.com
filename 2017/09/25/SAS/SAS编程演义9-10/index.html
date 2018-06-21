@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="SAS编程演义,笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="拙中藏巧混天成：统计表格医药科研
+基线信息表格：介绍人群基本情况
+危险因素表格：会在表格中给出事件频数和百分比、粗的效应值及其95%CI和P值
+结局效应表格：横款目为终点指标，纵款目除了分组信息，还有效应量
+亚组分析表格：最重要的信息是需要提供交互作用校验的结果，通常以森林图的形式展示
+
+统计汇总过程一个统计过程中只能获得一种变量（分类、连续）的统计数据，款目形式不便统一。
+
+RTF（Rich T">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《SAS编程演义》笔记（9-10章）">
+<meta property="og:url" content="http://wu-yuanyi.github.io/2017/09/25/SAS/SAS编程演义9-10/index.html">
+<meta property="og:site_name" content="WYY's Blog">
+<meta property="og:description" content="拙中藏巧混天成：统计表格医药科研
+基线信息表格：介绍人群基本情况
+危险因素表格：会在表格中给出事件频数和百分比、粗的效应值及其95%CI和P值
+结局效应表格：横款目为终点指标，纵款目除了分组信息，还有效应量
+亚组分析表格：最重要的信息是需要提供交互作用校验的结果，通常以森林图的形式展示
+
+统计汇总过程一个统计过程中只能获得一种变量（分类、连续）的统计数据，款目形式不便统一。
+
+RTF（Rich T">
+<meta property="og:updated_time" content="2018-06-21T06:46:08.537Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《SAS编程演义》笔记（9-10章）">
+<meta name="twitter:description" content="拙中藏巧混天成：统计表格医药科研
+基线信息表格：介绍人群基本情况
+危险因素表格：会在表格中给出事件频数和百分比、粗的效应值及其95%CI和P值
+结局效应表格：横款目为终点指标，纵款目除了分组信息，还有效应量
+亚组分析表格：最重要的信息是需要提供交互作用校验的结果，通常以森林图的形式展示
+
+统计汇总过程一个统计过程中只能获得一种变量（分类、连续）的统计数据，款目形式不便统一。
+
+RTF（Rich T">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wu-yuanyi.github.io/2017/09/25/SAS/SAS编程演义9-10/"/>
+
+
+
+
+
+  <title>《SAS编程演义》笔记（9-10章） | WYY's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WYY's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">JUST DO IT</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            Schedule
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/25/SAS/SAS编程演义9-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WYY's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《SAS编程演义》笔记（9-10章）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-25T11:09:39+08:00">
+                2017-09-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SAS/" itemprop="url" rel="index">
+                    <span itemprop="name">SAS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="拙中藏巧混天成：统计表格"><a href="#拙中藏巧混天成：统计表格" class="headerlink" title="拙中藏巧混天成：统计表格"></a>拙中藏巧混天成：统计表格</h2><h3 id="医药科研"><a href="#医药科研" class="headerlink" title="医药科研"></a>医药科研</h3><ul>
+<li>基线信息表格：介绍人群基本情况</li>
+<li>危险因素表格：会在表格中给出事件频数和百分比、粗的效应值及其95%CI和P值</li>
+<li>结局效应表格：横款目为终点指标，纵款目除了分组信息，还有效应量</li>
+<li>亚组分析表格：最重要的信息是需要提供交互作用校验的结果，通常以森林图的形式展示</li>
+</ul>
+<h3 id="统计汇总过程"><a href="#统计汇总过程" class="headerlink" title="统计汇总过程"></a>统计汇总过程</h3><p>一个统计过程中只能获得一种变量（分类、连续）的统计数据，款目形式不便统一。</p>
+<ul>
+<li>RTF（Rich Text File）可直接用Word打开编辑</li>
+<li>journal3a是最贴近三线表的样式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">ods tagsets.rtf file=&quot;table.rtf&quot; style=journal3a; /**/</div><div class="line">proc freq data=sashelp.heart;</div><div class="line">    table bp_status*sex / nopercent norow;</div><div class="line">run;</div><div class="line">ods tagsets.rtf close;</div><div class="line"></div><div class="line">ods tagsets.etf file=&quot;table2.rtf&quot; style=journal3a;</div><div class="line">proc means data=sashelp.heart mean std maxdec=2;</div><div class="line">    class sex;</div><div class="line">    var height;</div><div class="line">run;</div><div class="line">ods tagsets.rtf close;</div></pre></td></tr></table></figure>
+<h3 id="PROC-TABULATE"><a href="#PROC-TABULATE" class="headerlink" title="PROC TABULATE"></a>PROC TABULATE</h3><p>能一次性实现多种变量的统计需求，也能比较灵活的组合表格形式，但是仍达不到标准三线表的要求，而且也无法计算统计量和P值。</p>
+<ul>
+<li>CLASS语句申明分类变量</li>
+<li>VAR语句申明分析变量</li>
+<li>TABLE语句设置表格形式，逗号“,”作为页、行、列等纬度的间隔符，星号“*”作为变量与其显示格式、统计关键字的关联符，括号“()”用来强制分组。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">ods tagsets.rtf file=&quot;table4.rtf&quot; style=journal3a;</div><div class="line">    title &quot;Table 1. Blood Pressure and Height by Sex&quot;;</div><div class="line">proc tabulate data=sashelp.heart;</div><div class="line">    class sex bp_status;</div><div class="line">    var height;</div><div class="line">    table sex, bp_status*(n rowpctn) height*(mean std);</div><div class="line">run;</div><div class="line">ods tagsets.rtf cloase;</div><div class="line"></div><div class="line">ods tagsets.rtf file=&quot;table5.rtf&quot; style=journal3a;</div><div class="line">    title &quot;Table 1. Blood Pressure and Height by Sex&quot;;</div><div class="line">proc tabulate data=sashelp.heart;</div><div class="line">    class sex bp_status;</div><div class="line">    var height;</div><div class="line">    table bp_status*(n colpctn) height*(mean std), sex;</div><div class="line">run;</div><div class="line">ods tagsets.rtf cloase;</div></pre></td></tr></table></figure>
+<h3 id="PROC-REPORT"><a href="#PROC-REPORT" class="headerlink" title="PROC REPORT"></a>PROC REPORT</h3><p>纵款目无法用分组变量，横款目值没有缩进，统计变量之间没有连字符，无法获得检验统计量和P值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">ods tagsets.rtf file=&quot;table6.rtf&quot; style=journal3a;</div><div class="line">ods escapechar=&apos;^&apos;;</div><div class="line">    title &quot;Table 6, Height and Weight by Gender&quot;;</div><div class="line">proc report data=sashelp.class nowd;</div><div class="line">    column sex height, (&quot;^R&apos;\brdrb\brdrs&apos;&quot; mean std) weight, (&quot;^R&apos;\brdrb\brdrs&apos;&quot; mean std);</div><div class="line">    define sex/group;</div><div class="line">    define height/analysis format=5.2;</div><div class="line">    define weight/analysis format=5.2;</div><div class="line">run;</div><div class="line">ods tagsets.rtf close;</div></pre></td></tr></table></figure>
+<h3 id="完美三线图"><a href="#完美三线图" class="headerlink" title="完美三线图"></a>完美三线图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line">/*1 血压状态数据整理*/</div><div class="line">/*1.1 获取频数百分比*/</div><div class="line">proc freq data=sashelp.heart; </div><div class="line">    table bp_status*sex /missing nopercent outpct out=desc1;</div><div class="line">run;</div><div class="line">data desc1;</div><div class="line">    set desc1;</div><div class="line">    length value $25;</div><div class="line">    value = compress(put(count, 6.)) || &apos; (&apos; || compress (put(pct_col, 4.1)) ||&apos;)&apos;;</div><div class="line">run;</div><div class="line"></div><div class="line">/*1.2 转置，性别作为列*/</div><div class="line">proc transpose data=desc1 out=desc1(drop=_name_) prefix=col;</div><div class="line">    var value;</div><div class="line">    by bp_status;</div><div class="line">    id sex;</div><div class="line">run;</div><div class="line"></div><div class="line">/*1.3 获取卡方检验P值*/</div><div class="line">proc freq data=sashelp.heart;</div><div class="line">    table bp_status*sex / norow nocol nopercent chisq;</div><div class="line">    output out=pvalue1(keep=p_pchi rename=(p_pchi=pvalue)) pchi;</div><div class="line">run;</div><div class="line"></div><div class="line">/*1.4 合并变量标签，描述数据，P值*/</div><div class="line">data dslabel1;</div><div class="line">    set pvalue1;</div><div class="line">    length label $ 85;</div><div class="line">    label=cats(&quot;^S=&#123;font_weight=bold&#125;&quot;, &quot;Blood presure status&quot;); /*RTF代码，加粗标签*/</div><div class="line">run;</div><div class="line"></div><div class="line">data merge1(keep=label col: pvalue);</div><div class="line">    set dslabel1 desc1;</div><div class="line">    if _n_&gt;1 then label=&quot;^&#123;nbspace 6&#125;&quot; || bp_status; /*RTF代码，增加缩进*/</div><div class="line">run;</div><div class="line"></div><div class="line">/*2 身高数据整理*/</div><div class="line">/*2.1 获取描述数据*/</div><div class="line">ods output summary=desc2;</div><div class="line">proc means data=sashelp.heart mean std;</div><div class="line">    class sex;</div><div class="line">    var height;</div><div class="line">run;</div><div class="line">data desc2(keep=sex meanstd);</div><div class="line">    set desc2;</div><div class="line">    meanstd = cats(put(height_mean,12.1), &quot;±&quot;, put(height_stddev,12.1));</div><div class="line">run;</div><div class="line"></div><div class="line">/*2.2 转置，性别作为列*/</div><div class="line">proc transpose data=desc2 out=desc2 prefix=col;</div><div class="line">    var meanstd;</div><div class="line">    id sex;</div><div class="line">run;</div><div class="line"></div><div class="line">/*2.3 判断方差齐性，获取t检验p值*/</div><div class="line">ods output equality=eql ttests=ttl;</div><div class="line">proc ttest data=sashelp.heart plots=non;</div><div class="line">    class sex;</div><div class="line">    var height;</div><div class="line">run;</div><div class="line">data pvalue2(keep=Probt rename=(Probt=Pvalue));</div><div class="line">    retain equV;</div><div class="line">    set eql ttl;</div><div class="line">    if ProbF&lt;0.05 then equV=0;</div><div class="line">    else equV=1;</div><div class="line">    if (equV=1 and variances=&quot;Equal&quot;) or (equV=0 and variances=&quot;Unequal&quot;);</div><div class="line">run;</div><div class="line"></div><div class="line">/*2.4 合并变量标签，描述数据，p值*/</div><div class="line">data merge2(keep=label col: pvalue);</div><div class="line">    length label $85;</div><div class="line">    merge desc2 pvalue2;</div><div class="line">    label=cats(&quot;^S=&#123;font_weight=bold&#125;&quot;, &quot;Height (in)&quot;); /*RTF代码，加粗标签*/</div><div class="line">run;</div><div class="line"></div><div class="line">/*3 合并数据*/</div><div class="line">data dsreport;</div><div class="line">    set merge:;</div><div class="line">run;</div><div class="line"></div><div class="line">/*4 Report输出*/</div><div class="line">options nodate nonumber missing=&apos; &apos;;</div><div class="line">ods tagsets.rtf file=&quot;table6.rtf&quot; style=journal3a;</div><div class="line">ods escapecha=&apos;^&apos;;</div><div class="line">    title &quot;Table 1.Blood Presure and Height by Sex&quot;;</div><div class="line">proc report data=dsreport nowd;</div><div class="line">    column label colfemale colmale pvalue;</div><div class="line">    define label / display &quot;Variables&quot;;</div><div class="line">    define colfemale / display &quot;Female&quot; right;</div><div class="line">    define colmale / display &quot;Male&quot; right;</div><div class="line">    define pvalue / analysis &quot;P Value&quot; f=pvalue6.4;</div><div class="line">run;</div><div class="line">footnote1 j=center height=10pt &quot;^&#123;nbspace&#125;Note: This is a demo&quot;;</div><div class="line">ods tagsets.rtf close;</div></pre></td></tr></table></figure>
+<h2 id="一缕檀烟万佛名：宏中奥秘"><a href="#一缕檀烟万佛名：宏中奥秘" class="headerlink" title="一缕檀烟万佛名：宏中奥秘"></a>一缕檀烟万佛名：宏中奥秘</h2><p>###宏</p>
+<p>SAS宏由宏语言和宏处理器构成。宏语言是与宏处理器沟通的语言。宏语言中以&amp;开头的是宏变量，以%开头的是SAS宏程序或宏函数。当SAS遇到&amp;或%开头的宏语言时，便触发宏处理器，执行宏操作。</p>
+<h3 id="创建宏变量"><a href="#创建宏变量" class="headerlink" title="创建宏变量"></a>创建宏变量</h3><ul>
+<li>%LET语句</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">/*文本*/</div><div class="line">%let bookname1=Romance of SAS Program;</div><div class="line">%let bookname2=SAS编程演义;</div><div class="line">%let address1=%str(Author%&apos;s address);</div><div class="line">%let address2=%nrstr(ShanghaiTech&amp;SMMU);</div><div class="line"></div><div class="line">/*数字*/</div><div class="line">%let phone1=13800137000;</div><div class="line">%let phone2=;</div><div class="line"></div><div class="line">/*算术表达式*/</div><div class="line">%let ex1=99+1;</div><div class="line">%let ex2=99.9+0.1;</div><div class="line"></div><div class="line">/*计算算术表达式*/</div><div class="line">%let ex3=%eval(99+1);</div><div class="line">%let ex4=%sysevalf(99.9+0.1);</div><div class="line"></div><div class="line">/*程序*/</div><div class="line">%let prg=%str(proc print data=sashelp.classr;run;);</div><div class="line"></div><div class="line">/*查看结果*/</div><div class="line">%put &amp;bookname1 &amp;bookname2 &amp;address1 &amp;address2 &amp;phone1 &amp;phone2 &amp;ex1 &amp;ex2 &amp;ex3 &amp;ex4 &amp;prg;</div></pre></td></tr></table></figure>
+<ul>
+<li>%GLOBAL申明一个全局宏变量（无法赋值），既可以在宏程序内部，也可以在外部。</li>
+<li>%LOCAL申明一个局部宏变量（无法赋值），只能在宏程序内部。<ul>
+<li>确保宏程序内部定义的宏变量不会因为同名重写全局宏变量的值</li>
+<li>确保宏程序执行完毕后，这些宏变量立即消逝</li>
+</ul>
+</li>
+<li>SQL里SELECT语句的INTO从句，可产生一个或一系列宏变量</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">/*单个宏变量*/</div><div class="line">proc sql noprint;</div><div class="line">    select count(name) into:nname from sashelp.class;</div><div class="line">quit;</div><div class="line">%put &amp;nname;</div><div class="line"></div><div class="line">/*宏变量列表*/</div><div class="line">proc sql noprint;</div><div class="line">    select name into:namelist separated by &quot;,&quot; from sashelp.class;</div><div class="line">quit;</div><div class="line">%put &amp;namelist;</div></pre></td></tr></table></figure>
+<ul>
+<li>DATA步的SYMPUT和SYMPUTX（去除首尾空格）语句。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/*单个宏变量*/</div><div class="line">data _null_;</div><div class="line">set sashelp.class end=last;</div><div class="line">if last then call symput(&apos;nname&apos;,_n_);</div><div class="line">run;</div><div class="line">%put &amp;nname;</div><div class="line"></div><div class="line">/*宏变量列表*/</div><div class="line">data _nuul_;</div><div class="line">set sashelp.calss;</div><div class="line">call symputx(cats(&apos;name&apos;,_n_),name);</div><div class="line">run;</div><div class="line">%put &amp;namelist;</div></pre></td></tr></table></figure>
+<ul>
+<li>宏程序的宏参数会创建局部宏变量</li>
+<li>%WINDOWS语句</li>
+<li>宏程序中的%DO语句</li>
+<li>ODS OUTPUT语句的MATCH_ALL选项</li>
+</ul>
+<h3 id="宏符号表与作用域"><a href="#宏符号表与作用域" class="headerlink" title="宏符号表与作用域"></a>宏符号表与作用域</h3><p>宏符号表（Macro Symbol Table）存储着宏变量与其对应的值。</p>
+<ul>
+<li>全局宏符号表，SAS启动时，系统自动创建，其中存储的内容有：<ul>
+<li>系统自带的宏变量和值</li>
+<li>open code（宏程序外）环境下，用%LET语句创建的宏变量</li>
+<li>宏程序定义中，用%GLOBAL申明的宏变量</li>
+<li>DATA步中CALL SYMPUTX语句中申明了全局符号表</li>
+<li>PROC SQL中SELECT语句的INTO从句创建的宏变量</li>
+</ul>
+</li>
+<li>局部宏符号表，SAS执行宏程序时，系统自动创建，其中存储的内容有：<ul>
+<li>由宏程序的宏参数创建的宏变量</li>
+<li>宏程序中由%LET定义的宏变量，且在全局宏变量中没有同名宏变量</li>
+<li>宏程序中由%LOCAL定义的宏变量</li>
+</ul>
+</li>
+<li>判断是全局还是局部<ul>
+<li>采用%PUT语句的选项_USER_、_LOCAL_、_GLOBAL_查看符号表</li>
+<li>采用系统自带的宏函数%SYMLOCAL、%SYMGLOBAL进行判定</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">%macro testMacroVar(a=, b=);</div><div class="line">%put 所有自定义宏变量;</div><div class="line">%put _user_;</div><div class="line">%put 所有局部宏变量;</div><div class="line">%put _local_;</div><div class="line">%put 所有全局宏变量;</div><div class="line">%put _global_;</div><div class="line">%put sysver是否全局宏变量： %symglobl(sysver);</div><div class="line">%put a是否全局宏变量： %symglobl(a);</div><div class="line">%put b是否局部宏变量： %symlocal(b);</div><div class="line">%mend;</div><div class="line">%testMacroVar(a=Stats, b=Thinking)</div></pre></td></tr></table></figure>
+<h3 id="掩蔽宏变量"><a href="#掩蔽宏变量" class="headerlink" title="掩蔽宏变量"></a>掩蔽宏变量</h3><p>掩蔽（masking）：将符号当作普通的文本对待，不使用其特殊含义，有的文档也称为引用（quoting）。</p>
+<ul>
+<li>需要掩蔽的符号：<ul>
+<li>运算符：如+ - * / &lt; &gt; = ¬ ^ ~ |</li>
+<li>助记符：如 AND OR NOT EQ NE LE LT GE GT IN</li>
+<li>其他：bank , ; “ “ ‘ ’ ( ) #</li>
+</ul>
+</li>
+<li>没有配对的符号，如 “ ‘ ( )，使用%B系列的函数掩蔽</li>
+<li>宏触发器 &amp; %，使用%NR系列的引用函数</li>
+<li>移除掩蔽主要发生在程序编译后、程序运行后、%UNQUOTE函数后</li>
+</ul>
+<h3 id="显示宏变量值"><a href="#显示宏变量值" class="headerlink" title="显示宏变量值"></a>显示宏变量值</h3><ul>
+<li>系统选项SYMBOLGEN</li>
+<li>%PUT语句</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">options symbolgen;</div><div class="line">%let title1=SAS编程演义;</div><div class="line">%let title2=数据整理与图表呈现;</div><div class="line">%let title=&amp;title1.:&amp;title2;</div><div class="line"></div><div class="line">options nosymbolgen;</div><div class="line">%let title1=SAS编程演义;</div><div class="line">%let title2=数据整理与图表呈现;</div><div class="line">%let title=&amp;title1.:&amp;title2;</div><div class="line">%put title1和title2合并后的title解析为：&amp;title;</div><div class="line"></div><div class="line">%put _all_; /*显示所有宏变量*/</div><div class="line">%put _automatic_; /*显示所有自动宏变量*/</div><div class="line">%put _user_; /*显示所有自定义宏变量*/</div><div class="line">%put _global_; /*显示所有全局宏变量*/</div><div class="line">%put _local_; /*显示所有局部宏变量*/</div></pre></td></tr></table></figure>
+<h3 id="引用宏变量"><a href="#引用宏变量" class="headerlink" title="引用宏变量"></a>引用宏变量</h3><ul>
+<li>直接引用</li>
+</ul>
+<p>如果是用宏变量给DATA步变量赋具体的值，需用引号引起来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">%let bookname2017=SAS编程演义;</div><div class="line">%let year=2017;</div><div class="line">data tmp;</div><div class="line">    name=&quot;&amp;bookname2017&quot;;</div><div class="line">    year=&amp;year;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<ul>
+<li>间接引用</li>
+</ul>
+<p>SAS在解析时，会将两个连续的&amp;&amp;解析为一个&amp;，然后再次进行解析，知道&amp;全被解析完</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">%let bookname2017=SAS编程演义;</div><div class="line">%let year=2017;</div><div class="line">data tmp;</div><div class="line">    name=&quot;&amp;bookname&amp;&amp;year&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">%let L1=L2;</div><div class="line">%let L2=L3;</div><div class="line">%put &amp;L1; /*L2*/</div><div class="line">%put &amp;&amp;L1; /*&amp;L1 -&gt; L2*/</div><div class="line">%put &amp;&amp;&amp;L1; /*&amp;L2 -&gt; L3*/</div></pre></td></tr></table></figure>
+<ul>
+<li>合并宏变量与普通文本</li>
+</ul>
+<p>宏变量后面带一个点号，用以标识宏变量的结束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">%let bookname2017=SAS编程演义;</div><div class="line">%let lib=sashelp;</div><div class="line">data class;</div><div class="line">    set &amp;lib..class;</div><div class="line">    bookname=&quot;&amp;bookname2017.:数据整理与图表呈现&quot;;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="宏程序定义与调用"><a href="#宏程序定义与调用" class="headerlink" title="宏程序定义与调用"></a>宏程序定义与调用</h3><p><strong>%macro macro_name</strong> &lt;parameter_list&gt; &lt;/option(s)\&gt;</p>
+<p>​    &lt;macro_text&gt;</p>
+<p><strong>%mend</strong> &lt;macro_name&gt;;</p>
+<p><strong>%macro_name</strong> &lt;parameter_list&gt;</p>
+<ul>
+<li><strong>macro_name</strong>：宏程序名称，需要符合SAS命名规范，不能以SYS、AF、DM开头，不能用SAS的保留字，以免冲突</li>
+<li>parameter_list：宏参数，通过宏程序定义的局部变量，便于在宏文本中应用。参数通过逗号隔开<ul>
+<li>位置宏参数：按位置顺序定义识别 &lt;positional-parameter-1&gt;&lt;, positional-parameter-2…&gt;</li>
+<li>关键字宏参数：按名字=识别 &lt;keyword-parameter=&lt;value&gt; &lt;, keyword-parameter-2=&lt;value&gt; …&gt;&gt;</li>
+</ul>
+</li>
+<li><em>option(s)</em>：比如加密选项secure，存储选项store</li>
+<li>macro_text：宏文本是宏的主体，里面包括宏语句、DATA步语句、PROC语句等</li>
+<li>宏参数不是必需的，位置宏参数和关键字宏参数可以混用，但位置宏参数必须在关键字宏参数前。</li>
+<li>宏参数中如有特殊字符如&amp;、%、不配对的括号或引号、其他运算符等，需要做好宏变量的掩蔽。</li>
+<li>%mend之后的宏程序名非必需。</li>
+<li>调用宏程序时，末尾不需要分号结尾。</li>
+</ul>
+<h3 id="宏程序的存储加密"><a href="#宏程序的存储加密" class="headerlink" title="宏程序的存储加密"></a>宏程序的存储加密</h3><p>如果为了保护知识产权，想给他人使用宏程序但又不希望他人看到自己开发的宏程序源代码，可以将编译好的宏给别人，且设置为不显示宏的源代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">options mstored sasmstore=demo /*指定存储位置为demo永久库*/</div><div class="line">%macro printds(dataset, obs=5) / store;</div><div class="line">    options nomprint nosource; /*不显示源代码*/</div><div class="line">    proc print data=&amp;dataset(obs=&amp;obs);</div><div class="line">    run;</div><div class="line">%mend printds;</div><div class="line"></div><div class="line">options mstored sasmstore=demo;</div><div class="line">%printds(sashelp.class, obs=5)</div></pre></td></tr></table></figure>
+<h3 id="IF-THEN-ELSE选择语句"><a href="#IF-THEN-ELSE选择语句" class="headerlink" title="%IF-%THEN-%ELSE选择语句"></a>%IF-%THEN-%ELSE选择语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">%macro printds(dataset, sex=F, obs=5,);</div><div class="line">    %if &amp;sex eq F %then %str(title &quot;First &amp;obs record for female&quot;;);</div><div class="line">    %else %if &amp;sex eq M %then %str(title &quot;First &amp;obs record for male&quot;;);</div><div class="line">    %else %str(title &quot;Wrong gender&quot;; %abort;);</div><div class="line">    proc print data=&amp;dataset(obs=&amp;obs where=(sex=&quot;&amp;sex&quot;));</div><div class="line">    run;</div><div class="line">%medn printde;</div><div class="line">%printde(sashelp.class,sex=M,obs=5)</div></pre></td></tr></table></figure>
+<h3 id="DO组语句"><a href="#DO组语句" class="headerlink" title="%DO组语句"></a>%DO组语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">%do</div><div class="line">    语句；</div><div class="line">%end</div></pre></td></tr></table></figure>
+<h3 id="DO循环语句"><a href="#DO循环语句" class="headerlink" title="%DO循环语句"></a>%DO循环语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">%macro importcsv;</div><div class="line">%do i=1 %to 100;</div><div class="line">    proc import out=csv&amp;i datafile=&quot;d:\data\casv&amp;i.csv&quot; dbms=csv replace;</div><div class="line">    run;</div><div class="line">%end;</div><div class="line">%mend;</div><div class="line"></div><div class="line">%importcsv</div></pre></td></tr></table></figure>
+<h3 id="DO-WHILE语句"><a href="#DO-WHILE语句" class="headerlink" title="%DO-%WHILE语句"></a>%DO-%WHILE语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">%macro importcsv;</div><div class="line">%let i=1;</div><div class="line">%do %while(&amp;i&lt;=100);</div><div class="line">    proc import out=csv&amp;i datafile=&quot;d:\data\casv&amp;i.csv&quot; dbms=csv replace;</div><div class="line">    run;</div><div class="line">    %let i=&amp;i+1;</div><div class="line">%end;</div><div class="line">%mend;</div><div class="line"></div><div class="line">%importcsv</div></pre></td></tr></table></figure>
+<h3 id="DO-UNTIL语句"><a href="#DO-UNTIL语句" class="headerlink" title="%DO-%UNTIL语句"></a>%DO-%UNTIL语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">%macro importcsv;</div><div class="line">%let i=1;</div><div class="line">%do %until(&amp;i&gt;100);</div><div class="line">    proc import out=csv&amp;i datafile=&quot;d:\data\casv&amp;i.csv&quot; dbms=csv replace;</div><div class="line">    run;</div><div class="line">    %let i=&amp;i+1;</div><div class="line">%end;</div><div class="line">%mend;</div><div class="line"></div><div class="line">%importcsv</div></pre></td></tr></table></figure>
+<h3 id="宏函数"><a href="#宏函数" class="headerlink" title="宏函数"></a>宏函数</h3><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>宏函数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字符宏函数</td>
+<td>%index</td>
+<td>返回字符串第一次出现的位置</td>
+</tr>
+<tr>
+<td></td>
+<td>%length</td>
+<td>返回字符串长度</td>
+</tr>
+<tr>
+<td></td>
+<td>%scan %qscan</td>
+<td>按字符串中的位置截取单词</td>
+</tr>
+<tr>
+<td></td>
+<td>%substr %qsubstr</td>
+<td>截取子字符串</td>
+</tr>
+<tr>
+<td></td>
+<td>%upcase %qupcase</td>
+<td>转为大写字符</td>
+</tr>
+<tr>
+<td>计算函数</td>
+<td>%eval</td>
+<td>使用整数运算计算表达式结果</td>
+</tr>
+<tr>
+<td></td>
+<td>%sysevalf</td>
+<td>使用浮点运算计算表达式结果</td>
+</tr>
+<tr>
+<td>引用函数</td>
+<td>%str</td>
+<td>编译时掩蔽特殊字符及助记符</td>
+</tr>
+<tr>
+<td></td>
+<td>%nrstr</td>
+<td>%str 外加宏触发器字符</td>
+</tr>
+<tr>
+<td></td>
+<td>%quote</td>
+<td>执行时掩蔽特殊、助记、其他字符</td>
+</tr>
+<tr>
+<td></td>
+<td>%nrquote</td>
+<td>%quote 外加宏触发器字符</td>
+</tr>
+<tr>
+<td></td>
+<td>%bquote</td>
+<td>执行时掩蔽特殊、助记、其他字符和没有配对的符号</td>
+</tr>
+<tr>
+<td></td>
+<td>%nrbquote</td>
+<td>%bquote 外加宏触发器字符</td>
+</tr>
+<tr>
+<td></td>
+<td>%superq</td>
+<td>执行时掩蔽所有字符，且对结果保持</td>
+</tr>
+<tr>
+<td></td>
+<td>%unquote</td>
+<td>执行时去掉所有特殊、助记字符的掩蔽</td>
+</tr>
+<tr>
+<td>SYS系函数</td>
+<td>%sysmacexect</td>
+<td>返回宏执行状态</td>
+</tr>
+<tr>
+<td></td>
+<td>%sysmacexist</td>
+<td>判断宏程序是否已经定义</td>
+</tr>
+<tr>
+<td></td>
+<td>%sysmexecdepth</td>
+<td>返回宏嵌套的深度</td>
+</tr>
+<tr>
+<td></td>
+<td>%sysmexecname</td>
+<td>返回指定宏嵌套的深度的宏名称</td>
+</tr>
+<tr>
+<td></td>
+<td>%sysfunc %qsysfunc</td>
+<td>使用data步函数</td>
+</tr>
+<tr>
+<td></td>
+<td>%sysget</td>
+<td>返回环境变量的值</td>
+</tr>
+<tr>
+<td></td>
+<td>%sysprod</td>
+<td>判断SAS产品是否已经授权</td>
+</tr>
+<tr>
+<td>SYM系函数</td>
+<td>%symexist</td>
+<td>判断宏变量是否已经存在</td>
+</tr>
+<tr>
+<td></td>
+<td>%symglobl</td>
+<td>判断是否属于全局宏变量</td>
+</tr>
+<tr>
+<td></td>
+<td>%symlocal</td>
+<td>判断是否属于局部宏变量</td>
+</tr>
+</tbody>
+</table>
+<h3 id="宏开发"><a href="#宏开发" class="headerlink" title="宏开发"></a>宏开发</h3><ol>
+<li>硬代码实现：先不用任何宏代码，实现具体的任务</li>
+<li>移除上一步中的硬代码，该用宏变量、宏参数，如有必要，增加宏语句如以及宏函数</li>
+<li>宏代码测试优化：给宏变量赋值，逐步测试宏代码，优化宏代码。</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SAS编程演义/" rel="tag"># SAS编程演义</a>
+          
+            <a href="/tags/笔记/" rel="tag"># 笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/19/Loan/规则引擎与Drools/" rel="next" title="规则引擎与Drools">
+                <i class="fa fa-chevron-left"></i> 规则引擎与Drools
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/21/Loan/地址清洗/" rel="prev" title="中文地址清洗">
+                中文地址清洗 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <p class="site-author-name" itemprop="name">Yuanyi Wu</p>
+            <p class="site-description motion-element" itemprop="description">朝闻道 夕死可矣</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#拙中藏巧混天成：统计表格"><span class="nav-number">1.</span> <span class="nav-text">拙中藏巧混天成：统计表格</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#医药科研"><span class="nav-number">1.1.</span> <span class="nav-text">医药科研</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统计汇总过程"><span class="nav-number">1.2.</span> <span class="nav-text">统计汇总过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PROC-TABULATE"><span class="nav-number">1.3.</span> <span class="nav-text">PROC TABULATE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PROC-REPORT"><span class="nav-number">1.4.</span> <span class="nav-text">PROC REPORT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完美三线图"><span class="nav-number">1.5.</span> <span class="nav-text">完美三线图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一缕檀烟万佛名：宏中奥秘"><span class="nav-number">2.</span> <span class="nav-text">一缕檀烟万佛名：宏中奥秘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建宏变量"><span class="nav-number">2.1.</span> <span class="nav-text">创建宏变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#宏符号表与作用域"><span class="nav-number">2.2.</span> <span class="nav-text">宏符号表与作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#掩蔽宏变量"><span class="nav-number">2.3.</span> <span class="nav-text">掩蔽宏变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示宏变量值"><span class="nav-number">2.4.</span> <span class="nav-text">显示宏变量值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用宏变量"><span class="nav-number">2.5.</span> <span class="nav-text">引用宏变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#宏程序定义与调用"><span class="nav-number">2.6.</span> <span class="nav-text">宏程序定义与调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#宏程序的存储加密"><span class="nav-number">2.7.</span> <span class="nav-text">宏程序的存储加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IF-THEN-ELSE选择语句"><span class="nav-number">2.8.</span> <span class="nav-text">%IF-%THEN-%ELSE选择语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DO组语句"><span class="nav-number">2.9.</span> <span class="nav-text">%DO组语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DO循环语句"><span class="nav-number">2.10.</span> <span class="nav-text">%DO循环语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DO-WHILE语句"><span class="nav-number">2.11.</span> <span class="nav-text">%DO-%WHILE语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DO-UNTIL语句"><span class="nav-number">2.12.</span> <span class="nav-text">%DO-%UNTIL语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#宏函数"><span class="nav-number">2.13.</span> <span class="nav-text">宏函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#宏开发"><span class="nav-number">2.14.</span> <span class="nav-text">宏开发</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuanyi Wu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" href="https://hexo.io">Hexo</a></div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

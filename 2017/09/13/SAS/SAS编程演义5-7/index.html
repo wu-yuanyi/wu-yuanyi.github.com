@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="SAS编程演义,笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set &amp;lt;(data-set-options)&amp;gt; transaction-data-set &amp;lt;(data-set-options)&amp;gt; &amp;lt;CUROBS=variable&amp;gt; &amp;lt; NOBS=variable&amp;gt; &amp;lt;END=variable&amp;gt; &amp;lt;UPDATEMODE=MI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《SAS编程演义》笔记（5-7章）">
+<meta property="og:url" content="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义5-7/index.html">
+<meta property="og:site_name" content="WYY's Blog">
+<meta property="og:description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set &amp;lt;(data-set-options)&amp;gt; transaction-data-set &amp;lt;(data-set-options)&amp;gt; &amp;lt;CUROBS=variable&amp;gt; &amp;lt; NOBS=variable&amp;gt; &amp;lt;END=variable&amp;gt; &amp;lt;UPDATEMODE=MI">
+<meta property="og:updated_time" content="2018-06-21T06:45:53.027Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《SAS编程演义》笔记（5-7章）">
+<meta name="twitter:description" content="亦应帷幄运鸿筹：数据库集修改数据集MODIFY master-data-set &amp;lt;(data-set-options)&amp;gt; transaction-data-set &amp;lt;(data-set-options)&amp;gt; &amp;lt;CUROBS=variable&amp;gt; &amp;lt; NOBS=variable&amp;gt; &amp;lt;END=variable&amp;gt; &amp;lt;UPDATEMODE=MI">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义5-7/"/>
+
+
+
+
+
+  <title>《SAS编程演义》笔记（5-7章） | WYY's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WYY's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">JUST DO IT</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            Schedule
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义5-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WYY's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《SAS编程演义》笔记（5-7章）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-13T13:31:21+08:00">
+                2017-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SAS/" itemprop="url" rel="index">
+                    <span itemprop="name">SAS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="亦应帷幄运鸿筹：数据库集"><a href="#亦应帷幄运鸿筹：数据库集" class="headerlink" title="亦应帷幄运鸿筹：数据库集"></a>亦应帷幄运鸿筹：数据库集</h2><h3 id="修改数据集"><a href="#修改数据集" class="headerlink" title="修改数据集"></a>修改数据集</h3><p><strong>MODIFY</strong> <em>master-data-set</em> &lt;(<em>data-set-options</em>)&gt; <em>transaction-data-set</em> &lt;(<em>data-set-options</em>)&gt; &lt;CUROBS=<em>variable</em>&gt; &lt; NOBS=<em>variable</em>&gt; &lt;END=<em>variable</em>&gt; &lt;UPDATEMODE=MISSINGCHECK|NOMISSINGCHECK&gt;;</p>
+<p><strong>BY</strong> <em>by-variable</em>;</p>
+<ul>
+<li><em>master-data-set</em>：主数据集（Master Dataset），存放原始数据。</li>
+<li><em>transaction-data-set</em>：事物数据集（Transaction Dataset），存放匹配变量、需要修改的变量及其新值。</li>
+<li>CUROBS=<em>variable</em>：将当前生成的数据集观测存储到临时变量variable中</li>
+<li>NOBS=<em>variable</em>：将主数据集和事物数据集总观测数存储到临时变量variable中</li>
+<li>END=<em>variable</em>：创建并命名一个临时变量variable，用1和0标记是否为最后一条记录。</li>
+</ul>
+<p><strong>MODIFY</strong> <em>master-data-set</em> &lt;(<em>data-set-options</em>)&gt; KEY=<em>index</em> &lt;/UNIQUE&gt; &lt;KEYRESET=<em>variable</em>&gt; &lt;NOBS=<em>variable</em>&gt; &lt;END=<em>variable</em>&gt;;</p>
+<ul>
+<li>KEY=<em>index</em>：指定索引</li>
+<li>KEYRESET=<em>variable</em>：是否从索引头部查找</li>
+</ul>
+<p><strong>MODIFY</strong> <em>master-data-set</em> &lt;(<em>data-set-options</em>)&gt; &lt;NOBS=variable&gt; POINT=<em>variable</em>;</p>
+<ul>
+<li>POINT=<em>variable</em>：随机读取由variable指定的观测</li>
+</ul>
+<p><strong>MODIFY</strong> <em>master-data-set</em> &lt;(<em>data-set-options</em>)&gt; &lt;NOBS=<em>variable</em>&gt; &lt;END=<em>variable</em>&gt;</p>
+<p>MODIFY比SET更高效。MODIFY语句直接修改原数据集，不生成新数据集。SET语句打开原数据集，重新生成一份新数据集（即使新数据集与原数据集同名）。因此使用MODIFY语句时，DATA语句后必须是原数据集，但使用SET语句时则无所谓。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">data class;</div><div class="line">    set sashelp.class;</div><div class="line">    weight = weight*0.4536; /*lbs-&gt;kg*/</div><div class="line">    height = height*0.0254; /*in-&gt;m*/</div><div class="line">run;</div><div class="line"></div><div class="line">data sashelp.class;</div><div class="line">    modify sashelp.class;</div><div class="line">    weight = weight*0.4536; /*lbs-&gt;kg*/</div><div class="line">    height = height*0.0254; /*in-&gt;m*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p>MODIFY比MERGE更高效。MODIFY语句进行匹配修改观测时，因其采用动态WHERE语句，不像MERGE需要事先排序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">data raw;/*主数据集*/</div><div class="line">    name=&quot;吴源燚&quot;;gender=&quot;&quot;;age=2;Location=&quot;SH&quot;;output;</div><div class="line">    name=&quot;WUYY&quot;;gender=&quot;M&quot;;age=.;Location=&quot;SH&quot;;output;</div><div class="line">run;</div><div class="line"></div><div class="line">data new;/*事物数据集*/</div><div class="line">    name=&quot;吴源燚&quot;;gender=&quot;M&quot;;</div><div class="line">    name=&quot;WUYY&quot;;age=25;output;</div><div class="line">    name=&quot;WUYY&quot;;age=30;output;</div><div class="line">run;</div><div class="line"></div><div class="line">data raw;</div><div class="line">    modify raw new;</div><div class="line">    by name;</div><div class="line">    replace; /*默认可省略*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<p>MODIFY语句是对原数据集里观测进行修改，但是不能改变数据集结构，即不能新增变量也不能新增观察。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">data sashelp.class class_female;</div><div class="line">    modify sashelp.class;</div><div class="line">    if sex =&quot;F&quot; then do;</div><div class="line">        output class_female;</div><div class="line">        remove sashelp.class;</div><div class="line">    end;</div><div class="line">    else do;</div><div class="line">        height=height+5;</div><div class="line">        replace sashelp.class;</div><div class="line">    end;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="更新数据集"><a href="#更新数据集" class="headerlink" title="更新数据集"></a>更新数据集</h3><p><strong>UPDATE</strong> <em>master-data-set</em> &lt;(<em>data-set-options</em>)&gt; <em>transaction-data-set</em> &lt;(<em>data-set-options</em>)&gt; &lt;END=<em>variable</em>&gt; &lt;UPDATEMODE=MISSINGCHECK|NOMISSINGCHECK&gt;;</p>
+<p><strong>BY</strong> <em>by-variable</em>;</p>
+<ul>
+<li><em>master-data-set</em>：主数据集，存放原始数据。</li>
+<li><em>transaction-data-set</em>：事物数据集，存放匹配变量、需要修改的变量及其新值。</li>
+<li>END=<em>variable</em>：创建并命名一个临时变量variable，用1和0标记是否为最后一条记录。</li>
+<li>UPDATEMODE：是否用事物数据集里的缺失值更新主数据集<ul>
+<li>是：NOMISSINGCHECK</li>
+<li>否：MISSINGCHECK</li>
+</ul>
+</li>
+<li><em>by-variable</em>：指定匹配变量，主数据集和事物数据集按变量的值 匹配</li>
+</ul>
+<p>主数据集和事物数据集需先按BY变量排序；UPDTATE只有一种用法，其后必须跟BY语句；主数据集中，BY变量的值应该唯一，否则只会更新相同值的首条记录，事物数据集中BY变量值可以不唯一，更新的数据集最终会以最后一条为准。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">data raw;/*主数据集*/</div><div class="line">    name=&quot;吴源燚&quot;;gender=&quot;&quot;;age=2;Location=&quot;SH&quot;;output;</div><div class="line">    name=&quot;WUYY&quot;;gender=&quot;M&quot;;age=.;Location=&quot;SH&quot;;output;</div><div class="line">run;</div><div class="line"></div><div class="line">data new;/*事物数据集*/</div><div class="line">    name=&quot;吴源燚&quot;;gender=&quot;M&quot;;</div><div class="line">    name=&quot;WUYY&quot;;age=25;output;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sort data=raw; /*排序*/</div><div class="line">    by name;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sort data=new;</div><div class="line">    by name;</div><div class="line">run;</div><div class="line"></div><div class="line">data want; /*用事物数据集更新主数据集*/</div><div class="line">    update raw new;</div><div class="line">    by name;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="行列转置"><a href="#行列转置" class="headerlink" title="行列转置"></a>行列转置</h3><p><strong>PROC TRANSPOSE</strong> &lt;DATA=<em>input-data-set</em>&gt; &lt;DELIMITER=<em>delimiter</em>&gt; &lt;LABEL=<em>label</em>&gt; &lt;LET&gt; &lt;NAME=<em>name</em>&gt; &lt;OUT=<em>output-data-set</em>&gt; &lt;PREFIX=<em>prefix</em>&gt; &lt;SUFFIX=<em>suffix</em>&gt;;</p>
+<p><strong>BY</strong> &lt;DESCENDING&gt; <em>variable-1</em> &lt;&lt;DESCENDING&gt; <em>variable-2</em>&gt; &lt;NOTSTORED&gt;;</p>
+<p><strong>COPY</strong> <em>variable(s)</em>;</p>
+<p><strong>ID</strong> <em>variable</em>;</p>
+<p><strong>IDLABEL</strong> <em>variable</em>;</p>
+<p><strong>VAR</strong> <em>variable(s)</em>;</p>
+<p><strong>RUN</strong>;</p>
+<ul>
+<li>DATA=input-data-set：待转置数据集名称</li>
+<li>DELIMITER=<em>delimiter</em>：ID语句有多个变量时，变量值之间所加的连字符</li>
+<li>LABEL=<em>label</em>：转置变量的标签存储在新数据集中的变量名，默认_LABEL_</li>
+<li>LET：当ID变量的值有重复时使用，此时只有每组ID的最后一条观测被转置</li>
+<li>NAME=<em>name</em>：转置变量在新数据集中的名字，默认为_NAME_</li>
+<li>OUT=<em>output-data-set</em>：转置后数据集名称</li>
+<li>PREFIX=<em>prefix</em>：给转置变量在新数据集中的变量名加前缀</li>
+<li>SUFFIX=<em>suffix</em>：给转置变量在新数据集中的变量名加后缀</li>
+<li>BY：制定分组转置的变量，如果没有加NOTSTORED选项，原数据集应该先用PRCO SORT语句按BY语句指定的变量排序</li>
+<li>COPY：拷贝变量，此变量不转置，直接拷贝到新数据集中</li>
+<li>ID：标识变量，用此变量的值标识转置后变量的名称，多个标识变量时，需要DELIMITER指定连字符</li>
+<li>IDLABEL：给转置后的变量添加标签</li>
+<li>VAR：待转置的变量，SAS将对此变量进行行列互换操作</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">data wide; /*创建宽表*/</div><div class="line">input SID $  Programming Stats English;</div><div class="line">datalines;</div><div class="line">S01 98 100 80</div><div class="line">S02 84 98 94</div><div class="line">S03 89 92 88</div><div class="line">;</div><div class="line">run;</div><div class="line"></div><div class="line">proc transpose data=wide out=long(rename=(_name_=Coursename col1=Score));</div><div class="line">    var Programming Stats English;</div><div class="line">    by SID;</div><div class="line">run;</div><div class="line"></div><div class="line">data long(keep= SID Coursename Score);</div><div class="line">    set wide;</div><div class="line">    array scores&#123;*&#125; Programming Stats English;</div><div class="line">    do i=1 to dim(scores);</div><div class="line">        Coursename=vname(scores&#123;i&#125;);</div><div class="line">        Score=Scores&#123;i&#125;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">proc transpose data=long out=Rewide(drop=_name_);</div><div class="line">    var Score;</div><div class="line">    by SID;</div><div class="line">    id Coursename;</div><div class="line">run;</div><div class="line"></div><div class="line">data Rewide(keep=SID Programming Stats English);</div><div class="line">    format SID Programming Stats English;</div><div class="line">    array Course&#123;3&#125; Programming Stats English;</div><div class="line">    do i=1 to 3;</div><div class="line">        set long;</div><div class="line">        Course&#123;i&#125;=Score;</div><div class="line">    end;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="横向拼接（并接）"><a href="#横向拼接（并接）" class="headerlink" title="横向拼接（并接）"></a>横向拼接（并接）</h3><h4 id="一对一读入（One-to-one-Reading）"><a href="#一对一读入（One-to-one-Reading）" class="headerlink" title="一对一读入（One-to-one Reading）"></a>一对一读入（One-to-one Reading）</h4><ul>
+<li>用多SET语句并接多个数据集，当数据集里的观测数不等时，SAS读完观测数最少的那个数据集后即停止执行。</li>
+<li>当多个数据集里的变量有重复时，后面的值会覆盖前面的值。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">data class1(keep=name sex) class2(keep=age height weighr); </div><div class="line">    set sashelp.class;</div><div class="line">    output class1;</div><div class="line">    output class2;</div><div class="line">run;</div><div class="line"></div><div class="line">data class;</div><div class="line">    set class1;</div><div class="line">    set class2;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h4 id="一对一并接（One-to-one-Merging）"><a href="#一对一并接（One-to-one-Merging）" class="headerlink" title="一对一并接（One-to-one Merging）"></a>一对一并接（One-to-one Merging）</h4><ul>
+<li>数据不对等时，不会停止执行。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">data class;</div><div class="line">    merge class1; class2;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h4 id="匹配并接（Matching-Merging）"><a href="#匹配并接（Matching-Merging）" class="headerlink" title="匹配并接（Matching Merging）"></a>匹配并接（Matching Merging）</h4><ul>
+<li>在使用MERGE语句前需用PROC SORT过程给匹配变量排序，在其之后需紧接BY语句指定匹配变量。</li>
+<li>可同时MERGE多个数据集，对于相同的变量，后一个数据集里的值会覆盖前一个数据的值。</li>
+<li>并接两个数据集时，BY变量可能不唯一。一个数据集重复的BY值有m个，另一数据集重复的BY值有n个，则MERGE后，这些重复的BY值将产生m*n条结果。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">data class1(keep=name sex) class2(keep=name age height weight);</div><div class="line">    set sashelp.class;</div><div class="line">    out class1;</div><div class="line">    if _n_ in (1, 5, 10, 15) then output class2;</div><div class="line">run;</div><div class="line"></div><div class="line">data class2;</div><div class="line">    ser class2;</div><div class="line">    if name=&quot;Janet&quot; then name=&quot;Janey&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sort data=class2;</div><div class="line">    by name;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sort data=class2;</div><div class="line">    by name;</div><div class="line">run;</div><div class="line"></div><div class="line">data class_left; /*左连接*/</div><div class="line">    merge class1(in=ds1) class2(in=ds2);</div><div class="line">    by name;</div><div class="line">    if ds1;</div><div class="line">run;</div><div class="line"></div><div class="line">data class_right; /*右连接*/</div><div class="line">    merge class1(in=ds1) class2(in=ds2);</div><div class="line">    by name;</div><div class="line">    if ds2;</div><div class="line">run;</div><div class="line"></div><div class="line">data class_inner; /*内连接*/</div><div class="line">    merge class1(in=ds1) class2(in=ds2);</div><div class="line">    by name;</div><div class="line">    if ds1 and ds2;</div><div class="line">run;</div><div class="line"></div><div class="line">data class_full; /*全连接*/</div><div class="line">    merge class1(in=ds1) class2(in=ds2);</div><div class="line">    by name;</div><div class="line">    if ds1 or ds2;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="纵向拼接（串接）"><a href="#纵向拼接（串接）" class="headerlink" title="纵向拼接（串接）"></a>纵向拼接（串接）</h3><h4 id="SET语句"><a href="#SET语句" class="headerlink" title="SET语句"></a>SET语句</h4><ul>
+<li>SET语句后可以跟多个数据集或数据集列表</li>
+<li>最终的数据集不会自动剔除重复行</li>
+<li>为匹配的列值为空</li>
+<li>字符型变量的长度为第一次出现的数据中的定义长度，后面相同的字段如果比前面更长，则会被截断，因此建议在SET语句前先用LENGTH语句申明其长度。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">data class1 class2 class3(keep=name sex) class4(keep=name age height weight);</div><div class="line">    set sashelp.class;</div><div class="line">    if _n_ &lt; 10 then do;</div><div class="line">        output class1;</div><div class="line">        output class2;</div><div class="line">    end;</div><div class="line">    else do;</div><div class="line">        output class2;</div><div class="line">        output class4;</div><div class="line">    end;</div><div class="line">run;</div><div class="line"></div><div class="line">data class;</div><div class="line">    set class1 class2;</div><div class="line">run;</div><div class="line"></div><div class="line">data class;</div><div class="line">    set class2 class4;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h4 id="PROC-APPEND"><a href="#PROC-APPEND" class="headerlink" title="PROC APPEND"></a>PROC APPEND</h4><p><strong>PROC APPEND</strong> BASE=&lt;<em>libref.</em>&gt;SAS-data-set &lt;APPENDVER=V6&gt; &lt;DATA=&lt;<em>libref.</em>&gt;SAS-data-set&gt; &lt;ENCRYPTKEY=<em>key-value</em>&gt; &lt;FROCE&gt; &lt;GETSORT&gt; &lt;NOWARN&gt;;</p>
+<p><strong>RUN</strong>;</p>
+<ul>
+<li>BASE=&lt;<em>libref.</em>&gt;SAS-data-set：指定基础数据集，追加数据集的观测将写入此数据集中</li>
+<li>APPENDVER：指定追加机制的版本，可以是V6或V7</li>
+<li>DATA=&lt;<em>libref.</em>&gt;SAS-data-set：指定待追加数据集</li>
+<li>ENCRYPTKEY=<em>key-value</em>：AES加密键值</li>
+<li>FORECE：当追加数据集里的变量不在BASE数据集，或者变量类型和长度不同时，强制追加，不过此时LOG中会有警告信息，可以用NOWARN屏蔽</li>
+<li>GETSORT：把BASE数据集的排序标识复制到追加数据集中</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">proc append base=class3 data=class4 force;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="制作变量字典"><a href="#制作变量字典" class="headerlink" title="制作变量字典"></a>制作变量字典</h3><p>利用ODS OUTPUT语句抓取PROC CONTENTS背后的数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ods output Position=codebook；</div><div class="line">proc contents data=sashelp.cars order=varnum;</div><div class="line">run;</div><div class="line"></div><div class="line">proc export data=codebook outfile=&quot;d:\codeBook.csv&quot; dbms=csv replace;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="数据集信息"><a href="#数据集信息" class="headerlink" title="数据集信息"></a>数据集信息</h3><p>数据集权限有读、写、修改和全局四种，分别用READ=、WRITE=、ALTER=、PW=来设置。格式为：密码1/密码2，具体有五种形式：</p>
+<ul>
+<li>密码1：设置密码</li>
+<li>密码1/密码2：修改密码1为密码2</li>
+<li>密码2：不管旧密码是什么，设置新密码为密码2</li>
+<li>密码1/：删除密码</li>
+<li>/：删除密码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proc datasets lib=sashelp; /*获取描述信息*/</div><div class="line">    contents data=class;</div><div class="line">run;</div><div class="line"></div><div class="line">proc datasets lib=sashelp;/*修改描述信息*/</div><div class="line">    modify class(label=&quot;学生测试数据集&quot; read=r2017);</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<h3 id="数据集操作"><a href="#数据集操作" class="headerlink" title="数据集操作"></a>数据集操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">proc datasets;</div><div class="line">    copy in=sashelp out=work; /*数据集集体拷贝*/</div><div class="line">    select class; /*选择数据集*/</div><div class="line">quit;</div><div class="line"></div><div class="line">proc datasets lib=work;</div><div class="line">    change class=student; /*数据集改名*/</div><div class="line">quit;</div><div class="line"></div><div class="line">proc datasets lib=work;</div><div class="line">    delete students; /*删除数据集*/</div><div class="line">quit;</div><div class="line"></div><div class="line">proc datasets lib=work kill memtype=data; /*删除Work库中所有数据集*/</div><div class="line">run;</div><div class="line"></div><div class="line">proc datasets lib=work;</div><div class="line">    save class; /*仅保留class*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="变量信息"><a href="#变量信息" class="headerlink" title="变量信息"></a>变量信息</h3><p>PROC DATASETS不是打开数据集，逐行操作，而是对数据集的描述信息直接操作，或者直接操作整体数据集。因此相比逐条操作的SET语句，PROC DATASETS在效率上要高很多。</p>
+<p>PROC DATASETS配合MODIFY语句，可以修改变量的格式、标签以及重命名变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">proc  datasets;</div><div class="line">    modify sashelp.class;</div><div class="line">        format height weight 3.0;</div><div class="line">        rename sex=gender;</div><div class="line">        label name=&quot;姓名&quot; gender=&quot;性别&quot;;</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<h3 id="SAS字典"><a href="#SAS字典" class="headerlink" title="SAS字典"></a>SAS字典</h3><p>SAS Dictionary库是一个只读的SAS逻辑库，里面包含了与SAS会话相关的元数据（描述数据的数据），如数据集名、变量名、变量类型以及变量长度等这些描述变量的变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">proc sql;</div><div class="line">    title &quot;Dictionary库中所有的表&quot;;</div><div class="line">    select unique memname memlabel from dictionary.dictionaries;</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<p>SAS字典库里的表与其对应的SASHELP库下的视图</p>
+<table>
+<thead>
+<tr>
+<th>Dictionary库下的表名</th>
+<th>SASHELP库下的视图名</th>
+<th>主要作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TABLES</td>
+<td>Vtable</td>
+<td>包含了诸如逻辑库名、数据文件名、数据文件的类型、观测值数、变量数等诸多信息</td>
+</tr>
+<tr>
+<td>COLUMNS</td>
+<td>Vcolumn</td>
+<td>包含了变量名称、类型、长度和格式以及标签等诸多信息</td>
+</tr>
+<tr>
+<td>MEMBERS</td>
+<td>Vmember</td>
+<td>包含了逻辑库名称、数据文件名、数据类型、路径等诸多信息</td>
+</tr>
+<tr>
+<td>FORMATS</td>
+<td>Vformat</td>
+<td>包含了系统自带的格式信息</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sql;</div><div class="line">    describe table dictionary.column; /*查看columns表结构*/</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<p>在指定逻辑库、数据集以及数据文件类型时，需用引号，且引号里面的字母是大学。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">proc sql; /*从字典库中获取SASHELP库下所有数据集信息*/</div><div class="line">    create tables desds as select memname, nobs, nvar from dictionary.tables</div><div class="line">    where libname=&quot;SASHELP&quot; and memtype=&quot;DATA&quot;;</div><div class="line">quit;</div><div class="line"></div><div class="line">proc sql; /*从视图中获取SASHELP库下所有数据集信息*/</div><div class="line">    create tables desds as select memname, nobs, nvar from sashelp.vtable</div><div class="line">    where libname=&quot;SASHELP&quot; and memtype=&quot;DATA&quot;;</div><div class="line">quit;</div><div class="line"></div><div class="line">proc sql; /*从字典库中获取数据集CARS的所有变量信息*/</div><div class="line">    create table varlist as select name, type, length, label from dictionary.columns</div><div class="line">    where libname=&quot;SASHELP&quot; and memname=&quot;CARS&quot;;</div><div class="line">quit;</div><div class="line"></div><div class="line">proc sql; /*从视图中获取数据集CARS的所有变量信息*/</div><div class="line">    create table varlist as select name, type, length, label from sashelp.vcolumn</div><div class="line">    where libname=&quot;SASHELP&quot; and memname=&quot;CARS&quot;;</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<h2 id="间有山川亦奇秀：函数例程"><a href="#间有山川亦奇秀：函数例程" class="headerlink" title="间有山川亦奇秀：函数例程"></a>间有山川亦奇秀：函数例程</h2><h3 id="函数语法"><a href="#函数语法" class="headerlink" title="函数语法"></a>函数语法</h3><p>可用于DATA步赋值语句、IF语句、WHERE表达式（语句或选项）、宏语句、PROC REPORT以及PROC SQL语句中。PRCO SQL的SELECT语句里的函数作用是纵向的，而其他函数的作用则是横向的。</p>
+<p><em>function-name</em>(<em>argument-1</em>&lt;…*argument-n&gt;)</p>
+<p><em>function-name</em>(OF <em>variable-list</em>)</p>
+<p><em>function-name</em>(OF <em>array-name</em>[*])</p>
+<p><em>function-name</em>(&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]&gt; &lt;…, &lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]&gt;&gt;)</p>
+<ul>
+<li>function-name：函数名称</li>
+<li>argument：参数，可以是变量名、常数、表达式、甚至还可以是其他函数</li>
+<li>OF <em>variable-list</em>：参数列表</li>
+<li>OF <em>array-name</em>[*]：数组名称，注意要带[*]</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">data _null_;</div><div class="line">    array ex&#123;7&#125; (95 93 92 99 98 85 94);</div><div class="line">    avg_function1=mean(ex1, ex2, ex3, ex4, ex5, ex6, ex7); /*单个参数*/</div><div class="line">    avg_function2=mean(of ex1 ex2 ex3 ex4 ex5 ex6 ex7); /*变量清单*/</div><div class="line">    avg_function3=mean(of ex1-ex7); /*变量清单*/</div><div class="line">    avg_function4=mean(of ex:); /*变量清单*/</div><div class="line">    avg_function5=mean(of ex[*]; /*数组名*/</div><div class="line">    put (avg_function1 avg_function2 avg_function3 avg_function4 avg_function5) (=);</div><div class="line">    put avg_function1= avg_function2= avg_function3= avg_function4= avg_function5=;</div><div class="line">    /*put avg_function1 avg_function2 avg_function3 avg_function4 avg_function5;*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="例程语法"><a href="#例程语法" class="headerlink" title="例程语法"></a>例程语法</h3><p>主要用于DATA步的CALL语句中，不能用于赋值语句和表达式。</p>
+<p>CALL <em>routine-name</em>(<em>argument-1</em>&lt;…*argument-n&gt;)</p>
+<p>CALL <em>routine-name</em>(OF <em>variable-list</em>)</p>
+<p>CALL <em>routine-name</em>(OF <em>array-name</em>[*])</p>
+<p>CALL <em>routine-name</em>(&lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]&gt; &lt;…, &lt;<em>argument</em>|OF <em>variable-list</em>| OF <em>array-name</em>[*]&gt;&gt;)</p>
+<ul>
+<li>routine-name：函数名称</li>
+<li>argument：参数，可以是变量名、常数、表达式、甚至还可以是其他函数</li>
+<li>OF <em>variable-list</em>：参数列表</li>
+<li>OF <em>array-name</em>[*]：数组名称，注意要带[*]</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">data tmp;</div><div class="line">    array str&#123;3&#125; $20 (&quot;统计思维&quot;,&quot;SAS编程演义&quot;,&quot;数据整理与图标呈现&quot;);</div><div class="line">    length result1-result5 $50;</div><div class="line">    call catx(&quot;-&quot;, result1, str1, str2, atr3);</div><div class="line">    call catx(&quot;-&quot;, result2, of str1 str2 atr3);</div><div class="line">    call catx(&quot;-&quot;, result3, of str1-atr3);</div><div class="line">    call catx(&quot;-&quot;, result4, of str:);</div><div class="line">    call catx(&quot;-&quot;, result5, of str[*]);</div><div class="line">    put (result1 result2 result3 result4 result5) (=);</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h3><p>借助PROC FCMP的FUNCTION语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">proc fcmp outlib=sasuser.funcs.trial;</div><div class="line">    function study_day(intervention_date, event_date); /*定义函数study_day*/</div><div class="line">        n=event_date - intervention_date;</div><div class="line">        if n &gt;= 0 then</div><div class="line">            n = n + 1;</div><div class="line">        return(n);</div><div class="line">    endsub;</div><div class="line">run;</div><div class="line"></div><div class="line">options cmplib=sasuser.funcs;</div><div class="line">data _null_;</div><div class="line">    start=&apos;15Feb2010&apos;d;</div><div class="line">    today=&apos;27Mar2010&apos;d;</div><div class="line">    sd=study_day(start, today);</div><div class="line">    put sd=;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="高频函数和例程"><a href="#高频函数和例程" class="headerlink" title="高频函数和例程"></a>高频函数和例程</h3><table>
+<thead>
+<tr>
+<th>功能类别</th>
+<th>函数名及其功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数组处理</td>
+<td>DIM：返回数组元素个数</td>
+</tr>
+<tr>
+<td></td>
+<td>HBOULD：返回数组上界</td>
+</tr>
+<tr>
+<td></td>
+<td>LBOULD：返回数组下界</td>
+</tr>
+<tr>
+<td>字符处理</td>
+<td>STRIP：掐头去尾移除空格</td>
+</tr>
+<tr>
+<td></td>
+<td>SUBSTR：提取、置换字符</td>
+</tr>
+<tr>
+<td></td>
+<td>TRANSLATE、TRANSTRN、TRANWRD：替换、移除字符</td>
+</tr>
+<tr>
+<td></td>
+<td>UPCASE、LOWCASE、PROPCASE：大小写转换</td>
+</tr>
+<tr>
+<td></td>
+<td>SCAN：扫描整个字符串，返回某部分字符串</td>
+</tr>
+<tr>
+<td></td>
+<td>FIND、FINDC、FINDW：查找字符，返回其位置</td>
+</tr>
+<tr>
+<td></td>
+<td>INDEX、INDEXC、INDEXW：查找字符，返回其位置</td>
+</tr>
+<tr>
+<td></td>
+<td>CATS、CATT、CATX及其CALL例程：字符串拼接</td>
+</tr>
+<tr>
+<td>日期时间</td>
+<td>DATE、TODAY：获取当前日期</td>
+</tr>
+<tr>
+<td></td>
+<td>YEAR、MONTH、DAY：分别截取年、月、日</td>
+</tr>
+<tr>
+<td></td>
+<td>MDY：月、日、年组合成完整日期</td>
+</tr>
+<tr>
+<td></td>
+<td>HOUR、MINUTE、SECOND：分别截取时、分、秒</td>
+</tr>
+<tr>
+<td></td>
+<td>HMS：时、分、秒组合成完整时间</td>
+</tr>
+<tr>
+<td></td>
+<td>INTCK：计算日期、时间、日期时间间的间隔</td>
+</tr>
+<tr>
+<td></td>
+<td>INTNX：给定间隔的下一个日期、时间、日期时间</td>
+</tr>
+<tr>
+<td>统计描述</td>
+<td>N、NMISS：分别统计非缺失、缺失的个数</td>
+</tr>
+<tr>
+<td></td>
+<td>SUM：求和</td>
+</tr>
+<tr>
+<td></td>
+<td>MEAN：均数</td>
+</tr>
+<tr>
+<td></td>
+<td>STD、STDERR：标准差、标准误</td>
+</tr>
+<tr>
+<td></td>
+<td>CV：变异系数</td>
+</tr>
+<tr>
+<td></td>
+<td>IQR：分位数间隔</td>
+</tr>
+<tr>
+<td></td>
+<td>MISSING：判断是否缺失</td>
+</tr>
+<tr>
+<td>宏函数</td>
+<td>CALL SYMPUT、CALL SYMPUTX：DATA步赋值宏变量</td>
+</tr>
+<tr>
+<td></td>
+<td>SYMEXIT：判断宏变量是否存在</td>
+</tr>
+<tr>
+<td></td>
+<td>SYMGET：DATA步运行阶段获取宏变量值</td>
+</tr>
+<tr>
+<td>截断函数</td>
+<td>TRAN：强行截断</td>
+</tr>
+<tr>
+<td></td>
+<td>ROUND：四舍五入</td>
+</tr>
+<tr>
+<td></td>
+<td>INT、CELL、FLOOR：直接取整、向上取整、向下取整</td>
+</tr>
+<tr>
+<td>变量信息</td>
+<td>VNAME：获取变量名</td>
+</tr>
+<tr>
+<td></td>
+<td>VTYPE：获取变量类型</td>
+</tr>
+<tr>
+<td></td>
+<td>VLABEL：获取变量标签</td>
+</tr>
+<tr>
+<td>特殊函数</td>
+<td>INPUT、PUT：数据类型转换</td>
+</tr>
+<tr>
+<td></td>
+<td>LAG、DIF：不同观测号间的值与差值</td>
+</tr>
+</tbody>
+</table>
+<h2 id="翩跹翠袖拂云裳：巧用格式"><a href="#翩跹翠袖拂云裳：巧用格式" class="headerlink" title="翩跹翠袖拂云裳：巧用格式"></a>翩跹翠袖拂云裳：巧用格式</h2><h3 id="格式名"><a href="#格式名" class="headerlink" title="格式名"></a>格式名</h3><p>&lt;$&gt;<em>format-name</em>&lt;w&gt;.&lt;d&gt;</p>
+<p>$：标明是否为字符格式，有$的为字符格式，无则为数字格式</p>
+<p><em>format-name</em>：格式名称，可以是SAS系统自带也可以是用户在PROC FORMAT的VALUE语句中自定义的</p>
+<p><em>w</em>：格式的宽度</p>
+<p><em>d</em>：小数的位数</p>
+<p>.：w和d均可以没有，但其之间的点必须保留</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/*获取系统内置格式清单*/</div><div class="line">proc sql;</div><div class="line">    create table SysFormats as select distinct fmtname from dictionary.formats;</div><div class="line">quit;</div><div class="line"></div><div class="line">proc print data= SysFormats;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h3 id="常用输入格式"><a href="#常用输入格式" class="headerlink" title="常用输入格式"></a>常用输入格式</h3><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>格式名</th>
+<th>作用简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字符</td>
+<td>$CHARw.</td>
+<td>读入带空格的字符</td>
+</tr>
+<tr>
+<td></td>
+<td>$w.</td>
+<td>标准字符格式</td>
+</tr>
+<tr>
+<td>日期时间</td>
+<td>ANYDTDTEw.</td>
+<td>“万能”读入日期格式</td>
+</tr>
+<tr>
+<td></td>
+<td>ANYDTDTMw.</td>
+<td>“万能”读入日期时间格式</td>
+</tr>
+<tr>
+<td></td>
+<td>ANYDTTMEw.</td>
+<td>“万能”读入时间格式</td>
+</tr>
+<tr>
+<td></td>
+<td>DATEw.</td>
+<td>读入格式为ddmmyy或ddmmyyyy的日期</td>
+</tr>
+<tr>
+<td></td>
+<td>DATETIMEw.</td>
+<td>读入格式为ddmmyy hh:mm:ss或ddmmyyyy hh:mm:ss的日期时间</td>
+</tr>
+<tr>
+<td></td>
+<td>DDMMYYw.</td>
+<td>读入格式为ddmmyy&lt;yy&gt;或者dd-mm-yy&lt;yy&gt;格式的日期，连字符可以是- . /</td>
+</tr>
+<tr>
+<td></td>
+<td>HHMMSSw.</td>
+<td>读入格式为hh:mm:ss或hhmmss的时间</td>
+</tr>
+<tr>
+<td></td>
+<td>MMDDYYw.</td>
+<td>读入格式为mmddyy或mmddyyyy的日期</td>
+</tr>
+<tr>
+<td>数字</td>
+<td>COMMAw.d</td>
+<td>读入数字时移除数字间的逗号</td>
+</tr>
+<tr>
+<td></td>
+<td>w.d</td>
+<td>读入标准数字格式</td>
+</tr>
+<tr>
+<td></td>
+<td>PERCENTw.d</td>
+<td>读入百分比数字</td>
+</tr>
+</tbody>
+</table>
+<h3 id="常用输出格式"><a href="#常用输出格式" class="headerlink" title="常用输出格式"></a>常用输出格式</h3><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>格式名</th>
+<th>作用简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字符</td>
+<td>$w.</td>
+<td>标准字符格式，w表示变量的宽度</td>
+</tr>
+<tr>
+<td></td>
+<td>$IPCASEw.</td>
+<td>把字符转成大写，相当于UPCASE函数</td>
+</tr>
+<tr>
+<td>日期时间</td>
+<td>DATETIMEw.d</td>
+<td>显示日期时间格式为ddmmmyy:hh:mm:ss.ss</td>
+</tr>
+<tr>
+<td></td>
+<td>DATEw.</td>
+<td>显示日期格式为ddmmmyy，ddmmmyyyy，或dd-mmm-yy</td>
+</tr>
+<tr>
+<td></td>
+<td>YYMMDDw.</td>
+<td>显示日期格式为yymmdd或&lt;yy&gt;yy-mm-dd</td>
+</tr>
+<tr>
+<td></td>
+<td>HHMMw.d</td>
+<td>显示时间格式为hh:mm</td>
+</tr>
+<tr>
+<td>数字</td>
+<td>BESTw.</td>
+<td>SAS自动选择最合适的数字格式</td>
+</tr>
+<tr>
+<td></td>
+<td>COMMAw.d</td>
+<td>带千分位的数字格式</td>
+</tr>
+<tr>
+<td></td>
+<td>DOLLARw.d</td>
+<td>带美元符号的格式</td>
+</tr>
+<tr>
+<td></td>
+<td>PERCENTw.d</td>
+<td>显示百分比形式</td>
+</tr>
+<tr>
+<td></td>
+<td>PVALUEw.d</td>
+<td>统计P值显示格式</td>
+</tr>
+<tr>
+<td></td>
+<td>w.d</td>
+<td>标准的数字格式</td>
+</tr>
+<tr>
+<td></td>
+<td>Zw.d</td>
+<td>前面位数不够补0填充</td>
+</tr>
+</tbody>
+</table>
+<h3 id="自定义格式"><a href="#自定义格式" class="headerlink" title="自定义格式"></a>自定义格式</h3><p><strong>PROC FORMAT</strong> &lt;<em>option(s)</em>&gt;;</p>
+<p><strong>EXCLUDE</strong> <em>entry(s)</em>;</p>
+<p><strong>INVALUE</strong> &lt;$&gt;<em>name</em>&lt;(<em>informat-option(s)</em>)&gt;&lt;<em>value-range-set(s)</em>&gt;;</p>
+<p><strong>PICTURE</strong> <em>name</em>&lt;(<em>format-option(s)</em>)&gt; &lt;<em>value-range-set-1</em>&lt;(<em>picture-1-option(s)</em>)&gt; &lt;value-range-set-2&lt;(*picture-2-option(s))&gt;&gt; …&gt;;</p>
+<p><strong>SELECT</strong> <em>entry(s)</em>;</p>
+<p><strong>VALUE</strong>  &lt;$&gt;<em>name</em>&lt;(<em>format-option(s)</em>)&gt; &lt;<em>value-range-set(s)</em>&gt;</p>
+<p><strong>RUN</strong>;</p>
+<ul>
+<li>option(s)：PRCO FORMAT的一些选项，如：<ul>
+<li>library=：指定格式存放位置</li>
+<li>ctnlin=：指定格式定义输入数据集</li>
+<li>ctnlout=：指定格式定义到出数据集</li>
+</ul>
+</li>
+<li><strong>EXCLUDE</strong>：剔除某些条目</li>
+<li><strong>INVALUE</strong>：定义输入格式<ul>
+<li><em>name</em>：输入格式名，前面有$表示为字符格式名</li>
+<li><em>informat-option(s)</em>：输入格式选项</li>
+<li><em>value-range-set(s)</em>：数据映射</li>
+</ul>
+</li>
+<li><strong>PICTURE</strong>：创建打印数字的模版</li>
+<li><strong>VALUE</strong>：定义输出格式<ul>
+<li><em>name</em>：输出格式名，前面有$表示为字符格式名</li>
+<li><em>informat-option(s)</em>：输出格式选项</li>
+<li><em>value-range-set(s)</em>：数据映射，其形式可以是：<em>value-or-range-1 &lt;, value-or-range-2, …&gt;=formatted-value|[existing-format]</em></li>
+</ul>
+</li>
+</ul>
+<p>直接用输入数据来定义格式时，输入数据集里必须包含五个重要字段名：FMTNAME、START、END、LABEL以及TYPE。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">proc format cntlout=fmt; /*自定义格式，导出格式定义数据*/</div><div class="line">    value $sexf F=&quot;男性&quot; M=&quot;女性&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc format library=work cntlin=fmt(keep=fmtname start end label type); /*用数据集定义格式*/</div><div class="line">run;</div></pre></td></tr></table></figure>
+<ul>
+<li>格式命名：格式命名长度不得超过32个字符（包括$），且不得以数字结尾</li>
+<li>数据映射中，数据范围写法：<ul>
+<li>单独的值映射：如「F=”男性” M=”女性”」,「1=”低” 2=”中” 3=”高”」</li>
+<li>值范围的映射：如「18.5-24.9=”正常”」,「’A’-‘D’=”Class1”」</li>
+<li>单用连字符“-”时，是闭区间，包括两边边界值。如果希望不包括边界，可在其前加“&lt;”，如：「18.5-&lt;25=”正常”」</li>
+<li>可用关键词LOW，HEIGH，OTHER：如「low-&lt;65=”&lt;65岁” 65-high=”&gt;=65岁”」</li>
+<li>可以嵌套格式名，但是需要将嵌套的格式名置于中括号内或小括号里的双竖线中，如：「.=”缺失” other=[yymmdd10.];」</li>
+</ul>
+</li>
+<li>定义好的格式，如果在DATA步用FORMAT关联变量，则为永久性的；如果只在过程步用FORMAT关联变量，则为临时性的。</li>
+</ul>
+<h3 id="格式妙用"><a href="#格式妙用" class="headerlink" title="格式妙用"></a>格式妙用</h3><h4 id="格式的使用范围"><a href="#格式的使用范围" class="headerlink" title="格式的使用范围"></a>格式的使用范围</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">data _null_; /*DATA步 PUT语句中指定*/</div><div class="line">    set sashelp.class(obs=5);</div><div class="line">    put name sex $sexf.;</div><div class="line">run;</div><div class="line"></div><div class="line">prco print data=sashelp.class(obs=5); /*PROC步FORMAT语句指定*/</div><div class="line">    var name sex;</div><div class="line">    format sex $sexf.;</div><div class="line">run;</div><div class="line"></div><div class="line">proc sql; /*Proc sql中format选项*/</div><div class="line">    select name, sex format=$sexf. from sashelp.class(obs=5);</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<h4 id="变量重分组"><a href="#变量重分组" class="headerlink" title="变量重分组"></a>变量重分组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">data obese; /*创建测试数据集*/</div><div class="line">    length status $ 15;</div><div class="line">    set sashelp.class;</div><div class="line">    BMI = weight*0.4536/(height*0.0254)**2;</div><div class="line">run;</div><div class="line"></div><div class="line">proc format; /*自定义格式*/</div><div class="line">    value obefmt low-18.5=&quot;Underweight&quot; 18.5-25=&quot;Normal&quot; </div><div class="line">                 25-30=&quot;Overweight&quot; 30-high=&quot;Obese&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc freq data=obese; /*愿变量+格式直接统计新分类的频数*/</div><div class="line">    table bmi;</div><div class="line">    format bmi obefmt.;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h4 id="统计分析过程"><a href="#统计分析过程" class="headerlink" title="统计分析过程"></a>统计分析过程</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/*在统计分析过程里，直接用自定义格式给变量重分组*/</div><div class="line">proc format;</div><div class="line">    value obefmt low-18.5=&quot;Underweight&quot; 18.5-high=&quot;Normal or above&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc logistic data=obese;</div><div class="line">    class sex;</div><div class="line">    model bmi(event=&quot;Underweight&quot;)=age sex;</div><div class="line">    format bmi obefmt.;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h4 id="统计缺失观测"><a href="#统计缺失观测" class="headerlink" title="统计缺失观测"></a>统计缺失观测</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">proc format; /*自定义格式*/</div><div class="line">    value $missfmt &apos; &apos;=&quot;Missing&quot; other=&quot;Not Missing&quot;; /*引号中有多少空格都一样*/</div><div class="line">    value nmissfmt .=&quot;Missing&quot; other=&quot;Not Missing&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">data class; /*创建测试数据集*/</div><div class="line">    set sashelp.class;</div><div class="line">    if rannor(123)&lt;0.5 then call missing(sex);</div><div class="line">    if rannor(456)&lt;0.05 then call missing(age);</div><div class="line">run;</div><div class="line"></div><div class="line">proc freq data=class; /*统计缺失、非缺失频数*/</div><div class="line">    table sex age/missing;</div><div class="line">    format sex $missfmt. age nmissfmt.;</div><div class="line">run;</div><div class="line"></div><div class="line">data cclass;</div><div class="line">    set class;</div><div class="line">    if name=&apos;Henry&apos; then sex=&apos;  &apos;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc freq data=cclass; /*统计缺失、非缺失频数*/</div><div class="line">    table sex age/missing;</div><div class="line">    format sex $missfmt. age nmissfmt.;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<h4 id="条件显示"><a href="#条件显示" class="headerlink" title="条件显示"></a>条件显示</h4><p>利用自定义格式，可以依据不同的条件，按不同风格显示值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">proc format;</div><div class="line">    value obefmt low-18.5=&quot;red&quot; 18.5-high=&quot;black&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">proc report data=obese nowd split=&apos;~&apos; style(report)=[background=white foreground=black];</div><div class="line">    column name sex age bmi;</div><div class="line">    define name/display;</div><div class="line">    define sex/display;</div><div class="line">    define age/display;</div><div class="line">    define bmi/format=4.1 style=[foreground=obefmt.];</div><div class="line">run;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SAS编程演义/" rel="tag"># SAS编程演义</a>
+          
+            <a href="/tags/笔记/" rel="tag"># 笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/13/SAS/SAS编程演义1-4/" rel="next" title="《SAS编程演义》笔记（1-4章）">
+                <i class="fa fa-chevron-left"></i> 《SAS编程演义》笔记（1-4章）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/13/SAS/SAS编程演义8/" rel="prev" title="《SAS编程演义》笔记（8章）">
+                《SAS编程演义》笔记（8章） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <p class="site-author-name" itemprop="name">Yuanyi Wu</p>
+            <p class="site-description motion-element" itemprop="description">朝闻道 夕死可矣</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#亦应帷幄运鸿筹：数据库集"><span class="nav-number">1.</span> <span class="nav-text">亦应帷幄运鸿筹：数据库集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改数据集"><span class="nav-number">1.1.</span> <span class="nav-text">修改数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新数据集"><span class="nav-number">1.2.</span> <span class="nav-text">更新数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行列转置"><span class="nav-number">1.3.</span> <span class="nav-text">行列转置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#横向拼接（并接）"><span class="nav-number">1.4.</span> <span class="nav-text">横向拼接（并接）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一对一读入（One-to-one-Reading）"><span class="nav-number">1.4.1.</span> <span class="nav-text">一对一读入（One-to-one Reading）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一对一并接（One-to-one-Merging）"><span class="nav-number">1.4.2.</span> <span class="nav-text">一对一并接（One-to-one Merging）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#匹配并接（Matching-Merging）"><span class="nav-number">1.4.3.</span> <span class="nav-text">匹配并接（Matching Merging）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#纵向拼接（串接）"><span class="nav-number">1.5.</span> <span class="nav-text">纵向拼接（串接）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SET语句"><span class="nav-number">1.5.1.</span> <span class="nav-text">SET语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PROC-APPEND"><span class="nav-number">1.5.2.</span> <span class="nav-text">PROC APPEND</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#制作变量字典"><span class="nav-number">1.6.</span> <span class="nav-text">制作变量字典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集信息"><span class="nav-number">1.7.</span> <span class="nav-text">数据集信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集操作"><span class="nav-number">1.8.</span> <span class="nav-text">数据集操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量信息"><span class="nav-number">1.9.</span> <span class="nav-text">变量信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SAS字典"><span class="nav-number">1.10.</span> <span class="nav-text">SAS字典</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#间有山川亦奇秀：函数例程"><span class="nav-number">2.</span> <span class="nav-text">间有山川亦奇秀：函数例程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数语法"><span class="nav-number">2.1.</span> <span class="nav-text">函数语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例程语法"><span class="nav-number">2.2.</span> <span class="nav-text">例程语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义函数"><span class="nav-number">2.3.</span> <span class="nav-text">自定义函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高频函数和例程"><span class="nav-number">2.4.</span> <span class="nav-text">高频函数和例程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#翩跹翠袖拂云裳：巧用格式"><span class="nav-number">3.</span> <span class="nav-text">翩跹翠袖拂云裳：巧用格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#格式名"><span class="nav-number">3.1.</span> <span class="nav-text">格式名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用输入格式"><span class="nav-number">3.2.</span> <span class="nav-text">常用输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用输出格式"><span class="nav-number">3.3.</span> <span class="nav-text">常用输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义格式"><span class="nav-number">3.4.</span> <span class="nav-text">自定义格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#格式妙用"><span class="nav-number">3.5.</span> <span class="nav-text">格式妙用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#格式的使用范围"><span class="nav-number">3.5.1.</span> <span class="nav-text">格式的使用范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量重分组"><span class="nav-number">3.5.2.</span> <span class="nav-text">变量重分组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计分析过程"><span class="nav-number">3.5.3.</span> <span class="nav-text">统计分析过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计缺失观测"><span class="nav-number">3.5.4.</span> <span class="nav-text">统计缺失观测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条件显示"><span class="nav-number">3.5.5.</span> <span class="nav-text">条件显示</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuanyi Wu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" href="https://hexo.io">Hexo</a></div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

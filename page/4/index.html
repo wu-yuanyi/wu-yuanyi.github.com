@@ -287,6 +287,166 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/03/27/AndroidEmulator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WYY's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/27/AndroidEmulator/" itemprop="url">Android Emulator on Ubuntu</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T20:47:22+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="How-to-Resize-Android-4-4-Emulator-Internal-Storage"><a href="#How-to-Resize-Android-4-4-Emulator-Internal-Storage" class="headerlink" title="How to Resize Android 4.4 Emulator Internal Storage"></a>How to Resize Android 4.4 Emulator Internal Storage</h2><p><a href="http://stackoverflow.com/questions/20579606/android-4-4-virtual-device-internal-storage-will-not-resize#comment44086027_20762411" target="_blank" rel="external">Question on StackOverFlow</a></p>
+<p><strong>Problem</strong>:</p>
+<p>When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot get the internal storage to be anything larger than 200MB.</p>
+<p><strong>Solution</strong>:</p>
+<ul>
+<li>Now that the emulator file system is ext4 I was able to re-size the userdata.img using standard Linux tools.</li>
+<li>Even above suggestion can cause to android emulator hang on boot logo. The reason is that resize2fs do the changes thats are right in general but considered as broken fs by android and prevent it to mount it in rw mode, that hangs up the boot process.</li>
+<li>Event e2fsck does not fix it for android and to workaround it i use tune2fs to change the way how android should continue to mount broken fs.</li>
+</ul>
+<ol>
+<li>start emulator</li>
+<li>cd ~/.android/avd/emulator_name</li>
+<li>rm userdata-qemu.*</li>
+<li>resize2fs userdata.img 1024M</li>
+<li>start than stop emulator</li>
+<li>e2fsck -f userdata-qemu.img</li>
+<li>resize2fs userdata-qemu.img 1024M</li>
+<li>tune2fs -e continue userdata-qemu.img</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/03/27/github&hexo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -467,7 +627,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -478,7 +638,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>

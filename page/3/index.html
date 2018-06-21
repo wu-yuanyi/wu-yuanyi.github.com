@@ -287,6 +287,158 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/04/11/happybase/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WYY's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/11/happybase/" itemprop="url">Start with happybase on Mac</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-11T16:59:37+08:00">
+                2017-04-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="JDK"><a href="#JDK" class="headerlink" title="JDK"></a>JDK</h1><p>You have Java and the latest JDK on your OS X system.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew cask install Java</div></pre></td></tr></table></figure></p>
+<h1 id="Install-and-config-hadoop"><a href="#Install-and-config-hadoop" class="headerlink" title="Install and config hadoop"></a>Install and config hadoop</h1><h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install hadoop</div></pre></td></tr></table></figure>
+<h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><h3 id="Edit-hadoop-env-sh"><a href="#Edit-hadoop-env-sh" class="headerlink" title="Edit hadoop-env.sh"></a>Edit hadoop-env.sh</h3><p>The file can be located at <strong>/usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop/hadoop-env.sh</strong> where 2.7.3 is the hadoop version.</p>
+<p>Find the line with<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export HADOOP_OPTS=&quot;$HADOOP_OPTS -Djava.net.preferIPv4Stack=true&quot;</div></pre></td></tr></table></figure></p>
+<p>and change it to<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export HADOOP_OPTS=&quot;$HADOOP_OPTS -Djava.net.preferIPv4Stack=true -Djava.security.krb5.realm= -Djava.security.krb5.kdc=&quot;</div></pre></td></tr></table></figure></p>
+<h3 id="Edit-Core-site-xml"><a href="#Edit-Core-site-xml" class="headerlink" title="Edit Core-site.xml"></a>Edit Core-site.xml</h3><p>The file can be located at <strong>/usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop/core-site.xml</strong> .</p>
+<p>Edit configuration at last.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>/usr/local/Cellar/hadoop/hdfs/tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">description</span>&gt;</span>A base for other temporary directories.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.default.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://localhost:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="Edit-hdfs-site-xml"><a href="#Edit-hdfs-site-xml" class="headerlink" title="Edit hdfs-site.xml"></a>Edit hdfs-site.xml</h3><p>The file can be located at <strong>/usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop/mapred-site.xml</strong> and by default will be blank. You can copy and change mapred-site.xml.template.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>mapred.job.tracker<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>localhost:9010<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="Edit-hdfs-site-xml-1"><a href="#Edit-hdfs-site-xml-1" class="headerlink" title="Edit hdfs-site.xml"></a>Edit hdfs-site.xml</h3><p>The file can be located at <strong>/usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop/hdfs-site.xml</strong> .</p>
+<p>Edit configuration at last<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="Alias"><a href="#Alias" class="headerlink" title="Alias"></a>Alias</h3><p>To simplify life edit your ~/.bash_profile using vim and add the following two commands.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">alias hstart=&quot;/usr/local/Cellar/hadoop/2.6.0/sbin/start-dfs.sh;/usr/local/Cellar/hadoop/2.6.0/sbin/start-yarn.sh&quot;</div><div class="line">alias hstop=&quot;/usr/local/Cellar/hadoop/2.6.0/sbin/stop-yarn.sh;/usr/local/Cellar/hadoop/2.6.0/sbin/stop-dfs.sh&quot;</div></pre></td></tr></table></figure></p>
+<p>Edit your <em>~/.bashrc</em> or <em>~/.zshrc</em> using vim and add the following two commands<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">. ~/.bash_profile</div></pre></td></tr></table></figure></p>
+<p>and excute<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ source ~/.bashrc</div><div class="line">$ source ~/.zshrc</div></pre></td></tr></table></figure></p>
+<p>in the terminal to update.<br>Before we can run Hadoop we first need to format the HDFS using<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hdfs namenode -format</div></pre></td></tr></table></figure></p>
+<h2 id="SSH-Localhost"><a href="#SSH-Localhost" class="headerlink" title="SSH Localhost"></a>SSH Localhost</h2><p>Nothing needs to be done here if you have already generated ssh keys. To verify just check for the existance of <em>~/.ssh/id_rsa</em> and the <em>~/.ssh/id_rsa.pub</em> files. If not the keys can be generated using<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa</div></pre></td></tr></table></figure></p>
+<h3 id="Enable-Remote-Login"><a href="#Enable-Remote-Login" class="headerlink" title="Enable Remote Login"></a>Enable Remote Login</h3><p>“System Preferences” -&gt; “Sharing”. Check “Remote Login”</p>
+<h3 id="Authorize-SSH-Keys"><a href="#Authorize-SSH-Keys" class="headerlink" title="Authorize SSH Keys"></a>Authorize SSH Keys</h3><p>To allow your system to accept login, we have to make it aware of the keys that will be used<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</div></pre></td></tr></table></figure></p>
+<p>Let’s try to login.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ssh localhost</div><div class="line">Last login: Fri Mar  6 20:30:53 2015</div><div class="line">$ exit</div></pre></td></tr></table></figure></p>
+<h2 id="Running-Hadoop"><a href="#Running-Hadoop" class="headerlink" title="Running Hadoop"></a>Running Hadoop</h2><p>Now we can run Hadoop just by typing<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hstart</div></pre></td></tr></table></figure></p>
+<p>and stopping using<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hstop</div></pre></td></tr></table></figure></p>
+<h2 id="Good-to-know"><a href="#Good-to-know" class="headerlink" title="Good to know"></a>Good to know</h2><p>We can access the Hadoop web interface by connecting to<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Resource Manager: http://localhost:50070</div><div class="line">JobTracker: http://localhost:8088</div><div class="line">Specific Node Information: http://localhost:8042</div><div class="line"></div><div class="line">Command</div><div class="line">$ hstart</div><div class="line">$ jps </div><div class="line">32384 NameNode</div><div class="line">32712 ResourceManager</div><div class="line">32587 SecondaryNameNode</div><div class="line">32859 Jps</div><div class="line">32476 DataNode</div><div class="line">32812 NodeManager</div><div class="line"># hstop</div><div class="line"></div><div class="line">$ yarn  // For resource management more information than the web interface. </div><div class="line">$ mapred  // Detailed information about jobs</div></pre></td></tr></table></figure></p>
+<h1 id="Install-zookeeper"><a href="#Install-zookeeper" class="headerlink" title="Install zookeeper"></a>Install zookeeper</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install zookeeper</div></pre></td></tr></table></figure>
+<h1 id="Install-hbase"><a href="#Install-hbase" class="headerlink" title="Install hbase"></a>Install hbase</h1><h2 id="Install-1"><a href="#Install-1" class="headerlink" title="Install"></a>Install</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install hbase</div></pre></td></tr></table></figure>
+<h2 id="Alias-1"><a href="#Alias-1" class="headerlink" title="Alias"></a>Alias</h2><p>To simplify life edit your ~/.bash_profile using vim and add the following two commands.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">alias hbstart=&quot;/usr/local/Cellar/hbase/1.2.2/bin/start-hbase.sh&quot;</div><div class="line">alias hbstop=&quot;/usr/local/Cellar/hbase/1.2.2/bin/stop-hbase.sh&quot;</div></pre></td></tr></table></figure></p>
+<h2 id="Good-to-know-1"><a href="#Good-to-know-1" class="headerlink" title="Good to know"></a>Good to know</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ hstart</div><div class="line">$ hbstart</div><div class="line">$ jps</div><div class="line">32384 NameNode</div><div class="line">33024 Jps</div><div class="line">32967 HMaster</div><div class="line">32712 ResourceManager</div><div class="line">32587 SecondaryNameNode</div><div class="line">32476 DataNode</div><div class="line">32812 NodeManager</div><div class="line">$ hbstop</div><div class="line">$ hstop</div></pre></td></tr></table></figure>
+<h1 id="Install-happybase"><a href="#Install-happybase" class="headerlink" title="Install happybase"></a>Install happybase</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install happybase</div></pre></td></tr></table></figure>
+<h1 id="Examplesfor-happybase"><a href="#Examplesfor-happybase" class="headerlink" title="Examplesfor happybase"></a>Examplesfor happybase</h1><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> happybase</div><div class="line">connection = happybase.Connection(<span class="string">'localhost'</span>,table_prefix=<span class="string">'namespace'</span>)</div><div class="line"><span class="comment"># Starting with HBase 0.94, the Thrift server optionally uses a framed transport.</span></div><div class="line"><span class="comment"># table_prefix is similar to namespace</span></div><div class="line">connection.create_table(<span class="string">'data'</span>,&#123;<span class="string">'p'</span>:dict()&#125;,)</div><div class="line">connection.tables()</div><div class="line"></div><div class="line">table = connection.table(<span class="string">'data'</span>)</div><div class="line"></div><div class="line"><span class="comment"># input one row</span></div><div class="line">table.put(<span class="string">'o'</span>, &#123;<span class="string">'p:label'</span>: <span class="string">'0'</span>, <span class="string">'p:version'</span>: <span class="string">'201701'</span>, <span class="string">'p:weight'</span>: <span class="string">'0.4'</span>&#125;)</div><div class="line"></div><div class="line"><span class="comment"># input rows</span></div><div class="line"><span class="keyword">with</span> table.batch() <span class="keyword">as</span> bat:</div><div class="line">    bat.put(<span class="string">'1'</span>,&#123;<span class="string">'p:label'</span>: <span class="string">'1'</span>, <span class="string">'p:version'</span>: <span class="string">'201702'</span>, <span class="string">'p:weight'</span>: <span class="string">'0.5'</span>&#125;)</div><div class="line">    bat.put(<span class="string">'2'</span>,&#123;<span class="string">'p:label'</span>: <span class="string">'2'</span>, <span class="string">'p:version'</span>: <span class="string">'201703'</span>, <span class="string">'p:weight'</span>: <span class="string">'0.6'</span>&#125;)</div><div class="line"></div><div class="line"><span class="comment"># scan datas stored by batch with timestamp</span></div><div class="line">scan(row=<span class="string">'2'</span>,timestamnp=<span class="number">201704</span>) <span class="comment">#must larger than stored timestamp</span></div><div class="line"></div><div class="line"><span class="comment"># scan whole table</span></div><div class="line"><span class="keyword">for</span> key, value <span class="keyword">in</span> table.scan():</div><div class="line">    <span class="keyword">print</span> key, value</div><div class="line"></div><div class="line"><span class="comment"># scan with timestamp</span></div><div class="line">table.put(<span class="string">'2'</span>, &#123;<span class="string">'p:label'</span>: <span class="string">'233'</span>, <span class="string">'p:version'</span>: <span class="string">'2017234'</span>, <span class="string">'p:weight'</span>: <span class="string">'0.9'</span>&#125;,timestamp=<span class="number">201704</span>)</div><div class="line">table.row(<span class="string">'2'</span>,timestamp=<span class="number">201704</span>)</div><div class="line"></div><div class="line"><span class="comment"># enable and disable tables</span></div><div class="line">connection.enable_table(<span class="string">'data'</span>)</div><div class="line">connection.disable_table(<span class="string">'data'</span>)</div><div class="line"></div><div class="line"><span class="comment"># delete table</span></div><div class="line">connection.delete_table(<span class="string">'data'</span>)</div></pre></td></tr></table></figure>
+<p>##Problems need to solve</p>
+<h4 id="Connect-again"><a href="#Connect-again" class="headerlink" title="Connect again"></a>Connect again</h4><p>Need to coonect again after error or don’t use after second<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">connection = happybase.Connection(<span class="string">'localhost'</span>)</div><div class="line">table = connection.table(<span class="string">'namespace_data'</span>)</div></pre></td></tr></table></figure></p>
+<h3 id="TTransportException"><a href="#TTransportException" class="headerlink" title="TTransportException"></a>TTransportException</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">/usr/local/lib/python2.7/site-packages/thriftpy/transport/socket.pyc in read(self, sz)</div><div class="line">    123         if len(buff) == 0:</div><div class="line">    124             raise TTransportException(type=TTransportException.END_OF_FILE,</div><div class="line">--&gt; 125                                       message='TSocket read 0 bytes')</div><div class="line">    126         return buff</div><div class="line">    127</div><div class="line"></div><div class="line">TTransportException: TTransportException(message='TSocket read 0 bytes', type=4)</div></pre></td></tr></table></figure>
+<h3 id="Broken-pipe"><a href="#Broken-pipe" class="headerlink" title="Broken pipe"></a>Broken pipe</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">/usr/local/Cellar/python/2.7.13/Frameworks/Python.framework/Versions/2.7/lib/python2.7/socket.pyc in meth(name, self, *args)</div><div class="line">    226</div><div class="line">    227 def meth(name,self,*args):</div><div class="line">--&gt; 228     return getattr(self._sock,name)(*args)</div><div class="line">    229</div><div class="line">    230 for _m in _socketmethods:</div><div class="line"></div><div class="line">error: [Errno 32] Broken pipe</div></pre></td></tr></table></figure>
+<h3 id="Thrift-closed"><a href="#Thrift-closed" class="headerlink" title="Thrift closed"></a>Thrift closed</h3><p>thrift closed selfly after one hour, need to config it.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">2017-04-10 09:38:31,614 INFO  [main] util.VersionInfo: HBase 1.2.2</div><div class="line">2017-04-10 09:38:31,615 INFO  [main] util.VersionInfo: Source code repository git://asf-dev/home/busbey/projects/hbase revision=3f671c1ead70d249ea4598f1bbcc5151322b3a13</div><div class="line">2017-04-10 09:38:31,615 INFO  [main] util.VersionInfo: Compiled by busbey on Fri Jul  1 08:28:55 CDT 2016</div><div class="line">2017-04-10 09:38:31,615 INFO  [main] util.VersionInfo: From source with checksum 7ac43c3d2f62f134b2a6aa1a05ad66ac</div><div class="line">2017-04-10 09:38:31,888 INFO  [main] thrift.ThriftServerRunner: Using default thrift server type</div><div class="line">2017-04-10 09:38:31,888 INFO  [main] thrift.ThriftServerRunner: Using thrift server type threadpool</div><div class="line">2017-04-10 09:38:31,920 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</div><div class="line"></div><div class="line"></div><div class="line">2017-04-10 10:38:32,580 INFO  [ConnectionCache_ChoreService_1] client.ConnectionManager$HConnectionImplementation: Closing master protocol: MasterService</div><div class="line">2017-04-10 10:38:32,581 INFO  [ConnectionCache_ChoreService_1] client.ConnectionManager$HConnectionImplementation: Closing zookeeper sessionid=0x15b558148f70006</div><div class="line">2017-04-10 10:38:32,588 INFO  [ConnectionCache_ChoreService_1] zookeeper.ZooKeeper: Session: 0x15b558148f70006 closed</div><div class="line">2017-04-10 10:38:32,588 INFO  [thrift-worker-2-EventThread] zookeeper.ClientCnxn: EventThread shut down</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">152</span>]: table.row(<span class="string">'66613341731'</span>,include_timestamp=<span class="keyword">True</span>)</div><div class="line">Out[<span class="number">152</span>]: &#123;<span class="string">'p:1'</span>: (<span class="string">'0.13'</span>, <span class="number">2017</span>)&#125;</div><div class="line"></div><div class="line">In [<span class="number">156</span>]: table.row(<span class="string">'66613341731'</span>,timestamp=<span class="number">2018</span>, include_timestamp=<span class="keyword">True</span>)</div><div class="line">Out[<span class="number">156</span>]: &#123;<span class="string">'p:1'</span>: (<span class="string">'0.13'</span>, <span class="number">2017</span>)&#125;</div><div class="line"></div><div class="line">In [<span class="number">157</span>]: table.row(<span class="string">'66613341731'</span>,timestamp=<span class="number">2017</span>, include_timestamp=<span class="keyword">True</span>)</div><div class="line">Out[<span class="number">157</span>]: &#123;&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/03/27/Basic Principles of Information Protect/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -423,347 +575,6 @@
 <li>ticket-oriented(low-level)</li>
 </ul>
 
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/03/27/Tracking user with browser fingerprint/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yuanyi Wu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WYY's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/27/Tracking user with browser fingerprint/" itemprop="url">Tracking user with browser' fingerprint</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T20:47:24+08:00">
-                2017-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Single-browser"><a href="#Single-browser" class="headerlink" title="Single-browser"></a>Single-browser</h2><h3 id="state-of-the-art"><a href="#state-of-the-art" class="headerlink" title="state of the art"></a>state of the art</h3><h4 id="Paper"><a href="#Paper" class="headerlink" title="Paper"></a>Paper</h4><blockquote>
-<p><a href="https://hal.inria.fr/hal-01285470/file/beauty-sp16.pdf" target="_blank" rel="external">Beauty and the Beast: Diverting modern web browsers to build unique browser fingerprints</a></p>
-</blockquote>
-<h4 id="Website"><a href="#Website" class="headerlink" title="Website"></a>Website</h4><blockquote>
-<p><a href="https://amiunique.org/" target="_blank" rel="external">AmIUnique</a></p>
-</blockquote>
-<h4 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h4><table>
-<thead>
-<tr>
-<th style="text-align:left">Attribute</th>
-<th style="text-align:center">Source</th>
-<th style="text-align:right">Function or Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">User agent</td>
-<td style="text-align:center">HTTP header</td>
-<td style="text-align:right">“Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36”</td>
-</tr>
-<tr>
-<td style="text-align:left">Accept</td>
-<td style="text-align:center">HTTP header</td>
-<td style="text-align:right">“text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,<em>/</em>;q=0.8””text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,<em>/</em>;q=0.8”</td>
-</tr>
-<tr>
-<td style="text-align:left">Content encoding</td>
-<td style="text-align:center">HTTP header</td>
-<td style="text-align:right">“gzip, deflate, sdch, br”</td>
-</tr>
-<tr>
-<td style="text-align:left">Content language</td>
-<td style="text-align:center">HTTP header</td>
-<td style="text-align:right">“en-US,en;q=0.8”</td>
-</tr>
-<tr>
-<td style="text-align:left">List of plugins</td>
-<td style="text-align:center">JavaScript</td>
-<td style="text-align:right">navigator.plugins</td>
-</tr>
-<tr>
-<td style="text-align:left">Platform</td>
-<td style="text-align:center">JavaScript</td>
-<td style="text-align:right">navigator.platform</td>
-</tr>
-<tr>
-<td style="text-align:left">Cookies enabled</td>
-<td style="text-align:center">JavaScript</td>
-<td style="text-align:right">navigator.cookieEnabled</td>
-</tr>
-<tr>
-<td style="text-align:left">Do not track</td>
-<td style="text-align:center">JavaScript</td>
-<td style="text-align:right">navigator.doNotTrack</td>
-</tr>
-<tr>
-<td style="text-align:left">Timezone</td>
-<td style="text-align:center">JavaScript</td>
-<td style="text-align:right">new Date().getTimezoneOffset()</td>
-</tr>
-<tr>
-<td style="text-align:left">Screen resolution and depth</td>
-<td style="text-align:center">JavaScript</td>
-<td style="text-align:right">screen.width/height/colordepth</td>
-</tr>
-<tr>
-<td style="text-align:left">Use of local/session storage</td>
-<td style="text-align:center">JavaScript</td>
-<td style="text-align:right">localStorage/sessionStorage</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Canvas</strong></td>
-<td style="text-align:center">JavaScript</td>
-<td style="text-align:right"></td>
-</tr>
-<tr>
-<td style="text-align:left">WebGL Vendor</td>
-<td style="text-align:center">JavaScript</td>
-<td style="text-align:right">canvas.getContext(“…”)<sup>code 1</sup></td>
-</tr>
-<tr>
-<td style="text-align:left">WebGL Render</td>
-<td style="text-align:center">JavaScript</td>
-<td style="text-align:right">canvas.getContext(“…”)<sup>code 1</sup></td>
-</tr>
-<tr>
-<td style="text-align:left">Use of Adblock</td>
-<td style="text-align:center">JavaScript</td>
-<td style="text-align:right"><a href="http://www.detectadblock.com/" target="_blank" rel="external">Detect Adblock</a></td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>List of fonts</strong></td>
-<td style="text-align:center">Sinde-channel</td>
-<td style="text-align:right"><a href="https://seclab.cs.ucsb.edu/media/uploads/papers/sp2013_cookieless.pdf" target="_blank" rel="external">List 1 in Cookieless Monster<sup>code 2</sup></a></td>
-</tr>
-<tr>
-<td style="text-align:left"><em>List of fonts</em></td>
-<td style="text-align:center">Flash</td>
-<td style="text-align:right">flash.text.Font.enumerateFonts(true)</td>
-</tr>
-<tr>
-<td style="text-align:left"><em>Screen resolution</em></td>
-<td style="text-align:center">Flash</td>
-<td style="text-align:right">flash.system.Capabilities.screenResolutionX/Y</td>
-</tr>
-<tr>
-<td style="text-align:left"><em>Platform</em></td>
-<td style="text-align:center">Flash</td>
-<td style="text-align:right">flash.system.Capabilities.os</td>
-</tr>
-<tr>
-<td style="text-align:left"><em>Language</em></td>
-<td style="text-align:center">Flash</td>
-<td style="text-align:right">flash.system.Capabilities.language</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>code 1<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">"webgl"</span>) || canvas.getContext(<span class="string">"experimental-webgl"</span>);</div><div class="line"><span class="keyword">if</span>(ctx.getSupportedExtensions().indexOf(<span class="string">"WEBGL_debug_renderer_info"</span>) &gt;= <span class="number">0</span>) &#123;</div><div class="line">    webGLVendor = ctx.getParameter(ctx.getExtension(<span class="string">'WEBGL_debug_renderer_info'</span>).UNMASKED_VENDOR_WEBGL);</div><div class="line">    webGLRenderer = ctx.getParameter(ctx.getExtension(<span class="string">'WEBGL_debug_renderer_info'</span>).UNMASKED_RENDERER_WEBGL);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    webGLVendor = <span class="string">"Not supported"</span>;</div><div class="line">    webGLRenderer = <span class="string">"Not supported"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>code 2<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_text_dimensions</span>(<span class="params">font</span>)</span>&#123;</div><div class="line">  h = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"BODY"</span>)[<span class="number">0</span>];</div><div class="line">  d = <span class="built_in">document</span>.createElement(<span class="string">"DIV"</span>);</div><div class="line">  s = <span class="built_in">document</span>.createElement(<span class="string">"SPAN"</span>);</div><div class="line">  d.appendChild(s);</div><div class="line">  d.style.fontFamily = font;</div><div class="line">  s.style.fontFamily = font;</div><div class="line">  s.style.fontSize = <span class="string">"72px"</span>;</div><div class="line">  s.innerHTML = <span class="string">"font_detection"</span>;</div><div class="line">  h.appendChild(d);</div><div class="line">  textWidth = s.offsetWidth;</div><div class="line">  textHeight = s.offsetHeight;</div><div class="line">  h.removeChild(d);</div><div class="line">  <span class="keyword">return</span> [textWidth, textHeight];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h4 id="How-to-detect-a-specific-Chrome-extension-is-installed-from-regular-HTML-page"><a href="#How-to-detect-a-specific-Chrome-extension-is-installed-from-regular-HTML-page" class="headerlink" title="How to detect a specific Chrome extension is installed from regular HTML page"></a>How to detect a specific Chrome extension is installed from regular HTML page</h4><p>Each submitted extension on Chrome store has a special number.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">detectExtension</span>(<span class="params">extensionId, callback</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> img;</div><div class="line">    img = <span class="keyword">new</span> Image();</div><div class="line">    img.src = <span class="string">"chrome-extension://"</span> + extensionId + <span class="string">"/resources/icon_16.png"</span>;</div><div class="line">    img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        callback(<span class="literal">true</span>);</div><div class="line">    &#125;;</div><div class="line">    img.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        callback(<span class="literal">false</span>);</div><div class="line">    &#125;;</div></pre></td></tr></table></figure></p>
-<h2 id="Cross-browser"><a href="#Cross-browser" class="headerlink" title="Cross-browser"></a>Cross-browser</h2><h4 id="Paper-1"><a href="#Paper-1" class="headerlink" title="Paper"></a>Paper</h4><p><a href="http://yinzhicao.org/TrackingFree/crossbrowsertracking_NDSS17.pdf" target="_blank" rel="external">(Cross-)Browser Fingerprinting via OS and Hardware Level Features</a></p>
-<h4 id="Website-1"><a href="#Website-1" class="headerlink" title="Website"></a>Website</h4><p><a href="http://uniquemachine.org/index.html" target="_blank" rel="external">UNIQUEMACHINE</a></p>
-<h4 id="Weakness"><a href="#Weakness" class="headerlink" title="Weakness"></a>Weakness</h4><ul>
-<li>Small size of the training data<br>Only 3,615 fingerprints from 1,903 users within three months.</li>
-<li>WebGL tasks need a significant time overhead.</li>
-</ul>
-<h4 id="Contribution"><a href="#Contribution" class="headerlink" title="Contribution"></a>Contribution</h4><ul>
-<li>AmIUnique considered WebGL is “too brittle and unreliable”. Because they select a random WebGL task and does not restrict many variables, such as texture, transparency, light, canvas size and anti-aliasing.</li>
-<li>Some differences between rendering results are very subtle, i.e., with one or two pixel variance.</li>
-<li>WebGL rendering is a combination of software and hardware in which the hardware contributes more than the software. The uniqueness of software rendering is definitely much lower than the one of hardware rendering but still not zero.</li>
-</ul>
-<h4 id="Features-1"><a href="#Features-1" class="headerlink" title="Features"></a>Features</h4><h5 id="Screen-resolution"><a href="#Screen-resolution" class="headerlink" title="Screen resolution"></a>Screen resolution</h5><ul>
-<li><strong>problem:</strong> The resolution changes in Firefox and IE when the user zooms in or out the web page.</li>
-<li><strong>method:</strong><ul>
-<li>Detect the zoom levels based on the size of a div tag and the device pixel ratio, and then adjust the screen resolution correspondingly.</li>
-<li>The ratio between screen width and height, which does not change with the zoom level.</li>
-</ul>
-</li>
-<li><strong>addition:</strong><ul>
-<li>availHeight, availWidth, availLeft, availTop, and screenOrientation.</li>
-<li>Users may open different browser in  different screens which have different resolutions.</li>
-</ul>
-</li>
-</ul>
-<h5 id="Number-of-CPU-virtual-cores"><a href="#Number-of-CPU-virtual-cores" class="headerlink" title="Number of CPU virtual cores"></a>Number of CPU virtual cores</h5><ul>
-<li><strong>method:</strong> navigator.hardwareConcurrency</li>
-<li><strong>addition:</strong> Safari will cut the number available cores to Web Workers by half.</li>
-</ul>
-<h5 id="AudioContext"><a href="#AudioContext" class="headerlink" title="AudioContext"></a>AudioContext</h5><p>Peak values and their corresponding frequencies are relatively stable across browsers.</p>
-<ul>
-<li><strong>paper:</strong> <a href="http://randomwalker.info/publications/OpenWPM_1_million_site_tracking_measurement.pdf" target="_blank" rel="external">Online Tracking:<br>A 1-million-site Measurement and Analysis</a></li>
-<li><strong>problem:</strong> The entropy is much smaller than the entire entropy of the entire wave.</li>
-</ul>
-<h5 id="List-of-fonts"><a href="#List-of-fonts" class="headerlink" title="List of fonts"></a>List of fonts</h5><ul>
-<li><strong>problem:</strong> Not all fonts are cross-browser fingerprintable because some fonts are web specific and provided by browsers.</li>
-</ul>
-<h5 id="Line-curve-and-anti-aliasing"><a href="#Line-curve-and-anti-aliasing" class="headerlink" title="Line, curve and anti-aliasing"></a>Line, curve and anti-aliasing</h5><p>There are many existing algorithms for anti-aliasing, such as first-principles approach, signal processing approach, and mipmapping, which make anti-aliasing fingerprintable.</p>
-<h5 id="Vertex-shader-and-fragment-shader"><a href="#Vertex-shader-and-fragment-shader" class="headerlink" title="Vertex shader and fragment shader"></a>Vertex shader and fragment shader</h5><p>Algorithm differs from one graphic card to another, making texture fingerprintable.</p>
-<ul>
-<li><strong>Varyings:</strong> Provide an interface between Vertex and Fragment Shader. The interpolation algorithm varies in different computer graphics cards.</li>
-<li><strong>Textures:</strong> Give a setting of mapping between vertexes and texture, a fragment shader calculates the color of each pixel based on the texture.</li>
-</ul>
-<h5 id="Transparency-via-Alpha-Channel"><a href="#Transparency-via-Alpha-Channel" class="headerlink" title="Transparency via Alpha Channel"></a>Transparency via Alpha Channel</h5><p>Because some graphics cards adopt discrete alpha values, some jumps may be observed in the changes of transparency effects.</p>
-<h5 id="Image-encoding-and-decoding"><a href="#Image-encoding-and-decoding" class="headerlink" title="Image encoding and decoding"></a>Image encoding and decoding</h5><p>Different algorithms may uncover different information during decompression. Both DataURL and JPEG formats are unstable across different browsers, because these formats are with loss and implemented differently in multiple browsers and the server side as well.</p>
-<ul>
-<li><strong>problem:</strong> a single-browser feature, and cannot be used for cross-browser</li>
-</ul>
-<h5 id="Installed-writing-scripts-languages"><a href="#Installed-writing-scripts-languages" class="headerlink" title="Installed writing scripts (languages)"></a>Installed writing scripts (languages)</h5><p>A browser with a particular language installed will display the language correctly, and otherwise show several boxes.</p>
-<h4 id="WebGL-tasks"><a href="#WebGL-tasks" class="headerlink" title="WebGL tasks"></a>WebGL tasks</h4><p>The size of the canvas is 256×256. The axes of the canvas are defined as follows. [0, 0, 0] is the middle of the canvas, where x-axis is the horizontal line that increases to the right, y-axis is the vertical line that increases to the bottom, and z-axis increases when moving far from the screen. An ambient light with the power of [R: 0.3, G: 0.3, B: 0.3] on a scale of 1 is present, and a camera is placed at the location of [0, 0, -7].</p>
-<ul>
-<li><p>Task (a): Texture<br>Randomly-generated texture rather than a regular will have more fingerprintable features.</p>
-</li>
-<li><p>Task (b): Varyings</p>
-</li>
-<li><p>Task (b’) Anti-aliasing + Varyings</p>
-</li>
-<li><p>Task (c) Camera（缩小立方体，减少了差异）<br>Camera moved to a new location of [-1, -4, 10]</p>
-</li>
-<li><p>Task (d) Lines and curves</p>
-</li>
-<li><p>Task (d’) Anti-aliasing +Anti-aliasing + Lines and curves</p>
-</li>
-<li><p>Task (e) Multi-models<br>信息熵比Task a就大了0.01</p>
-</li>
-<li><p>Task (f) Light<br>a diffuse, point white light. The power of the light is 2 for each primary color, and the light source is located at [3.0, -4.0, -2.0].<br>模型是彩色的，单色光可能会减少一些细微的差异。光照太弱不能照亮模型，太强会让所有都变成白色。位置是随机的。<br>信息熵比Task a就大了一点点</p>
-</li>
-<li><p>Task (g) Light and models<br>the interaction of a single, diffuse, point light and two models, because one model may create a shadow on another when illuminated by a point light.<br>信息熵比Task f就大了一点点信息熵就大了0.03</p>
-</li>
-<li><p>Task (h) Specular Light<br>test the effects of a diffuse point light with another color and a specular point light on two models.<br>信息熵比Task e大了0.9（f比e大了0.01）</p>
-</li>
-<li><p>Task (h’) Anti-aliasing + Specular Light</p>
-</li>
-<li><p>Task (h”) Anti-aliasing + Specular Light + Rotation<br>信息熵减小，稳定性增加，转了一面，信息变少了</p>
-</li>
-<li><p>Task (i) Two Textures（差了，第一层纹理是精心挑选的）<br>Add another texture on the multi-models in Task e.</p>
-</li>
-<li><p>Task (j) Alpha</p>
-<ul>
-<li>many GPUs do not accept smaller steps</li>
-<li>the Suzanne and sofa models are positioned so that they are partially overlapped<br>增加alpha的值，趋势是信息熵变大，但是有反反复复的回滚，原因是software rendering引起的</li>
-</ul>
-</li>
-<li><p>Task (k) Complex lights<br>因为有5000多个模型，光的反射又互相影响，所以效果拔群</p>
-</li>
-<li><p>Task (k’) Anti-aliasing + Complex lights</p>
-</li>
-<li><p>Task (l) Clipping plane<br>贡献不大</p>
-</li>
-<li><p>Task (m) Cubemap texture + Fresnel effect<br>比较好，信息多cube map</p>
-</li>
-<li><p>Task (n) DDS textures<br>微软那一套，一些浏览器不支持</p>
-</li>
-<li><p>Task (o) PVR textures<br>只支持苹果设备</p>
-</li>
-<li><p>Task (p) Float textures<br>比较好，信息多depth</p>
-</li>
-<li><p>Task (q) Video (Animating Textures)<br>single-browser的效果好。decoding video is a combination of the browser, the driver, and sometimes the hardware as well.</p>
-</li>
-<li>Task (r) Writing Scripts</li>
-</ul>
-<h2 id="To-be-continued"><a href="#To-be-continued" class="headerlink" title="To be continued"></a>To be continued</h2>
           
         
       
@@ -1179,6 +990,347 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/03/27/Tracking user with browser fingerprint/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WYY's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/27/Tracking user with browser fingerprint/" itemprop="url">Tracking user with browser' fingerprint</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T20:47:24+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Single-browser"><a href="#Single-browser" class="headerlink" title="Single-browser"></a>Single-browser</h2><h3 id="state-of-the-art"><a href="#state-of-the-art" class="headerlink" title="state of the art"></a>state of the art</h3><h4 id="Paper"><a href="#Paper" class="headerlink" title="Paper"></a>Paper</h4><blockquote>
+<p><a href="https://hal.inria.fr/hal-01285470/file/beauty-sp16.pdf" target="_blank" rel="external">Beauty and the Beast: Diverting modern web browsers to build unique browser fingerprints</a></p>
+</blockquote>
+<h4 id="Website"><a href="#Website" class="headerlink" title="Website"></a>Website</h4><blockquote>
+<p><a href="https://amiunique.org/" target="_blank" rel="external">AmIUnique</a></p>
+</blockquote>
+<h4 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">Attribute</th>
+<th style="text-align:center">Source</th>
+<th style="text-align:right">Function or Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">User agent</td>
+<td style="text-align:center">HTTP header</td>
+<td style="text-align:right">“Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36”</td>
+</tr>
+<tr>
+<td style="text-align:left">Accept</td>
+<td style="text-align:center">HTTP header</td>
+<td style="text-align:right">“text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,<em>/</em>;q=0.8””text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,<em>/</em>;q=0.8”</td>
+</tr>
+<tr>
+<td style="text-align:left">Content encoding</td>
+<td style="text-align:center">HTTP header</td>
+<td style="text-align:right">“gzip, deflate, sdch, br”</td>
+</tr>
+<tr>
+<td style="text-align:left">Content language</td>
+<td style="text-align:center">HTTP header</td>
+<td style="text-align:right">“en-US,en;q=0.8”</td>
+</tr>
+<tr>
+<td style="text-align:left">List of plugins</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right">navigator.plugins</td>
+</tr>
+<tr>
+<td style="text-align:left">Platform</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right">navigator.platform</td>
+</tr>
+<tr>
+<td style="text-align:left">Cookies enabled</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right">navigator.cookieEnabled</td>
+</tr>
+<tr>
+<td style="text-align:left">Do not track</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right">navigator.doNotTrack</td>
+</tr>
+<tr>
+<td style="text-align:left">Timezone</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right">new Date().getTimezoneOffset()</td>
+</tr>
+<tr>
+<td style="text-align:left">Screen resolution and depth</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right">screen.width/height/colordepth</td>
+</tr>
+<tr>
+<td style="text-align:left">Use of local/session storage</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right">localStorage/sessionStorage</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Canvas</strong></td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left">WebGL Vendor</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right">canvas.getContext(“…”)<sup>code 1</sup></td>
+</tr>
+<tr>
+<td style="text-align:left">WebGL Render</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right">canvas.getContext(“…”)<sup>code 1</sup></td>
+</tr>
+<tr>
+<td style="text-align:left">Use of Adblock</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right"><a href="http://www.detectadblock.com/" target="_blank" rel="external">Detect Adblock</a></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>List of fonts</strong></td>
+<td style="text-align:center">Sinde-channel</td>
+<td style="text-align:right"><a href="https://seclab.cs.ucsb.edu/media/uploads/papers/sp2013_cookieless.pdf" target="_blank" rel="external">List 1 in Cookieless Monster<sup>code 2</sup></a></td>
+</tr>
+<tr>
+<td style="text-align:left"><em>List of fonts</em></td>
+<td style="text-align:center">Flash</td>
+<td style="text-align:right">flash.text.Font.enumerateFonts(true)</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>Screen resolution</em></td>
+<td style="text-align:center">Flash</td>
+<td style="text-align:right">flash.system.Capabilities.screenResolutionX/Y</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>Platform</em></td>
+<td style="text-align:center">Flash</td>
+<td style="text-align:right">flash.system.Capabilities.os</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>Language</em></td>
+<td style="text-align:center">Flash</td>
+<td style="text-align:right">flash.system.Capabilities.language</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>code 1<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">"webgl"</span>) || canvas.getContext(<span class="string">"experimental-webgl"</span>);</div><div class="line"><span class="keyword">if</span>(ctx.getSupportedExtensions().indexOf(<span class="string">"WEBGL_debug_renderer_info"</span>) &gt;= <span class="number">0</span>) &#123;</div><div class="line">    webGLVendor = ctx.getParameter(ctx.getExtension(<span class="string">'WEBGL_debug_renderer_info'</span>).UNMASKED_VENDOR_WEBGL);</div><div class="line">    webGLRenderer = ctx.getParameter(ctx.getExtension(<span class="string">'WEBGL_debug_renderer_info'</span>).UNMASKED_RENDERER_WEBGL);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    webGLVendor = <span class="string">"Not supported"</span>;</div><div class="line">    webGLRenderer = <span class="string">"Not supported"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>code 2<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_text_dimensions</span>(<span class="params">font</span>)</span>&#123;</div><div class="line">  h = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"BODY"</span>)[<span class="number">0</span>];</div><div class="line">  d = <span class="built_in">document</span>.createElement(<span class="string">"DIV"</span>);</div><div class="line">  s = <span class="built_in">document</span>.createElement(<span class="string">"SPAN"</span>);</div><div class="line">  d.appendChild(s);</div><div class="line">  d.style.fontFamily = font;</div><div class="line">  s.style.fontFamily = font;</div><div class="line">  s.style.fontSize = <span class="string">"72px"</span>;</div><div class="line">  s.innerHTML = <span class="string">"font_detection"</span>;</div><div class="line">  h.appendChild(d);</div><div class="line">  textWidth = s.offsetWidth;</div><div class="line">  textHeight = s.offsetHeight;</div><div class="line">  h.removeChild(d);</div><div class="line">  <span class="keyword">return</span> [textWidth, textHeight];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="How-to-detect-a-specific-Chrome-extension-is-installed-from-regular-HTML-page"><a href="#How-to-detect-a-specific-Chrome-extension-is-installed-from-regular-HTML-page" class="headerlink" title="How to detect a specific Chrome extension is installed from regular HTML page"></a>How to detect a specific Chrome extension is installed from regular HTML page</h4><p>Each submitted extension on Chrome store has a special number.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">detectExtension</span>(<span class="params">extensionId, callback</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> img;</div><div class="line">    img = <span class="keyword">new</span> Image();</div><div class="line">    img.src = <span class="string">"chrome-extension://"</span> + extensionId + <span class="string">"/resources/icon_16.png"</span>;</div><div class="line">    img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        callback(<span class="literal">true</span>);</div><div class="line">    &#125;;</div><div class="line">    img.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        callback(<span class="literal">false</span>);</div><div class="line">    &#125;;</div></pre></td></tr></table></figure></p>
+<h2 id="Cross-browser"><a href="#Cross-browser" class="headerlink" title="Cross-browser"></a>Cross-browser</h2><h4 id="Paper-1"><a href="#Paper-1" class="headerlink" title="Paper"></a>Paper</h4><p><a href="http://yinzhicao.org/TrackingFree/crossbrowsertracking_NDSS17.pdf" target="_blank" rel="external">(Cross-)Browser Fingerprinting via OS and Hardware Level Features</a></p>
+<h4 id="Website-1"><a href="#Website-1" class="headerlink" title="Website"></a>Website</h4><p><a href="http://uniquemachine.org/index.html" target="_blank" rel="external">UNIQUEMACHINE</a></p>
+<h4 id="Weakness"><a href="#Weakness" class="headerlink" title="Weakness"></a>Weakness</h4><ul>
+<li>Small size of the training data<br>Only 3,615 fingerprints from 1,903 users within three months.</li>
+<li>WebGL tasks need a significant time overhead.</li>
+</ul>
+<h4 id="Contribution"><a href="#Contribution" class="headerlink" title="Contribution"></a>Contribution</h4><ul>
+<li>AmIUnique considered WebGL is “too brittle and unreliable”. Because they select a random WebGL task and does not restrict many variables, such as texture, transparency, light, canvas size and anti-aliasing.</li>
+<li>Some differences between rendering results are very subtle, i.e., with one or two pixel variance.</li>
+<li>WebGL rendering is a combination of software and hardware in which the hardware contributes more than the software. The uniqueness of software rendering is definitely much lower than the one of hardware rendering but still not zero.</li>
+</ul>
+<h4 id="Features-1"><a href="#Features-1" class="headerlink" title="Features"></a>Features</h4><h5 id="Screen-resolution"><a href="#Screen-resolution" class="headerlink" title="Screen resolution"></a>Screen resolution</h5><ul>
+<li><strong>problem:</strong> The resolution changes in Firefox and IE when the user zooms in or out the web page.</li>
+<li><strong>method:</strong><ul>
+<li>Detect the zoom levels based on the size of a div tag and the device pixel ratio, and then adjust the screen resolution correspondingly.</li>
+<li>The ratio between screen width and height, which does not change with the zoom level.</li>
+</ul>
+</li>
+<li><strong>addition:</strong><ul>
+<li>availHeight, availWidth, availLeft, availTop, and screenOrientation.</li>
+<li>Users may open different browser in  different screens which have different resolutions.</li>
+</ul>
+</li>
+</ul>
+<h5 id="Number-of-CPU-virtual-cores"><a href="#Number-of-CPU-virtual-cores" class="headerlink" title="Number of CPU virtual cores"></a>Number of CPU virtual cores</h5><ul>
+<li><strong>method:</strong> navigator.hardwareConcurrency</li>
+<li><strong>addition:</strong> Safari will cut the number available cores to Web Workers by half.</li>
+</ul>
+<h5 id="AudioContext"><a href="#AudioContext" class="headerlink" title="AudioContext"></a>AudioContext</h5><p>Peak values and their corresponding frequencies are relatively stable across browsers.</p>
+<ul>
+<li><strong>paper:</strong> <a href="http://randomwalker.info/publications/OpenWPM_1_million_site_tracking_measurement.pdf" target="_blank" rel="external">Online Tracking:<br>A 1-million-site Measurement and Analysis</a></li>
+<li><strong>problem:</strong> The entropy is much smaller than the entire entropy of the entire wave.</li>
+</ul>
+<h5 id="List-of-fonts"><a href="#List-of-fonts" class="headerlink" title="List of fonts"></a>List of fonts</h5><ul>
+<li><strong>problem:</strong> Not all fonts are cross-browser fingerprintable because some fonts are web specific and provided by browsers.</li>
+</ul>
+<h5 id="Line-curve-and-anti-aliasing"><a href="#Line-curve-and-anti-aliasing" class="headerlink" title="Line, curve and anti-aliasing"></a>Line, curve and anti-aliasing</h5><p>There are many existing algorithms for anti-aliasing, such as first-principles approach, signal processing approach, and mipmapping, which make anti-aliasing fingerprintable.</p>
+<h5 id="Vertex-shader-and-fragment-shader"><a href="#Vertex-shader-and-fragment-shader" class="headerlink" title="Vertex shader and fragment shader"></a>Vertex shader and fragment shader</h5><p>Algorithm differs from one graphic card to another, making texture fingerprintable.</p>
+<ul>
+<li><strong>Varyings:</strong> Provide an interface between Vertex and Fragment Shader. The interpolation algorithm varies in different computer graphics cards.</li>
+<li><strong>Textures:</strong> Give a setting of mapping between vertexes and texture, a fragment shader calculates the color of each pixel based on the texture.</li>
+</ul>
+<h5 id="Transparency-via-Alpha-Channel"><a href="#Transparency-via-Alpha-Channel" class="headerlink" title="Transparency via Alpha Channel"></a>Transparency via Alpha Channel</h5><p>Because some graphics cards adopt discrete alpha values, some jumps may be observed in the changes of transparency effects.</p>
+<h5 id="Image-encoding-and-decoding"><a href="#Image-encoding-and-decoding" class="headerlink" title="Image encoding and decoding"></a>Image encoding and decoding</h5><p>Different algorithms may uncover different information during decompression. Both DataURL and JPEG formats are unstable across different browsers, because these formats are with loss and implemented differently in multiple browsers and the server side as well.</p>
+<ul>
+<li><strong>problem:</strong> a single-browser feature, and cannot be used for cross-browser</li>
+</ul>
+<h5 id="Installed-writing-scripts-languages"><a href="#Installed-writing-scripts-languages" class="headerlink" title="Installed writing scripts (languages)"></a>Installed writing scripts (languages)</h5><p>A browser with a particular language installed will display the language correctly, and otherwise show several boxes.</p>
+<h4 id="WebGL-tasks"><a href="#WebGL-tasks" class="headerlink" title="WebGL tasks"></a>WebGL tasks</h4><p>The size of the canvas is 256×256. The axes of the canvas are defined as follows. [0, 0, 0] is the middle of the canvas, where x-axis is the horizontal line that increases to the right, y-axis is the vertical line that increases to the bottom, and z-axis increases when moving far from the screen. An ambient light with the power of [R: 0.3, G: 0.3, B: 0.3] on a scale of 1 is present, and a camera is placed at the location of [0, 0, -7].</p>
+<ul>
+<li><p>Task (a): Texture<br>Randomly-generated texture rather than a regular will have more fingerprintable features.</p>
+</li>
+<li><p>Task (b): Varyings</p>
+</li>
+<li><p>Task (b’) Anti-aliasing + Varyings</p>
+</li>
+<li><p>Task (c) Camera（缩小立方体，减少了差异）<br>Camera moved to a new location of [-1, -4, 10]</p>
+</li>
+<li><p>Task (d) Lines and curves</p>
+</li>
+<li><p>Task (d’) Anti-aliasing +Anti-aliasing + Lines and curves</p>
+</li>
+<li><p>Task (e) Multi-models<br>信息熵比Task a就大了0.01</p>
+</li>
+<li><p>Task (f) Light<br>a diffuse, point white light. The power of the light is 2 for each primary color, and the light source is located at [3.0, -4.0, -2.0].<br>模型是彩色的，单色光可能会减少一些细微的差异。光照太弱不能照亮模型，太强会让所有都变成白色。位置是随机的。<br>信息熵比Task a就大了一点点</p>
+</li>
+<li><p>Task (g) Light and models<br>the interaction of a single, diffuse, point light and two models, because one model may create a shadow on another when illuminated by a point light.<br>信息熵比Task f就大了一点点信息熵就大了0.03</p>
+</li>
+<li><p>Task (h) Specular Light<br>test the effects of a diffuse point light with another color and a specular point light on two models.<br>信息熵比Task e大了0.9（f比e大了0.01）</p>
+</li>
+<li><p>Task (h’) Anti-aliasing + Specular Light</p>
+</li>
+<li><p>Task (h”) Anti-aliasing + Specular Light + Rotation<br>信息熵减小，稳定性增加，转了一面，信息变少了</p>
+</li>
+<li><p>Task (i) Two Textures（差了，第一层纹理是精心挑选的）<br>Add another texture on the multi-models in Task e.</p>
+</li>
+<li><p>Task (j) Alpha</p>
+<ul>
+<li>many GPUs do not accept smaller steps</li>
+<li>the Suzanne and sofa models are positioned so that they are partially overlapped<br>增加alpha的值，趋势是信息熵变大，但是有反反复复的回滚，原因是software rendering引起的</li>
+</ul>
+</li>
+<li><p>Task (k) Complex lights<br>因为有5000多个模型，光的反射又互相影响，所以效果拔群</p>
+</li>
+<li><p>Task (k’) Anti-aliasing + Complex lights</p>
+</li>
+<li><p>Task (l) Clipping plane<br>贡献不大</p>
+</li>
+<li><p>Task (m) Cubemap texture + Fresnel effect<br>比较好，信息多cube map</p>
+</li>
+<li><p>Task (n) DDS textures<br>微软那一套，一些浏览器不支持</p>
+</li>
+<li><p>Task (o) PVR textures<br>只支持苹果设备</p>
+</li>
+<li><p>Task (p) Float textures<br>比较好，信息多depth</p>
+</li>
+<li><p>Task (q) Video (Animating Textures)<br>single-browser的效果好。decoding video is a combination of the browser, the driver, and sometimes the hardware as well.</p>
+</li>
+<li>Task (r) Writing Scripts</li>
+</ul>
+<h2 id="To-be-continued"><a href="#To-be-continued" class="headerlink" title="To be continued"></a>To be continued</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/03/27/Click Fraud/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1319,166 +1471,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/03/27/AndroidEmulator/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yuanyi Wu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WYY's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/27/AndroidEmulator/" itemprop="url">Android Emulator on Ubuntu</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T20:47:22+08:00">
-                2017-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="How-to-Resize-Android-4-4-Emulator-Internal-Storage"><a href="#How-to-Resize-Android-4-4-Emulator-Internal-Storage" class="headerlink" title="How to Resize Android 4.4 Emulator Internal Storage"></a>How to Resize Android 4.4 Emulator Internal Storage</h2><p><a href="http://stackoverflow.com/questions/20579606/android-4-4-virtual-device-internal-storage-will-not-resize#comment44086027_20762411" target="_blank" rel="external">Question on StackOverFlow</a></p>
-<p><strong>Problem</strong>:</p>
-<p>When creating a new Android 4.4 Virtual Device using the AVD Manager, I cannot get the internal storage to be anything larger than 200MB.</p>
-<p><strong>Solution</strong>:</p>
-<ul>
-<li>Now that the emulator file system is ext4 I was able to re-size the userdata.img using standard Linux tools.</li>
-<li>Even above suggestion can cause to android emulator hang on boot logo. The reason is that resize2fs do the changes thats are right in general but considered as broken fs by android and prevent it to mount it in rw mode, that hangs up the boot process.</li>
-<li>Event e2fsck does not fix it for android and to workaround it i use tune2fs to change the way how android should continue to mount broken fs.</li>
-</ul>
-<ol>
-<li>start emulator</li>
-<li>cd ~/.android/avd/emulator_name</li>
-<li>rm userdata-qemu.*</li>
-<li>resize2fs userdata.img 1024M</li>
-<li>start than stop emulator</li>
-<li>e2fsck -f userdata-qemu.img</li>
-<li>resize2fs userdata-qemu.img 1024M</li>
-<li>tune2fs -e continue userdata-qemu.img</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1528,7 +1520,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1539,7 +1531,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>

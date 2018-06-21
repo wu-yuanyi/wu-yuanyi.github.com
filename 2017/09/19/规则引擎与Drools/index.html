@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="1 简介1.1 规则
+每条规则都是一组条件决定的一系列结果
+一条规则可能与其他规则共同决定最终结果
+可能存在条件互相交叉的规则，此时有必要规定规则的优先级
+
+规则作为一种知识，其典型运用就是通过实际情况，根据给定的一组规则，得出结论。这个结论可能是某种静态的结果，也可能是需要进行的一组操作。
+规则语言可以分为结构化的（Structured)和基于标记的（Markup，通常为xml）。
+常见的结构化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="规则引擎与Drools">
+<meta property="og:url" content="http://wu-yuanyi.github.io/2017/09/19/规则引擎与Drools/index.html">
+<meta property="og:site_name" content="WYY's Blog">
+<meta property="og:description" content="1 简介1.1 规则
+每条规则都是一组条件决定的一系列结果
+一条规则可能与其他规则共同决定最终结果
+可能存在条件互相交叉的规则，此时有必要规定规则的优先级
+
+规则作为一种知识，其典型运用就是通过实际情况，根据给定的一组规则，得出结论。这个结论可能是某种静态的结果，也可能是需要进行的一组操作。
+规则语言可以分为结构化的（Structured)和基于标记的（Markup，通常为xml）。
+常见的结构化">
+<meta property="og:updated_time" content="2017-09-19T05:59:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="规则引擎与Drools">
+<meta name="twitter:description" content="1 简介1.1 规则
+每条规则都是一组条件决定的一系列结果
+一条规则可能与其他规则共同决定最终结果
+可能存在条件互相交叉的规则，此时有必要规定规则的优先级
+
+规则作为一种知识，其典型运用就是通过实际情况，根据给定的一组规则，得出结论。这个结论可能是某种静态的结果，也可能是需要进行的一组操作。
+规则语言可以分为结构化的（Structured)和基于标记的（Markup，通常为xml）。
+常见的结构化">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wu-yuanyi.github.io/2017/09/19/规则引擎与Drools/"/>
+
+
+
+
+
+  <title>规则引擎与Drools | WYY's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WYY's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">JUST DO IT</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            Schedule
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/19/规则引擎与Drools/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WYY's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">规则引擎与Drools</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-19T12:00:46+08:00">
+                2017-09-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Drools/" itemprop="url" rel="index">
+                    <span itemprop="name">Drools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h2><h3 id="1-1-规则"><a href="#1-1-规则" class="headerlink" title="1.1 规则"></a>1.1 规则</h3><ul>
+<li>每条规则都是一组条件决定的一系列结果</li>
+<li>一条规则可能与其他规则共同决定最终结果</li>
+<li>可能存在条件互相交叉的规则，此时有必要规定规则的优先级</li>
+</ul>
+<p>规则作为一种知识，其典型运用就是通过实际情况，根据给定的一组规则，得出结论。这个结论可能是某种静态的结果，也可能是需要进行的一组操作。</p>
+<p>规则语言可以分为结构化的（Structured)和基于标记的（Markup，通常为xml）。</p>
+<p>常见的结构化的规则描述语言:</p>
+<ul>
+<li>srl（Structured Rule Language）</li>
+<li>drl（Drools Rule Language）</li>
+</ul>
+<p>常见的基于标记的规则描述语言:</p>
+<ul>
+<li>RuleML（Rule Markup Language）</li>
+<li>SRML（Simple Rule Markup Language）</li>
+<li>BRML（Business Rules Markup Language）</li>
+<li>SWRL（A Semantic Web Rule Language）</li>
+</ul>
+<h3 id="1-2-推理机"><a href="#1-2-推理机" class="headerlink" title="1.2 推理机"></a>1.2 推理机</h3><p>运用过程叫做推理。如果由程序来处理推理过程，那么这个程序就叫做推理机/推理引擎（Inference Engine）。推理机是专家系统（专家系统是人工智能的一个分支）的核心模块。</p>
+<p>推理引擎根据知识表示的不同采取的控制策略也是不同的，常见的类型包括基于神经网络、基于案例和基于规则的推理机。</p>
+<h3 id="1-3-规则引擎"><a href="#1-3-规则引擎" class="headerlink" title="1.3 规则引擎"></a>1.3 规则引擎</h3><p>基于规则的推理机易于理解、易于获取、易于管理，被广泛采用。这种推理引擎被称为“规则引擎”。</p>
+<p>在规则引擎中，将知识表达为规则（rules），要分析的情况定义为事实（facts）。二者在内存中的存储分别称为Production Memory和Working Memory。</p>
+<ul>
+<li>rules和facts：规则引擎接受的输入参数</li>
+<li>Pattern Matcher：根据facts找到匹配的rules<ul>
+<li>正向推理（Forward-Chaining）：正向推理也叫演绎法，由事实驱动，从 一个初始的事实出发，不断地应用规则得出结论。首先在候选队列中选择一条规则作为启用规则进行推理，记录其结论作为下一步推理时的证据。如此重复这个过程，直到再无可用规则可被选用或者求得了所要求的解为止。</li>
+<li>反向推理（Backward-Chaining）：反向推理也叫归纳法，由目标驱动，首先提出某个假设，然后寻找支持该假设的证据，若所需的证据都能找到，说明原假设是正确的；若无论如何都找不到所需要的证据，则说明原假设不成立，此时需要另做新的假设。</li>
+</ul>
+</li>
+<li>Agenda：管理PatternMatcher挑选出来的规则的执行次序</li>
+<li>Execution Engine：在外围负责根据Agenda输出的rules执行具体的操作</li>
+</ul>
+<h3 id="1-4-规则引擎的作用"><a href="#1-4-规则引擎的作用" class="headerlink" title="1.4 规则引擎的作用"></a>1.4 规则引擎的作用</h3><p>规则引擎可以将规则的定义从代码中分离出来，将推理过程封装到规则引擎内部进行处理，这带来几个好处：</p>
+<ul>
+<li>规则外部化，即有利于规则知识的复用，也可避免改变规则时带来的代码变更问题</li>
+<li>由规则引擎使用某种算法进行推理过程，不需要编写复杂晦涩的逻辑判断代码</li>
+<li>开发人员的不需要过多关注逻辑判断，可以专注于逻辑处理</li>
+</ul>
+<h2 id="2-Drools"><a href="#2-Drools" class="headerlink" title="2 Drools"></a>2 Drools</h2><p><a href="https://www.tutorialspoint.com/drools/pdf/drools_sample_drools_program.pdf" target="_blank" rel="external">DROOLS - SAMPLE DROOLS PROGRAM</a></p>
+<h3 id="2-1-概览"><a href="#2-1-概览" class="headerlink" title="2.1 概览"></a>2.1 概览</h3><p>完整的drl文件包含以下几个部分：package，import，declares，globals，functions，queries，rules。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.sample</div><div class="line"><span class="keyword">import</span> com.sample.DroolsTest.Message;</div><div class="line"></div><div class="line">rule <span class="string">"Hello World"</span></div><div class="line">  when</div><div class="line">    m : Message(status == Message.HELLO, myMessage : message)</div><div class="line">  then</div><div class="line">    System.out.println(myMessage);</div><div class="line">    m.setMessage(<span class="string">"Goodbye cruel world"</span>);</div><div class="line">    m.setStatus(Message.GOODBYE);</div><div class="line">    update(m);</div><div class="line">end</div><div class="line"></div><div class="line">rule <span class="string">"GoodBye"</span></div><div class="line">  <span class="function">when</span></div><div class="line">    <span class="title">Message</span><span class="params">(status==Message.GOODBYE, myMessage:message)</span></div><div class="line">   then</div><div class="line">    System.out.<span class="title">println</span><span class="params">(myMessage)</span>;</div><div class="line">end</div></pre></td></tr></table></figure>
+<h3 id="2-2-package和import"><a href="#2-2-package和import" class="headerlink" title="2.2 package和import"></a>2.2 package和import</h3><p>与Java类似，drools头部必须要有一个package声明和import声明，且package声明必须放在规则文件的第一行。</p>
+<h3 id="2-3-规则定义"><a href="#2-3-规则定义" class="headerlink" title="2.3 规则定义"></a>2.3 规则定义</h3><p>一个规则通常包含三个部分：attribute（属性），LHS（条件部分），RHS（结果部分）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">rule <span class="string">"name"</span></div><div class="line">  attributes</div><div class="line">  when</div><div class="line">    LHS</div><div class="line">  then</div><div class="line">    RHS</div><div class="line">end</div></pre></td></tr></table></figure>
+<h4 id="2-3-1-LHS（条件部分）"><a href="#2-3-1-LHS（条件部分）" class="headerlink" title="2.3.1 LHS（条件部分）"></a>2.3.1 LHS（条件部分）</h4><ul>
+<li>可以包含多个条件，若条件部分为空的话，引擎自动添加一个eval(true)的条件。</li>
+<li>多个条件之间可使用and或or连接，默认是and关系。</li>
+<li>条件的语法：[绑定变量名:]\Object([field约束])<ul>
+<li>绑定变量名：可在该LHS后续的条件中引用</li>
+<li>field约束：当前对象里相关字段的条件限制，多个约束之间用”&amp;&amp;”(and)，”||”(or)和”,”(and)连接。约束中可使用的比较操作符包括：&gt;, &gt;=, &lt;, &lt;=, ==, !=, contains, not contains, memberof, not memberof, matches, not matchers</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">when</div><div class="line">  order:Order();</div><div class="line">then</div><div class="line">  ...</div><div class="line"></div><div class="line">when</div><div class="line">  $room : Room( )  #变量名可以是$开头</div><div class="line">  $sprinkler : Sprinkler( room == $room, on == true )</div><div class="line">  not Fire( room == $room )</div><div class="line">then</div><div class="line">  modify( $sprinkler ) &#123; setOn( false ) &#125;;</div><div class="line">  System.out.println( "Turn off the sprinkler for room " + $room.getName() );</div></pre></td></tr></table></figure>
+<h4 id="2-3-2-RHS（结果部分）"><a href="#2-3-2-RHS（结果部分）" class="headerlink" title="2.3.2 RHS（结果部分）"></a>2.3.2 RHS（结果部分）</h4><ul>
+<li>RHS部分定义了当LHS满足时要进行的操作</li>
+<li>RHS中可以编写代码，可以使用LHS部分中定义的绑定变量名以及drl头部定义的全局变量。</li>
+<li>虽然可以在RHS中直接写java代码，但不建议代码中有条件判断，否则就违背了使用规则的初衷。</li>
+</ul>
+<h5 id="2-3-2-1-使用宏函数"><a href="#2-3-2-1-使用宏函数" class="headerlink" title="2.3.2.1 使用宏函数"></a>2.3.2.1 使用宏函数</h5><p>RHS中可以使用宏函数对工作空间进行操作。当调用宏函数后，所有为设置“no-loop”属性的规则都会呗重新分配，符合条件的重新触发。</p>
+<p>宏函数都是StatefulSession中定义的方法，包括：</p>
+<ul>
+<li>insert：将一个Fact对象插入到当前的Working Memory</li>
+<li>update：对当前Working Memory中的Fact进行更新</li>
+<li>retract：从Working Memory中删除某个Fact对象</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">when</div><div class="line">  ...</div><div class="line">then</div><div class="line">  Customer cus=new Customer();</div><div class="line">  cus.setName("张三");</div><div class="line">  insert(cus);</div><div class="line"></div><div class="line">when </div><div class="line">  $customer:Customer(name=="张三", age&lt;10)</div><div class="line">then</div><div class="line">  $customer.setAge(customer.getAge()+1);</div><div class="line">  update(customer);</div><div class="line"></div><div class="line">when</div><div class="line">  $customer:Customer(name=="张三",age&lt;10)</div><div class="line">then</div><div class="line">  Customer customer=new Customer();</div><div class="line">  customer.setName("张三");</div><div class="line">  customer.setAge($customer.getAge()+1);</div><div class="line">  # 用新对象替换Working Memory中的旧对象</div><div class="line">  update(drools.getWorkingMemory().getFactHandleByIdentity($customer),customer);</div><div class="line"></div><div class="line"></div><div class="line">when</div><div class="line">  $customer:Customer(name=="张三")</div><div class="line">then</div><div class="line">  retract($customer);</div></pre></td></tr></table></figure>
+<h5 id="2-3-2-2-modify代码块"><a href="#2-3-2-2-modify代码块" class="headerlink" title="2.3.2.2 modify代码块"></a>2.3.2.2 modify代码块</h5><p>modify代码块用于快速修改并更新(update)某个 Fact 对象的多个属性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">modify(fact-expression)&#123;</div><div class="line">  &lt;修改 Fact 属性的表达式&gt;[,&lt;修改 Fact 属性的表达式&gt;*]</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">when</div><div class="line">  $customer:Customer(name==<span class="string">"张三"</span>,age==<span class="number">20</span>);</div><div class="line"><span class="function">then</span></div><div class="line">  <span class="title">modify</span><span class="params">($customer)</span>&#123;</div><div class="line">    setId(<span class="string">"super man"</span>),</div><div class="line">    setAge(<span class="number">30</span>)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h5 id="2-3-2-3-drools宏对象"><a href="#2-3-2-3-drools宏对象" class="headerlink" title="2.3.2.3 drools宏对象"></a>2.3.2.3 drools宏对象</h5><p>通过使用drools宏对象可以实现在规则文件里直接访问 Working Memory，从而获取对当前的 Working Memory的更多控制。</p>
+<p>drools宏对象的常用方法包括：</p>
+<ul>
+<li>drools.getWorkingMemory()：获取当前的 WorkingMemory对象</li>
+<li>drools.halt()：在当前规则执行完成后，不再执行 其它未执行的规则</li>
+<li>drools.getRule()：得到当前的规则对象</li>
+<li>drools.insert(new Object)：向当前的WorkingMemory 当中插入指定的对象，功能与宏函数insert相同</li>
+<li>drools.update(new Object)：更新当前的WorkingMemory中指定的对象，功能与宏函数update相同</li>
+<li>drools.update(FactHandle Object)：更新当前的WorkingMemory中指定的对象，功能与宏函数update相同</li>
+<li>drools.retract(new Object)：从当前的WorkingMemory中删除指 定的对象，功能与宏函数retract相同</li>
+</ul>
+<h5 id="2-3-2-4-kcontext宏对象"><a href="#2-3-2-4-kcontext宏对象" class="headerlink" title="2.3.2.4 kcontext宏对象"></a>2.3.2.4 kcontext宏对象</h5><p>用来得到当前的KnowledgeRuntime对象，KnowledgeRuntime对象可以实现与引擎的各种交互。</p>
+<h4 id="2-3-3-规则属性"><a href="#2-3-3-规则属性" class="headerlink" title="2.3.3 规则属性"></a>2.3.3 规则属性</h4><ul>
+<li>salience：设置规则执行的优先级，默认值为0。数字越大越先执行，可以设置为负数，数字相同的使用随机顺序。设置该属性<code>salience 10</code>.</li>
+<li>no-loop：默认为false。设置为true时，表示该规则只会被引擎检查一次。引擎内部对Fact更新时，忽略本规则的再次检查。</li>
+<li>date-effective：设置规则的开始生效日期，默认接受“dd-MMM-yyyy”格式的字符串。修改日期格式：<code>System.setProperty(&quot;drools.dateformat&quot;,&quot;yyyy-MM-dd&quot;)</code></li>
+<li>data-expires：设置规则的过期日期，默认接受“dd-MMM-yyyy”格式的字符串。修改日期格式：<code>System.setProperty(&quot;drools.dateformat&quot;,&quot;yyyy-MM-dd&quot;)</code>。</li>
+<li>enabled：设置规则是否可用，默认为true。</li>
+<li>dialect：设置规则中使用的编程语言，默认为java，可设置为mvel。获取该属性的设置：<code>drools.getRule().getDialect()</code>，设置该属性<code>dialect mvel</code></li>
+<li>duration：指定延迟时间，在另一个线程中触发规则，单位为毫秒。</li>
+<li>activation-group：为规则划指定一个活动组（组名为字符串）。同一个活动组中的规则只执行一个，根据优先级(salience)来决定执行哪一个规则。</li>
+<li>agenda-group：为规则指定一个议程(agenda)组。指定了议程组的规则只有在该议程组得到焦点时才被触发。</li>
+<li>auto-focus：指定了auto-focus属性为true，则该规则自动得到焦点。</li>
+<li>ruleflow-group：指定规则流组。</li>
+<li>lock-on-active：当在规则上使用ruleflow-group属性或agenda-group属性的时候，将lock-on-action属性 的值设置为 true，可避免因某些 Fact 对象被修改而使已经执行过的规则再次被激活执行。</li>
+<li>when</li>
+</ul>
+<h3 id="2-4-注释"><a href="#2-4-注释" class="headerlink" title="2.4 注释"></a>2.4 注释</h3><ul>
+<li>多行注释：<code>/*注释*/</code></li>
+<li>单行注视：<code>#注释</code>或 <code>//注释</code></li>
+</ul>
+<h3 id="2-5-类型声明"><a href="#2-5-类型声明" class="headerlink" title="2.5 类型声明"></a>2.5 类型声明</h3><p>todo</p>
+<h3 id="2-6-全局变量"><a href="#2-6-全局变量" class="headerlink" title="2.6 全局变量"></a>2.6 全局变量</h3><p>todo</p>
+<h3 id="2-7-函数和import-function"><a href="#2-7-函数和import-function" class="headerlink" title="2.7 函数和import function"></a>2.7 函数和import function</h3><h4 id="2-7-1-函数的定义和使用"><a href="#2-7-1-函数的定义和使用" class="headerlink" title="2.7.1 函数的定义和使用"></a>2.7.1 函数的定义和使用</h4><p>函数是定义在规则文件中的一段代码，用于将规则文件中会被若干个规则复用的业务操作封装起来，减少规则编写的工作量。函数的可见范围是规则函数所在的规则文件。</p>
+<p>函数以function定义。可以是void，也可以有返回值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> test</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"></div><div class="line"><span class="function">function <span class="keyword">void</span> <span class="title">setOrder</span><span class="params">(Customer customer, <span class="keyword">int</span> orderSize)</span> </span>&#123;</div><div class="line">  List ls = <span class="keyword">new</span> ArrayList();</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;orderSize; i++)&#123;</div><div class="line">    Order order=<span class="keyword">new</span> Order();</div><div class="line">    ls.add(order);</div><div class="line">  &#125;</div><div class="line">  customer.setOrder(ls);</div><div class="line">&#125;</div><div class="line"></div><div class="line">rule <span class="string">"rule1"</span></div><div class="line">  when</div><div class="line">    $customer:Customer()</div><div class="line">  <span class="function">then</span></div><div class="line">    <span class="title">setOrder</span><span class="params">($customer,<span class="number">5</span>)</span>;</div><div class="line">    System.out.println(<span class="string">"rule 1 customer has order size:"</span>+$customer.getOrders().size());</div><div class="line">end</div><div class="line"></div><div class="line">rule <span class="string">"rule2"</span></div><div class="line">  when</div><div class="line">    $customer :Customer()</div><div class="line">  <span class="function">then</span></div><div class="line">    <span class="title">setOrder</span><span class="params">($customer,<span class="number">10</span>)</span>;</div><div class="line">    System.out.println(<span class="string">"rule 2 customer has order size:"</span>+$customer.getOrders().size());</div><div class="line">end</div></pre></td></tr></table></figure>
+<h4 id="2-7-2-引入静态方法"><a href="#2-7-2-引入静态方法" class="headerlink" title="2.7.2 引入静态方法"></a>2.7.2 引入静态方法</h4><p>实际应用当中，可以考虑使用在java类当中定义静态方法的办法来替代在规则文件当中定义函数。</p>
+<p>Drools 提供了一个特殊的 import 语句：import function。通过该 import 语句，可以实现将一个java类中静态方法引入到一个规则文件当中，使得该文件当中的规则可以像使用普通的Drools函数一样来使用java类中某个静态方法。</p>
+<h3 id="2-8-查询定义"><a href="#2-8-查询定义" class="headerlink" title="2.8 查询定义"></a>2.8 查询定义</h3><p>查询用于根据条件在当前的 WorkingMemory 当中查找 Fact。</p>
+<p>Drools 当中查询可分为两种：</p>
+<ul>
+<li>不需要外部传入参数</li>
+<li>需要外部传入参数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">query <span class="string">"testQuery"</span></div><div class="line">  customer:Customer(age&gt;<span class="number">30</span>,orders.size &gt;<span class="number">10</span>)</div><div class="line">end</div><div class="line"></div><div class="line">query <span class="string">"testQuery2"</span>(<span class="keyword">int</span> $age,String $gender)</div><div class="line">  customer:Customer(age&gt;$age,gender==$gender)</div><div class="line">end</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/14/利用python 3进行数据分析/" rel="next" title="利用python 3.6进行数据分析">
+                <i class="fa fa-chevron-left"></i> 利用python 3.6进行数据分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/21/地址清洗/" rel="prev" title="中文地址清洗">
+                中文地址清洗 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <p class="site-author-name" itemprop="name">Yuanyi Wu</p>
+            <p class="site-description motion-element" itemprop="description">朝闻道 夕死可矣</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-简介"><span class="nav-number">1.</span> <span class="nav-text">1 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-规则"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-推理机"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 推理机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-规则引擎"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 规则引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-规则引擎的作用"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 规则引擎的作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Drools"><span class="nav-number">2.</span> <span class="nav-text">2 Drools</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-概览"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-package和import"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 package和import</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-规则定义"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 规则定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-LHS（条件部分）"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 LHS（条件部分）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-RHS（结果部分）"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 RHS（结果部分）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-2-1-使用宏函数"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">2.3.2.1 使用宏函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-2-2-modify代码块"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">2.3.2.2 modify代码块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-2-3-drools宏对象"><span class="nav-number">2.3.2.3.</span> <span class="nav-text">2.3.2.3 drools宏对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-2-4-kcontext宏对象"><span class="nav-number">2.3.2.4.</span> <span class="nav-text">2.3.2.4 kcontext宏对象</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3-规则属性"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.3 规则属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-注释"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-类型声明"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 类型声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-全局变量"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 全局变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-函数和import-function"><span class="nav-number">2.7.</span> <span class="nav-text">2.7 函数和import function</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-1-函数的定义和使用"><span class="nav-number">2.7.1.</span> <span class="nav-text">2.7.1 函数的定义和使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-2-引入静态方法"><span class="nav-number">2.7.2.</span> <span class="nav-text">2.7.2 引入静态方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8-查询定义"><span class="nav-number">2.8.</span> <span class="nav-text">2.8 查询定义</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuanyi Wu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" href="https://hexo.io">Hexo</a></div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

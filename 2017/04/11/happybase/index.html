@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="JDKYou have Java and the latest JDK on your OS X system.1brew cask install Java
+Install and config hadoopInstall1brew install hadoop
+ConfigEdit hadoop-env.shThe file can be located at /usr/local/Cella">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Start with happybase on Mac">
+<meta property="og:url" content="http://wu-yuanyi.github.io/2017/04/11/happybase/index.html">
+<meta property="og:site_name" content="WYY's Blog">
+<meta property="og:description" content="JDKYou have Java and the latest JDK on your OS X system.1brew cask install Java
+Install and config hadoopInstall1brew install hadoop
+ConfigEdit hadoop-env.shThe file can be located at /usr/local/Cella">
+<meta property="og:updated_time" content="2017-04-14T09:06:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Start with happybase on Mac">
+<meta name="twitter:description" content="JDKYou have Java and the latest JDK on your OS X system.1brew cask install Java
+Install and config hadoopInstall1brew install hadoop
+ConfigEdit hadoop-env.shThe file can be located at /usr/local/Cella">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wu-yuanyi.github.io/2017/04/11/happybase/"/>
+
+
+
+
+
+  <title>Start with happybase on Mac | WYY's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WYY's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">JUST DO IT</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            Schedule
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/04/11/happybase/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WYY's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Start with happybase on Mac</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-11T16:59:37+08:00">
+                2017-04-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JDK"><a href="#JDK" class="headerlink" title="JDK"></a>JDK</h1><p>You have Java and the latest JDK on your OS X system.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew cask install Java</div></pre></td></tr></table></figure></p>
+<h1 id="Install-and-config-hadoop"><a href="#Install-and-config-hadoop" class="headerlink" title="Install and config hadoop"></a>Install and config hadoop</h1><h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install hadoop</div></pre></td></tr></table></figure>
+<h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><h3 id="Edit-hadoop-env-sh"><a href="#Edit-hadoop-env-sh" class="headerlink" title="Edit hadoop-env.sh"></a>Edit hadoop-env.sh</h3><p>The file can be located at <strong>/usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop/hadoop-env.sh</strong> where 2.7.3 is the hadoop version.</p>
+<p>Find the line with<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export HADOOP_OPTS=&quot;$HADOOP_OPTS -Djava.net.preferIPv4Stack=true&quot;</div></pre></td></tr></table></figure></p>
+<p>and change it to<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export HADOOP_OPTS=&quot;$HADOOP_OPTS -Djava.net.preferIPv4Stack=true -Djava.security.krb5.realm= -Djava.security.krb5.kdc=&quot;</div></pre></td></tr></table></figure></p>
+<h3 id="Edit-Core-site-xml"><a href="#Edit-Core-site-xml" class="headerlink" title="Edit Core-site.xml"></a>Edit Core-site.xml</h3><p>The file can be located at <strong>/usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop/core-site.xml</strong> .</p>
+<p>Edit configuration at last.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>/usr/local/Cellar/hadoop/hdfs/tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">description</span>&gt;</span>A base for other temporary directories.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.default.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://localhost:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="Edit-hdfs-site-xml"><a href="#Edit-hdfs-site-xml" class="headerlink" title="Edit hdfs-site.xml"></a>Edit hdfs-site.xml</h3><p>The file can be located at <strong>/usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop/mapred-site.xml</strong> and by default will be blank. You can copy and change mapred-site.xml.template.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>mapred.job.tracker<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>localhost:9010<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="Edit-hdfs-site-xml-1"><a href="#Edit-hdfs-site-xml-1" class="headerlink" title="Edit hdfs-site.xml"></a>Edit hdfs-site.xml</h3><p>The file can be located at <strong>/usr/local/Cellar/hadoop/2.7.3/libexec/etc/hadoop/hdfs-site.xml</strong> .</p>
+<p>Edit configuration at last<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="Alias"><a href="#Alias" class="headerlink" title="Alias"></a>Alias</h3><p>To simplify life edit your ~/.bash_profile using vim and add the following two commands.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">alias hstart=&quot;/usr/local/Cellar/hadoop/2.6.0/sbin/start-dfs.sh;/usr/local/Cellar/hadoop/2.6.0/sbin/start-yarn.sh&quot;</div><div class="line">alias hstop=&quot;/usr/local/Cellar/hadoop/2.6.0/sbin/stop-yarn.sh;/usr/local/Cellar/hadoop/2.6.0/sbin/stop-dfs.sh&quot;</div></pre></td></tr></table></figure></p>
+<p>Edit your <em>~/.bashrc</em> or <em>~/.zshrc</em> using vim and add the following two commands<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">. ~/.bash_profile</div></pre></td></tr></table></figure></p>
+<p>and excute<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ source ~/.bashrc</div><div class="line">$ source ~/.zshrc</div></pre></td></tr></table></figure></p>
+<p>in the terminal to update.<br>Before we can run Hadoop we first need to format the HDFS using<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hdfs namenode -format</div></pre></td></tr></table></figure></p>
+<h2 id="SSH-Localhost"><a href="#SSH-Localhost" class="headerlink" title="SSH Localhost"></a>SSH Localhost</h2><p>Nothing needs to be done here if you have already generated ssh keys. To verify just check for the existance of <em>~/.ssh/id_rsa</em> and the <em>~/.ssh/id_rsa.pub</em> files. If not the keys can be generated using<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa</div></pre></td></tr></table></figure></p>
+<h3 id="Enable-Remote-Login"><a href="#Enable-Remote-Login" class="headerlink" title="Enable Remote Login"></a>Enable Remote Login</h3><p>“System Preferences” -&gt; “Sharing”. Check “Remote Login”</p>
+<h3 id="Authorize-SSH-Keys"><a href="#Authorize-SSH-Keys" class="headerlink" title="Authorize SSH Keys"></a>Authorize SSH Keys</h3><p>To allow your system to accept login, we have to make it aware of the keys that will be used<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</div></pre></td></tr></table></figure></p>
+<p>Let’s try to login.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ssh localhost</div><div class="line">Last login: Fri Mar  6 20:30:53 2015</div><div class="line">$ exit</div></pre></td></tr></table></figure></p>
+<h2 id="Running-Hadoop"><a href="#Running-Hadoop" class="headerlink" title="Running Hadoop"></a>Running Hadoop</h2><p>Now we can run Hadoop just by typing<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hstart</div></pre></td></tr></table></figure></p>
+<p>and stopping using<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hstop</div></pre></td></tr></table></figure></p>
+<h2 id="Good-to-know"><a href="#Good-to-know" class="headerlink" title="Good to know"></a>Good to know</h2><p>We can access the Hadoop web interface by connecting to<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Resource Manager: http://localhost:50070</div><div class="line">JobTracker: http://localhost:8088</div><div class="line">Specific Node Information: http://localhost:8042</div><div class="line"></div><div class="line">Command</div><div class="line">$ hstart</div><div class="line">$ jps </div><div class="line">32384 NameNode</div><div class="line">32712 ResourceManager</div><div class="line">32587 SecondaryNameNode</div><div class="line">32859 Jps</div><div class="line">32476 DataNode</div><div class="line">32812 NodeManager</div><div class="line"># hstop</div><div class="line"></div><div class="line">$ yarn  // For resource management more information than the web interface. </div><div class="line">$ mapred  // Detailed information about jobs</div></pre></td></tr></table></figure></p>
+<h1 id="Install-zookeeper"><a href="#Install-zookeeper" class="headerlink" title="Install zookeeper"></a>Install zookeeper</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install zookeeper</div></pre></td></tr></table></figure>
+<h1 id="Install-hbase"><a href="#Install-hbase" class="headerlink" title="Install hbase"></a>Install hbase</h1><h2 id="Install-1"><a href="#Install-1" class="headerlink" title="Install"></a>Install</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install hbase</div></pre></td></tr></table></figure>
+<h2 id="Alias-1"><a href="#Alias-1" class="headerlink" title="Alias"></a>Alias</h2><p>To simplify life edit your ~/.bash_profile using vim and add the following two commands.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">alias hbstart=&quot;/usr/local/Cellar/hbase/1.2.2/bin/start-hbase.sh&quot;</div><div class="line">alias hbstop=&quot;/usr/local/Cellar/hbase/1.2.2/bin/stop-hbase.sh&quot;</div></pre></td></tr></table></figure></p>
+<h2 id="Good-to-know-1"><a href="#Good-to-know-1" class="headerlink" title="Good to know"></a>Good to know</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ hstart</div><div class="line">$ hbstart</div><div class="line">$ jps</div><div class="line">32384 NameNode</div><div class="line">33024 Jps</div><div class="line">32967 HMaster</div><div class="line">32712 ResourceManager</div><div class="line">32587 SecondaryNameNode</div><div class="line">32476 DataNode</div><div class="line">32812 NodeManager</div><div class="line">$ hbstop</div><div class="line">$ hstop</div></pre></td></tr></table></figure>
+<h1 id="Install-happybase"><a href="#Install-happybase" class="headerlink" title="Install happybase"></a>Install happybase</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install happybase</div></pre></td></tr></table></figure>
+<h1 id="Examplesfor-happybase"><a href="#Examplesfor-happybase" class="headerlink" title="Examplesfor happybase"></a>Examplesfor happybase</h1><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> happybase</div><div class="line">connection = happybase.Connection(<span class="string">'localhost'</span>,table_prefix=<span class="string">'namespace'</span>)</div><div class="line"><span class="comment"># Starting with HBase 0.94, the Thrift server optionally uses a framed transport.</span></div><div class="line"><span class="comment"># table_prefix is similar to namespace</span></div><div class="line">connection.create_table(<span class="string">'data'</span>,&#123;<span class="string">'p'</span>:dict()&#125;,)</div><div class="line">connection.tables()</div><div class="line"></div><div class="line">table = connection.table(<span class="string">'data'</span>)</div><div class="line"></div><div class="line"><span class="comment"># input one row</span></div><div class="line">table.put(<span class="string">'o'</span>, &#123;<span class="string">'p:label'</span>: <span class="string">'0'</span>, <span class="string">'p:version'</span>: <span class="string">'201701'</span>, <span class="string">'p:weight'</span>: <span class="string">'0.4'</span>&#125;)</div><div class="line"></div><div class="line"><span class="comment"># input rows</span></div><div class="line"><span class="keyword">with</span> table.batch() <span class="keyword">as</span> bat:</div><div class="line">    bat.put(<span class="string">'1'</span>,&#123;<span class="string">'p:label'</span>: <span class="string">'1'</span>, <span class="string">'p:version'</span>: <span class="string">'201702'</span>, <span class="string">'p:weight'</span>: <span class="string">'0.5'</span>&#125;)</div><div class="line">    bat.put(<span class="string">'2'</span>,&#123;<span class="string">'p:label'</span>: <span class="string">'2'</span>, <span class="string">'p:version'</span>: <span class="string">'201703'</span>, <span class="string">'p:weight'</span>: <span class="string">'0.6'</span>&#125;)</div><div class="line"></div><div class="line"><span class="comment"># scan datas stored by batch with timestamp</span></div><div class="line">scan(row=<span class="string">'2'</span>,timestamnp=<span class="number">201704</span>) <span class="comment">#must larger than stored timestamp</span></div><div class="line"></div><div class="line"><span class="comment"># scan whole table</span></div><div class="line"><span class="keyword">for</span> key, value <span class="keyword">in</span> table.scan():</div><div class="line">    <span class="keyword">print</span> key, value</div><div class="line"></div><div class="line"><span class="comment"># scan with timestamp</span></div><div class="line">table.put(<span class="string">'2'</span>, &#123;<span class="string">'p:label'</span>: <span class="string">'233'</span>, <span class="string">'p:version'</span>: <span class="string">'2017234'</span>, <span class="string">'p:weight'</span>: <span class="string">'0.9'</span>&#125;,timestamp=<span class="number">201704</span>)</div><div class="line">table.row(<span class="string">'2'</span>,timestamp=<span class="number">201704</span>)</div><div class="line"></div><div class="line"><span class="comment"># enable and disable tables</span></div><div class="line">connection.enable_table(<span class="string">'data'</span>)</div><div class="line">connection.disable_table(<span class="string">'data'</span>)</div><div class="line"></div><div class="line"><span class="comment"># delete table</span></div><div class="line">connection.delete_table(<span class="string">'data'</span>)</div></pre></td></tr></table></figure>
+<p>##Problems need to solve</p>
+<h4 id="Connect-again"><a href="#Connect-again" class="headerlink" title="Connect again"></a>Connect again</h4><p>Need to coonect again after error or don’t use after second<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">connection = happybase.Connection(<span class="string">'localhost'</span>)</div><div class="line">table = connection.table(<span class="string">'namespace_data'</span>)</div></pre></td></tr></table></figure></p>
+<h3 id="TTransportException"><a href="#TTransportException" class="headerlink" title="TTransportException"></a>TTransportException</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">/usr/local/lib/python2.7/site-packages/thriftpy/transport/socket.pyc in read(self, sz)</div><div class="line">    123         if len(buff) == 0:</div><div class="line">    124             raise TTransportException(type=TTransportException.END_OF_FILE,</div><div class="line">--&gt; 125                                       message='TSocket read 0 bytes')</div><div class="line">    126         return buff</div><div class="line">    127</div><div class="line"></div><div class="line">TTransportException: TTransportException(message='TSocket read 0 bytes', type=4)</div></pre></td></tr></table></figure>
+<h3 id="Broken-pipe"><a href="#Broken-pipe" class="headerlink" title="Broken pipe"></a>Broken pipe</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">/usr/local/Cellar/python/2.7.13/Frameworks/Python.framework/Versions/2.7/lib/python2.7/socket.pyc in meth(name, self, *args)</div><div class="line">    226</div><div class="line">    227 def meth(name,self,*args):</div><div class="line">--&gt; 228     return getattr(self._sock,name)(*args)</div><div class="line">    229</div><div class="line">    230 for _m in _socketmethods:</div><div class="line"></div><div class="line">error: [Errno 32] Broken pipe</div></pre></td></tr></table></figure>
+<h3 id="Thrift-closed"><a href="#Thrift-closed" class="headerlink" title="Thrift closed"></a>Thrift closed</h3><p>thrift closed selfly after one hour, need to config it.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">2017-04-10 09:38:31,614 INFO  [main] util.VersionInfo: HBase 1.2.2</div><div class="line">2017-04-10 09:38:31,615 INFO  [main] util.VersionInfo: Source code repository git://asf-dev/home/busbey/projects/hbase revision=3f671c1ead70d249ea4598f1bbcc5151322b3a13</div><div class="line">2017-04-10 09:38:31,615 INFO  [main] util.VersionInfo: Compiled by busbey on Fri Jul  1 08:28:55 CDT 2016</div><div class="line">2017-04-10 09:38:31,615 INFO  [main] util.VersionInfo: From source with checksum 7ac43c3d2f62f134b2a6aa1a05ad66ac</div><div class="line">2017-04-10 09:38:31,888 INFO  [main] thrift.ThriftServerRunner: Using default thrift server type</div><div class="line">2017-04-10 09:38:31,888 INFO  [main] thrift.ThriftServerRunner: Using thrift server type threadpool</div><div class="line">2017-04-10 09:38:31,920 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</div><div class="line"></div><div class="line"></div><div class="line">2017-04-10 10:38:32,580 INFO  [ConnectionCache_ChoreService_1] client.ConnectionManager$HConnectionImplementation: Closing master protocol: MasterService</div><div class="line">2017-04-10 10:38:32,581 INFO  [ConnectionCache_ChoreService_1] client.ConnectionManager$HConnectionImplementation: Closing zookeeper sessionid=0x15b558148f70006</div><div class="line">2017-04-10 10:38:32,588 INFO  [ConnectionCache_ChoreService_1] zookeeper.ZooKeeper: Session: 0x15b558148f70006 closed</div><div class="line">2017-04-10 10:38:32,588 INFO  [thrift-worker-2-EventThread] zookeeper.ClientCnxn: EventThread shut down</div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">152</span>]: table.row(<span class="string">'66613341731'</span>,include_timestamp=<span class="keyword">True</span>)</div><div class="line">Out[<span class="number">152</span>]: &#123;<span class="string">'p:1'</span>: (<span class="string">'0.13'</span>, <span class="number">2017</span>)&#125;</div><div class="line"></div><div class="line">In [<span class="number">156</span>]: table.row(<span class="string">'66613341731'</span>,timestamp=<span class="number">2018</span>, include_timestamp=<span class="keyword">True</span>)</div><div class="line">Out[<span class="number">156</span>]: &#123;<span class="string">'p:1'</span>: (<span class="string">'0.13'</span>, <span class="number">2017</span>)&#125;</div><div class="line"></div><div class="line">In [<span class="number">157</span>]: table.row(<span class="string">'66613341731'</span>,timestamp=<span class="number">2017</span>, include_timestamp=<span class="keyword">True</span>)</div><div class="line">Out[<span class="number">157</span>]: &#123;&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/27/Basic Principles of Information Protect/" rel="next" title="Basic Principles of Information Protect">
+                <i class="fa fa-chevron-left"></i> Basic Principles of Information Protect
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/01/mySQL grammar/" rel="prev" title="MySQL grammer">
+                MySQL grammer <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <p class="site-author-name" itemprop="name">Yuanyi Wu</p>
+            <p class="site-description motion-element" itemprop="description">朝闻道 夕死可矣</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JDK"><span class="nav-number">1.</span> <span class="nav-text">JDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Install-and-config-hadoop"><span class="nav-number">2.</span> <span class="nav-text">Install and config hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install"><span class="nav-number">2.1.</span> <span class="nav-text">Install</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Config"><span class="nav-number">2.2.</span> <span class="nav-text">Config</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Edit-hadoop-env-sh"><span class="nav-number">2.2.1.</span> <span class="nav-text">Edit hadoop-env.sh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Edit-Core-site-xml"><span class="nav-number">2.2.2.</span> <span class="nav-text">Edit Core-site.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Edit-hdfs-site-xml"><span class="nav-number">2.2.3.</span> <span class="nav-text">Edit hdfs-site.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Edit-hdfs-site-xml-1"><span class="nav-number">2.2.4.</span> <span class="nav-text">Edit hdfs-site.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Alias"><span class="nav-number">2.2.5.</span> <span class="nav-text">Alias</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH-Localhost"><span class="nav-number">2.3.</span> <span class="nav-text">SSH Localhost</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Enable-Remote-Login"><span class="nav-number">2.3.1.</span> <span class="nav-text">Enable Remote Login</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Authorize-SSH-Keys"><span class="nav-number">2.3.2.</span> <span class="nav-text">Authorize SSH Keys</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Running-Hadoop"><span class="nav-number">2.4.</span> <span class="nav-text">Running Hadoop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Good-to-know"><span class="nav-number">2.5.</span> <span class="nav-text">Good to know</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Install-zookeeper"><span class="nav-number">3.</span> <span class="nav-text">Install zookeeper</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Install-hbase"><span class="nav-number">4.</span> <span class="nav-text">Install hbase</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-1"><span class="nav-number">4.1.</span> <span class="nav-text">Install</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Alias-1"><span class="nav-number">4.2.</span> <span class="nav-text">Alias</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Good-to-know-1"><span class="nav-number">4.3.</span> <span class="nav-text">Good to know</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Install-happybase"><span class="nav-number">5.</span> <span class="nav-text">Install happybase</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Examplesfor-happybase"><span class="nav-number">6.</span> <span class="nav-text">Examplesfor happybase</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Code"><span class="nav-number">6.1.</span> <span class="nav-text">Code</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Connect-again"><span class="nav-number">6.1.0.1.</span> <span class="nav-text">Connect again</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TTransportException"><span class="nav-number">6.1.1.</span> <span class="nav-text">TTransportException</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Broken-pipe"><span class="nav-number">6.1.2.</span> <span class="nav-text">Broken pipe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Thrift-closed"><span class="nav-number">6.1.3.</span> <span class="nav-text">Thrift closed</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuanyi Wu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" href="https://hexo.io">Hexo</a></div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

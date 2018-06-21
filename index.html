@@ -95,12 +95,15 @@
 
 
 
+<meta name="description" content="朝闻道 夕死可矣">
 <meta property="og:type" content="website">
-<meta property="og:title" content="My blog">
+<meta property="og:title" content="WYY's Blog">
 <meta property="og:url" content="http://wu-yuanyi.github.io/index.html">
-<meta property="og:site_name" content="My blog">
+<meta property="og:site_name" content="WYY's Blog">
+<meta property="og:description" content="朝闻道 夕死可矣">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="My blog">
+<meta name="twitter:title" content="WYY's Blog">
+<meta name="twitter:description" content="朝闻道 夕死可矣">
 
 
 
@@ -136,7 +139,7 @@
 
 
 
-  <title>My blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>WYY's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -167,12 +170,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">My blog</span>
+        <span class="site-title">WYY's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">JUST DO IT</p>
       
   </div>
 
@@ -293,7 +296,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My blog">
+      <meta itemprop="name" content="WYY's Blog">
     </span>
 
     
@@ -413,7 +416,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My blog">
+      <meta itemprop="name" content="WYY's Blog">
     </span>
 
     
@@ -605,7 +608,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My blog">
+      <meta itemprop="name" content="WYY's Blog">
     </span>
 
     
@@ -764,7 +767,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My blog">
+      <meta itemprop="name" content="WYY's Blog">
     </span>
 
     
@@ -949,7 +952,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/25/SAS/SAS编程演义9-10/">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/19/规则引擎与Drools/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuanyi Wu">
@@ -958,7 +961,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My blog">
+      <meta itemprop="name" content="WYY's Blog">
     </span>
 
     
@@ -968,7 +971,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/25/SAS/SAS编程演义9-10/" itemprop="url">《SAS编程演义》笔记（9-10章）</a></h1>
+                <a class="post-title-link" href="/2017/09/19/规则引擎与Drools/" itemprop="url">规则引擎与Drools</a></h1>
         
 
         <div class="post-meta">
@@ -980,8 +983,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-25T11:09:39+08:00">
-                2017-09-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-19T12:00:46+08:00">
+                2017-09-19
               </time>
             
 
@@ -1003,8 +1006,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SAS/" itemprop="url" rel="index">
-                    <span itemprop="name">SAS</span>
+                  <a href="/categories/Drools/" itemprop="url" rel="index">
+                    <span itemprop="name">Drools</span>
                   </a>
                 </span>
 
@@ -1042,275 +1045,121 @@
       
         
           
-            <h2 id="拙中藏巧混天成：统计表格"><a href="#拙中藏巧混天成：统计表格" class="headerlink" title="拙中藏巧混天成：统计表格"></a>拙中藏巧混天成：统计表格</h2><h3 id="医药科研"><a href="#医药科研" class="headerlink" title="医药科研"></a>医药科研</h3><ul>
-<li>基线信息表格：介绍人群基本情况</li>
-<li>危险因素表格：会在表格中给出事件频数和百分比、粗的效应值及其95%CI和P值</li>
-<li>结局效应表格：横款目为终点指标，纵款目除了分组信息，还有效应量</li>
-<li>亚组分析表格：最重要的信息是需要提供交互作用校验的结果，通常以森林图的形式展示</li>
+            <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h2><h3 id="1-1-规则"><a href="#1-1-规则" class="headerlink" title="1.1 规则"></a>1.1 规则</h3><ul>
+<li>每条规则都是一组条件决定的一系列结果</li>
+<li>一条规则可能与其他规则共同决定最终结果</li>
+<li>可能存在条件互相交叉的规则，此时有必要规定规则的优先级</li>
 </ul>
-<h3 id="统计汇总过程"><a href="#统计汇总过程" class="headerlink" title="统计汇总过程"></a>统计汇总过程</h3><p>一个统计过程中只能获得一种变量（分类、连续）的统计数据，款目形式不便统一。</p>
+<p>规则作为一种知识，其典型运用就是通过实际情况，根据给定的一组规则，得出结论。这个结论可能是某种静态的结果，也可能是需要进行的一组操作。</p>
+<p>规则语言可以分为结构化的（Structured)和基于标记的（Markup，通常为xml）。</p>
+<p>常见的结构化的规则描述语言:</p>
 <ul>
-<li>RTF（Rich Text File）可直接用Word打开编辑</li>
-<li>journal3a是最贴近三线表的样式</li>
+<li>srl（Structured Rule Language）</li>
+<li>drl（Drools Rule Language）</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">ods tagsets.rtf file=&quot;table.rtf&quot; style=journal3a; /**/</div><div class="line">proc freq data=sashelp.heart;</div><div class="line">    table bp_status*sex / nopercent norow;</div><div class="line">run;</div><div class="line">ods tagsets.rtf close;</div><div class="line"></div><div class="line">ods tagsets.etf file=&quot;table2.rtf&quot; style=journal3a;</div><div class="line">proc means data=sashelp.heart mean std maxdec=2;</div><div class="line">    class sex;</div><div class="line">    var height;</div><div class="line">run;</div><div class="line">ods tagsets.rtf close;</div></pre></td></tr></table></figure>
-<h3 id="PROC-TABULATE"><a href="#PROC-TABULATE" class="headerlink" title="PROC TABULATE"></a>PROC TABULATE</h3><p>能一次性实现多种变量的统计需求，也能比较灵活的组合表格形式，但是仍达不到标准三线表的要求，而且也无法计算统计量和P值。</p>
+<p>常见的基于标记的规则描述语言:</p>
 <ul>
-<li>CLASS语句申明分类变量</li>
-<li>VAR语句申明分析变量</li>
-<li>TABLE语句设置表格形式，逗号“,”作为页、行、列等纬度的间隔符，星号“*”作为变量与其显示格式、统计关键字的关联符，括号“()”用来强制分组。</li>
+<li>RuleML（Rule Markup Language）</li>
+<li>SRML（Simple Rule Markup Language）</li>
+<li>BRML（Business Rules Markup Language）</li>
+<li>SWRL（A Semantic Web Rule Language）</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">ods tagsets.rtf file=&quot;table4.rtf&quot; style=journal3a;</div><div class="line">    title &quot;Table 1. Blood Pressure and Height by Sex&quot;;</div><div class="line">proc tabulate data=sashelp.heart;</div><div class="line">    class sex bp_status;</div><div class="line">    var height;</div><div class="line">    table sex, bp_status*(n rowpctn) height*(mean std);</div><div class="line">run;</div><div class="line">ods tagsets.rtf cloase;</div><div class="line"></div><div class="line">ods tagsets.rtf file=&quot;table5.rtf&quot; style=journal3a;</div><div class="line">    title &quot;Table 1. Blood Pressure and Height by Sex&quot;;</div><div class="line">proc tabulate data=sashelp.heart;</div><div class="line">    class sex bp_status;</div><div class="line">    var height;</div><div class="line">    table bp_status*(n colpctn) height*(mean std), sex;</div><div class="line">run;</div><div class="line">ods tagsets.rtf cloase;</div></pre></td></tr></table></figure>
-<h3 id="PROC-REPORT"><a href="#PROC-REPORT" class="headerlink" title="PROC REPORT"></a>PROC REPORT</h3><p>纵款目无法用分组变量，横款目值没有缩进，统计变量之间没有连字符，无法获得检验统计量和P值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">ods tagsets.rtf file=&quot;table6.rtf&quot; style=journal3a;</div><div class="line">ods escapechar=&apos;^&apos;;</div><div class="line">    title &quot;Table 6, Height and Weight by Gender&quot;;</div><div class="line">proc report data=sashelp.class nowd;</div><div class="line">    column sex height, (&quot;^R&apos;\brdrb\brdrs&apos;&quot; mean std) weight, (&quot;^R&apos;\brdrb\brdrs&apos;&quot; mean std);</div><div class="line">    define sex/group;</div><div class="line">    define height/analysis format=5.2;</div><div class="line">    define weight/analysis format=5.2;</div><div class="line">run;</div><div class="line">ods tagsets.rtf close;</div></pre></td></tr></table></figure>
-<h3 id="完美三线图"><a href="#完美三线图" class="headerlink" title="完美三线图"></a>完美三线图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line">/*1 血压状态数据整理*/</div><div class="line">/*1.1 获取频数百分比*/</div><div class="line">proc freq data=sashelp.heart; </div><div class="line">    table bp_status*sex /missing nopercent outpct out=desc1;</div><div class="line">run;</div><div class="line">data desc1;</div><div class="line">    set desc1;</div><div class="line">    length value $25;</div><div class="line">    value = compress(put(count, 6.)) || &apos; (&apos; || compress (put(pct_col, 4.1)) ||&apos;)&apos;;</div><div class="line">run;</div><div class="line"></div><div class="line">/*1.2 转置，性别作为列*/</div><div class="line">proc transpose data=desc1 out=desc1(drop=_name_) prefix=col;</div><div class="line">    var value;</div><div class="line">    by bp_status;</div><div class="line">    id sex;</div><div class="line">run;</div><div class="line"></div><div class="line">/*1.3 获取卡方检验P值*/</div><div class="line">proc freq data=sashelp.heart;</div><div class="line">    table bp_status*sex / norow nocol nopercent chisq;</div><div class="line">    output out=pvalue1(keep=p_pchi rename=(p_pchi=pvalue)) pchi;</div><div class="line">run;</div><div class="line"></div><div class="line">/*1.4 合并变量标签，描述数据，P值*/</div><div class="line">data dslabel1;</div><div class="line">    set pvalue1;</div><div class="line">    length label $ 85;</div><div class="line">    label=cats(&quot;^S=&#123;font_weight=bold&#125;&quot;, &quot;Blood presure status&quot;); /*RTF代码，加粗标签*/</div><div class="line">run;</div><div class="line"></div><div class="line">data merge1(keep=label col: pvalue);</div><div class="line">    set dslabel1 desc1;</div><div class="line">    if _n_&gt;1 then label=&quot;^&#123;nbspace 6&#125;&quot; || bp_status; /*RTF代码，增加缩进*/</div><div class="line">run;</div><div class="line"></div><div class="line">/*2 身高数据整理*/</div><div class="line">/*2.1 获取描述数据*/</div><div class="line">ods output summary=desc2;</div><div class="line">proc means data=sashelp.heart mean std;</div><div class="line">    class sex;</div><div class="line">    var height;</div><div class="line">run;</div><div class="line">data desc2(keep=sex meanstd);</div><div class="line">    set desc2;</div><div class="line">    meanstd = cats(put(height_mean,12.1), &quot;±&quot;, put(height_stddev,12.1));</div><div class="line">run;</div><div class="line"></div><div class="line">/*2.2 转置，性别作为列*/</div><div class="line">proc transpose data=desc2 out=desc2 prefix=col;</div><div class="line">    var meanstd;</div><div class="line">    id sex;</div><div class="line">run;</div><div class="line"></div><div class="line">/*2.3 判断方差齐性，获取t检验p值*/</div><div class="line">ods output equality=eql ttests=ttl;</div><div class="line">proc ttest data=sashelp.heart plots=non;</div><div class="line">    class sex;</div><div class="line">    var height;</div><div class="line">run;</div><div class="line">data pvalue2(keep=Probt rename=(Probt=Pvalue));</div><div class="line">    retain equV;</div><div class="line">    set eql ttl;</div><div class="line">    if ProbF&lt;0.05 then equV=0;</div><div class="line">    else equV=1;</div><div class="line">    if (equV=1 and variances=&quot;Equal&quot;) or (equV=0 and variances=&quot;Unequal&quot;);</div><div class="line">run;</div><div class="line"></div><div class="line">/*2.4 合并变量标签，描述数据，p值*/</div><div class="line">data merge2(keep=label col: pvalue);</div><div class="line">    length label $85;</div><div class="line">    merge desc2 pvalue2;</div><div class="line">    label=cats(&quot;^S=&#123;font_weight=bold&#125;&quot;, &quot;Height (in)&quot;); /*RTF代码，加粗标签*/</div><div class="line">run;</div><div class="line"></div><div class="line">/*3 合并数据*/</div><div class="line">data dsreport;</div><div class="line">    set merge:;</div><div class="line">run;</div><div class="line"></div><div class="line">/*4 Report输出*/</div><div class="line">options nodate nonumber missing=&apos; &apos;;</div><div class="line">ods tagsets.rtf file=&quot;table6.rtf&quot; style=journal3a;</div><div class="line">ods escapecha=&apos;^&apos;;</div><div class="line">    title &quot;Table 1.Blood Presure and Height by Sex&quot;;</div><div class="line">proc report data=dsreport nowd;</div><div class="line">    column label colfemale colmale pvalue;</div><div class="line">    define label / display &quot;Variables&quot;;</div><div class="line">    define colfemale / display &quot;Female&quot; right;</div><div class="line">    define colmale / display &quot;Male&quot; right;</div><div class="line">    define pvalue / analysis &quot;P Value&quot; f=pvalue6.4;</div><div class="line">run;</div><div class="line">footnote1 j=center height=10pt &quot;^&#123;nbspace&#125;Note: This is a demo&quot;;</div><div class="line">ods tagsets.rtf close;</div></pre></td></tr></table></figure>
-<h2 id="一缕檀烟万佛名：宏中奥秘"><a href="#一缕檀烟万佛名：宏中奥秘" class="headerlink" title="一缕檀烟万佛名：宏中奥秘"></a>一缕檀烟万佛名：宏中奥秘</h2><p>###宏</p>
-<p>SAS宏由宏语言和宏处理器构成。宏语言是与宏处理器沟通的语言。宏语言中以&amp;开头的是宏变量，以%开头的是SAS宏程序或宏函数。当SAS遇到&amp;或%开头的宏语言时，便触发宏处理器，执行宏操作。</p>
-<h3 id="创建宏变量"><a href="#创建宏变量" class="headerlink" title="创建宏变量"></a>创建宏变量</h3><ul>
-<li>%LET语句</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">/*文本*/</div><div class="line">%let bookname1=Romance of SAS Program;</div><div class="line">%let bookname2=SAS编程演义;</div><div class="line">%let address1=%str(Author%&apos;s address);</div><div class="line">%let address2=%nrstr(ShanghaiTech&amp;SMMU);</div><div class="line"></div><div class="line">/*数字*/</div><div class="line">%let phone1=13800137000;</div><div class="line">%let phone2=;</div><div class="line"></div><div class="line">/*算术表达式*/</div><div class="line">%let ex1=99+1;</div><div class="line">%let ex2=99.9+0.1;</div><div class="line"></div><div class="line">/*计算算术表达式*/</div><div class="line">%let ex3=%eval(99+1);</div><div class="line">%let ex4=%sysevalf(99.9+0.1);</div><div class="line"></div><div class="line">/*程序*/</div><div class="line">%let prg=%str(proc print data=sashelp.classr;run;);</div><div class="line"></div><div class="line">/*查看结果*/</div><div class="line">%put &amp;bookname1 &amp;bookname2 &amp;address1 &amp;address2 &amp;phone1 &amp;phone2 &amp;ex1 &amp;ex2 &amp;ex3 &amp;ex4 &amp;prg;</div></pre></td></tr></table></figure>
+<h3 id="1-2-推理机"><a href="#1-2-推理机" class="headerlink" title="1.2 推理机"></a>1.2 推理机</h3><p>运用过程叫做推理。如果由程序来处理推理过程，那么这个程序就叫做推理机/推理引擎（Inference Engine）。推理机是专家系统（专家系统是人工智能的一个分支）的核心模块。</p>
+<p>推理引擎根据知识表示的不同采取的控制策略也是不同的，常见的类型包括基于神经网络、基于案例和基于规则的推理机。</p>
+<h3 id="1-3-规则引擎"><a href="#1-3-规则引擎" class="headerlink" title="1.3 规则引擎"></a>1.3 规则引擎</h3><p>基于规则的推理机易于理解、易于获取、易于管理，被广泛采用。这种推理引擎被称为“规则引擎”。</p>
+<p>在规则引擎中，将知识表达为规则（rules），要分析的情况定义为事实（facts）。二者在内存中的存储分别称为Production Memory和Working Memory。</p>
 <ul>
-<li>%GLOBAL申明一个全局宏变量（无法赋值），既可以在宏程序内部，也可以在外部。</li>
-<li>%LOCAL申明一个局部宏变量（无法赋值），只能在宏程序内部。<ul>
-<li>确保宏程序内部定义的宏变量不会因为同名重写全局宏变量的值</li>
-<li>确保宏程序执行完毕后，这些宏变量立即消逝</li>
+<li>rules和facts：规则引擎接受的输入参数</li>
+<li>Pattern Matcher：根据facts找到匹配的rules<ul>
+<li>正向推理（Forward-Chaining）：正向推理也叫演绎法，由事实驱动，从 一个初始的事实出发，不断地应用规则得出结论。首先在候选队列中选择一条规则作为启用规则进行推理，记录其结论作为下一步推理时的证据。如此重复这个过程，直到再无可用规则可被选用或者求得了所要求的解为止。</li>
+<li>反向推理（Backward-Chaining）：反向推理也叫归纳法，由目标驱动，首先提出某个假设，然后寻找支持该假设的证据，若所需的证据都能找到，说明原假设是正确的；若无论如何都找不到所需要的证据，则说明原假设不成立，此时需要另做新的假设。</li>
 </ul>
 </li>
-<li>SQL里SELECT语句的INTO从句，可产生一个或一系列宏变量</li>
+<li>Agenda：管理PatternMatcher挑选出来的规则的执行次序</li>
+<li>Execution Engine：在外围负责根据Agenda输出的rules执行具体的操作</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">/*单个宏变量*/</div><div class="line">proc sql noprint;</div><div class="line">    select count(name) into:nname from sashelp.class;</div><div class="line">quit;</div><div class="line">%put &amp;nname;</div><div class="line"></div><div class="line">/*宏变量列表*/</div><div class="line">proc sql noprint;</div><div class="line">    select name into:namelist separated by &quot;,&quot; from sashelp.class;</div><div class="line">quit;</div><div class="line">%put &amp;namelist;</div></pre></td></tr></table></figure>
+<h3 id="1-4-规则引擎的作用"><a href="#1-4-规则引擎的作用" class="headerlink" title="1.4 规则引擎的作用"></a>1.4 规则引擎的作用</h3><p>规则引擎可以将规则的定义从代码中分离出来，将推理过程封装到规则引擎内部进行处理，这带来几个好处：</p>
 <ul>
-<li>DATA步的SYMPUT和SYMPUTX（去除首尾空格）语句。</li>
+<li>规则外部化，即有利于规则知识的复用，也可避免改变规则时带来的代码变更问题</li>
+<li>由规则引擎使用某种算法进行推理过程，不需要编写复杂晦涩的逻辑判断代码</li>
+<li>开发人员的不需要过多关注逻辑判断，可以专注于逻辑处理</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/*单个宏变量*/</div><div class="line">data _null_;</div><div class="line">set sashelp.class end=last;</div><div class="line">if last then call symput(&apos;nname&apos;,_n_);</div><div class="line">run;</div><div class="line">%put &amp;nname;</div><div class="line"></div><div class="line">/*宏变量列表*/</div><div class="line">data _nuul_;</div><div class="line">set sashelp.calss;</div><div class="line">call symputx(cats(&apos;name&apos;,_n_),name);</div><div class="line">run;</div><div class="line">%put &amp;namelist;</div></pre></td></tr></table></figure>
-<ul>
-<li>宏程序的宏参数会创建局部宏变量</li>
-<li>%WINDOWS语句</li>
-<li>宏程序中的%DO语句</li>
-<li>ODS OUTPUT语句的MATCH_ALL选项</li>
-</ul>
-<h3 id="宏符号表与作用域"><a href="#宏符号表与作用域" class="headerlink" title="宏符号表与作用域"></a>宏符号表与作用域</h3><p>宏符号表（Macro Symbol Table）存储着宏变量与其对应的值。</p>
-<ul>
-<li>全局宏符号表，SAS启动时，系统自动创建，其中存储的内容有：<ul>
-<li>系统自带的宏变量和值</li>
-<li>open code（宏程序外）环境下，用%LET语句创建的宏变量</li>
-<li>宏程序定义中，用%GLOBAL申明的宏变量</li>
-<li>DATA步中CALL SYMPUTX语句中申明了全局符号表</li>
-<li>PROC SQL中SELECT语句的INTO从句创建的宏变量</li>
-</ul>
-</li>
-<li>局部宏符号表，SAS执行宏程序时，系统自动创建，其中存储的内容有：<ul>
-<li>由宏程序的宏参数创建的宏变量</li>
-<li>宏程序中由%LET定义的宏变量，且在全局宏变量中没有同名宏变量</li>
-<li>宏程序中由%LOCAL定义的宏变量</li>
-</ul>
-</li>
-<li>判断是全局还是局部<ul>
-<li>采用%PUT语句的选项_USER_、_LOCAL_、_GLOBAL_查看符号表</li>
-<li>采用系统自带的宏函数%SYMLOCAL、%SYMGLOBAL进行判定</li>
+<h2 id="2-Drools"><a href="#2-Drools" class="headerlink" title="2 Drools"></a>2 Drools</h2><p><a href="https://www.tutorialspoint.com/drools/pdf/drools_sample_drools_program.pdf" target="_blank" rel="external">DROOLS - SAMPLE DROOLS PROGRAM</a></p>
+<h3 id="2-1-概览"><a href="#2-1-概览" class="headerlink" title="2.1 概览"></a>2.1 概览</h3><p>完整的drl文件包含以下几个部分：package，import，declares，globals，functions，queries，rules。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.sample</div><div class="line"><span class="keyword">import</span> com.sample.DroolsTest.Message;</div><div class="line"></div><div class="line">rule <span class="string">"Hello World"</span></div><div class="line">  when</div><div class="line">    m : Message(status == Message.HELLO, myMessage : message)</div><div class="line">  then</div><div class="line">    System.out.println(myMessage);</div><div class="line">    m.setMessage(<span class="string">"Goodbye cruel world"</span>);</div><div class="line">    m.setStatus(Message.GOODBYE);</div><div class="line">    update(m);</div><div class="line">end</div><div class="line"></div><div class="line">rule <span class="string">"GoodBye"</span></div><div class="line">  <span class="function">when</span></div><div class="line">    <span class="title">Message</span><span class="params">(status==Message.GOODBYE, myMessage:message)</span></div><div class="line">   then</div><div class="line">    System.out.<span class="title">println</span><span class="params">(myMessage)</span>;</div><div class="line">end</div></pre></td></tr></table></figure>
+<h3 id="2-2-package和import"><a href="#2-2-package和import" class="headerlink" title="2.2 package和import"></a>2.2 package和import</h3><p>与Java类似，drools头部必须要有一个package声明和import声明，且package声明必须放在规则文件的第一行。</p>
+<h3 id="2-3-规则定义"><a href="#2-3-规则定义" class="headerlink" title="2.3 规则定义"></a>2.3 规则定义</h3><p>一个规则通常包含三个部分：attribute（属性），LHS（条件部分），RHS（结果部分）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">rule <span class="string">"name"</span></div><div class="line">  attributes</div><div class="line">  when</div><div class="line">    LHS</div><div class="line">  then</div><div class="line">    RHS</div><div class="line">end</div></pre></td></tr></table></figure>
+<h4 id="2-3-1-LHS（条件部分）"><a href="#2-3-1-LHS（条件部分）" class="headerlink" title="2.3.1 LHS（条件部分）"></a>2.3.1 LHS（条件部分）</h4><ul>
+<li>可以包含多个条件，若条件部分为空的话，引擎自动添加一个eval(true)的条件。</li>
+<li>多个条件之间可使用and或or连接，默认是and关系。</li>
+<li>条件的语法：[绑定变量名:]\Object([field约束])<ul>
+<li>绑定变量名：可在该LHS后续的条件中引用</li>
+<li>field约束：当前对象里相关字段的条件限制，多个约束之间用”&amp;&amp;”(and)，”||”(or)和”,”(and)连接。约束中可使用的比较操作符包括：&gt;, &gt;=, &lt;, &lt;=, ==, !=, contains, not contains, memberof, not memberof, matches, not matchers</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">%macro testMacroVar(a=, b=);</div><div class="line">%put 所有自定义宏变量;</div><div class="line">%put _user_;</div><div class="line">%put 所有局部宏变量;</div><div class="line">%put _local_;</div><div class="line">%put 所有全局宏变量;</div><div class="line">%put _global_;</div><div class="line">%put sysver是否全局宏变量： %symglobl(sysver);</div><div class="line">%put a是否全局宏变量： %symglobl(a);</div><div class="line">%put b是否局部宏变量： %symlocal(b);</div><div class="line">%mend;</div><div class="line">%testMacroVar(a=Stats, b=Thinking)</div></pre></td></tr></table></figure>
-<h3 id="掩蔽宏变量"><a href="#掩蔽宏变量" class="headerlink" title="掩蔽宏变量"></a>掩蔽宏变量</h3><p>掩蔽（masking）：将符号当作普通的文本对待，不使用其特殊含义，有的文档也称为引用（quoting）。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">when</div><div class="line">  order:Order();</div><div class="line">then</div><div class="line">  ...</div><div class="line"></div><div class="line">when</div><div class="line">  $room : Room( )  #变量名可以是$开头</div><div class="line">  $sprinkler : Sprinkler( room == $room, on == true )</div><div class="line">  not Fire( room == $room )</div><div class="line">then</div><div class="line">  modify( $sprinkler ) &#123; setOn( false ) &#125;;</div><div class="line">  System.out.println( "Turn off the sprinkler for room " + $room.getName() );</div></pre></td></tr></table></figure>
+<h4 id="2-3-2-RHS（结果部分）"><a href="#2-3-2-RHS（结果部分）" class="headerlink" title="2.3.2 RHS（结果部分）"></a>2.3.2 RHS（结果部分）</h4><ul>
+<li>RHS部分定义了当LHS满足时要进行的操作</li>
+<li>RHS中可以编写代码，可以使用LHS部分中定义的绑定变量名以及drl头部定义的全局变量。</li>
+<li>虽然可以在RHS中直接写java代码，但不建议代码中有条件判断，否则就违背了使用规则的初衷。</li>
+</ul>
+<h5 id="2-3-2-1-使用宏函数"><a href="#2-3-2-1-使用宏函数" class="headerlink" title="2.3.2.1 使用宏函数"></a>2.3.2.1 使用宏函数</h5><p>RHS中可以使用宏函数对工作空间进行操作。当调用宏函数后，所有为设置“no-loop”属性的规则都会呗重新分配，符合条件的重新触发。</p>
+<p>宏函数都是StatefulSession中定义的方法，包括：</p>
 <ul>
-<li>需要掩蔽的符号：<ul>
-<li>运算符：如+ - * / &lt; &gt; = ¬ ^ ~ |</li>
-<li>助记符：如 AND OR NOT EQ NE LE LT GE GT IN</li>
-<li>其他：bank , ; “ “ ‘ ’ ( ) #</li>
+<li>insert：将一个Fact对象插入到当前的Working Memory</li>
+<li>update：对当前Working Memory中的Fact进行更新</li>
+<li>retract：从Working Memory中删除某个Fact对象</li>
 </ul>
-</li>
-<li>没有配对的符号，如 “ ‘ ( )，使用%B系列的函数掩蔽</li>
-<li>宏触发器 &amp; %，使用%NR系列的引用函数</li>
-<li>移除掩蔽主要发生在程序编译后、程序运行后、%UNQUOTE函数后</li>
-</ul>
-<h3 id="显示宏变量值"><a href="#显示宏变量值" class="headerlink" title="显示宏变量值"></a>显示宏变量值</h3><ul>
-<li>系统选项SYMBOLGEN</li>
-<li>%PUT语句</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">options symbolgen;</div><div class="line">%let title1=SAS编程演义;</div><div class="line">%let title2=数据整理与图表呈现;</div><div class="line">%let title=&amp;title1.:&amp;title2;</div><div class="line"></div><div class="line">options nosymbolgen;</div><div class="line">%let title1=SAS编程演义;</div><div class="line">%let title2=数据整理与图表呈现;</div><div class="line">%let title=&amp;title1.:&amp;title2;</div><div class="line">%put title1和title2合并后的title解析为：&amp;title;</div><div class="line"></div><div class="line">%put _all_; /*显示所有宏变量*/</div><div class="line">%put _automatic_; /*显示所有自动宏变量*/</div><div class="line">%put _user_; /*显示所有自定义宏变量*/</div><div class="line">%put _global_; /*显示所有全局宏变量*/</div><div class="line">%put _local_; /*显示所有局部宏变量*/</div></pre></td></tr></table></figure>
-<h3 id="引用宏变量"><a href="#引用宏变量" class="headerlink" title="引用宏变量"></a>引用宏变量</h3><ul>
-<li>直接引用</li>
-</ul>
-<p>如果是用宏变量给DATA步变量赋具体的值，需用引号引起来。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">%let bookname2017=SAS编程演义;</div><div class="line">%let year=2017;</div><div class="line">data tmp;</div><div class="line">    name=&quot;&amp;bookname2017&quot;;</div><div class="line">    year=&amp;year;</div><div class="line">run;</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">when</div><div class="line">  ...</div><div class="line">then</div><div class="line">  Customer cus=new Customer();</div><div class="line">  cus.setName("张三");</div><div class="line">  insert(cus);</div><div class="line"></div><div class="line">when </div><div class="line">  $customer:Customer(name=="张三", age&lt;10)</div><div class="line">then</div><div class="line">  $customer.setAge(customer.getAge()+1);</div><div class="line">  update(customer);</div><div class="line"></div><div class="line">when</div><div class="line">  $customer:Customer(name=="张三",age&lt;10)</div><div class="line">then</div><div class="line">  Customer customer=new Customer();</div><div class="line">  customer.setName("张三");</div><div class="line">  customer.setAge($customer.getAge()+1);</div><div class="line">  # 用新对象替换Working Memory中的旧对象</div><div class="line">  update(drools.getWorkingMemory().getFactHandleByIdentity($customer),customer);</div><div class="line"></div><div class="line"></div><div class="line">when</div><div class="line">  $customer:Customer(name=="张三")</div><div class="line">then</div><div class="line">  retract($customer);</div></pre></td></tr></table></figure>
+<h5 id="2-3-2-2-modify代码块"><a href="#2-3-2-2-modify代码块" class="headerlink" title="2.3.2.2 modify代码块"></a>2.3.2.2 modify代码块</h5><p>modify代码块用于快速修改并更新(update)某个 Fact 对象的多个属性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">modify(fact-expression)&#123;</div><div class="line">  &lt;修改 Fact 属性的表达式&gt;[,&lt;修改 Fact 属性的表达式&gt;*]</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">when</div><div class="line">  $customer:Customer(name==<span class="string">"张三"</span>,age==<span class="number">20</span>);</div><div class="line"><span class="function">then</span></div><div class="line">  <span class="title">modify</span><span class="params">($customer)</span>&#123;</div><div class="line">    setId(<span class="string">"super man"</span>),</div><div class="line">    setAge(<span class="number">30</span>)</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h5 id="2-3-2-3-drools宏对象"><a href="#2-3-2-3-drools宏对象" class="headerlink" title="2.3.2.3 drools宏对象"></a>2.3.2.3 drools宏对象</h5><p>通过使用drools宏对象可以实现在规则文件里直接访问 Working Memory，从而获取对当前的 Working Memory的更多控制。</p>
+<p>drools宏对象的常用方法包括：</p>
 <ul>
-<li>间接引用</li>
+<li>drools.getWorkingMemory()：获取当前的 WorkingMemory对象</li>
+<li>drools.halt()：在当前规则执行完成后，不再执行 其它未执行的规则</li>
+<li>drools.getRule()：得到当前的规则对象</li>
+<li>drools.insert(new Object)：向当前的WorkingMemory 当中插入指定的对象，功能与宏函数insert相同</li>
+<li>drools.update(new Object)：更新当前的WorkingMemory中指定的对象，功能与宏函数update相同</li>
+<li>drools.update(FactHandle Object)：更新当前的WorkingMemory中指定的对象，功能与宏函数update相同</li>
+<li>drools.retract(new Object)：从当前的WorkingMemory中删除指 定的对象，功能与宏函数retract相同</li>
 </ul>
-<p>SAS在解析时，会将两个连续的&amp;&amp;解析为一个&amp;，然后再次进行解析，知道&amp;全被解析完</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">%let bookname2017=SAS编程演义;</div><div class="line">%let year=2017;</div><div class="line">data tmp;</div><div class="line">    name=&quot;&amp;bookname&amp;&amp;year&quot;;</div><div class="line">run;</div><div class="line"></div><div class="line">%let L1=L2;</div><div class="line">%let L2=L3;</div><div class="line">%put &amp;L1; /*L2*/</div><div class="line">%put &amp;&amp;L1; /*&amp;L1 -&gt; L2*/</div><div class="line">%put &amp;&amp;&amp;L1; /*&amp;L2 -&gt; L3*/</div></pre></td></tr></table></figure>
+<h5 id="2-3-2-4-kcontext宏对象"><a href="#2-3-2-4-kcontext宏对象" class="headerlink" title="2.3.2.4 kcontext宏对象"></a>2.3.2.4 kcontext宏对象</h5><p>用来得到当前的KnowledgeRuntime对象，KnowledgeRuntime对象可以实现与引擎的各种交互。</p>
+<h4 id="2-3-3-规则属性"><a href="#2-3-3-规则属性" class="headerlink" title="2.3.3 规则属性"></a>2.3.3 规则属性</h4><ul>
+<li>salience：设置规则执行的优先级，默认值为0。数字越大越先执行，可以设置为负数，数字相同的使用随机顺序。设置该属性<code>salience 10</code>.</li>
+<li>no-loop：默认为false。设置为true时，表示该规则只会被引擎检查一次。引擎内部对Fact更新时，忽略本规则的再次检查。</li>
+<li>date-effective：设置规则的开始生效日期，默认接受“dd-MMM-yyyy”格式的字符串。修改日期格式：<code>System.setProperty(&quot;drools.dateformat&quot;,&quot;yyyy-MM-dd&quot;)</code></li>
+<li>data-expires：设置规则的过期日期，默认接受“dd-MMM-yyyy”格式的字符串。修改日期格式：<code>System.setProperty(&quot;drools.dateformat&quot;,&quot;yyyy-MM-dd&quot;)</code>。</li>
+<li>enabled：设置规则是否可用，默认为true。</li>
+<li>dialect：设置规则中使用的编程语言，默认为java，可设置为mvel。获取该属性的设置：<code>drools.getRule().getDialect()</code>，设置该属性<code>dialect mvel</code></li>
+<li>duration：指定延迟时间，在另一个线程中触发规则，单位为毫秒。</li>
+<li>activation-group：为规则划指定一个活动组（组名为字符串）。同一个活动组中的规则只执行一个，根据优先级(salience)来决定执行哪一个规则。</li>
+<li>agenda-group：为规则指定一个议程(agenda)组。指定了议程组的规则只有在该议程组得到焦点时才被触发。</li>
+<li>auto-focus：指定了auto-focus属性为true，则该规则自动得到焦点。</li>
+<li>ruleflow-group：指定规则流组。</li>
+<li>lock-on-active：当在规则上使用ruleflow-group属性或agenda-group属性的时候，将lock-on-action属性 的值设置为 true，可避免因某些 Fact 对象被修改而使已经执行过的规则再次被激活执行。</li>
+<li>when</li>
+</ul>
+<h3 id="2-4-注释"><a href="#2-4-注释" class="headerlink" title="2.4 注释"></a>2.4 注释</h3><ul>
+<li>多行注释：<code>/*注释*/</code></li>
+<li>单行注视：<code>#注释</code>或 <code>//注释</code></li>
+</ul>
+<h3 id="2-5-类型声明"><a href="#2-5-类型声明" class="headerlink" title="2.5 类型声明"></a>2.5 类型声明</h3><p>todo</p>
+<h3 id="2-6-全局变量"><a href="#2-6-全局变量" class="headerlink" title="2.6 全局变量"></a>2.6 全局变量</h3><p>todo</p>
+<h3 id="2-7-函数和import-function"><a href="#2-7-函数和import-function" class="headerlink" title="2.7 函数和import function"></a>2.7 函数和import function</h3><h4 id="2-7-1-函数的定义和使用"><a href="#2-7-1-函数的定义和使用" class="headerlink" title="2.7.1 函数的定义和使用"></a>2.7.1 函数的定义和使用</h4><p>函数是定义在规则文件中的一段代码，用于将规则文件中会被若干个规则复用的业务操作封装起来，减少规则编写的工作量。函数的可见范围是规则函数所在的规则文件。</p>
+<p>函数以function定义。可以是void，也可以有返回值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> test</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"></div><div class="line"><span class="function">function <span class="keyword">void</span> <span class="title">setOrder</span><span class="params">(Customer customer, <span class="keyword">int</span> orderSize)</span> </span>&#123;</div><div class="line">  List ls = <span class="keyword">new</span> ArrayList();</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;orderSize; i++)&#123;</div><div class="line">    Order order=<span class="keyword">new</span> Order();</div><div class="line">    ls.add(order);</div><div class="line">  &#125;</div><div class="line">  customer.setOrder(ls);</div><div class="line">&#125;</div><div class="line"></div><div class="line">rule <span class="string">"rule1"</span></div><div class="line">  when</div><div class="line">    $customer:Customer()</div><div class="line">  <span class="function">then</span></div><div class="line">    <span class="title">setOrder</span><span class="params">($customer,<span class="number">5</span>)</span>;</div><div class="line">    System.out.println(<span class="string">"rule 1 customer has order size:"</span>+$customer.getOrders().size());</div><div class="line">end</div><div class="line"></div><div class="line">rule <span class="string">"rule2"</span></div><div class="line">  when</div><div class="line">    $customer :Customer()</div><div class="line">  <span class="function">then</span></div><div class="line">    <span class="title">setOrder</span><span class="params">($customer,<span class="number">10</span>)</span>;</div><div class="line">    System.out.println(<span class="string">"rule 2 customer has order size:"</span>+$customer.getOrders().size());</div><div class="line">end</div></pre></td></tr></table></figure>
+<h4 id="2-7-2-引入静态方法"><a href="#2-7-2-引入静态方法" class="headerlink" title="2.7.2 引入静态方法"></a>2.7.2 引入静态方法</h4><p>实际应用当中，可以考虑使用在java类当中定义静态方法的办法来替代在规则文件当中定义函数。</p>
+<p>Drools 提供了一个特殊的 import 语句：import function。通过该 import 语句，可以实现将一个java类中静态方法引入到一个规则文件当中，使得该文件当中的规则可以像使用普通的Drools函数一样来使用java类中某个静态方法。</p>
+<h3 id="2-8-查询定义"><a href="#2-8-查询定义" class="headerlink" title="2.8 查询定义"></a>2.8 查询定义</h3><p>查询用于根据条件在当前的 WorkingMemory 当中查找 Fact。</p>
+<p>Drools 当中查询可分为两种：</p>
 <ul>
-<li>合并宏变量与普通文本</li>
+<li>不需要外部传入参数</li>
+<li>需要外部传入参数</li>
 </ul>
-<p>宏变量后面带一个点号，用以标识宏变量的结束</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">%let bookname2017=SAS编程演义;</div><div class="line">%let lib=sashelp;</div><div class="line">data class;</div><div class="line">    set &amp;lib..class;</div><div class="line">    bookname=&quot;&amp;bookname2017.:数据整理与图表呈现&quot;;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<h3 id="宏程序定义与调用"><a href="#宏程序定义与调用" class="headerlink" title="宏程序定义与调用"></a>宏程序定义与调用</h3><p><strong>%macro macro_name</strong> &lt;parameter_list&gt; &lt;/option(s)\&gt;</p>
-<p>​    &lt;macro_text&gt;</p>
-<p><strong>%mend</strong> &lt;macro_name&gt;;</p>
-<p><strong>%macro_name</strong> &lt;parameter_list&gt;</p>
-<ul>
-<li><strong>macro_name</strong>：宏程序名称，需要符合SAS命名规范，不能以SYS、AF、DM开头，不能用SAS的保留字，以免冲突</li>
-<li>parameter_list：宏参数，通过宏程序定义的局部变量，便于在宏文本中应用。参数通过逗号隔开<ul>
-<li>位置宏参数：按位置顺序定义识别 &lt;positional-parameter-1&gt;&lt;, positional-parameter-2…&gt;</li>
-<li>关键字宏参数：按名字=识别 &lt;keyword-parameter=&lt;value&gt; &lt;, keyword-parameter-2=&lt;value&gt; …&gt;&gt;</li>
-</ul>
-</li>
-<li><em>option(s)</em>：比如加密选项secure，存储选项store</li>
-<li>macro_text：宏文本是宏的主体，里面包括宏语句、DATA步语句、PROC语句等</li>
-<li>宏参数不是必需的，位置宏参数和关键字宏参数可以混用，但位置宏参数必须在关键字宏参数前。</li>
-<li>宏参数中如有特殊字符如&amp;、%、不配对的括号或引号、其他运算符等，需要做好宏变量的掩蔽。</li>
-<li>%mend之后的宏程序名非必需。</li>
-<li>调用宏程序时，末尾不需要分号结尾。</li>
-</ul>
-<h3 id="宏程序的存储加密"><a href="#宏程序的存储加密" class="headerlink" title="宏程序的存储加密"></a>宏程序的存储加密</h3><p>如果为了保护知识产权，想给他人使用宏程序但又不希望他人看到自己开发的宏程序源代码，可以将编译好的宏给别人，且设置为不显示宏的源代码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">options mstored sasmstore=demo /*指定存储位置为demo永久库*/</div><div class="line">%macro printds(dataset, obs=5) / store;</div><div class="line">    options nomprint nosource; /*不显示源代码*/</div><div class="line">    proc print data=&amp;dataset(obs=&amp;obs);</div><div class="line">    run;</div><div class="line">%mend printds;</div><div class="line"></div><div class="line">options mstored sasmstore=demo;</div><div class="line">%printds(sashelp.class, obs=5)</div></pre></td></tr></table></figure>
-<h3 id="IF-THEN-ELSE选择语句"><a href="#IF-THEN-ELSE选择语句" class="headerlink" title="%IF-%THEN-%ELSE选择语句"></a>%IF-%THEN-%ELSE选择语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">%macro printds(dataset, sex=F, obs=5,);</div><div class="line">    %if &amp;sex eq F %then %str(title &quot;First &amp;obs record for female&quot;;);</div><div class="line">    %else %if &amp;sex eq M %then %str(title &quot;First &amp;obs record for male&quot;;);</div><div class="line">    %else %str(title &quot;Wrong gender&quot;; %abort;);</div><div class="line">    proc print data=&amp;dataset(obs=&amp;obs where=(sex=&quot;&amp;sex&quot;));</div><div class="line">    run;</div><div class="line">%medn printde;</div><div class="line">%printde(sashelp.class,sex=M,obs=5)</div></pre></td></tr></table></figure>
-<h3 id="DO组语句"><a href="#DO组语句" class="headerlink" title="%DO组语句"></a>%DO组语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">%do</div><div class="line">    语句；</div><div class="line">%end</div></pre></td></tr></table></figure>
-<h3 id="DO循环语句"><a href="#DO循环语句" class="headerlink" title="%DO循环语句"></a>%DO循环语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">%macro importcsv;</div><div class="line">%do i=1 %to 100;</div><div class="line">    proc import out=csv&amp;i datafile=&quot;d:\data\casv&amp;i.csv&quot; dbms=csv replace;</div><div class="line">    run;</div><div class="line">%end;</div><div class="line">%mend;</div><div class="line"></div><div class="line">%importcsv</div></pre></td></tr></table></figure>
-<h3 id="DO-WHILE语句"><a href="#DO-WHILE语句" class="headerlink" title="%DO-%WHILE语句"></a>%DO-%WHILE语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">%macro importcsv;</div><div class="line">%let i=1;</div><div class="line">%do %while(&amp;i&lt;=100);</div><div class="line">    proc import out=csv&amp;i datafile=&quot;d:\data\casv&amp;i.csv&quot; dbms=csv replace;</div><div class="line">    run;</div><div class="line">    %let i=&amp;i+1;</div><div class="line">%end;</div><div class="line">%mend;</div><div class="line"></div><div class="line">%importcsv</div></pre></td></tr></table></figure>
-<h3 id="DO-UNTIL语句"><a href="#DO-UNTIL语句" class="headerlink" title="%DO-%UNTIL语句"></a>%DO-%UNTIL语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">%macro importcsv;</div><div class="line">%let i=1;</div><div class="line">%do %until(&amp;i&gt;100);</div><div class="line">    proc import out=csv&amp;i datafile=&quot;d:\data\casv&amp;i.csv&quot; dbms=csv replace;</div><div class="line">    run;</div><div class="line">    %let i=&amp;i+1;</div><div class="line">%end;</div><div class="line">%mend;</div><div class="line"></div><div class="line">%importcsv</div></pre></td></tr></table></figure>
-<h3 id="宏函数"><a href="#宏函数" class="headerlink" title="宏函数"></a>宏函数</h3><table>
-<thead>
-<tr>
-<th>类别</th>
-<th>宏函数</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>字符宏函数</td>
-<td>%index</td>
-<td>返回字符串第一次出现的位置</td>
-</tr>
-<tr>
-<td></td>
-<td>%length</td>
-<td>返回字符串长度</td>
-</tr>
-<tr>
-<td></td>
-<td>%scan %qscan</td>
-<td>按字符串中的位置截取单词</td>
-</tr>
-<tr>
-<td></td>
-<td>%substr %qsubstr</td>
-<td>截取子字符串</td>
-</tr>
-<tr>
-<td></td>
-<td>%upcase %qupcase</td>
-<td>转为大写字符</td>
-</tr>
-<tr>
-<td>计算函数</td>
-<td>%eval</td>
-<td>使用整数运算计算表达式结果</td>
-</tr>
-<tr>
-<td></td>
-<td>%sysevalf</td>
-<td>使用浮点运算计算表达式结果</td>
-</tr>
-<tr>
-<td>引用函数</td>
-<td>%str</td>
-<td>编译时掩蔽特殊字符及助记符</td>
-</tr>
-<tr>
-<td></td>
-<td>%nrstr</td>
-<td>%str 外加宏触发器字符</td>
-</tr>
-<tr>
-<td></td>
-<td>%quote</td>
-<td>执行时掩蔽特殊、助记、其他字符</td>
-</tr>
-<tr>
-<td></td>
-<td>%nrquote</td>
-<td>%quote 外加宏触发器字符</td>
-</tr>
-<tr>
-<td></td>
-<td>%bquote</td>
-<td>执行时掩蔽特殊、助记、其他字符和没有配对的符号</td>
-</tr>
-<tr>
-<td></td>
-<td>%nrbquote</td>
-<td>%bquote 外加宏触发器字符</td>
-</tr>
-<tr>
-<td></td>
-<td>%superq</td>
-<td>执行时掩蔽所有字符，且对结果保持</td>
-</tr>
-<tr>
-<td></td>
-<td>%unquote</td>
-<td>执行时去掉所有特殊、助记字符的掩蔽</td>
-</tr>
-<tr>
-<td>SYS系函数</td>
-<td>%sysmacexect</td>
-<td>返回宏执行状态</td>
-</tr>
-<tr>
-<td></td>
-<td>%sysmacexist</td>
-<td>判断宏程序是否已经定义</td>
-</tr>
-<tr>
-<td></td>
-<td>%sysmexecdepth</td>
-<td>返回宏嵌套的深度</td>
-</tr>
-<tr>
-<td></td>
-<td>%sysmexecname</td>
-<td>返回指定宏嵌套的深度的宏名称</td>
-</tr>
-<tr>
-<td></td>
-<td>%sysfunc %qsysfunc</td>
-<td>使用data步函数</td>
-</tr>
-<tr>
-<td></td>
-<td>%sysget</td>
-<td>返回环境变量的值</td>
-</tr>
-<tr>
-<td></td>
-<td>%sysprod</td>
-<td>判断SAS产品是否已经授权</td>
-</tr>
-<tr>
-<td>SYM系函数</td>
-<td>%symexist</td>
-<td>判断宏变量是否已经存在</td>
-</tr>
-<tr>
-<td></td>
-<td>%symglobl</td>
-<td>判断是否属于全局宏变量</td>
-</tr>
-<tr>
-<td></td>
-<td>%symlocal</td>
-<td>判断是否属于局部宏变量</td>
-</tr>
-</tbody>
-</table>
-<h3 id="宏开发"><a href="#宏开发" class="headerlink" title="宏开发"></a>宏开发</h3><ol>
-<li>硬代码实现：先不用任何宏代码，实现具体的任务</li>
-<li>移除上一步中的硬代码，该用宏变量、宏参数，如有必要，增加宏语句如以及宏函数</li>
-<li>宏代码测试优化：给宏变量赋值，逐步测试宏代码，优化宏代码。</li>
-</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">query <span class="string">"testQuery"</span></div><div class="line">  customer:Customer(age&gt;<span class="number">30</span>,orders.size &gt;<span class="number">10</span>)</div><div class="line">end</div><div class="line"></div><div class="line">query <span class="string">"testQuery2"</span>(<span class="keyword">int</span> $age,String $gender)</div><div class="line">  customer:Customer(age&gt;$age,gender==$gender)</div><div class="line">end</div></pre></td></tr></table></figure>
 
           
         
@@ -1385,7 +1234,7 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <p class="site-author-name" itemprop="name">Yuanyi Wu</p>
-            <p class="site-description motion-element" itemprop="description"></p>
+            <p class="site-description motion-element" itemprop="description">朝闻道 夕死可矣</p>
         </div>
 
         <nav class="site-state motion-element">
@@ -1395,7 +1244,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1406,7 +1255,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>

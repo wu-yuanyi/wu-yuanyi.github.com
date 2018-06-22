@@ -117,9 +117,9 @@ ODS Graphics System的五大部件：
 ODS Graphics 语句
 通过ON或OFF开关启用ODS Graphics
 通过统计过程选项PLOTS选项创建ODS G">
-<meta property="og:image" content="http://wu-yuanyi.github.io/../..//images/SAS/1.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义8/1.png">
 <meta property="og:image" content="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义8/../images/SAS/2.png">
-<meta property="og:image" content="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义8/../images/SAS/3.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义8/3.png">
 <meta property="og:image" content="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义8/../images/SAS/4.png">
 <meta property="og:image" content="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义8/../images/SAS/5.png">
 <meta property="og:image" content="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义8/../images/SAS/6.png">
@@ -160,7 +160,7 @@ ODS Graphics 语句
 <meta property="og:image" content="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义8/../../images/SAS/41.png">
 <meta property="og:image" content="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义8/../images/SAS/42.png">
 <meta property="og:image" content="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义8/../images/SAS/43.png">
-<meta property="og:updated_time" content="2018-06-22T07:30:26.468Z">
+<meta property="og:updated_time" content="2018-06-22T08:16:04.811Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《SAS编程演义》笔记（8章）">
 <meta name="twitter:description" content="菱花荇蔓随双桨：百变绘图ODS Graphics System
@@ -172,7 +172,7 @@ ODS Graphics System的五大部件：
 ODS Graphics 语句
 通过ON或OFF开关启用ODS Graphics
 通过统计过程选项PLOTS选项创建ODS G">
-<meta name="twitter:image" content="http://wu-yuanyi.github.io/../..//images/SAS/1.png">
+<meta name="twitter:image" content="http://wu-yuanyi.github.io/2017/09/13/SAS/SAS编程演义8/1.png">
 
 
 
@@ -507,7 +507,7 @@ ODS Graphics 语句
 <li>CATEGORYORDER=：排序方式</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    hbar DriveTrain / categoryorder=respdesc; /*横向 响应值降序*/</div><div class="line">run;</div><div class="line"></div><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbar DriveTrain / categoryorder=respssc; /*纵向 响应值升序*/</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="../..//images/SAS/1.png" alt="横向条图"></p>
+<p><img src="/2017/09/13/SAS/SAS编程演义8/1.png" alt="横向条图"></p>
 <h4 id="频数图"><a href="#频数图" class="headerlink" title="频数图"></a>频数图</h4><p>使PROC FREQ里TABLE语句的选项PLOTS=FREQPLOTS，此选项会自动调用ODS Graphics System绘制频数图。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc freq data=sashelp.cars;</div><div class="line">    table DriveTrain / plots=freqplots;</div><div class="line">run;</div></pre></td></tr></table></figure>
 <p><img src="/2017/09/13/SAS/SAS编程演义8/../images/SAS/2.png" alt="频数图"></p>
@@ -518,7 +518,7 @@ ODS Graphics 语句
 <li>LIMITS=：upper, lower, both 指定限制线展示形式</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">proc sgplot data=sashelp.cars;</div><div class="line">    vbar type /response=msrp stat=mean limitstat=stddev limits=upper;</div><div class="line">run;</div></pre></td></tr></table></figure>
-<p><img src="/2017/09/13/SAS/SAS编程演义8/../images/SAS/3.png" alt="带误差限的单式条图条图"></p>
+<p><img src="/2017/09/13/SAS/SAS编程演义8/3.png" alt="带误差限的单式条图条图"></p>
 <h4 id="单式百分比条图"><a href="#单式百分比条图" class="headerlink" title="单式百分比条图"></a>单式百分比条图</h4><p>单式百分比条图在绘制时需要先增加辅助分组变量，而后通过PROC SGPLOT的HBAR或VBAR实现。</p>
 <ul>
 <li>GROUP=：指定分组变量</li>

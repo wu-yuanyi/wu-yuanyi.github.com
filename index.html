@@ -277,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2018/06/19/推荐系统/">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2018/06/19/DataAnalysis/推荐系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuanyi Wu">
@@ -296,7 +296,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/19/推荐系统/" itemprop="url">推荐系统</a></h1>
+                <a class="post-title-link" href="/2018/06/19/DataAnalysis/推荐系统/" itemprop="url">推荐系统</a></h1>
         
 
         <div class="post-meta">
@@ -370,7 +370,7 @@
       
         
           
-            <h2 id="推荐引擎简介"><a href="#推荐引擎简介" class="headerlink" title="推荐引擎简介"></a>推荐引擎简介</h2><p><img src="/2018/06/19/推荐系统/recommendation_engines_chematic.png" alt="recommendation_engines_chematic"></p>
+            <h2 id="推荐引擎简介"><a href="#推荐引擎简介" class="headerlink" title="推荐引擎简介"></a>推荐引擎简介</h2><p><img src="/2018/06/19/DataAnalysis/推荐系统/recommendation_engines_chematic.png" alt="recommendation_engines_chematic"></p>
 
           
         
@@ -556,7 +556,7 @@
 <h4 id="ROC"><a href="#ROC" class="headerlink" title="ROC"></a>ROC</h4><p>ROC曲线的横坐标为false positive rate（FPR），纵坐标为true positive rate（TPR）。</p>
 <p>FPR = 1- Specificity = FP / N = FP / (TN + FP)</p>
 <p>TPR = Recall = Sensitivity = TP / P = TP / (TP + FN)</p>
-<p><img src="/2018/04/17/DataAnalysis/风控建模/../images/DataAnalysis/roc_curves.png" alt="roc_curve"></p>
+<p><img src="/2018/04/17/DataAnalysis/风控建模/roc_curves.png" alt="roc_curve"></p>
 <ul>
 <li>(0,1)：FPR=0，TPR=1，即FP和FN都为0，所有分类都正确。</li>
 <li>(1,0)：FPR=1，TPR=0，即FP和FN都为1，所有分类都错误。</li>
@@ -574,14 +574,14 @@
 <h3 id="Lift"><a href="#Lift" class="headerlink" title="Lift"></a>Lift</h3><p>Lift = [TP/(TP+FP)] / [(TP+FN)/(TP + FP + TN + FN)]</p>
 <p>用于衡量与不利用模型相比，模型预测能力的提升度。Lift越大，模型效果越好。</p>
 <p>在不使用模型时（baseline model），需要在整个样本中挑选，挑选的准确率是(TP+FN)/(TP + FP + TN + FN)。</p>
-<p>在使用模型时，，只在预测为positive的样例中挑选，挑选的准确率是TP/(TP+FP)。<img src="/2018/04/17/DataAnalysis/风控建模/../images/DataAnalysis/lift.png" alt="lift"></p>
+<p>在使用模型时，，只在预测为positive的样例中挑选，挑选的准确率是TP/(TP+FP)。<img src="/2018/04/17/DataAnalysis/风控建模/lift.png" alt="lift"></p>
 <p>当阈值越大，越少的观测值会归为正例，但这部分越具有正例特征（以银行向客户推荐信用卡的例子来看，这一部分人群对推荐的反应最为活跃），所以在这个设置下，对应的lift值最大。当阈值越小，越多的观测值会归为正例，这时分类的效果就跟baseline model差不多了，相对应的lift值就接近于1。</p>
 <h3 id="Gain"><a href="#Gain" class="headerlink" title="Gain"></a>Gain</h3><p>增益图与提升图的区别在于纵坐标。它的纵坐标是TP/(TP+FP)。</p>
 <p>增益图是描述整体精准率的指标。按照模型预测出的概率从高到低排列，将每一个百分位数内的精准率指标标注在图形区域内，就形成了非累积的增益图。如果对每一个百分位及其之前的精准率求和，并将值标注在图形区域内，则形成累积的增益图。</p>
-<p><img src="/2018/04/17/DataAnalysis/风控建模/../images/DataAnalysis/gain.png" alt="201800426gain"></p>
+<p><img src="/2018/04/17/DataAnalysis/风控建模/gain.png" alt="201800426gain"></p>
 <h3 id="K-S"><a href="#K-S" class="headerlink" title="K-S"></a>K-S</h3><p>正样本洛伦兹曲线记为f(x)，负样本洛伦兹曲线记为g(x)，K-S曲线实际上是f(x)与g(x)的差值曲线。K-S曲线的最高点（最大值）定义为KS值，KS值越大，模型分值的区分度越好，KS值为0代表是最没有区分度的随机模型。准确的来说，K-S是用来度量阳性与阴性分类区分程度的。</p>
 <p>K-S曲线的纵坐标是TPR与FPR。</p>
-<p><img src="/2018/04/17/DataAnalysis/风控建模/../images/DataAnalysis/k-s.png" alt="20180426k-s"></p>
+<p><img src="/2018/04/17/DataAnalysis/风控建模/k-s.png" alt="20180426k-s"></p>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="http://alexkong.net/2013/06/introduction-to-auc-and-roc/" target="_blank" rel="external">ROC和AUC介绍以及如何计算AUC</a></p>
 <p><a href="https://www.jianshu.com/p/6ffa3df3ec86" target="_blank" rel="external">如何评估一个机器学习模型</a></p>
 

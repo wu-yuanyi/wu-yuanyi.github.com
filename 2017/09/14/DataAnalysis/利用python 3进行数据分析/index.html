@@ -105,12 +105,14 @@
 <meta property="og:description" content="环境部署1234pip3 install numpypip3 install scipypip3 install pandaspip3 install matplotlib
 第一章1234import numpy, matplotlibfrom matplotlib import pyplot as petplt.plot(numpy.arange(10))plt.show()
 第二章123456">
-<meta property="og:updated_time" content="2018-06-21T08:07:30.244Z">
+<meta property="og:image" content="http://wu-yuanyi.github.io/Users/wuyuanyi/workspace/github/blog/source/_posts/DataAnalysis/recommendation_engines_chematic.png">
+<meta property="og:updated_time" content="2018-06-22T06:25:45.483Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用python 3.6进行数据分析">
 <meta name="twitter:description" content="环境部署1234pip3 install numpypip3 install scipypip3 install pandaspip3 install matplotlib
 第一章1234import numpy, matplotlibfrom matplotlib import pyplot as petplt.plot(numpy.arange(10))plt.show()
 第二章123456">
+<meta name="twitter:image" content="http://wu-yuanyi.github.io/Users/wuyuanyi/workspace/github/blog/source/_posts/DataAnalysis/recommendation_engines_chematic.png">
 
 
 
@@ -385,6 +387,7 @@
         <h1 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pip3 install numpy</div><div class="line">pip3 install scipy</div><div class="line">pip3 install pandas</div><div class="line">pip3 install matplotlib</div></pre></td></tr></table></figure>
 <h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy, matplotlib</div><div class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> pet</div><div class="line">plt.plot(numpy.arange(<span class="number">10</span>))</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
 <h1 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> scipy</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> json</div><div class="line"></div><div class="line">records = [json.loads(line) <span class="keyword">for</span> line <span class="keyword">in</span> open(path)]</div><div class="line">time_zones = [rec[<span class="string">'tz'</span>] <span class="keyword">for</span> rec <span class="keyword">in</span> records <span class="keyword">if</span> <span class="string">'tz'</span> <span class="keyword">in</span> rec]</div><div class="line"></div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_counts2</span><span class="params">(sequence)</span>:</span></div><div class="line">    counts = defaultdict(int)</div><div class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> sequence:</div><div class="line">        counts[x] +=<span class="number">1</span></div><div class="line">    <span class="keyword">return</span> counts</div><div class="line"><span class="comment"># sequence=[0,0,0,0,1,1,1,1,1]</span></div><div class="line"><span class="comment"># d = get_counts2(sequence)</span></div><div class="line"><span class="comment"># &gt;&gt;&gt; defaultdict(int, &#123;0: 4, 1: 5&#125;)</span></div><div class="line"><span class="comment"># dcit(d.items())</span></div><div class="line"><span class="comment"># &gt;&gt;&gt; &#123;0: 4, 1: 5&#125;</span></div><div class="line"></div><div class="line">counts = get_counts(time_zones)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">top_counts</span><span class="params">(count_dcit, n=<span class="number">10</span>)</span>:</span></div><div class="line">   value_key_pairs = [(count, tz) <span class="keyword">for</span> tz, count <span class="keyword">in</span> count_dict.items()]</div><div class="line">   value_key_pairs.sort()</div><div class="line">   <span class="keyword">return</span> value_key_pairs[-n:]</div></pre></td></tr></table></figure>
+<p><img src="/Users/wuyuanyi/workspace/github/blog/source/_posts/DataAnalysis/recommendation_engines_chematic.png" alt="recommendation_engines_chematic"></p>
 
       
     </div>
@@ -505,7 +508,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="en">
+<html class="theme-next mist use-motion" lang="en">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -111,7 +111,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '5.1.2',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -822,7 +822,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/08/01/Databse/mySQL grammar/">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/08/01/Database/mySQL grammar/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuanyi Wu">
@@ -841,7 +841,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/01/Databse/mySQL grammar/" itemprop="url">MySQL grammer</a></h1>
+                <a class="post-title-link" href="/2017/08/01/Database/mySQL grammar/" itemprop="url">MySQL grammer</a></h1>
         
 
         <div class="post-meta">
@@ -876,8 +876,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Databse/" itemprop="url" rel="index">
-                    <span itemprop="name">Databse</span>
+                  <a href="/categories/Database/" itemprop="url" rel="index">
+                    <span itemprop="name">Database</span>
                   </a>
                 </span>
 
@@ -972,7 +972,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/04/11/Databse/happybase/">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/04/11/Database/happybase/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuanyi Wu">
@@ -991,7 +991,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/11/Databse/happybase/" itemprop="url">Start with happybase on Mac</a></h1>
+                <a class="post-title-link" href="/2017/04/11/Database/happybase/" itemprop="url">Start with happybase on Mac</a></h1>
         
 
         <div class="post-meta">
@@ -1026,8 +1026,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Databse/" itemprop="url" rel="index">
-                    <span itemprop="name">Databse</span>
+                  <a href="/categories/Database/" itemprop="url" rel="index">
+                    <span itemprop="name">Database</span>
                   </a>
                 </span>
 
@@ -1146,7 +1146,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/03/27/S&P/Click Fraud/">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/03/27/S&P/Tracking user with browser fingerprint/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuanyi Wu">
@@ -1165,7 +1165,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/27/S&P/Click Fraud/" itemprop="url">CLick Fraud</a></h1>
+                <a class="post-title-link" href="/2017/03/27/S&P/Tracking user with browser fingerprint/" itemprop="url">Tracking user with browser' fingerprint</a></h1>
         
 
         <div class="post-meta">
@@ -1239,41 +1239,229 @@
       
         
           
-            <p>PPC(Pay Per Click) == CPC(Cost Per Click)<br>Click Fraud: Caused by competitors, disgruntled employees, software bots, and angry customers clicking on your ads.</p>
-<h2 id="ClickCease"><a href="#ClickCease" class="headerlink" title="ClickCease"></a>ClickCease</h2><p><a href="https://www.clickcease.com" target="_blank" rel="external">ClickCease</a></p>
+            <h2 id="Single-browser"><a href="#Single-browser" class="headerlink" title="Single-browser"></a>Single-browser</h2><h3 id="state-of-the-art"><a href="#state-of-the-art" class="headerlink" title="state of the art"></a>state of the art</h3><h4 id="Paper"><a href="#Paper" class="headerlink" title="Paper"></a>Paper</h4><blockquote>
+<p><a href="https://hal.inria.fr/hal-01285470/file/beauty-sp16.pdf" target="_blank" rel="external">Beauty and the Beast: Diverting modern web browsers to build unique browser fingerprints</a></p>
+</blockquote>
+<h4 id="Website"><a href="#Website" class="headerlink" title="Website"></a>Website</h4><blockquote>
+<p><a href="https://amiunique.org/" target="_blank" rel="external">AmIUnique</a></p>
+</blockquote>
+<h4 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">Attribute</th>
+<th style="text-align:center">Source</th>
+<th style="text-align:right">Function or Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">User agent</td>
+<td style="text-align:center">HTTP header</td>
+<td style="text-align:right">“Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36”</td>
+</tr>
+<tr>
+<td style="text-align:left">Accept</td>
+<td style="text-align:center">HTTP header</td>
+<td style="text-align:right">“text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,<em>/</em>;q=0.8””text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,<em>/</em>;q=0.8”</td>
+</tr>
+<tr>
+<td style="text-align:left">Content encoding</td>
+<td style="text-align:center">HTTP header</td>
+<td style="text-align:right">“gzip, deflate, sdch, br”</td>
+</tr>
+<tr>
+<td style="text-align:left">Content language</td>
+<td style="text-align:center">HTTP header</td>
+<td style="text-align:right">“en-US,en;q=0.8”</td>
+</tr>
+<tr>
+<td style="text-align:left">List of plugins</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right">navigator.plugins</td>
+</tr>
+<tr>
+<td style="text-align:left">Platform</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right">navigator.platform</td>
+</tr>
+<tr>
+<td style="text-align:left">Cookies enabled</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right">navigator.cookieEnabled</td>
+</tr>
+<tr>
+<td style="text-align:left">Do not track</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right">navigator.doNotTrack</td>
+</tr>
+<tr>
+<td style="text-align:left">Timezone</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right">new Date().getTimezoneOffset()</td>
+</tr>
+<tr>
+<td style="text-align:left">Screen resolution and depth</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right">screen.width/height/colordepth</td>
+</tr>
+<tr>
+<td style="text-align:left">Use of local/session storage</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right">localStorage/sessionStorage</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Canvas</strong></td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left">WebGL Vendor</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right">canvas.getContext(“…”)<sup>code 1</sup></td>
+</tr>
+<tr>
+<td style="text-align:left">WebGL Render</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right">canvas.getContext(“…”)<sup>code 1</sup></td>
+</tr>
+<tr>
+<td style="text-align:left">Use of Adblock</td>
+<td style="text-align:center">JavaScript</td>
+<td style="text-align:right"><a href="http://www.detectadblock.com/" target="_blank" rel="external">Detect Adblock</a></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>List of fonts</strong></td>
+<td style="text-align:center">Sinde-channel</td>
+<td style="text-align:right"><a href="https://seclab.cs.ucsb.edu/media/uploads/papers/sp2013_cookieless.pdf" target="_blank" rel="external">List 1 in Cookieless Monster<sup>code 2</sup></a></td>
+</tr>
+<tr>
+<td style="text-align:left"><em>List of fonts</em></td>
+<td style="text-align:center">Flash</td>
+<td style="text-align:right">flash.text.Font.enumerateFonts(true)</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>Screen resolution</em></td>
+<td style="text-align:center">Flash</td>
+<td style="text-align:right">flash.system.Capabilities.screenResolutionX/Y</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>Platform</em></td>
+<td style="text-align:center">Flash</td>
+<td style="text-align:right">flash.system.Capabilities.os</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>Language</em></td>
+<td style="text-align:center">Flash</td>
+<td style="text-align:right">flash.system.Capabilities.language</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>code 1<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">"webgl"</span>) || canvas.getContext(<span class="string">"experimental-webgl"</span>);</div><div class="line"><span class="keyword">if</span>(ctx.getSupportedExtensions().indexOf(<span class="string">"WEBGL_debug_renderer_info"</span>) &gt;= <span class="number">0</span>) &#123;</div><div class="line">    webGLVendor = ctx.getParameter(ctx.getExtension(<span class="string">'WEBGL_debug_renderer_info'</span>).UNMASKED_VENDOR_WEBGL);</div><div class="line">    webGLRenderer = ctx.getParameter(ctx.getExtension(<span class="string">'WEBGL_debug_renderer_info'</span>).UNMASKED_RENDERER_WEBGL);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    webGLVendor = <span class="string">"Not supported"</span>;</div><div class="line">    webGLRenderer = <span class="string">"Not supported"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>code 2<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_text_dimensions</span>(<span class="params">font</span>)</span>&#123;</div><div class="line">  h = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"BODY"</span>)[<span class="number">0</span>];</div><div class="line">  d = <span class="built_in">document</span>.createElement(<span class="string">"DIV"</span>);</div><div class="line">  s = <span class="built_in">document</span>.createElement(<span class="string">"SPAN"</span>);</div><div class="line">  d.appendChild(s);</div><div class="line">  d.style.fontFamily = font;</div><div class="line">  s.style.fontFamily = font;</div><div class="line">  s.style.fontSize = <span class="string">"72px"</span>;</div><div class="line">  s.innerHTML = <span class="string">"font_detection"</span>;</div><div class="line">  h.appendChild(d);</div><div class="line">  textWidth = s.offsetWidth;</div><div class="line">  textHeight = s.offsetHeight;</div><div class="line">  h.removeChild(d);</div><div class="line">  <span class="keyword">return</span> [textWidth, textHeight];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="How-to-detect-a-specific-Chrome-extension-is-installed-from-regular-HTML-page"><a href="#How-to-detect-a-specific-Chrome-extension-is-installed-from-regular-HTML-page" class="headerlink" title="How to detect a specific Chrome extension is installed from regular HTML page"></a>How to detect a specific Chrome extension is installed from regular HTML page</h4><p>Each submitted extension on Chrome store has a special number.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">detectExtension</span>(<span class="params">extensionId, callback</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> img;</div><div class="line">    img = <span class="keyword">new</span> Image();</div><div class="line">    img.src = <span class="string">"chrome-extension://"</span> + extensionId + <span class="string">"/resources/icon_16.png"</span>;</div><div class="line">    img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        callback(<span class="literal">true</span>);</div><div class="line">    &#125;;</div><div class="line">    img.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        callback(<span class="literal">false</span>);</div><div class="line">    &#125;;</div></pre></td></tr></table></figure></p>
+<h2 id="Cross-browser"><a href="#Cross-browser" class="headerlink" title="Cross-browser"></a>Cross-browser</h2><h4 id="Paper-1"><a href="#Paper-1" class="headerlink" title="Paper"></a>Paper</h4><p><a href="http://yinzhicao.org/TrackingFree/crossbrowsertracking_NDSS17.pdf" target="_blank" rel="external">(Cross-)Browser Fingerprinting via OS and Hardware Level Features</a></p>
+<h4 id="Website-1"><a href="#Website-1" class="headerlink" title="Website"></a>Website</h4><p><a href="http://uniquemachine.org/index.html" target="_blank" rel="external">UNIQUEMACHINE</a></p>
+<h4 id="Weakness"><a href="#Weakness" class="headerlink" title="Weakness"></a>Weakness</h4><ul>
+<li>Small size of the training data<br>Only 3,615 fingerprints from 1,903 users within three months.</li>
+<li>WebGL tasks need a significant time overhead.</li>
+</ul>
+<h4 id="Contribution"><a href="#Contribution" class="headerlink" title="Contribution"></a>Contribution</h4><ul>
+<li>AmIUnique considered WebGL is “too brittle and unreliable”. Because they select a random WebGL task and does not restrict many variables, such as texture, transparency, light, canvas size and anti-aliasing.</li>
+<li>Some differences between rendering results are very subtle, i.e., with one or two pixel variance.</li>
+<li>WebGL rendering is a combination of software and hardware in which the hardware contributes more than the software. The uniqueness of software rendering is definitely much lower than the one of hardware rendering but still not zero.</li>
+</ul>
+<h4 id="Features-1"><a href="#Features-1" class="headerlink" title="Features"></a>Features</h4><h5 id="Screen-resolution"><a href="#Screen-resolution" class="headerlink" title="Screen resolution"></a>Screen resolution</h5><ul>
+<li><strong>problem:</strong> The resolution changes in Firefox and IE when the user zooms in or out the web page.</li>
+<li><strong>method:</strong><ul>
+<li>Detect the zoom levels based on the size of a div tag and the device pixel ratio, and then adjust the screen resolution correspondingly.</li>
+<li>The ratio between screen width and height, which does not change with the zoom level.</li>
+</ul>
+</li>
+<li><strong>addition:</strong><ul>
+<li>availHeight, availWidth, availLeft, availTop, and screenOrientation.</li>
+<li>Users may open different browser in  different screens which have different resolutions.</li>
+</ul>
+</li>
+</ul>
+<h5 id="Number-of-CPU-virtual-cores"><a href="#Number-of-CPU-virtual-cores" class="headerlink" title="Number of CPU virtual cores"></a>Number of CPU virtual cores</h5><ul>
+<li><strong>method:</strong> navigator.hardwareConcurrency</li>
+<li><strong>addition:</strong> Safari will cut the number available cores to Web Workers by half.</li>
+</ul>
+<h5 id="AudioContext"><a href="#AudioContext" class="headerlink" title="AudioContext"></a>AudioContext</h5><p>Peak values and their corresponding frequencies are relatively stable across browsers.</p>
 <ul>
-<li>24*7 Always On Click-Fraud Monitoring</li>
-<li>Stops Click-Fraud Before It Happens</li>
-<li>Business-Specific Click-Fraud detection Rules</li>
-<li>Save Money(up to 20%-25% of your advertising budget gets lost due to click fraud)</li>
+<li><strong>paper:</strong> <a href="http://randomwalker.info/publications/OpenWPM_1_million_site_tracking_measurement.pdf" target="_blank" rel="external">Online Tracking:<br>A 1-million-site Measurement and Analysis</a></li>
+<li><strong>problem:</strong> The entropy is much smaller than the entire entropy of the entire wave.</li>
 </ul>
-<p>FAQs</p>
+<h5 id="List-of-fonts"><a href="#List-of-fonts" class="headerlink" title="List of fonts"></a>List of fonts</h5><ul>
+<li><strong>problem:</strong> Not all fonts are cross-browser fingerprintable because some fonts are web specific and provided by browsers.</li>
+</ul>
+<h5 id="Line-curve-and-anti-aliasing"><a href="#Line-curve-and-anti-aliasing" class="headerlink" title="Line, curve and anti-aliasing"></a>Line, curve and anti-aliasing</h5><p>There are many existing algorithms for anti-aliasing, such as first-principles approach, signal processing approach, and mipmapping, which make anti-aliasing fingerprintable.</p>
+<h5 id="Vertex-shader-and-fragment-shader"><a href="#Vertex-shader-and-fragment-shader" class="headerlink" title="Vertex shader and fragment shader"></a>Vertex shader and fragment shader</h5><p>Algorithm differs from one graphic card to another, making texture fingerprintable.</p>
 <ul>
-<li>Doesn’t Google prevent click fraud?<br>Google does detect click fraud, but does not prevent it. Instead, Google will give back credit to your account days after the fraud took place and only after you claim it.</li>
-<li>How do you detect fraudulent ad clicks?<br>(1) A HTML code that detects the attacker’s activity on your website.<br>(2) An Adwords tracking template that connects us directly to Google to get unique information regarding each click.</li>
+<li><strong>Varyings:</strong> Provide an interface between Vertex and Fragment Shader. The interpolation algorithm varies in different computer graphics cards.</li>
+<li><strong>Textures:</strong> Give a setting of mapping between vertexes and texture, a fragment shader calculates the color of each pixel based on the texture.</li>
 </ul>
-<h2 id="PPC-Surge"><a href="#PPC-Surge" class="headerlink" title="PPC Surge"></a>PPC Surge</h2><p><a href="https://www.ppcsurge.com" target="_blank" rel="external">PPC Surge</a><br>Once the Monitor is created, we will insert a tracking URL into your Google Adwords account. When a visitor clicks on your ad the tracking URL directs them to our website where we collect their IP address and other data (e.g., keyword) and redirect them to your site. This happens so quickly that, from the visitor’s perspective, it appears as though he/she simply clicked through to your site directly.</p>
-<p>If we detect a potential click fraud, instead of instantly redirecting the visitor to your website, we display a warning message on our site.</p>
-<p>If after seeing the warning message the visitor continues to click on your ads, our software tells Google to not display any more ads to that IP address thereby saving your advertising budget.</p>
-<h2 id="How-Google-doing-about-it"><a href="#How-Google-doing-about-it" class="headerlink" title="How Google doing about it?"></a>How Google doing about it?</h2><ul>
-<li>Advanced algorithms detect and filter out invalid clicks in real time, before advertisers are even charged.</li>
-<li>Google’s Ad Traffic Quality Team also conducts manual, offline analysis and removes any clicks that they deem invalid before advertisers are charged.</li>
-<li>Google also launches investigations based on advertisers’ reports of suspicious activity.</li>
-</ul>
-<h2 id="How-to-identify-click-fraud-by-yourself"><a href="#How-to-identify-click-fraud-by-yourself" class="headerlink" title="How to identify click fraud by yourself?"></a>How to identify click fraud by yourself?</h2><p>You need internal reporting. Internal reporting would tell you if that lead became a sale.</p>
+<h5 id="Transparency-via-Alpha-Channel"><a href="#Transparency-via-Alpha-Channel" class="headerlink" title="Transparency via Alpha Channel"></a>Transparency via Alpha Channel</h5><p>Because some graphics cards adopt discrete alpha values, some jumps may be observed in the changes of transparency effects.</p>
+<h5 id="Image-encoding-and-decoding"><a href="#Image-encoding-and-decoding" class="headerlink" title="Image encoding and decoding"></a>Image encoding and decoding</h5><p>Different algorithms may uncover different information during decompression. Both DataURL and JPEG formats are unstable across different browsers, because these formats are with loss and implemented differently in multiple browsers and the server side as well.</p>
 <ul>
-<li>IP address<br>IP address is pretty self-explanatory.</li>
-<li>click timestamp<br>The time when someone arrives on your site after clicking an ad.</li>
-<li>action timestamp<br>The time when that person completed an action on your site.<br>If you see an IP address with a bunch of click timestamps but no action timestamps, then that is likely click fraud.</li>
-<li>user agent<br>Identify whether someone on a particular IP is the same person.</li>
-<li>proxy<br>If the searches are very different, it’s likely a proxy server. If the search queries are similar and are occurring over a super short time period, the clicks are probably fraudulent.</li>
+<li><strong>problem:</strong> a single-browser feature, and cannot be used for cross-browser</li>
 </ul>
-<h2 id="4-tips-to-protect-yourself-from-click-happy-criminals"><a href="#4-tips-to-protect-yourself-from-click-happy-criminals" class="headerlink" title="4 tips to protect yourself from click-happy criminals"></a>4 tips to protect yourself from click-happy criminals</h2><ul>
-<li>Turn to Facebook/Twitter Ads<br>社交网络没有第三方发布者，他们往往是主要的点击诈骗的来源。恶意竞争者也很少见，因为有先进的定位选择。Set up IP Exclusions in AdWords</li>
-<li>Run GDN Remarketing Campaigns（只发部给到过网站的人看）<br>不是很懂</li>
-<li>Adjust Your Ad Targeting<br>排除一些劳动力便宜的地点或语言（click farms）<h2 id="To-be-Continued"><a href="#To-be-Continued" class="headerlink" title="To be Continued"></a>To be Continued</h2></li>
+<h5 id="Installed-writing-scripts-languages"><a href="#Installed-writing-scripts-languages" class="headerlink" title="Installed writing scripts (languages)"></a>Installed writing scripts (languages)</h5><p>A browser with a particular language installed will display the language correctly, and otherwise show several boxes.</p>
+<h4 id="WebGL-tasks"><a href="#WebGL-tasks" class="headerlink" title="WebGL tasks"></a>WebGL tasks</h4><p>The size of the canvas is 256×256. The axes of the canvas are defined as follows. [0, 0, 0] is the middle of the canvas, where x-axis is the horizontal line that increases to the right, y-axis is the vertical line that increases to the bottom, and z-axis increases when moving far from the screen. An ambient light with the power of [R: 0.3, G: 0.3, B: 0.3] on a scale of 1 is present, and a camera is placed at the location of [0, 0, -7].</p>
+<ul>
+<li><p>Task (a): Texture<br>Randomly-generated texture rather than a regular will have more fingerprintable features.</p>
+</li>
+<li><p>Task (b): Varyings</p>
+</li>
+<li><p>Task (b’) Anti-aliasing + Varyings</p>
+</li>
+<li><p>Task (c) Camera（缩小立方体，减少了差异）<br>Camera moved to a new location of [-1, -4, 10]</p>
+</li>
+<li><p>Task (d) Lines and curves</p>
+</li>
+<li><p>Task (d’) Anti-aliasing +Anti-aliasing + Lines and curves</p>
+</li>
+<li><p>Task (e) Multi-models<br>信息熵比Task a就大了0.01</p>
+</li>
+<li><p>Task (f) Light<br>a diffuse, point white light. The power of the light is 2 for each primary color, and the light source is located at [3.0, -4.0, -2.0].<br>模型是彩色的，单色光可能会减少一些细微的差异。光照太弱不能照亮模型，太强会让所有都变成白色。位置是随机的。<br>信息熵比Task a就大了一点点</p>
+</li>
+<li><p>Task (g) Light and models<br>the interaction of a single, diffuse, point light and two models, because one model may create a shadow on another when illuminated by a point light.<br>信息熵比Task f就大了一点点信息熵就大了0.03</p>
+</li>
+<li><p>Task (h) Specular Light<br>test the effects of a diffuse point light with another color and a specular point light on two models.<br>信息熵比Task e大了0.9（f比e大了0.01）</p>
+</li>
+<li><p>Task (h’) Anti-aliasing + Specular Light</p>
+</li>
+<li><p>Task (h”) Anti-aliasing + Specular Light + Rotation<br>信息熵减小，稳定性增加，转了一面，信息变少了</p>
+</li>
+<li><p>Task (i) Two Textures（差了，第一层纹理是精心挑选的）<br>Add another texture on the multi-models in Task e.</p>
+</li>
+<li><p>Task (j) Alpha</p>
+<ul>
+<li>many GPUs do not accept smaller steps</li>
+<li>the Suzanne and sofa models are positioned so that they are partially overlapped<br>增加alpha的值，趋势是信息熵变大，但是有反反复复的回滚，原因是software rendering引起的</li>
 </ul>
-
+</li>
+<li><p>Task (k) Complex lights<br>因为有5000多个模型，光的反射又互相影响，所以效果拔群</p>
+</li>
+<li><p>Task (k’) Anti-aliasing + Complex lights</p>
+</li>
+<li><p>Task (l) Clipping plane<br>贡献不大</p>
+</li>
+<li><p>Task (m) Cubemap texture + Fresnel effect<br>比较好，信息多cube map</p>
+</li>
+<li><p>Task (n) DDS textures<br>微软那一套，一些浏览器不支持</p>
+</li>
+<li><p>Task (o) PVR textures<br>只支持苹果设备</p>
+</li>
+<li><p>Task (p) Float textures<br>比较好，信息多depth</p>
+</li>
+<li><p>Task (q) Video (Animating Textures)<br>single-browser的效果好。decoding video is a combination of the browser, the driver, and sometimes the hardware as well.</p>
+</li>
+<li>Task (r) Writing Scripts</li>
+</ul>
+<h2 id="To-be-continued"><a href="#To-be-continued" class="headerlink" title="To be continued"></a>To be continued</h2>
           
         
       
@@ -1379,7 +1567,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -1449,7 +1637,7 @@
 
   <span class="post-meta-divider">|</span>
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.2</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2</div>
 
 
         

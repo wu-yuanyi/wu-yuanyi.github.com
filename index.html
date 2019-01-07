@@ -277,6 +277,288 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2018/12/18/DataAnalysis/评分卡建模/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WYY's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/18/DataAnalysis/评分卡建模/" itemprop="url">评分卡建模</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-18T15:56:45+08:00">
+                2018-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Analysis/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Analysis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="样本抽取和权重设置"><a href="#样本抽取和权重设置" class="headerlink" title="样本抽取和权重设置"></a>样本抽取和权重设置</h2><h3 id="样本抽样"><a href="#样本抽样" class="headerlink" title="样本抽样"></a>样本抽样</h3><p><strong>好</strong>、<strong>坏</strong>各抽5000，<strong>不确定</strong>不参与建模（使特征区分更明显）。5000是业界建模的经验和惯例，当样本数不足5000或在5000左右时，全部参与建模。</p>
+<p>采用分层随机抽样的方法。在数据量很大的情况下不抽样而使用全量数据进行建模会导致：程序缓慢、overfit。</p>
+<h3 id="权重修正"><a href="#权重修正" class="headerlink" title="权重修正"></a>权重修正</h3><p><strong>好</strong>的权重 = (<strong>好</strong> + <strong>不确定</strong>) / <strong>好</strong>。使得建模样本中的<strong>好</strong>在样本数量上可以代表全部样本的<strong>好</strong>和<strong>不确定</strong>。</p>
+<h3 id="样本划分"><a href="#样本划分" class="headerlink" title="样本划分"></a>样本划分</h3><p>一般将样本以7:3划分为训练集和验证集。训练集中至少应有500个样本，才能建立较为稳定的模型。如果模型在训练集和验证集中的表现基本一致，则说明模型比较稳健。如果建模抽样中的<strong>坏</strong>样本数量不足（总共才500个左右），则全部参与训练，使用BootStrap方法进行重复抽样得到验证样本。</p>
+<p><a href="https://www.jianshu.com/p/708dff71df3a" target="_blank" rel="external">Bootstrap, Bagging, Boosting</a></p>
+<h2 id="变量预筛选"><a href="#变量预筛选" class="headerlink" title="变量预筛选"></a>变量预筛选</h2><p>从数据和业务的角度对变量进行预筛选 。通过变量预筛选，可以降低变量个数，集中精力于质量较好的变量。</p>
+<ul>
+<li><p>业务角度：如客户坚持使用一些项目组坚持不考虑的变量，初选中可以不剔除。</p>
+</li>
+<li><p>数据角度：通过数据描述性统计分析，计算变量缺失率。当模型有足够的变量可供挑选时，对缺失率高于95%对变量直接不予考虑。当变量不足时，缺失率高达99%对变量也可以加入候选清单，虽然缺失率这么高的变量一般最后不会入模。</p>
+</li>
+</ul>
+<h2 id="变量取值分箱"><a href="#变量取值分箱" class="headerlink" title="变量取值分箱"></a>变量取值分箱</h2><p>在模型开发过程中，需要对变量进行分箱，对于候选模型变量，变量取值分箱的步骤如下：</p>
+<ol>
+<li>细分箱（fine bining）：对连续变量平均细分成足够多的分箱，获取变量细分箱的WOE报告。</li>
+<li>粗分箱（coarse bining）：依据细分箱的WOE报告，结合业务上对变量的理解和分箱合并规则（WOE损失最小），对分箱进行手工合并，获取候选变量的粗分箱WOE报告。</li>
+</ol>
+<p>通过分箱得到所有候选变量的WOE报告，从而获得每个变量取值的最佳分栏、每个栏位对于的证据权重（WOE）和此变量的信息值（IV）。由于后续步骤需要WOE无缺失才能进行，因此变量原始取值有缺失时，必须保证缺失值也有对应的WOE。如果一些分箱中没有<strong>好</strong>或<strong>坏</strong>导致无法计算此分箱的WOE，则需对此分箱进行调整或与其他分箱合并，以保证每个分箱都有WOE。</p>
+<h3 id="变量分箱的一般原则"><a href="#变量分箱的一般原则" class="headerlink" title="变量分箱的一般原则"></a>变量分箱的一般原则</h3><ul>
+<li>各分箱中的样本量不应过少，过少则不具有统计显著性，且不稳定。一般建议不低于全部样本的5%。</li>
+<li>为能计算WOE，各分箱中应同时出现<strong>好</strong>和<strong>坏</strong>。若不满足，应将此分箱与其他分箱合并以满足。</li>
+<li>WOE趋势应与业务角度一致，通常为直线型或U型（一般仅年龄）。对于有序型和区间型，如果趋势不单调，则通过合并分箱进行调整。</li>
+<li>对于特殊取值，入<em>其他</em>、<em>逾期次数为0</em>等应单列分箱。</li>
+<li>分箱数一般为3-6个，数量过少则区分不显著，数量过多则导致不稳定。</li>
+<li>其他业务考虑，如<em>再婚</em>、<em>复婚</em>可与<em>已婚</em>合并。</li>
+</ul>
+<h3 id="无法遵循一般原则的情况"><a href="#无法遵循一般原则的情况" class="headerlink" title="无法遵循一般原则的情况"></a>无法遵循一般原则的情况</h3><ul>
+<li>字符型变量的客观取值无法更改，难以保证至少分箱中含有5%的变量或分为3-6个分箱。有些取值就是很不相同不适合与其它取值合并且比例极少。例如<strong>职务</strong>，其中一些选项取值的比例非常少，如<em>局级</em>、<em>部级</em>职务在人群中比例远低于5%。如果和其他级别合并则体现不出不同职务之间的差别，变量作用降低。所以在保证WOE值单调、符合业务经验的情况下，可以将这些高级职务依然独立，能让最后的评分更分散一些。</li>
+<li>机构希望最好分数更细分一些的时候，在保证WOE值单调的情况下，分箱可以更细一些。</li>
+</ul>
+<h3 id="变量分箱的步骤"><a href="#变量分箱的步骤" class="headerlink" title="变量分箱的步骤"></a>变量分箱的步骤</h3><ol>
+<li><p>细分箱：</p>
+<ul>
+<li>数值型变量：按变量取值顺序排列，均匀分成10组。在取值边界尽量考虑业务解释进行取整，因此每组样本数可能略有波动。</li>
+<li>字符型变量：对所有的字符值进行分箱，每个值作为一个单独的细分箱。</li>
+</ul>
+</li>
+<li><p>对每个细分箱统计<strong>好账户</strong>和<strong>坏账户</strong>数，计算每个分箱的WOE值。计算公式如下：</p>
+<p>$$ WOE(j) = \ln(\cfrac{f_G(j)}{f_B(j)})$$</p>
+<p>$$f_G(j)$$：分箱j中<strong>好</strong>样本数占总样本中<strong>好</strong>样本数的比例</p>
+<p>$$f_B(j)$$：分箱j中<strong>坏</strong>样本数占总样本中<strong>坏</strong>样本数的比例</p>
+</li>
+<li><p>粗分箱：将WOE值相近的细分箱且有业务意义的细分箱合并为粗分箱。对于数值型变量，通常将相邻的细分箱合并；对于字符型变量，通常将同类细分箱合并。对于特殊值和缺失值等，一般会保留一个各自单独的粗分箱；结合实际情况，考虑特殊值与缺失值的产生原因与业务含义，分析与其他分箱合并后是否更合理。</p>
+</li>
+<li><p>分箱原则：</p>
+<ol>
+<li>WOE值是否单调（年龄除外）</li>
+<li>分箱数量一般控制在4-5个以内，太多容易不稳定</li>
+<li>每一个分箱的占比应当评价分配，不宜出现某个变量取值的占比过高或过低</li>
+<li>容易被客户或客户经理操纵的变量（如贷款期限，这种变量虽然可以衡量客户的还款能力，但也容易受客户经理推荐激励的影响），变量足够时不建议入模。</li>
+</ol>
+<p>​    变量的分箱是模型开发最关键的步骤之一，粗分箱后的哥哥分箱的WOE值的增减趋势必须满足合理的业务解释，并能保持比较稳定的分布。粗分箱产生的WOE值将替代原始数据值进入接下来的模型优化步骤。粗分箱结束后将生成变量报告，以确保每个变量既可以表现出清晰的分辨力，又符合业务逻辑。未能符合任何选择条件的变量都将被剔除，以有利于其他候选变量的进入。</p>
+</li>
+</ol>
+<h3 id="IV"><a href="#IV" class="headerlink" title="IV"></a>IV</h3><p>​    信息值（Information Value）代表了同整个群体相比，某一特征变量在所有区间中的好和坏之间的比例是否存在差异。在一个互联网信贷金融机构风险管理比较成熟，数据收集比较完善，数据总体质量较为可信的情况下，一个变量的信息值一般在0.05以上，则认为这个变量对因变量有一定的区分能力。如果数据覆盖面与数据质量不够完善，可用的数据信息比较少，则对变量的信息值的阈值会有不同的考虑。</p>
+<p>$$ IV = \Sigma \lbrace (\cfrac{g_i}{G} - \cfrac{b_i}{B}) \ast \ln(\cfrac{g_i}{G}/\cfrac{b_i}{B})  \rbrace$$</p>
+<p>$$g_i$$：变量第i 个分箱栏位中的好样本数</p>
+<p>$$G$$：样本中好样本总数</p>
+<p>$$b_i$$：变量第i 个分箱栏位中坏样本数</p>
+<p>$$B$$：样本中坏样本总数</p>
+<h2 id="变量再筛选"><a href="#变量再筛选" class="headerlink" title="变量再筛选"></a>变量再筛选</h2><h3 id="WOE值与IV"><a href="#WOE值与IV" class="headerlink" title="WOE值与IV"></a>WOE值与IV</h3><p>变量充足、好用的情况下，依据IV和WOE值趋势的一般剔除原则：</p>
+<ul>
+<li>IV&lt;0.01：原则上IV越大越好，但是不同互联网信贷金融机构数据情况不同，可选的变量也可能不同。所以没有IV值低于多少就不能用的严格标准，否则某些情况下IV过低就无法完成建模。一般而言，IV值不低于0.01。同一家信贷金融机构的不同产品的数据情况和好坏情况也可能不一致，所以不同评分卡模型也可以选择不同的阈值。若可成功入模的变量过少，可不依此条件剔除变量。</li>
+<li>WOE值趋势与业务理解不一致的变量</li>
+<li>集中度过高，如某一取值分箱的占比超过98%</li>
+</ul>
+<h3 id="逐步判别（Stepdisc）"><a href="#逐步判别（Stepdisc）" class="headerlink" title="逐步判别（Stepdisc）"></a>逐步判别（Stepdisc）</h3><p>​    在完成上述简单的变量筛选后，变量选择过程进入下一步骤：变量降维。从模型中没有变量开始，逐个引入变量，每增加一个变量后都要检查，用逐步判别的方法去除那些无助于模型预测能力的变量。当模型中所有变量符合标准而无其他变量符合进入的标准时，选择程序结束。一般在进行逐步判别程序（StepDisc Procedure）时，设定添加变量的置信水平（SLE）=0.15，去除变量的置信水平（SLS）=0.15。</p>
+<p>​    逐步判别程序的目的是从变量池内所有可能的变量中，初步确定最具预测能力的特征变量组合。在这一过程中，对每个可能进入模型的特征变量反复进行测试，结果是此变量已无法再有区分的贡献性或成为已选择的模型变量的一部分。</p>
+<p>​    该过程将当前的特征变量作为因变量，模型中的其他变量作为随机变量，进行协方差分析。一旦不再有新变量进入模型或从模型中去除变量时，选择过程结束。保留下来的头部变量时最可能进入最终模型的候选特征变量。</p>
+<p>​    逐步判别程序所选变量为模型最终变量的起点。通常情况下，会依据行业经验，将部分没有通过逐步判别筛选，但业务含义明显的字段也一并作为最终模型变量选择的起点。</p>
+<h2 id="WOE值转换说明"><a href="#WOE值转换说明" class="headerlink" title="WOE值转换说明"></a>WOE值转换说明</h2><p>​    在逻辑回归建模时，使用的是变量值对应的WOE值，而不是变量的原始取值。不单单是被选中的变量，所有做过分箱的变量都会如此进行处理。以防选中的变量不满足建模条件时，需要人工调用其他最初始未被选中的变量时，需要重新转换WOE值。</p>
+<p>​    例如，性别的原始取值是<strong>男</strong>、<strong>女</strong>，在WOE报告中对应的分别是<strong>-0.0334</strong>和<strong>0.1838</strong>。完成转换后，<strong>男</strong>、<strong>女</strong>的取值就会被<strong>-0.0334</strong>和<strong>0.1838</strong>替代。</p>
+<h2 id="逻辑回归建模"><a href="#逻辑回归建模" class="headerlink" title="逻辑回归建模"></a>逻辑回归建模</h2><p>​    分为多重共线性检验和逻辑回归两个步骤，并不是所有通过初筛的变量都能通过这两步都校验。剔除变量的原则如下：</p>
+<ul>
+<li>回归系数为正的变量。随着变量的各个分箱的WOE值上升，其坏账率越低，这样才能符合业务逻辑，因此需要保证所有入模变量的回归系数均为负数。</li>
+<li>P值不显著的变量。P值一般不能高于0.10，当可入模变量过少时，可以放宽到0.15</li>
+<li>造成高VIF（方差膨胀系数）的变量。VIF一般不能大于10，最好不要超过4。对于多个高度相关的变量，保留业务上最有意义、最稳定、最可信的一个。</li>
+<li>业务专家认为不适合入模的。如贷款用途，因为分箱可能不稳定，没有特别的规则，最终不考虑入模。</li>
+</ul>
+<h2 id="模型表现评估说明"><a href="#模型表现评估说明" class="headerlink" title="模型表现评估说明"></a>模型表现评估说明</h2><h3 id="模型表现评估指标"><a href="#模型表现评估指标" class="headerlink" title="模型表现评估指标"></a>模型表现评估指标</h3><p>​    国内一般重点看KS（Kolmogorov-Smirnov）和Gini系数这两个统计值。这两个指标在合理范围内越高，表明模型的区分能力越强。同时，模型还可以通过Divergence（离散度）、AUC（Area under Curve），ROC（Receiver Operating Characteristic）的值和图形进行评估。以上评估值都是越高越好，但是要在合理的范围内。如果过高，可能是因为过拟合或者特殊数据造成的。</p>
+<p>​    由于KS的值，和模型的类型、数据质量、客户群体特征都有很大关系，所以能接受的合理范围也有所不同。其他指标一般无明确划分点。</p>
+<table>
+<thead>
+<tr>
+<th>K-S值</th>
+<th>申请（好坏区分能力）</th>
+<th>行为（好坏区分能力）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20以下</td>
+<td><strong>不建议采用</strong> 因为表现期不足，模型验证或上线初期可能会在这个范围。</td>
+<td><strong>不建议采用</strong> 因为表现期不足，模型验证或上线初期可能会在这个范围。</td>
+</tr>
+<tr>
+<td>20-29</td>
+<td><strong>较好</strong> 在没有人行报告或其他强外部数据的情况下，如果申请数据质量不理想，贷款和信用卡模型都容易落在此区间。</td>
+<td><strong>较弱</strong> 在还款和逾期历史数据都较弱（先息后本或一次性还款）的情况下，可用变量很少，贷款和信用卡模型都容易落在此区间。</td>
+</tr>
+<tr>
+<td>30-49</td>
+<td><strong>良好</strong> 在没有人行报告或其他强外部数据的情况下，如果申请数据质量很好，贷款和信用卡模型都容易落在此区间。</td>
+<td><strong>较好</strong> 在还款和逾期历史数据都较弱（逾期账户极少）的情况下，可用变量不强，贷款和信用卡模型都容易落在此区间。</td>
+</tr>
+<tr>
+<td>40-55</td>
+<td><strong>很强</strong> 有人行征信等外部数据切申请数据质量很好，模型一般落在此区间。</td>
+<td><strong>良好</strong> 大部分贷款和信用卡模型都容易落在此区间。</td>
+</tr>
+<tr>
+<td>56-75</td>
+<td><strong>非常强</strong> 很少见，能力高但疑似过拟合，可能放了过多征信报告中的逾期变量。</td>
+<td><strong>很强</strong> 很少见，能力高但疑似过拟合，可能放了过多征信报告中的逾期变量。</td>
+</tr>
+<tr>
+<td>75以上</td>
+<td>极少见 能力高但疑似过拟合。</td>
+<td><strong>非常强</strong> 很少见，能力高但疑似过拟合。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="模型表现评估图表"><a href="#模型表现评估图表" class="headerlink" title="模型表现评估图表"></a>模型表现评估图表</h3><p>​    模型的评分排序表（Score Chart）就是将评分从低到高排序，显示每个评分上的好坏个数，好坏比例以及坏账率等。详细的排序表不对评分进行组合；综合的排序表对评分进行组合，按照评分从低分区间到高分区间将建模开发样本账户等分为5-10组（每组账户比例大致相等）之后，区间坏账率也是从低分区间到高分区间单调下降，以说明模型等排序性强弱。</p>
+<h2 id="模型的验证说明"><a href="#模型的验证说明" class="headerlink" title="模型的验证说明"></a>模型的验证说明</h2><p>根据验证样本的时间段不同，模型验证及其样本可以分为以下三类：</p>
+<ul>
+<li>开发期预留样本验证（时间内样本验证，Hold-Out Testing）。对Testing样本的验证要求一般是需要其入模变量趋势稳定，模型的极大评估指标稳定。当无法预留此样本时，可以采取Bootstrap法来造出样本进行验证。</li>
+<li>时间外样本验证（Out-Of-Time，一般是比开发样本更晚更新的数据）。在表现期不足的情况下，不要求OOT样本上模型的几大评估指标稳定或者更好，而多是检查模型的排序性和稳定性。一般通过评分排序表、入模变量的PSI值和评分排序的PSI值来评估，样本中好坏不确定不需要抽样。如果有足够多表现充足的时间外验证样本，在坏样本比较多的情况下，可以希望其评分后的模型评估指标较好、稳定或更好。</li>
+<li>上线后跟踪验证（Go-Online，上线后获取的数据）。一般在模型一期开发阶段没有这些数据，所以不会进行。上线后跟踪新账户一般表现期都不够，一开始不能要求模型的几大评估指标稳定或者更好，而多是检查模型的排序性和稳定性，一般通过入模变量的PSI值和评分排序的PSI值来实现。应用上线后，更看重的是评分保持排序性，积累到表现期足够后可以希望其评分后的模型评估指标较好、稳定或更好。</li>
+</ul>
+<p>模型具体的验证方法和指标分为以下几类：</p>
+<ul>
+<li><p>标准验证：KS，Gini系数、ROC、AUC和评分排序性等，需要样本的表现期充足。</p>
+</li>
+<li><p>BootStrap：从建模开发样本中有放回的随机抽样出1000-5000个样本（无需按好坏分层抽）组成一个数据集，计算其模型评分值，依据评分和好坏计算模型评估指标，一般主要看KS。可以如此反复抽10-100次，最后得到一个平均值，和模型开发样本的评估指标进行比较，若接近则验证通过。</p>
+</li>
+<li><p>稳定性验证：看每个入模变量的PSI、整体评分的PSI、评分的排序性。理想的PSI小于0.1，政策、客户和数据的变化最容易导致PSI变大，其标准见下表：</p>
+<p>| PSI      | 结果               |<br>| ——– | —————— |<br>| <0.1 |="" 正常="" 0.1-0.25="" 需要关注，找出原因="">0.25    | 重大变化，找出原因 |</0.1></p>
+</li>
+</ul>
+<h2 id="模型评估参数"><a href="#模型评估参数" class="headerlink" title="模型评估参数"></a>模型评估参数</h2><h3 id="K-S值"><a href="#K-S值" class="headerlink" title="K-S值"></a>K-S值</h3><p>​    K-S值用来衡量模型区分好坏的能力，即模型的预测能力。K-S的值由多种因素决定，如：数据源和数据信息的可获取度、数据的质量、产品类型、群体的稳定性。该指标衡量的是<strong>好</strong>和<strong>坏</strong>的累积分布之间最大的差距。好账户与坏账户分布之间的差异越大，K-S指标越高，模型的区分能力越强。但K-S值不是越高越好，太高容易出现过拟合或是由特殊数据造成。</p>
+<h3 id="Gini系数"><a href="#Gini系数" class="headerlink" title="Gini系数"></a>Gini系数</h3><p>​    Gini系数用来衡量模型的区分能力，Gini系数越高，表明模型的排序能力越强。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2018/09/25/Database/HiveQL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -999,227 +1281,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/11/21/Loan/地址清洗/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yuanyi Wu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WYY's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/21/Loan/地址清洗/" itemprop="url">中文地址清洗</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-21T13:50:20+08:00">
-                2017-11-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Loan/" itemprop="url" rel="index">
-                    <span itemprop="name">Loan</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="中文分词的基本原则"><a href="#中文分词的基本原则" class="headerlink" title="中文分词的基本原则"></a>中文分词的基本原则</h2><ul>
-<li>颗粒度越大越好</li>
-</ul>
-<p>分词结果的颗粒度越大（即单词的字数越多），所能表示的含义越确切。如：“公安局长”可以分为“公安 局长”、“公安局 长”、“公安局长”，但是要用于语义分析，则“公安局长”的分词结果最好（前提是所使用的词典中有这个词）。</p>
-<ul>
-<li>切分结果中非词典词越少越好，单字词典词数越少越好<ul>
-<li>非词典词：不包含在词典中的单字</li>
-<li>单字词典词：可以独立运用的单字，如：的、了、和、你、我、他</li>
-</ul>
-</li>
-</ul>
-<p>如：“技术和服务”，可以分为“技术 和服 务”以及“技术 和 服务”。“务”字无法独立成词（即词典中没有），但“和”字可以单独成词（词典中要包含），因此“技术 和服 务”有1个非词典词，而“技术 和 服务”有0个非词典词，因此选用后者。</p>
-<ul>
-<li>总体词数越少越好</li>
-</ul>
-<p>在相同字数的情况下，总词数越少，说明语义单元越少，那么相对的单个语义单元的权重会越大，因此准确性会越高。</p>
-<h2 id="匹配算法"><a href="#匹配算法" class="headerlink" title="匹配算法"></a>匹配算法</h2><h3 id="最大匹配算法"><a href="#最大匹配算法" class="headerlink" title="最大匹配算法"></a>最大匹配算法</h3><p>最大匹配是指以词典为依据，取词典中最长单词为第一个次取字数量的扫描串，在词典中进行扫描（为提升扫描效率，还可以跟据字数多少设计多个字典，然后根据字数分别从不同字典中进行扫描）。例如：词典中最长词为“中华人民共和国”共7个汉字，则最大匹配起始字数为7个汉字。然后逐字递减，在对应的词典中进行查找。</p>
-<h3 id="正向最大匹配算法"><a href="#正向最大匹配算法" class="headerlink" title="正向最大匹配算法"></a>正向最大匹配算法</h3><p>以“我们在野生动物园”为例，词典中最长词为“中华人民共和国”。</p>
-<p>正向即从前往后取词，从7-&gt;1，每次减一个字，直到词典命中或剩下1个单字。</p>
-<p>第1轮第1次：7字词典中扫描“我们在野生动物”，无；</p>
-<p>第1轮第2次：6字词典中扫描“我们在野生动”，无；</p>
-<p>第1轮第3次：5字词典中扫描“我们在野生”，无；</p>
-<p>第1轮第4次：4字词典中扫描“我们在野”，无；</p>
-<p>第1轮第5次：3字词典中扫描“我们在”，无；</p>
-<p>第1轮第6次：2字词典中扫描“我们”，有；</p>
-<p>扫描中止，输出第1个词为“我们”，去除第1个词后开始第2轮扫描。</p>
-<p>第2轮第1次：7字词典中扫描“在野生动物园玩”，无；</p>
-<p>第2轮第2次：6字词典中扫描“在野生动物园”，无；</p>
-<p>第2轮第3次：5字词典中扫描“在野生动物”，无；</p>
-<p>第2轮第4次：4字词典中扫描“在野生动”，无；</p>
-<p>第2轮第5次：3字词典中扫描“在野生”，无；</p>
-<p>第2轮第6次：2字词典中扫描“在野”，有；</p>
-<p>扫描中止，输出第2个词为“在野”，去除第2个词后开始第3轮扫描。</p>
-<p>第3轮第1次：5字词典中扫描“生动物园玩”，无；</p>
-<p>第3轮第2次：4字词典中扫描“生动物园”，无；</p>
-<p>第3轮第3次：3字词典中扫描“生动物”，无；</p>
-<p>第3轮第4次：2字词典中扫描“生动”，有；</p>
-<p>扫描中止，输出第3个词为“生动”，去除第3个词后开始第4轮扫描。</p>
-<p>第4轮第1次：3字词典中扫描“物园玩”，无；</p>
-<p>第4轮第2次：2字词典中扫描“物园”，无；</p>
-<p>第4轮第3次：1字词典中扫描“物”，无；</p>
-<p>扫描中止，输出第4个词为“物”，非词典词数加1，去除第4个词后开始第5轮扫描。</p>
-<p>第5轮第1次：2字词典中扫描“园玩”，无；</p>
-<p>第5轮第2次：1字词典中扫描“园”，有；</p>
-<p>扫描中止，输出第5个词为“园”，单字词典词数加1，去除第5个词后开始第6轮扫描。</p>
-<p>第6轮第1次：1字词典中扫描“玩”，有；</p>
-<p>扫描中止，输出第6个词为“园”，单字词典词数加1，扫描结束。</p>
-<p>最终切分结果为：“我们/在野/生动/物/园/玩”，其中，单字词典词数为2，非词典词数为1。</p>
-<h3 id="逆向最大匹配算法"><a href="#逆向最大匹配算法" class="headerlink" title="逆向最大匹配算法"></a>逆向最大匹配算法</h3><p>以“我们在野生动物园”为例，词典中最长词为“中华人民共和国”。</p>
-<p>逆向即从后往前取词，从7-&gt;1，每次减一个字，直到词典命中或剩下1个单字。</p>
-<p>第1轮第1次：7字词典中扫描“在野生动物园玩”，无；</p>
-<p>第1轮第2次：6字词典中扫描“野生动物园玩”，无；</p>
-<p>第1轮第3次：5字词典中扫描“生动物园玩”，无；</p>
-<p>第1轮第4次：4字词典中扫描“动物园玩”，无；</p>
-<p>第1轮第5次：3字词典中扫描“物园玩”，无；</p>
-<p>第1轮第6次：2字词典中扫描“园玩”，无；</p>
-<p>第1轮第7次：1字词典中扫描“玩”，有；</p>
-<p>扫描中止，输出第1个词为“玩”，单字词典词数加1，去除第1个词后开始第2轮扫描。</p>
-<p>第2轮第1次：7字词典中扫描“们在野生动物园”，无；</p>
-<p>第2轮第2次：6字词典中扫描“在野生动物园”，无；</p>
-<p>第2轮第3次：5字词典中扫描“野生动物园”，有；</p>
-<p>扫描中止，输出第2个词为“动物”，去除第2个词后开始第3轮扫描。</p>
-<p>第3轮第1次：3字词典中扫描“我们在”，无；</p>
-<p>第3轮第2次：2字词典中扫描“们在”，无；</p>
-<p>第3轮第3次：1字词典中扫描“在”，有；</p>
-<p>扫描中止，输出第3个词为“玩”，单字词典词数加1，去除第3个词后开始第4轮扫描。</p>
-<p>第4轮第1次：2字词典中扫描“我们”，有；</p>
-<p>扫描中止，输出第4个词为“我们”，扫描结束。</p>
-<p>最终切分结果为：“我们/在/野生动物园/玩”，其中，单字词典词数为2，非词典词数为0。</p>
-<h3 id="双向最大匹配算法"><a href="#双向最大匹配算法" class="headerlink" title="双向最大匹配算法"></a>双向最大匹配算法</h3><p>正向、逆向两种算法都切一遍，然后根据大颗粒度词越多越好，非词典词和单字词越少越好的原则，选取其中一种分词结果输出。</p>
-<ul>
-<li>非词典词数：越少越好</li>
-<li>单字词典词数：越少越好</li>
-<li>总词数：越少越好</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1264,7 +1330,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1342,7 +1408,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

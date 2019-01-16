@@ -277,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/03/27/S&P/通过运动传感器来追踪移动网页用户：攻击和防御/">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/03/27/S&P/Click Fraud/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuanyi Wu">
@@ -296,7 +296,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/27/S&P/通过运动传感器来追踪移动网页用户：攻击和防御/" itemprop="url">通过运动传感器来追踪移动网页用户：攻击和防御</a></h1>
+                <a class="post-title-link" href="/2017/03/27/S&P/Click Fraud/" itemprop="url">CLick Fraud</a></h1>
         
 
         <div class="post-meta">
@@ -370,255 +370,40 @@
       
         
           
-            <p>本文是2016年NDSS会议，Tracking Mobile Web Users Through Motion Sensors: Attacks and Defenses的笔记<br><a href="https://www.internetsociety.org/sites/default/files/blogs-media/tracking-mobile-web-users-through-motion-sensors-attacks-defenses.pdf" target="_blank" rel="external">原文链接</a></p>
-<h2 id="1-摘要"><a href="#1-摘要" class="headerlink" title="1.摘要"></a>1.摘要</h2><p>通过检测传感器信号中的异常（由制造中的缺陷带来的，就像人类的指纹一样），可以高精度地唯一识别一台设备（手机）。网站的发布者和广告商可以利用这一特性，通过网页、广告、访问来跟踪用户。</p>
-<p>攻击方法：</p>
+            <p>PPC(Pay Per Click) == CPC(Cost Per Click)<br>Click Fraud: Caused by competitors, disgruntled employees, software bots, and angry customers clicking on your ads.</p>
+<h2 id="ClickCease"><a href="#ClickCease" class="headerlink" title="ClickCease"></a>ClickCease</h2><p><a href="https://www.clickcease.com" target="_blank" rel="external">ClickCease</a></p>
 <ul>
-<li>用听不到的音频去激发加速度计和陀螺仪，以得到包含异常的信号。因为是基于物理设备，所有类似清理cookie和隐私模式无法防御这种攻击</li>
+<li>24*7 Always On Click-Fraud Monitoring</li>
+<li>Stops Click-Fraud Before It Happens</li>
+<li>Business-Specific Click-Fraud detection Rules</li>
+<li>Save Money(up to 20%-25% of your advertising budget gets lost due to click fraud)</li>
 </ul>
-<p>防御手段：</p>
+<p>FAQs</p>
 <ul>
-<li>校准传感器，消除异常信号。<ol>
-<li>加速度计很容易</li>
-<li>陀螺仪校准需要特殊的设备，并且手动校准不是一个有效的方法。</li>
-</ol>
-</li>
-<li>添加噪声进行混淆是更有效的方法<ol>
-<li>大量添加和天然异常相似的噪声</li>
-<li>在更大的量级上的做法：增加临时干扰来混淆主要特征的频率</li>
-</ol>
-</li>
+<li>Doesn’t Google prevent click fraud?<br>Google does detect click fraud, but does not prevent it. Instead, Google will give back credit to your account days after the fraud took place and only after you claim it.</li>
+<li>How do you detect fraudulent ad clicks?<br>(1) A HTML code that detects the attacker’s activity on your website.<br>(2) An Adwords tracking template that connects us directly to Google to get unique information regarding each click.</li>
 </ul>
-<h2 id="2-数字指纹背景"><a href="#2-数字指纹背景" class="headerlink" title="2.数字指纹背景"></a>2.数字指纹背景</h2><ol>
-<li>美国政府早在1960年，就使用独特的传输特征来跟踪移动发射器。之后还成功利用了无线电信号的频谱特征来区分发射器。</li>
-<li>利用网卡（NICs）制造上微小的缺陷，分析发射信号的无线电频率</li>
-<li>利用独特且不变的电脑时钟偏移，通过TCP和ICMP的时间戳获取</li>
-<li>不同的设备会有不同的软件安装基础</li>
-</ol>
-<h4 id="浏览器数字指纹"><a href="#浏览器数字指纹" class="headerlink" title="浏览器数字指纹"></a>浏览器数字指纹</h4><ol>
-<li>cookie（清除cookie，隐私浏览模式）</li>
-<li>枚举浏览器的字体和其他浏览器特征（渲染引擎，对于不同JS引擎的表现基准）</li>
-<li>UDID和IEME需要特殊的权限</li>
-</ol>
-<h4 id="传感器数字指纹"><a href="#传感器数字指纹" class="headerlink" title="传感器数字指纹"></a>传感器数字指纹</h4><ol>
-<li>利用麦克风和扬声器，这需要高权限</li>
-<li>Bojinov利用加速度计（需要用户校准加速度计）</li>
-<li>Dey利用机器学习的方法分析加速度计（利用手机振动）</li>
-<li>本文利用了加速度计和陀螺仪。</li>
-</ol>
-<p>Song提出，降低加速度计的精度来防御窃听。例如报告1g的加速度来隐藏微小的变化值。但是这个方法对于陀螺仪来说，是不够的。</p>
-<h2 id="3-运动传感器说明"><a href="#3-运动传感器说明" class="headerlink" title="3.运动传感器说明"></a>3.运动传感器说明</h2><p>在电子机械结构上的半点瑕疵都会产生跨芯片的特质。</p>
+<h2 id="PPC-Surge"><a href="#PPC-Surge" class="headerlink" title="PPC Surge"></a>PPC Surge</h2><p><a href="https://www.ppcsurge.com" target="_blank" rel="external">PPC Surge</a><br>Once the Monitor is created, we will insert a tracking URL into your Google Adwords account. When a visitor clicks on your ad the tracking URL directs them to our website where we collect their IP address and other data (e.g., keyword) and redirect them to your site. This happens so quickly that, from the visitor’s perspective, it appears as though he/she simply clicked through to your site directly.</p>
+<p>If we detect a potential click fraud, instead of instantly redirecting the visitor to your website, we display a warning message on our site.</p>
+<p>If after seeing the warning message the visitor continues to click on your ads, our software tells Google to not display any more ads to that IP address thereby saving your advertising budget.</p>
+<h2 id="How-Google-doing-about-it"><a href="#How-Google-doing-about-it" class="headerlink" title="How Google doing about it?"></a>How Google doing about it?</h2><ul>
+<li>Advanced algorithms detect and filter out invalid clicks in real time, before advertisers are even charged.</li>
+<li>Google’s Ad Traffic Quality Team also conducts manual, offline analysis and removes any clicks that they deem invalid before advertisers are charged.</li>
+<li>Google also launches investigations based on advertisers’ reports of suspicious activity.</li>
+</ul>
+<h2 id="How-to-identify-click-fraud-by-yourself"><a href="#How-to-identify-click-fraud-by-yourself" class="headerlink" title="How to identify click fraud by yourself?"></a>How to identify click fraud by yourself?</h2><p>You need internal reporting. Internal reporting would tell you if that lead became a sale.</p>
 <ul>
-<li>加速度计：测量的是固有加速度（万有引力作用下的量子的稳定速度）而不是坐标加速度。查分电容正比于所施加的加速度。在制造的时候产生的结构电极间的丝毫隙差会影响产生的电容。电-机械结构中微小的不精确，导致了加速度计芯片微小的不精确。</li>
-<li>陀螺仪：使用科里奥利效应来测量角速度。角速度w被施加重量为m的移动质量，并且速度为v，物体会受一个垂直于旋转轴线和速度方向的科里奥利力F=-2mw×v。通过测量陀螺仪内震动已知质量的科里奥利力，可以算出角速度。震动会改变电容，转化成电压信号来测量科里奥利力。</li>
+<li>IP address<br>IP address is pretty self-explanatory.</li>
+<li>click timestamp<br>The time when someone arrives on your site after clicking an ad.</li>
+<li>action timestamp<br>The time when that person completed an action on your site.<br>If you see an IP address with a bunch of click timestamps but no action timestamps, then that is likely click fraud.</li>
+<li>user agent<br>Identify whether someone on a particular IP is the same person.</li>
+<li>proxy<br>If the searches are very different, it’s likely a proxy server. If the search queries are similar and are occurring over a super short time period, the clicks are probably fraudulent.</li>
 </ul>
-<h2 id="4-特征和分类算法"><a href="#4-特征和分类算法" class="headerlink" title="4.特征和分类算法"></a>4.特征和分类算法</h2><h4 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h4><p>加速度：设a(t)=(a<sub>x</sub>, a<sub>y</sub>, a<sub>z</sub>)，使|a(t)| = √(a<sub>x</sub><sup>2</sup>, a<sub>y</sub><sup>2</sup>, a<sub>z</sub><sup>2</sup>)。<br>虽然丢弃一些信息，但是使得加速度不依赖于设备的方向。（即使是静止的设备，摆放的方式不同，在三个轴上会有很大的差异，即+-1g）</p>
-<p>角速度：w(t)=(w<sub>x</sub>, w<sub>y</sub>, w<sub>z</sub>)</p>
-<h4 id="时间和频谱特征"><a href="#时间和频谱特征" class="headerlink" title="时间和频谱特征"></a>时间和频谱特征</h4><p>选取了10个时间，15个频谱特征。这些特征在过去的研究中已经得到很好的证明。</p>
-<table>
-<thead>
-<tr>
-<th>类别</th>
-<th>特征</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>时间</td>
-<td>Mean</td>
-<td>不同时间戳下信号强度的均值</td>
-</tr>
-<tr>
-<td></td>
-<td>Standard Deviation</td>
-<td>信号强度的标准偏差</td>
-</tr>
-<tr>
-<td></td>
-<td>Average Deviation</td>
-<td>均值的平均偏差</td>
-</tr>
-<tr>
-<td></td>
-<td>Skewness</td>
-<td>偏态，均值非对称分布的度量</td>
-</tr>
-<tr>
-<td></td>
-<td>Kurtosis</td>
-<td>峰度，分布平坦或尖刻的度量</td>
-</tr>
-<tr>
-<td></td>
-<td>RMS</td>
-<td>在各种时间戳下信号强度的平方的算术均方根</td>
-</tr>
-<tr>
-<td></td>
-<td>Max</td>
-<td>信号强度的最大值</td>
-</tr>
-<tr>
-<td></td>
-<td>Min</td>
-<td>信号强度的最小值</td>
-</tr>
-<tr>
-<td></td>
-<td>ZCR</td>
-<td>信号由正变负或由负变正的速度</td>
-</tr>
-<tr>
-<td></td>
-<td>Non-Negative count</td>
-<td>非负值的数量</td>
-</tr>
-<tr>
-<td>频率</td>
-<td>Spectral Centroid</td>
-<td>频谱质心：表示功率谱分布的质心</td>
-</tr>
-<tr>
-<td></td>
-<td>Spectral Spread</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>Spectral Skewness</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>Spectral Kurtosis</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>Spectral Entropy</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>Spectral Flatness</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>Spectral Brightness</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>Spectral Rolloff</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>Spectral Roughness</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>Spectral Irregularity</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>Spectral RMS</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>Low-Energy-Rate</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>Spectral flux</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>Spectral Attack Time</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>Spectral Attack Slope</td>
-<td>谱峰的平均坡度</td>
-</tr>
-</tbody>
-</table>
-<h4 id="分类算法和指标"><a href="#分类算法和指标" class="headerlink" title="分类算法和指标"></a>分类算法和指标</h4><p>监督学习：支持向量机，朴素贝叶斯分类，多级决策树，K近邻，二次判别分析分类器，Bagged Decision Trees (Matlab’s Treebagger model)</p>
-<p>评价指标：Precision（精度），Recall，F-Score（前两者的调和平均）</p>
-<ul>
-<li>Pr<sub>i</sub> = TP<sub>i</sub> / ( TP<sub>i</sub> + FP<sub>i</sub> )</li>
-<li>Re<sub>i</sub> = TP<sub>i</sub> / ( TP<sub>i</sub> + FN<sub>i</sub> )</li>
-<li>F<sub>i</sub> = ( 2 × Pr<sub>i</sub> × Re<sub>i</sub> ) / ( Pr<sub>i</sub> + Re<sub>i</sub> )</li>
+<h2 id="4-tips-to-protect-yourself-from-click-happy-criminals"><a href="#4-tips-to-protect-yourself-from-click-happy-criminals" class="headerlink" title="4 tips to protect yourself from click-happy criminals"></a>4 tips to protect yourself from click-happy criminals</h2><ul>
+<li>Turn to Facebook/Twitter Ads<br>社交网络没有第三方发布者，他们往往是主要的点击诈骗的来源。恶意竞争者也很少见，因为有先进的定位选择。Set up IP Exclusions in AdWords</li>
+<li>Run GDN Remarketing Campaigns（只发部给到过网站的人看）<br>不是很懂</li>
+<li>Adjust Your Ad Targeting<br>排除一些劳动力便宜的地点或语言（click farms）<h2 id="To-be-Continued"><a href="#To-be-Continued" class="headerlink" title="To be Continued"></a>To be Continued</h2></li>
 </ul>
-<p>一个保守的分类器，为了较高的精度，会有较低的Recall。反之亦然。为了获得系统的总体表现，论文计算均值</p>
-<ul>
-<li>AvgPr = ( sum<sup>n</sup><sub>i=1</sub>Pr<sub>i</sub> ) / n</li>
-<li>AvgRe = ( sum<sup>n</sup><sub>i=1</sub>Re<sub>i</sub> ) / n</li>
-<li>AvgF = ( 2 × Pr<sub>i</sub> × Re<sub>i</sub> ) / ( Pr<sub>i</sub> + Re<sub>i</sub> )</li>
-</ul>
-<h2 id="5-数字指纹评价"><a href="#5-数字指纹评价" class="headerlink" title="5.数字指纹评价"></a>5.数字指纹评价</h2><h4 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h4><ol>
-<li>利用附录A中的JavaScript代码采集数据。但是受底层操作系统的限制，通过浏览器采集样本的最大频率要比硬件允许的低。</li>
-<li>几种浏览器中选择了google浏览器（样本频率100Hz，允许accelerometer和gyroscope）。</li>
-<li>实验设备有iPhone5，iPhone5s，Nexus S，Galaxy S3，Galaxy S2。背景声音设置为无声，20kHz的超声波，流行音乐。</li>
-<li>每种设置收集10个样本，大约5-8秒有价值的数据。</li>
-<li>没有特殊提及，手机是放在静止平面上的，后有考虑了用户手持的状态。</li>
-</ol>
-<h4 id="特征的探索和选择"><a href="#特征的探索和选择" class="headerlink" title="特征的探索和选择"></a>特征的探索和选择</h4><p>并不是使用所有特征就行，因为它们之间精度不同，甚至有些是有冲突的。时间特征不需要转换数据流，频谱特征先将不等间隔的数据流转换为用三次样条插值固定间隔的数据流。在8khz采样速率进行插值。利用MIRtoolbox和Libxtract提取频谱特征。利用FEAST toolbox和JMI criterion找最佳组合。<br>选取的70个特征中，21个来自加速度计，49个来自陀螺仪。时间26个，频谱44个。</p>
-<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><ul>
-<li><p>实验环境：实验结果还是不错的，声音激活对精确度的效果不明显，但是后面会讲到却可以很好的应对传感器校准或混淆。</p>
-</li>
-<li><p>公共场合:效果也还可以，90%的精确度</p>
-</li>
-</ul>
-<h4 id="敏感性分析"><a href="#敏感性分析" class="headerlink" title="敏感性分析"></a>敏感性分析</h4><ul>
-<li>设备数量的不同：设备增多，准确度会下降。不过亦然能保持在90%以上。</li>
-<li>训练集大小不同：训练集比测试集从2:8到8:2，精确度从98%升到99%。</li>
-<li>温度的影响：气温变化有10%的影响。</li>
-<li>时间稳定性：有影响，精度仍在90%以上。</li>
-</ul>
-<h2 id="6-解决方法"><a href="#6-解决方法" class="headerlink" title="6.解决方法"></a>6.解决方法</h2><h4 id="校准"><a href="#校准" class="headerlink" title="校准"></a>校准</h4><p>Bojinov的仿射误差模型：a<sup>M</sup>(测量值) = g(放大作用) * a(真实值) + o(误差)</p>
-<p>在所有特征中，均值是传感器数据流最能区别的特征，和偏差紧密相关。</p>
-<p><strong>校准加速器：</strong> 测量值=偏差+增益误差*真实值</p>
-<p>计算每个轴上的偏差和增益误差，需要测量该轴正反两个方向的数值。举Z轴的例子：S<sub>Z</sub> = (a<sup>M</sup><sub>Z+</sub> - a<sup>M</sup><sub>Z-</sub>) / 2g，O<sub>Z</sub> = (a<sup>M</sup><sub>Z+</sub> + a<sup>M</sup><sub>Z-</sub>) / 2</p>
-<p><strong>校准陀螺仪：</strong> 测量值=偏差+增益误差*真实值</p>
-<p>诱导固定的角度变化，可以算出增益误差。保持设备固定，即可算出偏差。 <em>当设备旋转固定角度时，测量值往往偏离真实值。所以计算出的结果，只是实际值的近似值</em>  这会影响任意陀螺仪角位移的测量系统。举Z轴的例子，O<sub>i</sub> = (θ<sup>M</sup><sub>i+</sub> + θ<sup>M</sup><sub>i-</sub>) / (t<sub>1</sub> + t<sub>2</sub>)，S<sub>i</sub> = (θ<sup>M</sup><sub>i+</sub> - θ<sup>M</sup><sub>i-</sub> - O<sub>i</sub>(t<sub>1</sub> - t<sub>2</sub>)) / 2π</p>
-<p><strong>校准过的数据的数字指纹：</strong><br>校准对加速度计效果拔群，对陀螺仪效果几乎看不出来。校准之后，音频激发终于对精度有了一个小提升。总的来说，以精准测量为前提的话，校准是个有前途的技术。所以厂家处于保护用户隐私的考虑，最好出厂前校准一下。</p>
-<h4 id="数据混淆"><a href="#数据混淆" class="headerlink" title="数据混淆"></a>数据混淆</h4><p>和校准相比，混淆增加了额外的噪声，对传感器的使用有负面影响</p>
-<ul>
-<li>Uniform noise：有范围的最高熵</li>
-<li>Laplace noise：由不同的微分隐私启发最高熵</li>
-<li>White noise：影响所有方面的信号</li>
-</ul>
-<p><strong>均匀噪声</strong></p>
-<p><strong><em>I.基本混淆</em></strong></p>
-<ul>
-<li><p>首先：考虑在之前我们观测到的校准误差相似的范围内添加小规模的混淆。在该范围内添加噪声相当于切换到了一个不同的（错误的）校准，因此给用户的影响最小。加速度计的偏差范围[-0.5,0.5]，陀螺仪的偏差范围[-0.1,0.1]，增益范围[0.95,1.05]。在范围内，随机均匀混淆。有很明显的作用（各种场景下降低了7%-42%）。同时音频刺激有明显效果，应该是一旦主要特征被混淆了，它显著影响次要特征开始发挥作用。</p>
-</li>
-<li><p>然后：研究发现，对于越大的数据集，混淆作用月明显。</p>
-</li>
-</ul>
-<p><strong><em>II.增加混淆范围</em></strong></p>
-<p>扩大混淆范围是可以降低精度，但是收益递减。说明简单的混淆原始数据，不足以隐藏所有独特的特征。到目前为止，仅仅操纵信号值，没有改变任何频率特征，所以分类器还能利用频谱特征来唯一区分各个设备。</p>
-<p><strong><em>III.增强混淆</em></strong></p>
-<p>主要的思路是，概率地将当前数据点的修改版本插在在过去时间戳和当前时间戳之间，时间戳本身是随机选择的。这会影响到数据的三次样条插值，进而影响从数据流中提取的频谱特征。</p>
-<p><strong><em>IV影响</em></strong></p>
-<p>利用计步器程序（利用加速器计来算步数）来分析影响。校准，基本混淆，增加范围混淆对计步器程序影响很小，但是增强混淆的影响很大，因此需要寻找新的混淆方式。</p>
-<p><strong>拉普拉斯噪声在效用上的影响</strong></p>
-<p>采用一种类似的differential privacy方法,在拉普拉斯分布中随机选择偏差和增益误差。<br>能在隐私和效用之间取得一个较好的平衡。</p>
-<p><strong>白噪声在效用上的影响</strong></p>
-<p>增加白噪声会有严重的后果，即使是高信噪比。</p>
-<h2 id="7-缺陷"><a href="#7-缺陷" class="headerlink" title="7.缺陷"></a>7.缺陷</h2><ol>
-<li>实验设备的数量不够多，但是有在真实环境下的测试。</li>
-<li>校准陀螺仪做的不够好，但是证明了手动校准是容易出错的。</li>
-</ol>
 
           
         
@@ -1235,7 +1020,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/03/27/S&P/Click Fraud/">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/03/27/S&P/通过运动传感器来追踪移动网页用户：攻击和防御/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuanyi Wu">
@@ -1254,7 +1039,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/27/S&P/Click Fraud/" itemprop="url">CLick Fraud</a></h1>
+                <a class="post-title-link" href="/2017/03/27/S&P/通过运动传感器来追踪移动网页用户：攻击和防御/" itemprop="url">通过运动传感器来追踪移动网页用户：攻击和防御</a></h1>
         
 
         <div class="post-meta">
@@ -1328,40 +1113,255 @@
       
         
           
-            <p>PPC(Pay Per Click) == CPC(Cost Per Click)<br>Click Fraud: Caused by competitors, disgruntled employees, software bots, and angry customers clicking on your ads.</p>
-<h2 id="ClickCease"><a href="#ClickCease" class="headerlink" title="ClickCease"></a>ClickCease</h2><p><a href="https://www.clickcease.com" target="_blank" rel="external">ClickCease</a></p>
+            <p>本文是2016年NDSS会议，Tracking Mobile Web Users Through Motion Sensors: Attacks and Defenses的笔记<br><a href="https://www.internetsociety.org/sites/default/files/blogs-media/tracking-mobile-web-users-through-motion-sensors-attacks-defenses.pdf" target="_blank" rel="external">原文链接</a></p>
+<h2 id="1-摘要"><a href="#1-摘要" class="headerlink" title="1.摘要"></a>1.摘要</h2><p>通过检测传感器信号中的异常（由制造中的缺陷带来的，就像人类的指纹一样），可以高精度地唯一识别一台设备（手机）。网站的发布者和广告商可以利用这一特性，通过网页、广告、访问来跟踪用户。</p>
+<p>攻击方法：</p>
 <ul>
-<li>24*7 Always On Click-Fraud Monitoring</li>
-<li>Stops Click-Fraud Before It Happens</li>
-<li>Business-Specific Click-Fraud detection Rules</li>
-<li>Save Money(up to 20%-25% of your advertising budget gets lost due to click fraud)</li>
+<li>用听不到的音频去激发加速度计和陀螺仪，以得到包含异常的信号。因为是基于物理设备，所有类似清理cookie和隐私模式无法防御这种攻击</li>
 </ul>
-<p>FAQs</p>
+<p>防御手段：</p>
 <ul>
-<li>Doesn’t Google prevent click fraud?<br>Google does detect click fraud, but does not prevent it. Instead, Google will give back credit to your account days after the fraud took place and only after you claim it.</li>
-<li>How do you detect fraudulent ad clicks?<br>(1) A HTML code that detects the attacker’s activity on your website.<br>(2) An Adwords tracking template that connects us directly to Google to get unique information regarding each click.</li>
+<li>校准传感器，消除异常信号。<ol>
+<li>加速度计很容易</li>
+<li>陀螺仪校准需要特殊的设备，并且手动校准不是一个有效的方法。</li>
+</ol>
+</li>
+<li>添加噪声进行混淆是更有效的方法<ol>
+<li>大量添加和天然异常相似的噪声</li>
+<li>在更大的量级上的做法：增加临时干扰来混淆主要特征的频率</li>
+</ol>
+</li>
 </ul>
-<h2 id="PPC-Surge"><a href="#PPC-Surge" class="headerlink" title="PPC Surge"></a>PPC Surge</h2><p><a href="https://www.ppcsurge.com" target="_blank" rel="external">PPC Surge</a><br>Once the Monitor is created, we will insert a tracking URL into your Google Adwords account. When a visitor clicks on your ad the tracking URL directs them to our website where we collect their IP address and other data (e.g., keyword) and redirect them to your site. This happens so quickly that, from the visitor’s perspective, it appears as though he/she simply clicked through to your site directly.</p>
-<p>If we detect a potential click fraud, instead of instantly redirecting the visitor to your website, we display a warning message on our site.</p>
-<p>If after seeing the warning message the visitor continues to click on your ads, our software tells Google to not display any more ads to that IP address thereby saving your advertising budget.</p>
-<h2 id="How-Google-doing-about-it"><a href="#How-Google-doing-about-it" class="headerlink" title="How Google doing about it?"></a>How Google doing about it?</h2><ul>
-<li>Advanced algorithms detect and filter out invalid clicks in real time, before advertisers are even charged.</li>
-<li>Google’s Ad Traffic Quality Team also conducts manual, offline analysis and removes any clicks that they deem invalid before advertisers are charged.</li>
-<li>Google also launches investigations based on advertisers’ reports of suspicious activity.</li>
-</ul>
-<h2 id="How-to-identify-click-fraud-by-yourself"><a href="#How-to-identify-click-fraud-by-yourself" class="headerlink" title="How to identify click fraud by yourself?"></a>How to identify click fraud by yourself?</h2><p>You need internal reporting. Internal reporting would tell you if that lead became a sale.</p>
+<h2 id="2-数字指纹背景"><a href="#2-数字指纹背景" class="headerlink" title="2.数字指纹背景"></a>2.数字指纹背景</h2><ol>
+<li>美国政府早在1960年，就使用独特的传输特征来跟踪移动发射器。之后还成功利用了无线电信号的频谱特征来区分发射器。</li>
+<li>利用网卡（NICs）制造上微小的缺陷，分析发射信号的无线电频率</li>
+<li>利用独特且不变的电脑时钟偏移，通过TCP和ICMP的时间戳获取</li>
+<li>不同的设备会有不同的软件安装基础</li>
+</ol>
+<h4 id="浏览器数字指纹"><a href="#浏览器数字指纹" class="headerlink" title="浏览器数字指纹"></a>浏览器数字指纹</h4><ol>
+<li>cookie（清除cookie，隐私浏览模式）</li>
+<li>枚举浏览器的字体和其他浏览器特征（渲染引擎，对于不同JS引擎的表现基准）</li>
+<li>UDID和IEME需要特殊的权限</li>
+</ol>
+<h4 id="传感器数字指纹"><a href="#传感器数字指纹" class="headerlink" title="传感器数字指纹"></a>传感器数字指纹</h4><ol>
+<li>利用麦克风和扬声器，这需要高权限</li>
+<li>Bojinov利用加速度计（需要用户校准加速度计）</li>
+<li>Dey利用机器学习的方法分析加速度计（利用手机振动）</li>
+<li>本文利用了加速度计和陀螺仪。</li>
+</ol>
+<p>Song提出，降低加速度计的精度来防御窃听。例如报告1g的加速度来隐藏微小的变化值。但是这个方法对于陀螺仪来说，是不够的。</p>
+<h2 id="3-运动传感器说明"><a href="#3-运动传感器说明" class="headerlink" title="3.运动传感器说明"></a>3.运动传感器说明</h2><p>在电子机械结构上的半点瑕疵都会产生跨芯片的特质。</p>
 <ul>
-<li>IP address<br>IP address is pretty self-explanatory.</li>
-<li>click timestamp<br>The time when someone arrives on your site after clicking an ad.</li>
-<li>action timestamp<br>The time when that person completed an action on your site.<br>If you see an IP address with a bunch of click timestamps but no action timestamps, then that is likely click fraud.</li>
-<li>user agent<br>Identify whether someone on a particular IP is the same person.</li>
-<li>proxy<br>If the searches are very different, it’s likely a proxy server. If the search queries are similar and are occurring over a super short time period, the clicks are probably fraudulent.</li>
+<li>加速度计：测量的是固有加速度（万有引力作用下的量子的稳定速度）而不是坐标加速度。查分电容正比于所施加的加速度。在制造的时候产生的结构电极间的丝毫隙差会影响产生的电容。电-机械结构中微小的不精确，导致了加速度计芯片微小的不精确。</li>
+<li>陀螺仪：使用科里奥利效应来测量角速度。角速度w被施加重量为m的移动质量，并且速度为v，物体会受一个垂直于旋转轴线和速度方向的科里奥利力F=-2mw×v。通过测量陀螺仪内震动已知质量的科里奥利力，可以算出角速度。震动会改变电容，转化成电压信号来测量科里奥利力。</li>
 </ul>
-<h2 id="4-tips-to-protect-yourself-from-click-happy-criminals"><a href="#4-tips-to-protect-yourself-from-click-happy-criminals" class="headerlink" title="4 tips to protect yourself from click-happy criminals"></a>4 tips to protect yourself from click-happy criminals</h2><ul>
-<li>Turn to Facebook/Twitter Ads<br>社交网络没有第三方发布者，他们往往是主要的点击诈骗的来源。恶意竞争者也很少见，因为有先进的定位选择。Set up IP Exclusions in AdWords</li>
-<li>Run GDN Remarketing Campaigns（只发部给到过网站的人看）<br>不是很懂</li>
-<li>Adjust Your Ad Targeting<br>排除一些劳动力便宜的地点或语言（click farms）<h2 id="To-be-Continued"><a href="#To-be-Continued" class="headerlink" title="To be Continued"></a>To be Continued</h2></li>
+<h2 id="4-特征和分类算法"><a href="#4-特征和分类算法" class="headerlink" title="4.特征和分类算法"></a>4.特征和分类算法</h2><h4 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h4><p>加速度：设a(t)=(a<sub>x</sub>, a<sub>y</sub>, a<sub>z</sub>)，使|a(t)| = √(a<sub>x</sub><sup>2</sup>, a<sub>y</sub><sup>2</sup>, a<sub>z</sub><sup>2</sup>)。<br>虽然丢弃一些信息，但是使得加速度不依赖于设备的方向。（即使是静止的设备，摆放的方式不同，在三个轴上会有很大的差异，即+-1g）</p>
+<p>角速度：w(t)=(w<sub>x</sub>, w<sub>y</sub>, w<sub>z</sub>)</p>
+<h4 id="时间和频谱特征"><a href="#时间和频谱特征" class="headerlink" title="时间和频谱特征"></a>时间和频谱特征</h4><p>选取了10个时间，15个频谱特征。这些特征在过去的研究中已经得到很好的证明。</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>特征</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>时间</td>
+<td>Mean</td>
+<td>不同时间戳下信号强度的均值</td>
+</tr>
+<tr>
+<td></td>
+<td>Standard Deviation</td>
+<td>信号强度的标准偏差</td>
+</tr>
+<tr>
+<td></td>
+<td>Average Deviation</td>
+<td>均值的平均偏差</td>
+</tr>
+<tr>
+<td></td>
+<td>Skewness</td>
+<td>偏态，均值非对称分布的度量</td>
+</tr>
+<tr>
+<td></td>
+<td>Kurtosis</td>
+<td>峰度，分布平坦或尖刻的度量</td>
+</tr>
+<tr>
+<td></td>
+<td>RMS</td>
+<td>在各种时间戳下信号强度的平方的算术均方根</td>
+</tr>
+<tr>
+<td></td>
+<td>Max</td>
+<td>信号强度的最大值</td>
+</tr>
+<tr>
+<td></td>
+<td>Min</td>
+<td>信号强度的最小值</td>
+</tr>
+<tr>
+<td></td>
+<td>ZCR</td>
+<td>信号由正变负或由负变正的速度</td>
+</tr>
+<tr>
+<td></td>
+<td>Non-Negative count</td>
+<td>非负值的数量</td>
+</tr>
+<tr>
+<td>频率</td>
+<td>Spectral Centroid</td>
+<td>频谱质心：表示功率谱分布的质心</td>
+</tr>
+<tr>
+<td></td>
+<td>Spectral Spread</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Spectral Skewness</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Spectral Kurtosis</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Spectral Entropy</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Spectral Flatness</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Spectral Brightness</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Spectral Rolloff</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Spectral Roughness</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Spectral Irregularity</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Spectral RMS</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Low-Energy-Rate</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Spectral flux</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Spectral Attack Time</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Spectral Attack Slope</td>
+<td>谱峰的平均坡度</td>
+</tr>
+</tbody>
+</table>
+<h4 id="分类算法和指标"><a href="#分类算法和指标" class="headerlink" title="分类算法和指标"></a>分类算法和指标</h4><p>监督学习：支持向量机，朴素贝叶斯分类，多级决策树，K近邻，二次判别分析分类器，Bagged Decision Trees (Matlab’s Treebagger model)</p>
+<p>评价指标：Precision（精度），Recall，F-Score（前两者的调和平均）</p>
+<ul>
+<li>Pr<sub>i</sub> = TP<sub>i</sub> / ( TP<sub>i</sub> + FP<sub>i</sub> )</li>
+<li>Re<sub>i</sub> = TP<sub>i</sub> / ( TP<sub>i</sub> + FN<sub>i</sub> )</li>
+<li>F<sub>i</sub> = ( 2 × Pr<sub>i</sub> × Re<sub>i</sub> ) / ( Pr<sub>i</sub> + Re<sub>i</sub> )</li>
 </ul>
+<p>一个保守的分类器，为了较高的精度，会有较低的Recall。反之亦然。为了获得系统的总体表现，论文计算均值</p>
+<ul>
+<li>AvgPr = ( sum<sup>n</sup><sub>i=1</sub>Pr<sub>i</sub> ) / n</li>
+<li>AvgRe = ( sum<sup>n</sup><sub>i=1</sub>Re<sub>i</sub> ) / n</li>
+<li>AvgF = ( 2 × Pr<sub>i</sub> × Re<sub>i</sub> ) / ( Pr<sub>i</sub> + Re<sub>i</sub> )</li>
+</ul>
+<h2 id="5-数字指纹评价"><a href="#5-数字指纹评价" class="headerlink" title="5.数字指纹评价"></a>5.数字指纹评价</h2><h4 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h4><ol>
+<li>利用附录A中的JavaScript代码采集数据。但是受底层操作系统的限制，通过浏览器采集样本的最大频率要比硬件允许的低。</li>
+<li>几种浏览器中选择了google浏览器（样本频率100Hz，允许accelerometer和gyroscope）。</li>
+<li>实验设备有iPhone5，iPhone5s，Nexus S，Galaxy S3，Galaxy S2。背景声音设置为无声，20kHz的超声波，流行音乐。</li>
+<li>每种设置收集10个样本，大约5-8秒有价值的数据。</li>
+<li>没有特殊提及，手机是放在静止平面上的，后有考虑了用户手持的状态。</li>
+</ol>
+<h4 id="特征的探索和选择"><a href="#特征的探索和选择" class="headerlink" title="特征的探索和选择"></a>特征的探索和选择</h4><p>并不是使用所有特征就行，因为它们之间精度不同，甚至有些是有冲突的。时间特征不需要转换数据流，频谱特征先将不等间隔的数据流转换为用三次样条插值固定间隔的数据流。在8khz采样速率进行插值。利用MIRtoolbox和Libxtract提取频谱特征。利用FEAST toolbox和JMI criterion找最佳组合。<br>选取的70个特征中，21个来自加速度计，49个来自陀螺仪。时间26个，频谱44个。</p>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><ul>
+<li><p>实验环境：实验结果还是不错的，声音激活对精确度的效果不明显，但是后面会讲到却可以很好的应对传感器校准或混淆。</p>
+</li>
+<li><p>公共场合:效果也还可以，90%的精确度</p>
+</li>
+</ul>
+<h4 id="敏感性分析"><a href="#敏感性分析" class="headerlink" title="敏感性分析"></a>敏感性分析</h4><ul>
+<li>设备数量的不同：设备增多，准确度会下降。不过亦然能保持在90%以上。</li>
+<li>训练集大小不同：训练集比测试集从2:8到8:2，精确度从98%升到99%。</li>
+<li>温度的影响：气温变化有10%的影响。</li>
+<li>时间稳定性：有影响，精度仍在90%以上。</li>
+</ul>
+<h2 id="6-解决方法"><a href="#6-解决方法" class="headerlink" title="6.解决方法"></a>6.解决方法</h2><h4 id="校准"><a href="#校准" class="headerlink" title="校准"></a>校准</h4><p>Bojinov的仿射误差模型：a<sup>M</sup>(测量值) = g(放大作用) * a(真实值) + o(误差)</p>
+<p>在所有特征中，均值是传感器数据流最能区别的特征，和偏差紧密相关。</p>
+<p><strong>校准加速器：</strong> 测量值=偏差+增益误差*真实值</p>
+<p>计算每个轴上的偏差和增益误差，需要测量该轴正反两个方向的数值。举Z轴的例子：S<sub>Z</sub> = (a<sup>M</sup><sub>Z+</sub> - a<sup>M</sup><sub>Z-</sub>) / 2g，O<sub>Z</sub> = (a<sup>M</sup><sub>Z+</sub> + a<sup>M</sup><sub>Z-</sub>) / 2</p>
+<p><strong>校准陀螺仪：</strong> 测量值=偏差+增益误差*真实值</p>
+<p>诱导固定的角度变化，可以算出增益误差。保持设备固定，即可算出偏差。 <em>当设备旋转固定角度时，测量值往往偏离真实值。所以计算出的结果，只是实际值的近似值</em>  这会影响任意陀螺仪角位移的测量系统。举Z轴的例子，O<sub>i</sub> = (θ<sup>M</sup><sub>i+</sub> + θ<sup>M</sup><sub>i-</sub>) / (t<sub>1</sub> + t<sub>2</sub>)，S<sub>i</sub> = (θ<sup>M</sup><sub>i+</sub> - θ<sup>M</sup><sub>i-</sub> - O<sub>i</sub>(t<sub>1</sub> - t<sub>2</sub>)) / 2π</p>
+<p><strong>校准过的数据的数字指纹：</strong><br>校准对加速度计效果拔群，对陀螺仪效果几乎看不出来。校准之后，音频激发终于对精度有了一个小提升。总的来说，以精准测量为前提的话，校准是个有前途的技术。所以厂家处于保护用户隐私的考虑，最好出厂前校准一下。</p>
+<h4 id="数据混淆"><a href="#数据混淆" class="headerlink" title="数据混淆"></a>数据混淆</h4><p>和校准相比，混淆增加了额外的噪声，对传感器的使用有负面影响</p>
+<ul>
+<li>Uniform noise：有范围的最高熵</li>
+<li>Laplace noise：由不同的微分隐私启发最高熵</li>
+<li>White noise：影响所有方面的信号</li>
+</ul>
+<p><strong>均匀噪声</strong></p>
+<p><strong><em>I.基本混淆</em></strong></p>
+<ul>
+<li><p>首先：考虑在之前我们观测到的校准误差相似的范围内添加小规模的混淆。在该范围内添加噪声相当于切换到了一个不同的（错误的）校准，因此给用户的影响最小。加速度计的偏差范围[-0.5,0.5]，陀螺仪的偏差范围[-0.1,0.1]，增益范围[0.95,1.05]。在范围内，随机均匀混淆。有很明显的作用（各种场景下降低了7%-42%）。同时音频刺激有明显效果，应该是一旦主要特征被混淆了，它显著影响次要特征开始发挥作用。</p>
+</li>
+<li><p>然后：研究发现，对于越大的数据集，混淆作用月明显。</p>
+</li>
+</ul>
+<p><strong><em>II.增加混淆范围</em></strong></p>
+<p>扩大混淆范围是可以降低精度，但是收益递减。说明简单的混淆原始数据，不足以隐藏所有独特的特征。到目前为止，仅仅操纵信号值，没有改变任何频率特征，所以分类器还能利用频谱特征来唯一区分各个设备。</p>
+<p><strong><em>III.增强混淆</em></strong></p>
+<p>主要的思路是，概率地将当前数据点的修改版本插在在过去时间戳和当前时间戳之间，时间戳本身是随机选择的。这会影响到数据的三次样条插值，进而影响从数据流中提取的频谱特征。</p>
+<p><strong><em>IV影响</em></strong></p>
+<p>利用计步器程序（利用加速器计来算步数）来分析影响。校准，基本混淆，增加范围混淆对计步器程序影响很小，但是增强混淆的影响很大，因此需要寻找新的混淆方式。</p>
+<p><strong>拉普拉斯噪声在效用上的影响</strong></p>
+<p>采用一种类似的differential privacy方法,在拉普拉斯分布中随机选择偏差和增益误差。<br>能在隐私和效用之间取得一个较好的平衡。</p>
+<p><strong>白噪声在效用上的影响</strong></p>
+<p>增加白噪声会有严重的后果，即使是高信噪比。</p>
+<h2 id="7-缺陷"><a href="#7-缺陷" class="headerlink" title="7.缺陷"></a>7.缺陷</h2><ol>
+<li>实验设备的数量不够多，但是有在真实环境下的测试。</li>
+<li>校准陀螺仪做的不够好，但是证明了手动校准是容易出错的。</li>
+</ol>
 
           
         

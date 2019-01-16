@@ -95,25 +95,22 @@
 
 
 
-<meta name="description" content="样本抽取和权重设置样本抽样好、坏各抽5000，不确定不参与建模（使特征区分更明显）。5000是业界建模的经验和惯例，当样本数不足5000或在5000左右时，全部参与建模。
+<meta name="description" content="样本抽取和权重设置样本抽样​    好、坏各抽5000，不确定不参与建模（使特征区分更明显）。5000是业界建模的经验和惯例，当样本数不足5000或在5000左右时，全部参与建模。
 采用分层随机抽样的方法。在数据量很大的情况下不抽样而使用全量数据进行建模会导致：程序缓慢、overfit。
-权重修正好的权重 = (好 + 不确定) / 好。使得建模样本中的好在样本数量上可以代表全部样本的好和不确定。
-样本划分">
+权重修正​    好的权重 = (好 + 不确定) / 好。使得建模样本中的好在样本数量上可以代表全部样本的好">
 <meta property="og:type" content="article">
 <meta property="og:title" content="评分卡建模">
 <meta property="og:url" content="http://wu-yuanyi.github.io/2018/12/18/DataAnalysis/评分卡建模/index.html">
 <meta property="og:site_name" content="WYY's Blog">
-<meta property="og:description" content="样本抽取和权重设置样本抽样好、坏各抽5000，不确定不参与建模（使特征区分更明显）。5000是业界建模的经验和惯例，当样本数不足5000或在5000左右时，全部参与建模。
+<meta property="og:description" content="样本抽取和权重设置样本抽样​    好、坏各抽5000，不确定不参与建模（使特征区分更明显）。5000是业界建模的经验和惯例，当样本数不足5000或在5000左右时，全部参与建模。
 采用分层随机抽样的方法。在数据量很大的情况下不抽样而使用全量数据进行建模会导致：程序缓慢、overfit。
-权重修正好的权重 = (好 + 不确定) / 好。使得建模样本中的好在样本数量上可以代表全部样本的好和不确定。
-样本划分">
-<meta property="og:updated_time" content="2019-01-03T14:19:06.423Z">
+权重修正​    好的权重 = (好 + 不确定) / 好。使得建模样本中的好在样本数量上可以代表全部样本的好">
+<meta property="og:updated_time" content="2019-01-16T12:00:19.166Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="评分卡建模">
-<meta name="twitter:description" content="样本抽取和权重设置样本抽样好、坏各抽5000，不确定不参与建模（使特征区分更明显）。5000是业界建模的经验和惯例，当样本数不足5000或在5000左右时，全部参与建模。
+<meta name="twitter:description" content="样本抽取和权重设置样本抽样​    好、坏各抽5000，不确定不参与建模（使特征区分更明显）。5000是业界建模的经验和惯例，当样本数不足5000或在5000左右时，全部参与建模。
 采用分层随机抽样的方法。在数据量很大的情况下不抽样而使用全量数据进行建模会导致：程序缓慢、overfit。
-权重修正好的权重 = (好 + 不确定) / 好。使得建模样本中的好在样本数量上可以代表全部样本的好和不确定。
-样本划分">
+权重修正​    好的权重 = (好 + 不确定) / 好。使得建模样本中的好在样本数量上可以代表全部样本的好">
 
 
 
@@ -375,29 +372,28 @@
       
 
       
-        <h2 id="样本抽取和权重设置"><a href="#样本抽取和权重设置" class="headerlink" title="样本抽取和权重设置"></a>样本抽取和权重设置</h2><h3 id="样本抽样"><a href="#样本抽样" class="headerlink" title="样本抽样"></a>样本抽样</h3><p><strong>好</strong>、<strong>坏</strong>各抽5000，<strong>不确定</strong>不参与建模（使特征区分更明显）。5000是业界建模的经验和惯例，当样本数不足5000或在5000左右时，全部参与建模。</p>
+        <h2 id="样本抽取和权重设置"><a href="#样本抽取和权重设置" class="headerlink" title="样本抽取和权重设置"></a>样本抽取和权重设置</h2><h3 id="样本抽样"><a href="#样本抽样" class="headerlink" title="样本抽样"></a>样本抽样</h3><p>​    <strong>好</strong>、<strong>坏</strong>各抽5000，<strong>不确定</strong>不参与建模（使特征区分更明显）。5000是业界建模的经验和惯例，当样本数不足5000或在5000左右时，全部参与建模。</p>
 <p>采用分层随机抽样的方法。在数据量很大的情况下不抽样而使用全量数据进行建模会导致：程序缓慢、overfit。</p>
-<h3 id="权重修正"><a href="#权重修正" class="headerlink" title="权重修正"></a>权重修正</h3><p><strong>好</strong>的权重 = (<strong>好</strong> + <strong>不确定</strong>) / <strong>好</strong>。使得建模样本中的<strong>好</strong>在样本数量上可以代表全部样本的<strong>好</strong>和<strong>不确定</strong>。</p>
-<h3 id="样本划分"><a href="#样本划分" class="headerlink" title="样本划分"></a>样本划分</h3><p>一般将样本以7:3划分为训练集和验证集。训练集中至少应有500个样本，才能建立较为稳定的模型。如果模型在训练集和验证集中的表现基本一致，则说明模型比较稳健。如果建模抽样中的<strong>坏</strong>样本数量不足（总共才500个左右），则全部参与训练，使用BootStrap方法进行重复抽样得到验证样本。</p>
+<h3 id="权重修正"><a href="#权重修正" class="headerlink" title="权重修正"></a>权重修正</h3><p>​    <strong>好</strong>的权重 = (<strong>好</strong> + <strong>不确定</strong>) / <strong>好</strong>。使得建模样本中的<strong>好</strong>在样本数量上可以代表全部样本的<strong>好</strong>和<strong>不确定</strong>。</p>
+<h3 id="样本划分"><a href="#样本划分" class="headerlink" title="样本划分"></a>样本划分</h3><p>​    一般将样本以7:3划分为训练集和验证集。训练集中至少应有500个样本，才能建立较为稳定的模型。如果模型在训练集和验证集中的表现基本一致，则说明模型比较稳健。如果建模抽样中的<strong>坏</strong>样本数量不足（总共才500个左右），则全部参与训练，使用BootStrap方法进行重复抽样得到验证样本，并在验证样本集上使用BootStrap验证法评估模型表现。</p>
 <p><a href="https://www.jianshu.com/p/708dff71df3a" target="_blank" rel="external">Bootstrap, Bagging, Boosting</a></p>
-<h2 id="变量预筛选"><a href="#变量预筛选" class="headerlink" title="变量预筛选"></a>变量预筛选</h2><p>从数据和业务的角度对变量进行预筛选 。通过变量预筛选，可以降低变量个数，集中精力于质量较好的变量。</p>
+<h2 id="变量预筛选"><a href="#变量预筛选" class="headerlink" title="变量预筛选"></a>变量预筛选</h2><p>​    通过变量预筛选，可以降低变量个数，集中精力于质量较好的变量。</p>
 <ul>
-<li><p>业务角度：如客户坚持使用一些项目组坚持不考虑的变量，初选中可以不剔除。</p>
-</li>
-<li><p>数据角度：通过数据描述性统计分析，计算变量缺失率。当模型有足够的变量可供挑选时，对缺失率高于95%对变量直接不予考虑。当变量不足时，缺失率高达99%对变量也可以加入候选清单，虽然缺失率这么高的变量一般最后不会入模。</p>
-</li>
+<li>业务角度：需要和机构业务人员及数据人员沟通讨论，对于质量较差的变量，不宜进入模型。</li>
+<li>数据角度：通过数据描述性统计分析，计算变量缺失率。当模型有足够的变量可供挑选时，对缺失率高于95%对变量直接不予考虑。当变量不足时，缺失率高达99%对变量也可以加入候选清单，虽然缺失率这么高的变量一般最后不会入模。</li>
+<li>其他角度：例如金额类变量、功能型变量通常不入模，但是金额之间的比值是可以考虑的。</li>
 </ul>
-<h2 id="变量取值分箱"><a href="#变量取值分箱" class="headerlink" title="变量取值分箱"></a>变量取值分箱</h2><p>在模型开发过程中，需要对变量进行分箱，对于候选模型变量，变量取值分箱的步骤如下：</p>
+<h2 id="变量取值分箱"><a href="#变量取值分箱" class="headerlink" title="变量取值分箱"></a>变量取值分箱</h2><h3 id="细分箱与粗分箱"><a href="#细分箱与粗分箱" class="headerlink" title="细分箱与粗分箱"></a>细分箱与粗分箱</h3><p>​    在模型开发过程中，需要对变量进行分箱，对于候选模型变量，变量取值分箱的步骤如下：</p>
 <ol>
 <li>细分箱（fine bining）：对连续变量平均细分成足够多的分箱，获取变量细分箱的WOE报告。</li>
 <li>粗分箱（coarse bining）：依据细分箱的WOE报告，结合业务上对变量的理解和分箱合并规则（WOE损失最小），对分箱进行手工合并，获取候选变量的粗分箱WOE报告。</li>
 </ol>
-<p>通过分箱得到所有候选变量的WOE报告，从而获得每个变量取值的最佳分栏、每个栏位对于的证据权重（WOE）和此变量的信息值（IV）。由于后续步骤需要WOE无缺失才能进行，因此变量原始取值有缺失时，必须保证缺失值也有对应的WOE。如果一些分箱中没有<strong>好</strong>或<strong>坏</strong>导致无法计算此分箱的WOE，则需对此分箱进行调整或与其他分箱合并，以保证每个分箱都有WOE。</p>
+<p>​    通过分箱得到所有候选变量的WOE报告，从而获得每个变量取值的最佳分栏、每个栏位对于的证据权重（WOE）和此变量的信息值（IV）。由于后续步骤需要WOE无缺失才能进行，因此变量原始取值有缺失时，必须保证缺失值也有对应的WOE。如果一些分箱中没有<strong>好</strong>或<strong>坏</strong>导致无法计算此分箱的WOE，则需对此分箱进行调整或与其他分箱合并，以保证每个分箱都有WOE。</p>
 <h3 id="变量分箱的一般原则"><a href="#变量分箱的一般原则" class="headerlink" title="变量分箱的一般原则"></a>变量分箱的一般原则</h3><ul>
 <li>各分箱中的样本量不应过少，过少则不具有统计显著性，且不稳定。一般建议不低于全部样本的5%。</li>
 <li>为能计算WOE，各分箱中应同时出现<strong>好</strong>和<strong>坏</strong>。若不满足，应将此分箱与其他分箱合并以满足。</li>
 <li>WOE趋势应与业务角度一致，通常为直线型或U型（一般仅年龄）。对于有序型和区间型，如果趋势不单调，则通过合并分箱进行调整。</li>
-<li>对于特殊取值，入<em>其他</em>、<em>逾期次数为0</em>等应单列分箱。</li>
+<li>对于特殊取值，如<em>其他</em>、<em>逾期次数为0</em>等应单列分箱。</li>
 <li>分箱数一般为3-6个，数量过少则区分不显著，数量过多则导致不稳定。</li>
 <li>其他业务考虑，如<em>再婚</em>、<em>复婚</em>可与<em>已婚</em>合并。</li>
 </ul>
@@ -414,8 +410,9 @@
 </li>
 <li><p>对每个细分箱统计<strong>好账户</strong>和<strong>坏账户</strong>数，计算每个分箱的WOE值。计算公式如下：</p>
 <p>$$ WOE(j) = \ln(\cfrac{f_G(j)}{f_B(j)})$$</p>
-<p>$$f_G(j)$$：分箱j中<strong>好</strong>样本数占总样本中<strong>好</strong>样本数的比例</p>
-<p>$$f_B(j)$$：分箱j中<strong>坏</strong>样本数占总样本中<strong>坏</strong>样本数的比例</p>
+<p>$$f_G(j)$$：$$g_i/G$$ 分箱j中<strong>好</strong>样本数占总样本中<strong>好</strong>样本数的比例</p>
+<p>$$f_B(j)$$：$$b_i/B$$ 分箱j中<strong>坏</strong>样本数占总样本中<strong>坏</strong>样本数的比例</p>
+<p>​    说明：该公式表示第j类中正常与违约的比率与整个样本中正常与违约的比率的比值的对数。因此，该公式主要衡量第j类对正常与违约比率的影响程度。</p>
 </li>
 <li><p>粗分箱：将WOE值相近的细分箱且有业务意义的细分箱合并为粗分箱。对于数值型变量，通常将相邻的细分箱合并；对于字符型变量，通常将同类细分箱合并。对于特殊值和缺失值等，一般会保留一个各自单独的粗分箱；结合实际情况，考虑特殊值与缺失值的产生原因与业务含义，分析与其他分箱合并后是否更合理。</p>
 </li>
@@ -423,14 +420,14 @@
 <ol>
 <li>WOE值是否单调（年龄除外）</li>
 <li>分箱数量一般控制在4-5个以内，太多容易不稳定</li>
-<li>每一个分箱的占比应当评价分配，不宜出现某个变量取值的占比过高或过低</li>
+<li>每一个分箱的占比应当平均分配，不宜出现某个变量取值的占比过高或过低</li>
 <li>容易被客户或客户经理操纵的变量（如贷款期限，这种变量虽然可以衡量客户的还款能力，但也容易受客户经理推荐激励的影响），变量足够时不建议入模。</li>
 </ol>
-<p>​    变量的分箱是模型开发最关键的步骤之一，粗分箱后的哥哥分箱的WOE值的增减趋势必须满足合理的业务解释，并能保持比较稳定的分布。粗分箱产生的WOE值将替代原始数据值进入接下来的模型优化步骤。粗分箱结束后将生成变量报告，以确保每个变量既可以表现出清晰的分辨力，又符合业务逻辑。未能符合任何选择条件的变量都将被剔除，以有利于其他候选变量的进入。</p>
+<p>​    变量的分箱是模型开发最关键的步骤之一，粗分箱后的各个分箱的WOE值的增减趋势必须满足合理的业务解释，并能保持比较稳定的分布。粗分箱产生的WOE值将替代原始数据值进入接下来的模型优化步骤。粗分箱结束后将生成二维变量报告，以确保每个使用的变量既可以表现出清晰的分辨力，又符合业务逻辑。未能符合任何选择条件的变量都将被剔除，以有利于其他候选变量的进入。</p>
 </li>
 </ol>
 <h3 id="IV"><a href="#IV" class="headerlink" title="IV"></a>IV</h3><p>​    信息值（Information Value）代表了同整个群体相比，某一特征变量在所有区间中的好和坏之间的比例是否存在差异。在一个互联网信贷金融机构风险管理比较成熟，数据收集比较完善，数据总体质量较为可信的情况下，一个变量的信息值一般在0.05以上，则认为这个变量对因变量有一定的区分能力。如果数据覆盖面与数据质量不够完善，可用的数据信息比较少，则对变量的信息值的阈值会有不同的考虑。</p>
-<p>$$ IV = \Sigma \lbrace (\cfrac{g_i}{G} - \cfrac{b_i}{B}) \ast \ln(\cfrac{g_i}{G}/\cfrac{b_i}{B})  \rbrace$$</p>
+<p>$$ IV = \Sigma \lbrace (\cfrac{g_i}{G} - \cfrac{b_i}{B}) \ast \ln(\cfrac{g_i}{G}/\cfrac{b_i}{B})  \rbrace​$$</p>
 <p>$$g_i$$：变量第i 个分箱栏位中的好样本数</p>
 <p>$$G$$：样本中好样本总数</p>
 <p>$$b_i$$：变量第i 个分箱栏位中坏样本数</p>
@@ -441,19 +438,36 @@
 <li>WOE值趋势与业务理解不一致的变量</li>
 <li>集中度过高，如某一取值分箱的占比超过98%</li>
 </ul>
-<h3 id="逐步判别（Stepdisc）"><a href="#逐步判别（Stepdisc）" class="headerlink" title="逐步判别（Stepdisc）"></a>逐步判别（Stepdisc）</h3><p>​    在完成上述简单的变量筛选后，变量选择过程进入下一步骤：变量降维。从模型中没有变量开始，逐个引入变量，每增加一个变量后都要检查，用逐步判别的方法去除那些无助于模型预测能力的变量。当模型中所有变量符合标准而无其他变量符合进入的标准时，选择程序结束。一般在进行逐步判别程序（StepDisc Procedure）时，设定添加变量的置信水平（SLE）=0.15，去除变量的置信水平（SLS）=0.15。</p>
-<p>​    逐步判别程序的目的是从变量池内所有可能的变量中，初步确定最具预测能力的特征变量组合。在这一过程中，对每个可能进入模型的特征变量反复进行测试，结果是此变量已无法再有区分的贡献性或成为已选择的模型变量的一部分。</p>
-<p>​    该过程将当前的特征变量作为因变量，模型中的其他变量作为随机变量，进行协方差分析。一旦不再有新变量进入模型或从模型中去除变量时，选择过程结束。保留下来的头部变量时最可能进入最终模型的候选特征变量。</p>
+<h3 id="逐步判别（Stepdisc）"><a href="#逐步判别（Stepdisc）" class="headerlink" title="逐步判别（Stepdisc）"></a>逐步判别（Stepdisc）</h3><p>​    在完成上述简单的变量筛选后，变量选择过程进入下一步骤：变量降维。从模型中没有变量开始，逐个引入变量，每增加一个变量后都要检查，用逐步判别的方法去除那些无助于模型预测能力的变量。当模型中所有变量符合标准而无其他变量符合进入的标准时，选择程序结束。一般在进行逐步判别程序（StepDisc Procedure）时，设定添加变量的置信水平（SLE）=0.15，去除变量的置信水平（SLS）=0.15。置信水平参数值越小，被选中的变量个数就会越少。</p>
+<p>​    逐步判别程序的目的是从变量池内所有可能的变量中，初步确定最具预测能力的特征变量组合。在这一过程中，对每个可能进入模型的特征变量反复进行测试，以观察其辨别好坏记录的有效性。每次对一个新的变量反复进行测试，结果要么是此变量已无法再有区分的贡献性，要么是成为已选择的模型变量的一部分。该过程是基于对当前的特征变量充当因变量和模型中的其他变量当作随机变量进行协方差分析进行的。一旦不再有新变量进入模型或从模型中去除变量时，选择过程结束。保留下来的头部变量是最可能进入最终模型的候选特征变量。</p>
 <p>​    逐步判别程序所选变量为模型最终变量的起点。通常情况下，会依据行业经验，将部分没有通过逐步判别筛选，但业务含义明显的字段也一并作为最终模型变量选择的起点。</p>
+<p>​    以上所有的原则和步骤，除了WOE值趋势必须和业务理解、行业习惯一致是必须遵守的，其他是一般原则可以突破。在按照以上原则挑选的基础上，如果得到的变量不符合建模条件，有可能会返回<strong>变量再挑选</strong>这一步骤，再人工挑选一些原本未被选中的变量。例如：在经过前文各种筛选后可选变量很少的情况下，如不足50个变量，可以不进行逐步判别程序，直接跳往下一步逻辑回归进行回归检验；<em>性别</em>是常用的入模变量，即使其IV值小于0.02，但如果满足一切建模要求，并可以让评分更分散，也可以考虑入模。</p>
 <h2 id="WOE值转换说明"><a href="#WOE值转换说明" class="headerlink" title="WOE值转换说明"></a>WOE值转换说明</h2><p>​    在逻辑回归建模时，使用的是变量值对应的WOE值，而不是变量的原始取值。不单单是被选中的变量，所有做过分箱的变量都会如此进行处理。以防选中的变量不满足建模条件时，需要人工调用其他最初始未被选中的变量时，需要重新转换WOE值。</p>
 <p>​    例如，性别的原始取值是<strong>男</strong>、<strong>女</strong>，在WOE报告中对应的分别是<strong>-0.0334</strong>和<strong>0.1838</strong>。完成转换后，<strong>男</strong>、<strong>女</strong>的取值就会被<strong>-0.0334</strong>和<strong>0.1838</strong>替代。</p>
-<h2 id="逻辑回归建模"><a href="#逻辑回归建模" class="headerlink" title="逻辑回归建模"></a>逻辑回归建模</h2><p>​    分为多重共线性检验和逻辑回归两个步骤，并不是所有通过初筛的变量都能通过这两步都校验。剔除变量的原则如下：</p>
+<h2 id="逻辑回归建模"><a href="#逻辑回归建模" class="headerlink" title="逻辑回归建模"></a>逻辑回归建模</h2><p>​    分为多重共线性检验和逻辑回归两个步骤，并不是所有通过初筛的变量都能通过这两步都校验，其最终结果通过最大似然估计值分析和方差膨胀分析两张参数结果表展现出来。从第一张表可以看到逻辑回归常数项及各入模字段的系数的估计值，从第二张表可以看到方差膨胀系数。</p>
+<p>剔除变量的原则如下：</p>
 <ul>
 <li>回归系数为正的变量。随着变量的各个分箱的WOE值上升，其坏账率越低，这样才能符合业务逻辑，因此需要保证所有入模变量的回归系数均为负数。</li>
-<li>P值不显著的变量。P值一般不能高于0.10，当可入模变量过少时，可以放宽到0.15</li>
-<li>造成高VIF（方差膨胀系数）的变量。VIF一般不能大于10，最好不要超过4。对于多个高度相关的变量，保留业务上最有意义、最稳定、最可信的一个。</li>
+<li>P值太高的变量。P值一般不能高于0.10，当可入模变量过少时，可以放宽到0.15</li>
+<li>相关性太高造成高VIF（方差膨胀系数）的变量。VIF一般不能大于10，最好不要超过4。对于多个高度相关的变量，保留业务上最有意义、最稳定、最可信的一个。</li>
 <li>业务专家认为不适合入模的。如贷款用途，因为分箱可能不稳定，没有特别的规则，最终不考虑入模。</li>
+<li>其他情况。考虑到入模变量维度的多样性，或者变量的直观业务意义，有时会将几个过于类似的变量替换掉1-2个，换上类似但是维度和角度不同的变量。</li>
 </ul>
+<h2 id="评分标准化说明"><a href="#评分标准化说明" class="headerlink" title="评分标准化说明"></a>评分标准化说明</h2><p>​    逻辑回归模型得到的是概率（违约概率估计），而最终实际实施时使用的是简单直观的评分。所以需要依据评分卡原理，将概率值标准化为分数值，在这个过程中还可以得到评分值表（即每个变量的各种取值得到多少分）。每个坏账率对应一个好坏比（$$odds=(1-p)/p$$，p为坏样本所占百分比）。</p>
+<p>​    评分标准化需要三个参数：</p>
+<ul>
+<li>基准评分（points0）</li>
+<li>基准好坏比(odds0)：在基准评分下，人群所对应的好坏比</li>
+<li>好坏比加倍分值（PDO，Points to Double the Odds）：评分提高多少才能使其所对应的好坏比成为原来的两倍</li>
+</ul>
+<p>​    通过与基准评分作比较，可直观的得到标准化后评分所对应的odds。如校准后评分比基准分高PDO分，则其对应的odds为基准odds的两倍。</p>
+<p>​    评分卡的分值刻度通过将分值表示为比率对数的线性表达式$$score = A + B*ln(odds)​$$，其中，$$A​$$（称为补偿）和$$B​$$（称为刻度）是常数。好坏比率$$odds=(1-p) / p​$$为一个客户正常的估计概率与违约的估计概率的比率，$$ln(odds)​$$为逻辑回归的因变量，即$$ln(odds)=w^Tx + b​$$。</p>
+<p>$$points0 = A + B*ln(odds0)$$</p>
+<p>$$points0 + PDO = A + B * ln(2odds0)​$$</p>
+<p>$$B = PDO / ln(2)$$</p>
+<p>$$A = points0 - B * ln(odds0)​$$</p>
+<p>$$score = A + B * ln(odds) = A + B(w^Tx + b) = (A + Bb) + Bw_1x_1 + Bw_2x_2 +  … + Bw_mx_m$$ </p>
+<p>其中，$$points0$$是基准评分，$$odds0$$是基准好坏比，$$PDO$$是好坏比加翻倍的分值，$$x_1 … x_m$$为逻辑回归的变量系数，$$w_i$$为最终进入模型的自变量且已经转为WOE值，$$b$$为逻辑回归的截距，$$Bw_ix_i$$为变量$$x_i$$对应的评分，$$(A - Bb)$$为基础分（也可将基础分值平均分配给各个变量）。</p>
 <h2 id="模型表现评估说明"><a href="#模型表现评估说明" class="headerlink" title="模型表现评估说明"></a>模型表现评估说明</h2><h3 id="模型表现评估指标"><a href="#模型表现评估指标" class="headerlink" title="模型表现评估指标"></a>模型表现评估指标</h3><p>​    国内一般重点看KS（Kolmogorov-Smirnov）和Gini系数这两个统计值。这两个指标在合理范围内越高，表明模型的区分能力越强。同时，模型还可以通过Divergence（离散度）、AUC（Area under Curve），ROC（Receiver Operating Characteristic）的值和图形进行评估。以上评估值都是越高越好，但是要在合理的范围内。如果过高，可能是因为过拟合或者特殊数据造成的。</p>
 <p>​    由于KS的值，和模型的类型、数据质量、客户群体特征都有很大关系，所以能接受的合理范围也有所不同。其他指标一般无明确划分点。</p>
 <table>
@@ -497,7 +511,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="模型表现评估图表"><a href="#模型表现评估图表" class="headerlink" title="模型表现评估图表"></a>模型表现评估图表</h3><p>​    模型的评分排序表（Score Chart）就是将评分从低到高排序，显示每个评分上的好坏个数，好坏比例以及坏账率等。详细的排序表不对评分进行组合；综合的排序表对评分进行组合，按照评分从低分区间到高分区间将建模开发样本账户等分为5-10组（每组账户比例大致相等）之后，区间坏账率也是从低分区间到高分区间单调下降，以说明模型等排序性强弱。</p>
+<h3 id="模型表现评估图表"><a href="#模型表现评估图表" class="headerlink" title="模型表现评估图表"></a>模型表现评估图表</h3><p>​    模型的评分排序表（Score Chart）就是将建模开发样本的评分从低到高排序，显示每个评分上的好坏个数，好坏比例以及坏账率等。详细的排序表不对评分进行组合；综合的排序表对评分进行组合，按照评分从低分区间到高分区间将建模开发样本账户等分为5-10组（每组账户比例大致相等）之后，区间坏账率也是从低分区间到高分区间单调下降，以说明模型等排序性强弱。</p>
 <h2 id="模型的验证说明"><a href="#模型的验证说明" class="headerlink" title="模型的验证说明"></a>模型的验证说明</h2><p>根据验证样本的时间段不同，模型验证及其样本可以分为以下三类：</p>
 <ul>
 <li>开发期预留样本验证（时间内样本验证，Hold-Out Testing）。对Testing样本的验证要求一般是需要其入模变量趋势稳定，模型的极大评估指标稳定。当无法预留此样本时，可以采取Bootstrap法来造出样本进行验证。</li>
@@ -701,7 +715,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#样本抽取和权重设置"><span class="nav-number">1.</span> <span class="nav-text">样本抽取和权重设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#样本抽样"><span class="nav-number">1.1.</span> <span class="nav-text">样本抽样</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权重修正"><span class="nav-number">1.2.</span> <span class="nav-text">权重修正</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样本划分"><span class="nav-number">1.3.</span> <span class="nav-text">样本划分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量预筛选"><span class="nav-number">2.</span> <span class="nav-text">变量预筛选</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量取值分箱"><span class="nav-number">3.</span> <span class="nav-text">变量取值分箱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量分箱的一般原则"><span class="nav-number">3.1.</span> <span class="nav-text">变量分箱的一般原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无法遵循一般原则的情况"><span class="nav-number">3.2.</span> <span class="nav-text">无法遵循一般原则的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量分箱的步骤"><span class="nav-number">3.3.</span> <span class="nav-text">变量分箱的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IV"><span class="nav-number">3.4.</span> <span class="nav-text">IV</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量再筛选"><span class="nav-number">4.</span> <span class="nav-text">变量再筛选</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WOE值与IV"><span class="nav-number">4.1.</span> <span class="nav-text">WOE值与IV</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逐步判别（Stepdisc）"><span class="nav-number">4.2.</span> <span class="nav-text">逐步判别（Stepdisc）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WOE值转换说明"><span class="nav-number">5.</span> <span class="nav-text">WOE值转换说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归建模"><span class="nav-number">6.</span> <span class="nav-text">逻辑回归建模</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型表现评估说明"><span class="nav-number">7.</span> <span class="nav-text">模型表现评估说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型表现评估指标"><span class="nav-number">7.1.</span> <span class="nav-text">模型表现评估指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型表现评估图表"><span class="nav-number">7.2.</span> <span class="nav-text">模型表现评估图表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型的验证说明"><span class="nav-number">8.</span> <span class="nav-text">模型的验证说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型评估参数"><span class="nav-number">9.</span> <span class="nav-text">模型评估参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#K-S值"><span class="nav-number">9.1.</span> <span class="nav-text">K-S值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gini系数"><span class="nav-number">9.2.</span> <span class="nav-text">Gini系数</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#样本抽取和权重设置"><span class="nav-number">1.</span> <span class="nav-text">样本抽取和权重设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#样本抽样"><span class="nav-number">1.1.</span> <span class="nav-text">样本抽样</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权重修正"><span class="nav-number">1.2.</span> <span class="nav-text">权重修正</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样本划分"><span class="nav-number">1.3.</span> <span class="nav-text">样本划分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量预筛选"><span class="nav-number">2.</span> <span class="nav-text">变量预筛选</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量取值分箱"><span class="nav-number">3.</span> <span class="nav-text">变量取值分箱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#细分箱与粗分箱"><span class="nav-number">3.1.</span> <span class="nav-text">细分箱与粗分箱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量分箱的一般原则"><span class="nav-number">3.2.</span> <span class="nav-text">变量分箱的一般原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无法遵循一般原则的情况"><span class="nav-number">3.3.</span> <span class="nav-text">无法遵循一般原则的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量分箱的步骤"><span class="nav-number">3.4.</span> <span class="nav-text">变量分箱的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IV"><span class="nav-number">3.5.</span> <span class="nav-text">IV</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量再筛选"><span class="nav-number">4.</span> <span class="nav-text">变量再筛选</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WOE值与IV"><span class="nav-number">4.1.</span> <span class="nav-text">WOE值与IV</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逐步判别（Stepdisc）"><span class="nav-number">4.2.</span> <span class="nav-text">逐步判别（Stepdisc）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WOE值转换说明"><span class="nav-number">5.</span> <span class="nav-text">WOE值转换说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归建模"><span class="nav-number">6.</span> <span class="nav-text">逻辑回归建模</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评分标准化说明"><span class="nav-number">7.</span> <span class="nav-text">评分标准化说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型表现评估说明"><span class="nav-number">8.</span> <span class="nav-text">模型表现评估说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型表现评估指标"><span class="nav-number">8.1.</span> <span class="nav-text">模型表现评估指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型表现评估图表"><span class="nav-number">8.2.</span> <span class="nav-text">模型表现评估图表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型的验证说明"><span class="nav-number">9.</span> <span class="nav-text">模型的验证说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型评估参数"><span class="nav-number">10.</span> <span class="nav-text">模型评估参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#K-S值"><span class="nav-number">10.1.</span> <span class="nav-text">K-S值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gini系数"><span class="nav-number">10.2.</span> <span class="nav-text">Gini系数</span></a></li></ol></li></ol></div>
             
 
           </div>

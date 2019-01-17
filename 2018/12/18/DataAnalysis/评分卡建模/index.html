@@ -105,7 +105,7 @@
 <meta property="og:description" content="样本抽取和权重设置样本抽样​    好、坏各抽5000，不确定不参与建模（使特征区分更明显）。5000是业界建模的经验和惯例，当样本数不足5000或在5000左右时，全部参与建模。
 采用分层随机抽样的方法。在数据量很大的情况下不抽样而使用全量数据进行建模会导致：程序缓慢、overfit。
 权重修正​    好的权重 = (好 + 不确定) / 好。使得建模样本中的好在样本数量上可以代表全部样本的好">
-<meta property="og:updated_time" content="2019-01-16T12:00:19.166Z">
+<meta property="og:updated_time" content="2019-01-17T01:44:00.448Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="评分卡建模">
 <meta name="twitter:description" content="样本抽取和权重设置样本抽样​    好、坏各抽5000，不确定不参与建模（使特征区分更明显）。5000是业界建模的经验和惯例，当样本数不足5000或在5000左右时，全部参与建模。
@@ -467,7 +467,9 @@
 <p>$$B = PDO / ln(2)$$</p>
 <p>$$A = points0 - B * ln(odds0)​$$</p>
 <p>$$score = A + B * ln(odds) = A + B(w^Tx + b) = (A + Bb) + Bw_1x_1 + Bw_2x_2 +  … + Bw_mx_m$$ </p>
+<blockquote>
 <p>其中，$$points0$$是基准评分，$$odds0$$是基准好坏比，$$PDO$$是好坏比加翻倍的分值，$$x_1 … x_m$$为逻辑回归的变量系数，$$w_i$$为最终进入模型的自变量且已经转为WOE值，$$b$$为逻辑回归的截距，$$Bw_ix_i$$为变量$$x_i$$对应的评分，$$(A - Bb)$$为基础分（也可将基础分值平均分配给各个变量）。</p>
+</blockquote>
 <h2 id="模型表现评估说明"><a href="#模型表现评估说明" class="headerlink" title="模型表现评估说明"></a>模型表现评估说明</h2><h3 id="模型表现评估指标"><a href="#模型表现评估指标" class="headerlink" title="模型表现评估指标"></a>模型表现评估指标</h3><p>​    国内一般重点看KS（Kolmogorov-Smirnov）和Gini系数这两个统计值。这两个指标在合理范围内越高，表明模型的区分能力越强。同时，模型还可以通过Divergence（离散度）、AUC（Area under Curve），ROC（Receiver Operating Characteristic）的值和图形进行评估。以上评估值都是越高越好，但是要在合理的范围内。如果过高，可能是因为过拟合或者特殊数据造成的。</p>
 <p>​    由于KS的值，和模型的类型、数据质量、客户群体特征都有很大关系，所以能接受的合理范围也有所不同。其他指标一般无明确划分点。</p>
 <table>

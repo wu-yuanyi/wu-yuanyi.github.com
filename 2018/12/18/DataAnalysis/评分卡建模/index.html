@@ -105,7 +105,7 @@
 <meta property="og:description" content="样本抽取和权重设置样本抽样​    好、坏各抽5000，不确定不参与建模（使特征区分更明显）。5000是业界建模的经验和惯例，当样本数不足5000或在5000左右时，全部参与建模。
 采用分层随机抽样的方法。在数据量很大的情况下不抽样而使用全量数据进行建模会导致：程序缓慢、overfit。
 权重修正​    好的权重 = (好 + 不确定) / 好。使得建模样本中的好在样本数量上可以代表全部样本的好">
-<meta property="og:updated_time" content="2019-01-17T01:44:00.448Z">
+<meta property="og:updated_time" content="2019-01-17T03:56:32.728Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="评分卡建模">
 <meta name="twitter:description" content="样本抽取和权重设置样本抽样​    好、坏各抽5000，不确定不参与建模（使特征区分更明显）。5000是业界建模的经验和惯例，当样本数不足5000或在5000左右时，全部参与建模。
@@ -461,15 +461,116 @@
 <li>好坏比加倍分值（PDO，Points to Double the Odds）：评分提高多少才能使其所对应的好坏比成为原来的两倍</li>
 </ul>
 <p>​    通过与基准评分作比较，可直观的得到标准化后评分所对应的odds。如校准后评分比基准分高PDO分，则其对应的odds为基准odds的两倍。</p>
-<p>​    评分卡的分值刻度通过将分值表示为比率对数的线性表达式$$score = A + B*ln(odds)​$$，其中，$$A​$$（称为补偿）和$$B​$$（称为刻度）是常数。好坏比率$$odds=(1-p) / p​$$为一个客户正常的估计概率与违约的估计概率的比率，$$ln(odds)​$$为逻辑回归的因变量，即$$ln(odds)=w^Tx + b​$$。</p>
-<p>$$points0 = A + B*ln(odds0)$$</p>
+<p>​    评分卡的分值刻度通过将分值表示为比率对数的线性表达式<em>score = A + B\</em>ln(odds)*，其中，A（称为补偿）和B（称为刻度）是常数。。</p>
+<p>$$points0 = A + B*ln(odds0)​$$</p>
 <p>$$points0 + PDO = A + B * ln(2odds0)​$$</p>
 <p>$$B = PDO / ln(2)$$</p>
 <p>$$A = points0 - B * ln(odds0)​$$</p>
-<p>$$score = A + B * ln(odds) = A + B(w^Tx + b) = (A + Bb) + Bw_1x_1 + Bw_2x_2 +  … + Bw_mx_m$$ </p>
-<blockquote>
-<p>其中，$$points0$$是基准评分，$$odds0$$是基准好坏比，$$PDO$$是好坏比加翻倍的分值，$$x_1 … x_m$$为逻辑回归的变量系数，$$w_i$$为最终进入模型的自变量且已经转为WOE值，$$b$$为逻辑回归的截距，$$Bw_ix_i$$为变量$$x_i$$对应的评分，$$(A - Bb)$$为基础分（也可将基础分值平均分配给各个变量）。</p>
-</blockquote>
+<p>$$score = A + B * ln(odds) = A + B(w^Tx + b) = (A + Bb) + Bw<em>{11}x</em>{11} + Bw<em>{12}x</em>{12} +  … + Bw<em>{mn}x</em>{mn}​$$ </p>
+<ul>
+<li><p>好坏比率<em>odds=(1-p) / p​</em>为一个客户正常的估计概率与违约的估计概率的比率</p>
+</li>
+<li><p><em>ln(odds)</em>为逻辑回归的因变量，即<em>ln(odds)=w^Tx + b</em></p>
+</li>
+<li><p><em>points0</em>：基准评分</p>
+</li>
+<li><p><em>odds0​</em>：基准好坏比</p>
+</li>
+<li><p><em>PDO</em>：好坏比加翻倍的分值</p>
+</li>
+<li><p><em>x<sub>1</sub>… x<sub>m</sub></em>：逻辑回归的变量系数</p>
+</li>
+<li><p><em>w<sub>i</sub></em>：最终进入模型的自变量且已经转为WOE值</p>
+</li>
+<li><p><em>b</em>：逻辑回归的截距</p>
+</li>
+<li><p><em>Bw<sub>i</sub>x<sub>i</sub></em>为变量<em>x<sub>i</sub></em>对应的评分</p>
+</li>
+<li><p><em>(A - Bb)</em>：基础分（也可将基础分值平均分配给各个变量）</p>
+</li>
+</ul>
+<p><strong>公式中的加减号有待纠正</strong></p>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>行数（分段或降维结果）</th>
+<th>分值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基准点</td>
+<td></td>
+<td>A + Bb</td>
+</tr>
+<tr>
+<td>x<sub>1</sub></td>
+<td>1</td>
+<td>Bw<sub>11</sub>x<sub>11</sub></td>
+</tr>
+<tr>
+<td></td>
+<td>2</td>
+<td>Bw<sub>12</sub>x<sub>12</sub></td>
+</tr>
+<tr>
+<td></td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td></td>
+<td>k<sub>1</sub></td>
+<td>Bw<sub>1k1</sub>x<sub>1k1</sub></td>
+</tr>
+<tr>
+<td>x<sub>2</sub></td>
+<td>1</td>
+<td>Bw<sub>21</sub>x<sub>21</sub></td>
+</tr>
+<tr>
+<td></td>
+<td>2</td>
+<td>Bw<sub>22</sub>x<sub>22</sub></td>
+</tr>
+<tr>
+<td></td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td></td>
+<td>k<sub>2</sub></td>
+<td>Bw<sub>2k2</sub>x<sub>2k2</sub></td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>x<sub>n</sub></td>
+<td>1</td>
+<td>Bw<sub>n1</sub>x<sub>n1</sub></td>
+</tr>
+<tr>
+<td></td>
+<td>2</td>
+<td>Bw<sub>n2</sub>x<sub>n2</sub></td>
+</tr>
+<tr>
+<td></td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td></td>
+<td>k<sub>n</sub></td>
+<td>Bw<sub>2kn</sub>x<sub>2kn</sub></td>
+</tr>
+</tbody>
+</table>
 <h2 id="模型表现评估说明"><a href="#模型表现评估说明" class="headerlink" title="模型表现评估说明"></a>模型表现评估说明</h2><h3 id="模型表现评估指标"><a href="#模型表现评估指标" class="headerlink" title="模型表现评估指标"></a>模型表现评估指标</h3><p>​    国内一般重点看KS（Kolmogorov-Smirnov）和Gini系数这两个统计值。这两个指标在合理范围内越高，表明模型的区分能力越强。同时，模型还可以通过Divergence（离散度）、AUC（Area under Curve），ROC（Receiver Operating Characteristic）的值和图形进行评估。以上评估值都是越高越好，但是要在合理的范围内。如果过高，可能是因为过拟合或者特殊数据造成的。</p>
 <p>​    由于KS的值，和模型的类型、数据质量、客户群体特征都有很大关系，所以能接受的合理范围也有所不同。其他指标一般无明确划分点。</p>
 <table>
@@ -572,6 +673,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/01/17/DataAnalysis/决策树/" rel="prev" title="决策树">
+                决策树 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -646,7 +751,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -668,7 +773,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

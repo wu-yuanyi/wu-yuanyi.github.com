@@ -105,7 +105,7 @@
 <meta property="og:description" content="样本抽取和权重设置样本抽样​    好、坏各抽5000，不确定不参与建模（使特征区分更明显）。5000是业界建模的经验和惯例，当样本数不足5000或在5000左右时，全部参与建模。
 采用分层随机抽样的方法。在数据量很大的情况下不抽样而使用全量数据进行建模会导致：程序缓慢、overfit。
 权重修正​    好的权重 = (好 + 不确定) / 好。使得建模样本中的好在样本数量上可以代表全部样本的好">
-<meta property="og:updated_time" content="2019-01-17T03:56:32.728Z">
+<meta property="og:updated_time" content="2019-01-24T11:42:57.300Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="评分卡建模">
 <meta name="twitter:description" content="样本抽取和权重设置样本抽样​    好、坏各抽5000，不确定不参与建模（使特征区分更明显）。5000是业界建模的经验和惯例，当样本数不足5000或在5000左右时，全部参与建模。
@@ -409,7 +409,7 @@
 </ul>
 </li>
 <li><p>对每个细分箱统计<strong>好账户</strong>和<strong>坏账户</strong>数，计算每个分箱的WOE值。计算公式如下：</p>
-<p>$$ WOE(j) = \ln(\cfrac{f_G(j)}{f_B(j)})$$</p>
+<p>$$WOE(j) = \ln(\cfrac{f_G(j)}{f_B(j)})$$</p>
 <p>$$f_G(j)$$：$$g_i/G$$ 分箱j中<strong>好</strong>样本数占总样本中<strong>好</strong>样本数的比例</p>
 <p>$$f_B(j)$$：$$b_i/B$$ 分箱j中<strong>坏</strong>样本数占总样本中<strong>坏</strong>样本数的比例</p>
 <p>​    说明：该公式表示第j类中正常与违约的比率与整个样本中正常与违约的比率的比值的对数。因此，该公式主要衡量第j类对正常与违约比率的影响程度。</p>
@@ -427,7 +427,7 @@
 </li>
 </ol>
 <h3 id="IV"><a href="#IV" class="headerlink" title="IV"></a>IV</h3><p>​    信息值（Information Value）代表了同整个群体相比，某一特征变量在所有区间中的好和坏之间的比例是否存在差异。在一个互联网信贷金融机构风险管理比较成熟，数据收集比较完善，数据总体质量较为可信的情况下，一个变量的信息值一般在0.05以上，则认为这个变量对因变量有一定的区分能力。如果数据覆盖面与数据质量不够完善，可用的数据信息比较少，则对变量的信息值的阈值会有不同的考虑。</p>
-<p>$$ IV = \Sigma \lbrace (\cfrac{g_i}{G} - \cfrac{b_i}{B}) \ast \ln(\cfrac{g_i}{G}/\cfrac{b_i}{B})  \rbrace​$$</p>
+<p>$$IV = \Sigma \lbrace (\cfrac{g_i}{G} - \cfrac{b_i}{B}) \ast \ln(\cfrac{g_i}{G}/\cfrac{b_i}{B})  \rbrace$$</p>
 <p>$$g_i$$：变量第i 个分箱栏位中的好样本数</p>
 <p>$$G$$：样本中好样本总数</p>
 <p>$$b_i$$：变量第i 个分箱栏位中坏样本数</p>

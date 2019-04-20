@@ -277,6 +277,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/08/01/Database/mySQL grammar/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WYY's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/01/Database/mySQL grammar/" itemprop="url">MySQL grammer</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-01T10:13:36+08:00">
+                2017-08-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Database/" itemprop="url" rel="index">
+                    <span itemprop="name">Database</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="SQL基础"><a href="#SQL基础" class="headerlink" title="SQL基础"></a>SQL基础</h1><h2 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name;</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> table_name;</div></pre></td></tr></table></figure>
+<h2 id="Distinct"><a href="#Distinct" class="headerlink" title="Distinct"></a>Distinct</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name;</div></pre></td></tr></table></figure>
+<h2 id="Where"><a href="#Where" class="headerlink" title="Where"></a>Where</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure>
+<h2 id="And-Or-Not"><a href="#And-Or-Not" class="headerlink" title="And , Or, Not"></a>And , Or, Not</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition1 <span class="keyword">and</span> condition2 <span class="keyword">and</span> condition3 ...;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition1 <span class="keyword">or</span> condition2 <span class="keyword">or</span> condition3 ...;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> <span class="keyword">not</span> condition;</div></pre></td></tr></table></figure>
+<h2 id="Order-By"><a href="#Order-By" class="headerlink" title="Order By"></a>Order By</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column1, column2, ... </div><div class="line"><span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> column1, column2, ... <span class="keyword">ASC</span>|<span class="keyword">DESC</span>;</div></pre></td></tr></table></figure>
+<h2 id="Insert-Into"><a href="#Insert-Into" class="headerlink" title="Insert Into"></a>Insert Into</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name </div><div class="line"><span class="keyword">values</span> (value1, value2, value3, ...);</div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> table_name (column1, column2, column3, ...) </div><div class="line"><span class="keyword">values</span> (value1, value2, value3, ...);</div></pre></td></tr></table></figure>
+<h2 id="Null-Values"><a href="#Null-Values" class="headerlink" title="Null Values"></a>Null Values</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> column_names</div><div class="line"><span class="keyword">from</span> table_name</div><div class="line"><span class="keyword">where</span> column_name <span class="keyword">is</span> <span class="literal">null</span>;</div><div class="line"></div><div class="line"><span class="keyword">select</span> column_names</div><div class="line"><span class="keyword">from</span> table_name</div><div class="line"><span class="keyword">where</span> column_name <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span>;</div></pre></td></tr></table></figure>
+<h2 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">update</span> table_name </div><div class="line"><span class="keyword">set</span> column1 = value1, column2 = value2, ... </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure>
+<h2 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> <span class="keyword">from</span> table_name </div><div class="line"><span class="keyword">where</span> condition;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/04/11/Database/happybase/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -814,6 +964,211 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/03/27/S&P/Basic Principles of Information Protect/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WYY's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/27/S&P/Basic Principles of Information Protect/" itemprop="url">Basic Principles of Information Protect</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T20:47:24+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Security-Privacy/" itemprop="url" rel="index">
+                    <span itemprop="name">Security & Privacy</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="http://web.mit.edu/Saltzer/www/publications/protection/Basic.html" target="_blank" rel="external">Basic Principles of Information Protect</a></p>
+<p>An externally administered code of ethics or a lack of knowledge about computers adequately protects the stored information.<br>The protection mechanisms not only protect one user from another, they may also protect their own implementation.<br>A narrow view is dangerous. It is hard to prove that this negative requirement has been achieved</p>
+<h2 id="Considerations-Surrounding-the-Study-of-Protection"><a href="#Considerations-Surrounding-the-Study-of-Protection" class="headerlink" title="Considerations Surrounding the Study of Protection"></a>Considerations Surrounding the Study of Protection</h2><h3 id="Examples-of-security-techniques-sometimes-applied-to-computer-systems-are-the-following"><a href="#Examples-of-security-techniques-sometimes-applied-to-computer-systems-are-the-following" class="headerlink" title="Examples of security techniques sometimes applied to computer systems are the following:"></a>Examples of security techniques sometimes applied to computer systems are the following:</h3><ul>
+<li>labeling files with lists of authorized users,</li>
+<li>verifying the identity of a prospective user by demanding a password,</li>
+<li>shielding the computer to prevent interception and subsequent interpretation of electromagnetic radiation,</li>
+<li>enciphering information sent over telephone lines,</li>
+<li>locking the room containing the computer,</li>
+<li>controlling who is allowed to make changes to the computer system (both its hardware and software),</li>
+<li>using redundant circuits or programmed cross-checks that maintain security in the face of hardware or software failures,</li>
+<li>certifying that the hardware and software are actually implemented as intended.</li>
+</ul>
+<h3 id="Functional-Levels-of-Information-Protection"><a href="#Functional-Levels-of-Information-Protection" class="headerlink" title="Functional Levels of Information Protection:"></a>Functional Levels of Information Protection:</h3><ul>
+<li>unprotected system</li>
+<li>before release<ul>
+<li>all-or-nothing system</li>
+<li>controlled sharing</li>
+<li>user_programmed sharing controls</li>
+</ul>
+</li>
+<li>after release<ul>
+<li>putting strings on information</li>
+</ul>
+</li>
+</ul>
+<h3 id="Design-principles"><a href="#Design-principles" class="headerlink" title="Design principles"></a>Design principles</h3><ul>
+<li>Economy of mechanism(simple and small)</li>
+<li>faill-safe default(white list)</li>
+<li>complete mediation</li>
+<li>open design</li>
+<li>separation of privilege</li>
+<li>least privilege</li>
+<li>least common mechanism</li>
+<li>psychological acceptability</li>
+<li>two further design principles<ul>
+<li>work factor</li>
+<li>compromise recording</li>
+</ul>
+</li>
+</ul>
+<h2 id="Technical-Underpinnings"><a href="#Technical-Underpinnings" class="headerlink" title="Technical Underpinnings"></a>Technical Underpinnings</h2><h3 id="development-plan"><a href="#development-plan" class="headerlink" title="development plan"></a>development plan</h3><ul>
+<li>from the top down: a subject is coherent and self-contained</li>
+<li>bottom-up: a topic still containing ad hoc strategies and competing world views</li>
+</ul>
+<h3 id="essentials-of-information-protection"><a href="#essentials-of-information-protection" class="headerlink" title="essentials of information protection"></a>essentials of information protection</h3><ul>
+<li>protect</li>
+<li>authenticate</li>
+</ul>
+<h3 id="an-isolated-virtual-machine"><a href="#an-isolated-virtual-machine" class="headerlink" title="an isolated virtual machine"></a>an isolated virtual machine</h3><ul>
+<li>descriptor register</li>
+<li>privileged bit</li>
+<li>supervisor</li>
+</ul>
+<h3 id="authentication-mechanisms"><a href="#authentication-mechanisms" class="headerlink" title="authentication mechanisms"></a>authentication mechanisms</h3><ul>
+<li>password<ul>
+<li>easy to guess</li>
+<li>exposed to be used</li>
+</ul>
+</li>
+</ul>
+<h3 id="shared-information"><a href="#shared-information" class="headerlink" title="shared information"></a>shared information</h3><ul>
+<li>list-oriented(high-level)</li>
+<li>ticket-oriented(low-level)</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/03/27/S&P/通过运动传感器来追踪移动网页用户：攻击和防御/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1191,386 +1546,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/03/27/S&P/Basic Principles of Information Protect/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yuanyi Wu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WYY's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/27/S&P/Basic Principles of Information Protect/" itemprop="url">Basic Principles of Information Protect</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T20:47:24+08:00">
-                2017-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Security-Privacy/" itemprop="url" rel="index">
-                    <span itemprop="name">Security & Privacy</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="http://web.mit.edu/Saltzer/www/publications/protection/Basic.html" target="_blank" rel="external">Basic Principles of Information Protect</a></p>
-<p>An externally administered code of ethics or a lack of knowledge about computers adequately protects the stored information.<br>The protection mechanisms not only protect one user from another, they may also protect their own implementation.<br>A narrow view is dangerous. It is hard to prove that this negative requirement has been achieved</p>
-<h2 id="Considerations-Surrounding-the-Study-of-Protection"><a href="#Considerations-Surrounding-the-Study-of-Protection" class="headerlink" title="Considerations Surrounding the Study of Protection"></a>Considerations Surrounding the Study of Protection</h2><h3 id="Examples-of-security-techniques-sometimes-applied-to-computer-systems-are-the-following"><a href="#Examples-of-security-techniques-sometimes-applied-to-computer-systems-are-the-following" class="headerlink" title="Examples of security techniques sometimes applied to computer systems are the following:"></a>Examples of security techniques sometimes applied to computer systems are the following:</h3><ul>
-<li>labeling files with lists of authorized users,</li>
-<li>verifying the identity of a prospective user by demanding a password,</li>
-<li>shielding the computer to prevent interception and subsequent interpretation of electromagnetic radiation,</li>
-<li>enciphering information sent over telephone lines,</li>
-<li>locking the room containing the computer,</li>
-<li>controlling who is allowed to make changes to the computer system (both its hardware and software),</li>
-<li>using redundant circuits or programmed cross-checks that maintain security in the face of hardware or software failures,</li>
-<li>certifying that the hardware and software are actually implemented as intended.</li>
-</ul>
-<h3 id="Functional-Levels-of-Information-Protection"><a href="#Functional-Levels-of-Information-Protection" class="headerlink" title="Functional Levels of Information Protection:"></a>Functional Levels of Information Protection:</h3><ul>
-<li>unprotected system</li>
-<li>before release<ul>
-<li>all-or-nothing system</li>
-<li>controlled sharing</li>
-<li>user_programmed sharing controls</li>
-</ul>
-</li>
-<li>after release<ul>
-<li>putting strings on information</li>
-</ul>
-</li>
-</ul>
-<h3 id="Design-principles"><a href="#Design-principles" class="headerlink" title="Design principles"></a>Design principles</h3><ul>
-<li>Economy of mechanism(simple and small)</li>
-<li>faill-safe default(white list)</li>
-<li>complete mediation</li>
-<li>open design</li>
-<li>separation of privilege</li>
-<li>least privilege</li>
-<li>least common mechanism</li>
-<li>psychological acceptability</li>
-<li>two further design principles<ul>
-<li>work factor</li>
-<li>compromise recording</li>
-</ul>
-</li>
-</ul>
-<h2 id="Technical-Underpinnings"><a href="#Technical-Underpinnings" class="headerlink" title="Technical Underpinnings"></a>Technical Underpinnings</h2><h3 id="development-plan"><a href="#development-plan" class="headerlink" title="development plan"></a>development plan</h3><ul>
-<li>from the top down: a subject is coherent and self-contained</li>
-<li>bottom-up: a topic still containing ad hoc strategies and competing world views</li>
-</ul>
-<h3 id="essentials-of-information-protection"><a href="#essentials-of-information-protection" class="headerlink" title="essentials of information protection"></a>essentials of information protection</h3><ul>
-<li>protect</li>
-<li>authenticate</li>
-</ul>
-<h3 id="an-isolated-virtual-machine"><a href="#an-isolated-virtual-machine" class="headerlink" title="an isolated virtual machine"></a>an isolated virtual machine</h3><ul>
-<li>descriptor register</li>
-<li>privileged bit</li>
-<li>supervisor</li>
-</ul>
-<h3 id="authentication-mechanisms"><a href="#authentication-mechanisms" class="headerlink" title="authentication mechanisms"></a>authentication mechanisms</h3><ul>
-<li>password<ul>
-<li>easy to guess</li>
-<li>exposed to be used</li>
-</ul>
-</li>
-</ul>
-<h3 id="shared-information"><a href="#shared-information" class="headerlink" title="shared information"></a>shared information</h3><ul>
-<li>list-oriented(high-level)</li>
-<li>ticket-oriented(low-level)</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/03/27/S&P/Click Fraud/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yuanyi Wu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WYY's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/27/S&P/Click Fraud/" itemprop="url">CLick Fraud</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T20:47:24+08:00">
-                2017-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Security-Privacy/" itemprop="url" rel="index">
-                    <span itemprop="name">Security & Privacy</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>PPC(Pay Per Click) == CPC(Cost Per Click)<br>Click Fraud: Caused by competitors, disgruntled employees, software bots, and angry customers clicking on your ads.</p>
-<h2 id="ClickCease"><a href="#ClickCease" class="headerlink" title="ClickCease"></a>ClickCease</h2><p><a href="https://www.clickcease.com" target="_blank" rel="external">ClickCease</a></p>
-<ul>
-<li>24*7 Always On Click-Fraud Monitoring</li>
-<li>Stops Click-Fraud Before It Happens</li>
-<li>Business-Specific Click-Fraud detection Rules</li>
-<li>Save Money(up to 20%-25% of your advertising budget gets lost due to click fraud)</li>
-</ul>
-<p>FAQs</p>
-<ul>
-<li>Doesn’t Google prevent click fraud?<br>Google does detect click fraud, but does not prevent it. Instead, Google will give back credit to your account days after the fraud took place and only after you claim it.</li>
-<li>How do you detect fraudulent ad clicks?<br>(1) A HTML code that detects the attacker’s activity on your website.<br>(2) An Adwords tracking template that connects us directly to Google to get unique information regarding each click.</li>
-</ul>
-<h2 id="PPC-Surge"><a href="#PPC-Surge" class="headerlink" title="PPC Surge"></a>PPC Surge</h2><p><a href="https://www.ppcsurge.com" target="_blank" rel="external">PPC Surge</a><br>Once the Monitor is created, we will insert a tracking URL into your Google Adwords account. When a visitor clicks on your ad the tracking URL directs them to our website where we collect their IP address and other data (e.g., keyword) and redirect them to your site. This happens so quickly that, from the visitor’s perspective, it appears as though he/she simply clicked through to your site directly.</p>
-<p>If we detect a potential click fraud, instead of instantly redirecting the visitor to your website, we display a warning message on our site.</p>
-<p>If after seeing the warning message the visitor continues to click on your ads, our software tells Google to not display any more ads to that IP address thereby saving your advertising budget.</p>
-<h2 id="How-Google-doing-about-it"><a href="#How-Google-doing-about-it" class="headerlink" title="How Google doing about it?"></a>How Google doing about it?</h2><ul>
-<li>Advanced algorithms detect and filter out invalid clicks in real time, before advertisers are even charged.</li>
-<li>Google’s Ad Traffic Quality Team also conducts manual, offline analysis and removes any clicks that they deem invalid before advertisers are charged.</li>
-<li>Google also launches investigations based on advertisers’ reports of suspicious activity.</li>
-</ul>
-<h2 id="How-to-identify-click-fraud-by-yourself"><a href="#How-to-identify-click-fraud-by-yourself" class="headerlink" title="How to identify click fraud by yourself?"></a>How to identify click fraud by yourself?</h2><p>You need internal reporting. Internal reporting would tell you if that lead became a sale.</p>
-<ul>
-<li>IP address<br>IP address is pretty self-explanatory.</li>
-<li>click timestamp<br>The time when someone arrives on your site after clicking an ad.</li>
-<li>action timestamp<br>The time when that person completed an action on your site.<br>If you see an IP address with a bunch of click timestamps but no action timestamps, then that is likely click fraud.</li>
-<li>user agent<br>Identify whether someone on a particular IP is the same person.</li>
-<li>proxy<br>If the searches are very different, it’s likely a proxy server. If the search queries are similar and are occurring over a super short time period, the clicks are probably fraudulent.</li>
-</ul>
-<h2 id="4-tips-to-protect-yourself-from-click-happy-criminals"><a href="#4-tips-to-protect-yourself-from-click-happy-criminals" class="headerlink" title="4 tips to protect yourself from click-happy criminals"></a>4 tips to protect yourself from click-happy criminals</h2><ul>
-<li>Turn to Facebook/Twitter Ads<br>社交网络没有第三方发布者，他们往往是主要的点击诈骗的来源。恶意竞争者也很少见，因为有先进的定位选择。Set up IP Exclusions in AdWords</li>
-<li>Run GDN Remarketing Campaigns（只发部给到过网站的人看）<br>不是很懂</li>
-<li>Adjust Your Ad Targeting<br>排除一些劳动力便宜的地点或语言（click farms）<h2 id="To-be-Continued"><a href="#To-be-Continued" class="headerlink" title="To be Continued"></a>To be Continued</h2></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1620,7 +1595,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1631,7 +1606,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -1642,7 +1617,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

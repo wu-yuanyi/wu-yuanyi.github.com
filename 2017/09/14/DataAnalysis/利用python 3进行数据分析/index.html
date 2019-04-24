@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python 3,Numpy," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Numpy Basics: Arrays and Vectorized ComputationMagic Methods
+
+
+Command
+Description
+
+
+
+
+%quickref
+Display the IPython Quick Reference Card
+
+
+%magic
+Display detailed documentation for all of the availab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Numpy Basics  Arrays and Vectorized Computation">
+<meta property="og:url" content="http://wu-yuanyi.github.io/2017/09/14/DataAnalysis/利用python 3进行数据分析/index.html">
+<meta property="og:site_name" content="WYY's Blog">
+<meta property="og:description" content="Numpy Basics: Arrays and Vectorized ComputationMagic Methods
+
+
+Command
+Description
+
+
+
+
+%quickref
+Display the IPython Quick Reference Card
+
+
+%magic
+Display detailed documentation for all of the availab">
+<meta property="og:updated_time" content="2019-04-24T06:06:25.968Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Numpy Basics  Arrays and Vectorized Computation">
+<meta name="twitter:description" content="Numpy Basics: Arrays and Vectorized ComputationMagic Methods
+
+
+Command
+Description
+
+
+
+
+%quickref
+Display the IPython Quick Reference Card
+
+
+%magic
+Display detailed documentation for all of the availab">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wu-yuanyi.github.io/2017/09/14/DataAnalysis/利用python 3进行数据分析/"/>
+
+
+
+
+
+  <title>Numpy Basics  Arrays and Vectorized Computation | WYY's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WYY's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">JUST DO IT</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2017/09/14/DataAnalysis/利用python 3进行数据分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WYY's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Numpy Basics  Arrays and Vectorized Computation</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-14T10:18:42+08:00">
+                2017-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Analysis/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Analysis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Numpy-Basics-Arrays-and-Vectorized-Computation"><a href="#Numpy-Basics-Arrays-and-Vectorized-Computation" class="headerlink" title="Numpy Basics: Arrays and Vectorized Computation"></a>Numpy Basics: Arrays and Vectorized Computation</h3><h4 id="Magic-Methods"><a href="#Magic-Methods" class="headerlink" title="Magic Methods"></a>Magic Methods</h4><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%quickref</td>
+<td>Display the IPython Quick Reference Card</td>
+</tr>
+<tr>
+<td>%magic</td>
+<td>Display detailed documentation for all of the available magic commands</td>
+</tr>
+<tr>
+<td>%debug</td>
+<td>Enter the interactive debugger at the bottom of the last exception traceback</td>
+</tr>
+<tr>
+<td>%hist</td>
+<td>Print command input (and optionally output) history</td>
+</tr>
+<tr>
+<td>%pdb</td>
+<td>Automatically enter debugger after any exception</td>
+</tr>
+<tr>
+<td>%paste</td>
+<td>Execute preformatted Python code from clipboard</td>
+</tr>
+<tr>
+<td>%cpaste</td>
+<td>Open a special prompt for manually pasting Python code to be executed</td>
+</tr>
+<tr>
+<td>%reset</td>
+<td>Delete all variables/names defined in interactive namespace</td>
+</tr>
+<tr>
+<td>%page OBJECT</td>
+<td>Pretty-print the object and display it through a pager</td>
+</tr>
+<tr>
+<td>%run script.py</td>
+<td>Run a Python script inside IPython</td>
+</tr>
+<tr>
+<td>%prun statement</td>
+<td>Execute statement with cProfile and report the profiler output</td>
+</tr>
+<tr>
+<td>%time statement</td>
+<td>Report the execution time of a single statement</td>
+</tr>
+<tr>
+<td>%timeit statement</td>
+<td>Run a statement multiple times to compute an ensemble average execution time; useful for timing code with very short execution time</td>
+</tr>
+<tr>
+<td>%who, %who_ls, %whos</td>
+<td>Display variables defined in interactive namespace, with varying levels of information/ verbosity</td>
+</tr>
+<tr>
+<td>%xdel variable</td>
+<td>Delete a variable and attempt to clear any references to the object in the IPython internals</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Set-print-options"><a href="#Set-print-options" class="headerlink" title="Set print options"></a>Set print options</h4><ul>
+<li>Precision</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">1</span>]: <span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">In [<span class="number">2</span>]: x = np.random.random(<span class="number">5</span>)</div><div class="line"></div><div class="line">In [<span class="number">3</span>]: x</div><div class="line">Out[<span class="number">3</span>]: array([ <span class="number">0.11528565</span>,  <span class="number">0.50686134</span>,  <span class="number">0.16554924</span>,  <span class="number">0.77585094</span>,  <span class="number">0.99374836</span>])</div><div class="line"></div><div class="line">In [<span class="number">4</span>]: np.set_printoptions(precision=<span class="number">3</span>)</div><div class="line"></div><div class="line">In [<span class="number">5</span>]: x</div><div class="line">Out[<span class="number">5</span>]: array([ <span class="number">0.115</span>,  <span class="number">0.507</span>,  <span class="number">0.166</span>,  <span class="number">0.776</span>,  <span class="number">0.994</span>])</div></pre></td></tr></table></figure>
+<ul>
+<li>Scientific notation</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">6</span>]: y = np.array([<span class="number">1.5e-10</span>, <span class="number">1.5</span>, <span class="number">1500</span>])</div><div class="line"></div><div class="line">In [<span class="number">7</span>]: y</div><div class="line">Out[<span class="number">7</span>]: array([  <span class="number">1.500e-10</span>,   <span class="number">1.500e+00</span>,   <span class="number">1.500e+03</span>])</div><div class="line"></div><div class="line">In [<span class="number">8</span>]: np.set_printoptions(suppress=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">In [<span class="number">9</span>]: y</div><div class="line">Out[<span class="number">9</span>]: array([    <span class="number">0.</span> ,     <span class="number">1.5</span>,  <span class="number">1500.</span> ])</div></pre></td></tr></table></figure>
+<h4 id="Array-creation-Functions"><a href="#Array-creation-Functions" class="headerlink" title="Array creation Functions"></a>Array creation Functions</h4><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>array</td>
+<td>Convert input data (list, tuple, array, or other sequence type) to an ndarray either by inferring a dtype or explicitly specifying a dtype; copies the input data by default</td>
+</tr>
+<tr>
+<td>asarray</td>
+<td>Convert input to ndarray, but do not copy if the input is already an ndarray</td>
+</tr>
+<tr>
+<td>arange</td>
+<td>Like the built-inrangebut returns an ndarray instead of a list</td>
+</tr>
+<tr>
+<td>ones, ones_like</td>
+<td>Produce an array of all 1s with the given shape and dtype; ones_like takes another array and produces a ones array of the same shape and dtype</td>
+</tr>
+<tr>
+<td>zeros, zeros_like</td>
+<td>Likeonesandones_likebut producing arrays of 0s instead</td>
+</tr>
+<tr>
+<td>empty, empty_like</td>
+<td>Create new arrays by allocating new memory, but do not populate with any values like ones and zeros</td>
+</tr>
+<tr>
+<td>full, full_like</td>
+<td>Produce an array of the given shape and dtype with all values set to the indicated “fill value” full_like takes another array and produces a filled array of the same shape and dtype</td>
+</tr>
+<tr>
+<td>eye, identity</td>
+<td>Create a square N × N identity matrix (1s on the diagonal and 0s elsewhere)</td>
+</tr>
+</tbody>
+</table>
+<p>Why choose np.zeros?  It’s the Fastest.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">2</span>]: size=<span class="number">100000000</span></div><div class="line"></div><div class="line">In [<span class="number">3</span>]: %timeit np.full(size, <span class="number">0</span>)</div><div class="line"><span class="number">1</span> loop, best of <span class="number">3</span>: <span class="number">5.41</span> s per loop</div><div class="line"></div><div class="line">In [<span class="number">4</span>]: %timeit np.zeros(size)</div><div class="line"><span class="number">10000</span> loops, best of <span class="number">3</span>: <span class="number">21.8</span> µs per loop</div><div class="line"></div><div class="line">In [<span class="number">5</span>]: %timeit np.ones(size)</div><div class="line"><span class="number">1</span> loop, best of <span class="number">3</span>: <span class="number">5.56</span> s per loop</div><div class="line"></div><div class="line">In [<span class="number">6</span>]: %timeit a = np.empty(size); a[:]=<span class="number">0</span></div><div class="line"><span class="number">1</span> loop, best of <span class="number">3</span>: <span class="number">5.02</span> s per loop</div></pre></td></tr></table></figure>
+<h4 id="Indexing-and-Slicing"><a href="#Indexing-and-Slicing" class="headerlink" title="Indexing and Slicing"></a>Indexing and Slicing</h4><p>An important first distinction from Python’s built-in lists is that array slices are views on the original array. This means that the data is not copied, and any modifications to the view will be reflected in the source array.</p>
+<p>If you want a copy of a slice of an ndarray instead of a view, you will need to explicitly copy the array-for example, array_a[2:4].copy().</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">19</span>]: array_a</div><div class="line">Out[<span class="number">19</span>]: array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</div><div class="line"></div><div class="line">In [<span class="number">20</span>]: slice_a = array_a[<span class="number">2</span>:<span class="number">4</span>]</div><div class="line"></div><div class="line">In [<span class="number">22</span>]: slice_a[:] = <span class="number">9</span></div><div class="line"></div><div class="line">In [<span class="number">23</span>]: array_a</div><div class="line">Out[<span class="number">23</span>]: array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">9</span>, <span class="number">9</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</div></pre></td></tr></table></figure>
+<h4 id="Fancy-Indexing"><a href="#Fancy-Indexing" class="headerlink" title="Fancy Indexing"></a>Fancy Indexing</h4><p>Fancy indexing, unlike slicing, always copies the data into a new array. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">2</span>]: arr = np.arange(<span class="number">32</span>).reshape(<span class="number">8</span>,<span class="number">4</span>)</div><div class="line"></div><div class="line">In [<span class="number">3</span>]: arr</div><div class="line">Out[<span class="number">3</span>]:</div><div class="line">array([[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>],</div><div class="line">       [ <span class="number">4</span>,  <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>],</div><div class="line">       [ <span class="number">8</span>,  <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>],</div><div class="line">       [<span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>],</div><div class="line">       [<span class="number">16</span>, <span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>],</div><div class="line">       [<span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>, <span class="number">23</span>],</div><div class="line">       [<span class="number">24</span>, <span class="number">25</span>, <span class="number">26</span>, <span class="number">27</span>],</div><div class="line">       [<span class="number">28</span>, <span class="number">29</span>, <span class="number">30</span>, <span class="number">31</span>]])</div><div class="line"></div><div class="line">In [<span class="number">4</span>]: arr[[<span class="number">1</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">2</span>],[<span class="number">0</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>]]</div><div class="line">Out[<span class="number">4</span>]: array([ <span class="number">4</span>, <span class="number">23</span>, <span class="number">29</span>, <span class="number">10</span>])</div><div class="line"></div><div class="line">In [<span class="number">5</span>]: arr[[<span class="number">1</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">2</span>]][:, [<span class="number">0</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>]]</div><div class="line">Out[<span class="number">5</span>]:</div><div class="line">array([[ <span class="number">4</span>,  <span class="number">7</span>,  <span class="number">5</span>,  <span class="number">6</span>],</div><div class="line">       [<span class="number">20</span>, <span class="number">23</span>, <span class="number">21</span>, <span class="number">22</span>],</div><div class="line">       [<span class="number">28</span>, <span class="number">31</span>, <span class="number">29</span>, <span class="number">30</span>],</div><div class="line">       [ <span class="number">8</span>, <span class="number">11</span>,  <span class="number">9</span>, <span class="number">10</span>]])</div></pre></td></tr></table></figure>
+<h4 id="Transposing-Arrays-and-Swapping-Axes"><a href="#Transposing-Arrays-and-Swapping-Axes" class="headerlink" title="Transposing Arrays and Swapping Axes"></a>Transposing Arrays and Swapping Axes</h4><ul>
+<li>Transposing is a special form of reshaping that similarly returns a view on the under‐ lying data without copying anything.  </li>
+<li>swapaxes similarly returns a view on the data without making a copy. </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">3</span>]: arr = np.arange(<span class="number">15</span>).reshape(<span class="number">3</span>,<span class="number">5</span>)</div><div class="line"></div><div class="line">In [<span class="number">4</span>]: arr</div><div class="line">Out[<span class="number">4</span>]:</div><div class="line">array([[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>],</div><div class="line">       [ <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>,  <span class="number">8</span>,  <span class="number">9</span>],</div><div class="line">       [<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>]])</div><div class="line"></div><div class="line">In [<span class="number">5</span>]: arr.T</div><div class="line">Out[<span class="number">5</span>]:</div><div class="line">array([[ <span class="number">0</span>,  <span class="number">5</span>, <span class="number">10</span>],</div><div class="line">       [ <span class="number">1</span>,  <span class="number">6</span>, <span class="number">11</span>],</div><div class="line">       [ <span class="number">2</span>,  <span class="number">7</span>, <span class="number">12</span>],</div><div class="line">       [ <span class="number">3</span>,  <span class="number">8</span>, <span class="number">13</span>],</div><div class="line">       [ <span class="number">4</span>,  <span class="number">9</span>, <span class="number">14</span>]])</div><div class="line"></div><div class="line">In [<span class="number">6</span>]: arr.transpose()</div><div class="line">Out[<span class="number">6</span>]:</div><div class="line">array([[ <span class="number">0</span>,  <span class="number">5</span>, <span class="number">10</span>],</div><div class="line">       [ <span class="number">1</span>,  <span class="number">6</span>, <span class="number">11</span>],</div><div class="line">       [ <span class="number">2</span>,  <span class="number">7</span>, <span class="number">12</span>],</div><div class="line">       [ <span class="number">3</span>,  <span class="number">8</span>, <span class="number">13</span>],</div><div class="line">       [ <span class="number">4</span>,  <span class="number">9</span>, <span class="number">14</span>]])</div></pre></td></tr></table></figure>
+<p><a href="https://stackoverflow.com/questions/32034237/how-does-numpys-transpose-method-permute-the-axes-of-an-array" target="_blank" rel="external">How does NumPy’s transpose() method permute the axes of an array?</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">8</span>]: arr</div><div class="line">Out[<span class="number">8</span>]:</div><div class="line">array([[[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>],</div><div class="line">        [ <span class="number">4</span>,  <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>]],</div><div class="line"></div><div class="line">       [[ <span class="number">8</span>,  <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>],</div><div class="line">        [<span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>]]])</div><div class="line"></div><div class="line">In [<span class="number">9</span>]: arr.transpose((<span class="number">1</span>,<span class="number">0</span>,<span class="number">2</span>))</div><div class="line">Out[<span class="number">9</span>]:</div><div class="line">array([[[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>],</div><div class="line">        [ <span class="number">8</span>,  <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>]],</div><div class="line"></div><div class="line">       [[ <span class="number">4</span>,  <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>],</div><div class="line">        [<span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>]]])</div><div class="line"></div><div class="line">In [<span class="number">10</span>]: arr.swapaxes(<span class="number">0</span>,<span class="number">1</span>)</div><div class="line">Out[<span class="number">10</span>]:</div><div class="line">array([[[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>],</div><div class="line">        [ <span class="number">8</span>,  <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>]],</div><div class="line"></div><div class="line">       [[ <span class="number">4</span>,  <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>],</div><div class="line">        [<span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>]]])</div></pre></td></tr></table></figure>
+<h4 id="Universal-Functions"><a href="#Universal-Functions" class="headerlink" title="Universal Functions"></a>Universal Functions</h4><p>Ufuncs accept an optional out argument that allows them to operate in-place on arrays: </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">33</span>]: arr</div><div class="line">Out[<span class="number">33</span>]:</div><div class="line">array([<span class="number">-3.503414</span>  ,  <span class="number">1.42652472</span>, <span class="number">-1.73331188</span>, <span class="number">-3.46089728</span>, <span class="number">-0.08580737</span>,</div><div class="line">        <span class="number">3.36266732</span>, <span class="number">-0.80950291</span>])</div><div class="line"></div><div class="line">In [<span class="number">34</span>]: np.sqrt(arr)</div><div class="line">Out[<span class="number">34</span>]:</div><div class="line">array([       nan,  <span class="number">1.1943721</span>,        nan,        nan,        nan,</div><div class="line">        <span class="number">1.8337577</span>,        nan])</div><div class="line"></div><div class="line">In [<span class="number">35</span>]: np.sqrt(arr,arr)</div><div class="line">Out[<span class="number">35</span>]:</div><div class="line">array([       nan,  <span class="number">1.1943721</span>,        nan,        nan,        nan,</div><div class="line">        <span class="number">1.8337577</span>,        nan])</div><div class="line"></div><div class="line">In [<span class="number">36</span>]: arr</div><div class="line">Out[<span class="number">36</span>]:</div><div class="line">array([       nan,  <span class="number">1.1943721</span>,        nan,        nan,        nan,</div><div class="line">        <span class="number">1.8337577</span>,        nan])</div></pre></td></tr></table></figure>
+<h4 id="Unary-ufuncs"><a href="#Unary-ufuncs" class="headerlink" title="Unary ufuncs"></a>Unary ufuncs</h4><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>abs, fabs</td>
+<td>Compute the absolute value element-wise for integer, floating-point, or complex values. For non-complex values, fabs is faster</td>
+</tr>
+<tr>
+<td>sqr</td>
+<td>Compute the square root of each element (equivalent to arr ** 0.5)</td>
+</tr>
+<tr>
+<td>square</td>
+<td>Compute the square of each element (equivalent to arr ** 2)</td>
+</tr>
+<tr>
+<td>Exp</td>
+<td>Compute the exponent e^x of each element</td>
+</tr>
+<tr>
+<td>log, log10, log2, log1p</td>
+<td>Natural logarithm (base e), log base 10, log base 2, and log(1 + x), respectively</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>Compute the sign of each element: 1 (positive), 0 (zero), or –1 (negative)</td>
+</tr>
+<tr>
+<td>ceil</td>
+<td>Compute the ceiling of each element (i.e., the smallest integer greater than or equal to that number)</td>
+</tr>
+<tr>
+<td>floor</td>
+<td>Compute the floor of each element (i.e., the largest integer less than or equal to each element)</td>
+</tr>
+<tr>
+<td>rint</td>
+<td>Round elements to the nearest integer, preserving the dtype</td>
+</tr>
+<tr>
+<td>modf</td>
+<td>Return fractional and integral parts of array as a separate array</td>
+</tr>
+<tr>
+<td>isnan</td>
+<td>Return boolean array indicating whether each value is NaN (Not a Number)</td>
+</tr>
+<tr>
+<td>isfinite, isinf</td>
+<td>Return boolean array indicating whether each element is finite (non-inf, non-NaN) or infinite, respectively</td>
+</tr>
+<tr>
+<td>cos, cosh, sin, sinh, tan, tanh</td>
+<td>Regular and hyperbolic trigonometric functions</td>
+</tr>
+<tr>
+<td>arccos, arccosh, arcsin, arcsinh, arctan, arctanh</td>
+<td>Inverse trigonometric functions</td>
+</tr>
+<tr>
+<td>logical_not</td>
+<td>Compute truth value of not x element-wise (equivalent to ~arr)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Binary-universal-functions"><a href="#Binary-universal-functions" class="headerlink" title="Binary universal functions"></a>Binary universal functions</h4><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>add</td>
+<td>Add corresponding elements in arrays</td>
+</tr>
+<tr>
+<td>subtract</td>
+<td>Subtract elements in second array from first array</td>
+</tr>
+<tr>
+<td>multiply</td>
+<td>Multiply array elements</td>
+</tr>
+<tr>
+<td>devide, floor_devide</td>
+<td>Divide or floor divide (truncating the remainder)</td>
+</tr>
+<tr>
+<td>power</td>
+<td>Raise elements in first array to powers indicated in second array</td>
+</tr>
+<tr>
+<td>maximum, fmax</td>
+<td>Element-wise maximum; fmax ignores NaN</td>
+</tr>
+<tr>
+<td>minimum, fmin</td>
+<td>Element-wise minimum; fmin ignores NaN</td>
+</tr>
+<tr>
+<td>mod</td>
+<td>Element-wise modulus (remainder of division)</td>
+</tr>
+<tr>
+<td>copysign</td>
+<td>Copy sign of values in second argument to values in first argument</td>
+</tr>
+<tr>
+<td>greater, greater_equal, less, less_equal, equal, not_equal</td>
+<td>Perform element-wise comparison, yielding boolean array (equivalent to infix operators &gt;, &gt;=, &lt;, &lt;=, ==, !=)</td>
+</tr>
+<tr>
+<td>logical_and, logical_or, logical_xor</td>
+<td>Compute element-wise truth value of logical operation (equivalent to infix operators &amp;\</td>
+<td>,^)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Basic-array-statistical-methods"><a href="#Basic-array-statistical-methods" class="headerlink" title="Basic array statistical methods"></a>Basic array statistical methods</h4><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sum</td>
+<td>Sum of all the elements in the array or along an axis; zero-length arrays have sum 0</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>Arithmetic mean; zero-length arrays have NaN mean</td>
+</tr>
+<tr>
+<td>std, var</td>
+<td>Standard deviation and variance, respectively, with optional degrees of freedom adjustment (default denominator n)</td>
+</tr>
+<tr>
+<td>min, max</td>
+<td>Minimum and maximum</td>
+</tr>
+<tr>
+<td>argmin, argmax</td>
+<td>Indices of minimum and maximum elements, respectively</td>
+</tr>
+<tr>
+<td>cumsum</td>
+<td>Cumulative sum of elements starting from 0</td>
+</tr>
+<tr>
+<td>cumprod</td>
+<td>Cumulative product of elements starting from 1</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Array-set-operations"><a href="#Array-set-operations" class="headerlink" title="Array set operations"></a>Array set operations</h4><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>unique(x)</td>
+<td>Compute the sorted, unique elements in x</td>
+</tr>
+<tr>
+<td>intersect1d(x, y)</td>
+<td>Compute the sorted, common elements in x and y</td>
+</tr>
+<tr>
+<td>union1d(x, y)</td>
+<td>Compute the sorted union of elements</td>
+</tr>
+<tr>
+<td>in1d(x, y)</td>
+<td>Compute a boolean array indicating whether each element of x is contained in y</td>
+</tr>
+<tr>
+<td>setdiff1d(x, y)</td>
+<td>Set difference, elements in x that are not in y</td>
+</tr>
+<tr>
+<td>setxor1d(x, y)</td>
+<td>Set symmetric differences; elements that are in either of the arrays, but not both</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Linear-Algebra"><a href="#Linear-Algebra" class="headerlink" title="Linear Algebra"></a>Linear Algebra</h4><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>diag</td>
+<td>Return the diagonal (or off-diagonal) elements of a square matrix as a 1D array, or convert a 1D array into a square matrix with zeros on the off-diagonal</td>
+</tr>
+<tr>
+<td>dot</td>
+<td>Matrix multiplication</td>
+</tr>
+<tr>
+<td>trace</td>
+<td>Compute the sum of the diagonal elements</td>
+</tr>
+<tr>
+<td>det</td>
+<td>Compute the matrix determinant</td>
+</tr>
+<tr>
+<td>eig</td>
+<td>Compute the eigenvalues and eigenvectors of a square matrix</td>
+</tr>
+<tr>
+<td>inv</td>
+<td>Compute the inverse of a square matrix</td>
+</tr>
+<tr>
+<td>pinv</td>
+<td>Compute the Moore-Penrose pseudo-inverse of a matrix</td>
+</tr>
+<tr>
+<td>qr</td>
+<td>Compute the QR decomposition</td>
+</tr>
+<tr>
+<td>svd</td>
+<td>Compute the singular value decomposition (SVD)</td>
+</tr>
+<tr>
+<td>solve</td>
+<td>Solve the linear system Ax = b for x, where A is a square matrix</td>
+</tr>
+<tr>
+<td>lstsq</td>
+<td>Compute the least-squares solution to Ax = b</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Pseudorandom-Number-Generation"><a href="#Pseudorandom-Number-Generation" class="headerlink" title="Pseudorandom Number Generation"></a>Pseudorandom Number Generation</h4><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>seed</td>
+<td>Seed the random number generator</td>
+</tr>
+<tr>
+<td>permutation</td>
+<td>Return a random permutation of a sequence, or return a permuted range</td>
+</tr>
+<tr>
+<td>shuffle</td>
+<td>Randomly permute a sequence in-place</td>
+</tr>
+<tr>
+<td>rand</td>
+<td>Draw samples from a uniform distribution</td>
+</tr>
+<tr>
+<td>randint</td>
+<td>Draw random integers from a given low-to-high range</td>
+</tr>
+<tr>
+<td>randn</td>
+<td>Draw samples from a normal distribution with mean 0 and standard deviation 1</td>
+</tr>
+<tr>
+<td>binomial</td>
+<td>Draw samples from a binomial distribution</td>
+</tr>
+<tr>
+<td>normal</td>
+<td>Draw samples from a normal (Gaussian) distribution</td>
+</tr>
+<tr>
+<td>beta</td>
+<td>Draw samples from a beta distribution</td>
+</tr>
+<tr>
+<td>chisquare</td>
+<td>Draw samples from a chi-square distribution</td>
+</tr>
+<tr>
+<td>gamma</td>
+<td>Draw samples from a gamma distribution</td>
+</tr>
+<tr>
+<td>uniform</td>
+<td>Draw samples from a uniform [0, 1) distribution</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python-3/" rel="tag"># Python 3</a>
+          
+            <a href="/tags/Numpy/" rel="tag"># Numpy</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/13/SAS/SAS编程演义8/" rel="next" title="《SAS编程演义》笔记（8章）">
+                <i class="fa fa-chevron-left"></i> 《SAS编程演义》笔记（8章）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/19/Loan/规则引擎与Drools/" rel="prev" title="规则引擎与Drools">
+                规则引擎与Drools <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <p class="site-author-name" itemprop="name">Yuanyi Wu</p>
+            <p class="site-description motion-element" itemprop="description">朝闻道 夕死可矣</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wu-yuanyi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/yuanyi.wu.39" target="_blank" title="FB Page">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Numpy-Basics-Arrays-and-Vectorized-Computation"><span class="nav-number">1.</span> <span class="nav-text">Numpy Basics: Arrays and Vectorized Computation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Magic-Methods"><span class="nav-number">1.1.</span> <span class="nav-text">Magic Methods</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set-print-options"><span class="nav-number">1.2.</span> <span class="nav-text">Set print options</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Array-creation-Functions"><span class="nav-number">1.3.</span> <span class="nav-text">Array creation Functions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Indexing-and-Slicing"><span class="nav-number">1.4.</span> <span class="nav-text">Indexing and Slicing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fancy-Indexing"><span class="nav-number">1.5.</span> <span class="nav-text">Fancy Indexing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Transposing-Arrays-and-Swapping-Axes"><span class="nav-number">1.6.</span> <span class="nav-text">Transposing Arrays and Swapping Axes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Universal-Functions"><span class="nav-number">1.7.</span> <span class="nav-text">Universal Functions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unary-ufuncs"><span class="nav-number">1.8.</span> <span class="nav-text">Unary ufuncs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Binary-universal-functions"><span class="nav-number">1.9.</span> <span class="nav-text">Binary universal functions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Basic-array-statistical-methods"><span class="nav-number">1.10.</span> <span class="nav-text">Basic array statistical methods</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Array-set-operations"><span class="nav-number">1.11.</span> <span class="nav-text">Array set operations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linear-Algebra"><span class="nav-number">1.12.</span> <span class="nav-text">Linear Algebra</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pseudorandom-Number-Generation"><span class="nav-number">1.13.</span> <span class="nav-text">Pseudorandom Number Generation</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuanyi Wu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" href="https://hexo.io">Hexo</a></div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

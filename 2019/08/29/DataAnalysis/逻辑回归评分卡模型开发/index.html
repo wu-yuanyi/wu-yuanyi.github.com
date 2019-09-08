@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Regression,Score card," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="背景说明Logistic回归开发的评分卡模型主要用于信贷产品的申请（Application）和贷后（Behavior）环节。
+
+优势：可解释性、稳定性
+劣势：准确率不及深度学习
+
+模型开发流程
+检查数据
+单变量检查
+变量间逻辑关系检查
+
+
+设计模型
+时间窗口选定
+行为表现定义
+
+
+衍生变量
+基于原始变量衍生一系列建模变量
+
+
+抽样与设置权重
+随机抽样
+设置权重
+Train &amp;amp; Test">
+<meta property="og:type" content="article">
+<meta property="og:title" content="逻辑回归评分卡模型开发">
+<meta property="og:url" content="http://wu-yuanyi.github.io/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/index.html">
+<meta property="og:site_name" content="WYY's Blog">
+<meta property="og:description" content="背景说明Logistic回归开发的评分卡模型主要用于信贷产品的申请（Application）和贷后（Behavior）环节。
+
+优势：可解释性、稳定性
+劣势：准确率不及深度学习
+
+模型开发流程
+检查数据
+单变量检查
+变量间逻辑关系检查
+
+
+设计模型
+时间窗口选定
+行为表现定义
+
+
+衍生变量
+基于原始变量衍生一系列建模变量
+
+
+抽样与设置权重
+随机抽样
+设置权重
+Train &amp;amp; Test">
+<meta property="og:image" content="http://wu-yuanyi.github.io/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/roll rate.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/fine bin.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/coarse bin.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/k-s.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/auc.png">
+<meta property="og:image" content="http://wu-yuanyi.github.io/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/sort.png">
+<meta property="og:updated_time" content="2019-09-08T14:13:54.089Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="逻辑回归评分卡模型开发">
+<meta name="twitter:description" content="背景说明Logistic回归开发的评分卡模型主要用于信贷产品的申请（Application）和贷后（Behavior）环节。
+
+优势：可解释性、稳定性
+劣势：准确率不及深度学习
+
+模型开发流程
+检查数据
+单变量检查
+变量间逻辑关系检查
+
+
+设计模型
+时间窗口选定
+行为表现定义
+
+
+衍生变量
+基于原始变量衍生一系列建模变量
+
+
+抽样与设置权重
+随机抽样
+设置权重
+Train &amp;amp; Test">
+<meta name="twitter:image" content="http://wu-yuanyi.github.io/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/roll rate.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wu-yuanyi.github.io/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/"/>
+
+
+
+
+
+  <title>逻辑回归评分卡模型开发 | WYY's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WYY's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">JUST DO IT</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WYY's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">逻辑回归评分卡模型开发</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-29T09:57:44+07:00">
+                2019-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Analysis/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Analysis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景说明"><a href="#背景说明" class="headerlink" title="背景说明"></a>背景说明</h2><p>Logistic回归开发的评分卡模型主要用于信贷产品的申请（Application）和贷后（Behavior）环节。</p>
+<ul>
+<li>优势：可解释性、稳定性</li>
+<li>劣势：准确率不及深度学习</li>
+</ul>
+<h2 id="模型开发流程"><a href="#模型开发流程" class="headerlink" title="模型开发流程"></a>模型开发流程</h2><ol>
+<li>检查数据<ul>
+<li>单变量检查</li>
+<li>变量间逻辑关系检查</li>
+</ul>
+</li>
+<li>设计模型<ul>
+<li>时间窗口选定</li>
+<li>行为表现定义</li>
+</ul>
+</li>
+<li>衍生变量<ul>
+<li>基于原始变量衍生一系列建模变量</li>
+</ul>
+</li>
+<li>抽样与设置权重<ul>
+<li>随机抽样</li>
+<li>设置权重</li>
+<li>Train &amp; Test</li>
+</ul>
+</li>
+<li>细分箱<ul>
+<li>变量细分箱</li>
+<li>计算WOE值与IV</li>
+</ul>
+</li>
+<li>变量筛选<ul>
+<li>删除IV值较低的变量</li>
+<li>删除与业务含义不符的变量</li>
+</ul>
+</li>
+<li>粗分箱<ul>
+<li>细分箱合并为粗分箱</li>
+</ul>
+</li>
+<li>转换WOE值<ul>
+<li>各变量分箱栏位原始值转换为WOE值</li>
+</ul>
+</li>
+<li>Logistic回归<ul>
+<li>拟合模型参数</li>
+</ul>
+</li>
+<li>评分标准化<ul>
+<li>计算各变量分箱栏位对应得分</li>
+</ul>
+</li>
+<li>验证模型<ul>
+<li>模型区分能力</li>
+<li>模型排序性</li>
+<li>模型稳定性</li>
+</ul>
+</li>
+<li>模型部署上线</li>
+</ol>
+<h2 id="检查数据"><a href="#检查数据" class="headerlink" title="检查数据"></a>检查数据</h2><ul>
+<li>Garbage in, garbage out. 第一步永远是进行数据检查与分析。</li>
+<li>需要良好的沟通能力去与业务部门、数据库等部门进行沟通</li>
+<li>此过程有利于对业务发展、业务特点进行理解，有利于后续的建模工作</li>
+</ul>
+<h3 id="单变量检查"><a href="#单变量检查" class="headerlink" title="单变量检查"></a>单变量检查</h3><ul>
+<li>所有的原始变量都需要检查，如：还款月份、申请时间、还款频率、逾期状态等。</li>
+</ul>
+<h3 id="变量间逻辑检查"><a href="#变量间逻辑检查" class="headerlink" title="变量间逻辑检查"></a>变量间逻辑检查</h3><ul>
+<li>单个变量时间逻辑检查。如：逾期状态前后滚动的跳跃情况，上月逾期M1，本月不可能逾期M4</li>
+<li>多个变量间的逻辑检查。如：贷款申请月份+贷款期限=贷款结束时间。</li>
+</ul>
+<h3 id="数据分布"><a href="#数据分布" class="headerlink" title="数据分布"></a>数据分布</h3><ul>
+<li>总量、缺失量、缺失占比</li>
+<li>均值、中值、标准差、最小值、最大值与各分位点值</li>
+</ul>
+<h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><ul>
+<li>奇异值、极端值、缺失值处理。（评分卡式建模无需处理）</li>
+</ul>
+<h2 id="设计模型"><a href="#设计模型" class="headerlink" title="设计模型"></a>设计模型</h2><h3 id="定义表现"><a href="#定义表现" class="headerlink" title="定义表现"></a>定义表现</h3><p>滚动率（Roil Rate）分析：统计账户从上个月的逾期状态变动到这个月的逾期状态的占比情况，寻找占比稳定的逾期状态。一般当逾期占比大于50%时，可以将该逾期定义为坏。传统银行的坏定义在逾期四期及以上（M4和M4+），互联网产品根据产品的实际情况会短很多。</p>
+<p><img src="/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/roll rate.png" alt="滚动率分析"></p>
+<h3 id="确定时间窗口"><a href="#确定时间窗口" class="headerlink" title="确定时间窗口"></a>确定时间窗口</h3><ul>
+<li>确定观察期时间<ul>
+<li>主要依赖于建模数据量的要求，如建模样本中的坏至少有500个</li>
+<li>避开特殊时间，如春节导致的节假日效应</li>
+<li>避开巨大的产品变动</li>
+</ul>
+</li>
+<li>确定表现期时间长度：帐龄分析（Vintage）<ul>
+<li>帐龄（Mob）=账单结算月份 - 账户开立月份，单位：月份</li>
+<li>统计各个帐龄上，表现为坏账户的累计占比情况，寻找占比增长稳定的月份</li>
+<li>长度上会按季度选择，如6、9、12、15个月等，传统银行一般表现期在12个月以上，互联网产品会短于一年，现金贷产品一般10天左右就足以表现出坏。</li>
+</ul>
+</li>
+</ul>
+<h3 id="设计子模型"><a href="#设计子模型" class="headerlink" title="设计子模型"></a>设计子模型</h3><ul>
+<li>子模型细分的原因<ul>
+<li>行为表现本身的差异化</li>
+<li>让模型更稳定</li>
+</ul>
+</li>
+<li>基于业务经验的子模型<ul>
+<li>新老客户</li>
+<li>产品类型：payday，消费贷，车贷…</li>
+<li>还款方式：等本等息，先息后本…</li>
+</ul>
+</li>
+<li>基于数据驱动的子模型<ul>
+<li>决策树</li>
+</ul>
+</li>
+</ul>
+<h2 id="衍生变量"><a href="#衍生变量" class="headerlink" title="衍生变量"></a>衍生变量</h2><h3 id="申请评分"><a href="#申请评分" class="headerlink" title="申请评分"></a>申请评分</h3><ul>
+<li>传统银行：信贷申请信息+央行信用报告</li>
+<li>互联网产品：信贷申请信息+手机通讯信息+app操作信息+第三方数据</li>
+</ul>
+<h3 id="行为评分"><a href="#行为评分" class="headerlink" title="行为评分"></a>行为评分</h3><ul>
+<li>传统银行：贷后数据+央行信用报告+历史逾期情况+当前负债情况+帐龄+个人信息</li>
+<li>互联网产品：贷后数据+手机通讯信息+app操作信息+第三方数据</li>
+</ul>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>基于现有数据衍生出足够多的变量，如：计算对应的均值、最大值、最小值和比例</li>
+<li>需要在时间维度衍生变量，如：基于逾期状态可以衍生出<em>最近3个月最大逾期状态</em>、<em>最近6个月最大逾期状态</em></li>
+<li>由于金额类变量不稳定且易手通货膨胀等因素影响，因此金额累变量需要通过计算比例以消除该问题，如：根据<em>贷款金额</em>和<em>收入</em>计算<em>贷款金额收入比</em></li>
+<li>不能衍生无法解释，没有业务含义的变量</li>
+<li>特殊取值需要定义特殊值，如<em>缺失</em>和<em>未知</em>需要分开，比例型变量中分母为0或缺失和分子为缺失时需要分开赋值。</li>
+</ul>
+<h2 id="抽样与权重设置"><a href="#抽样与权重设置" class="headerlink" title="抽样与权重设置"></a>抽样与权重设置</h2><h3 id="随机抽样"><a href="#随机抽样" class="headerlink" title="随机抽样"></a>随机抽样</h3><ul>
+<li>好/坏样本不足5k：不抽样，全部用于建模。</li>
+<li>好/坏样本大于5k：各抽取5k用于建模。5k是经验值，也可以坏样本全部入模，好样本部分抽取。</li>
+</ul>
+<h3 id="设置权重"><a href="#设置权重" class="headerlink" title="设置权重"></a>设置权重</h3><ul>
+<li>不抽样：权重均为1</li>
+<li>抽样：<ul>
+<li>好权重 = (好全量+不确定全量) / 好样本量量</li>
+<li>坏权重 = 坏全量 / 坏样本量 </li>
+</ul>
+</li>
+</ul>
+<h3 id="Train-amp-Test"><a href="#Train-amp-Test" class="headerlink" title="Train &amp; Test"></a>Train &amp; Test</h3><p>Train 70%, Test 30%.</p>
+<h2 id="细分箱"><a href="#细分箱" class="headerlink" title="细分箱"></a>细分箱</h2><p>采用传统评分卡建模方式是不采用原始值进行回归拟合的，而是将原市值转换成WOE（证据权重，Weight of Evidence）值进行logistic回归。信息值(Information Value)是反映各变量对于好坏样本识别能力的指标。</p>
+<h3 id="变量细分箱"><a href="#变量细分箱" class="headerlink" title="变量细分箱"></a>变量细分箱</h3><p>计算WOE值前，先需要将变量分成若干个栏位。</p>
+<ul>
+<li>对于字符型变量，一般每个取值都作为单独的一栏。</li>
+<li>对于数值型变量，有多种划分方式，建议采用CART决策树。为了保证分箱稳定，每个分箱一般不小于5%。</li>
+</ul>
+<h3 id="计算WOE值与IV"><a href="#计算WOE值与IV" class="headerlink" title="计算WOE值与IV"></a>计算WOE值与IV</h3><p>$$ WOE_i = ln( \frac{Good_i}{Good} / \frac{Bad_i}{Bad} ) $$</p>
+<p>WOE值越大，表明该栏位中好样本占比越高。</p>
+<p>$$ IV = \Sigma( \frac{Good_i}{Good} - \frac{Bad_i}{Bad} ) * WOE $$</p>
+<p>IV越大，则该变量在好坏样本上的区分力越大。</p>
+<p>Good<sub>i</sub> 是第i 个栏位对应的好样本数，Good是好样本总量，Bad<sub>i</sub>是第i 个栏位对应的坏样本数，Bad是坏样本总量。</p>
+<p><img src="/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/fine bin.png" alt="woe iv"></p>
+<h2 id="变量筛选"><a href="#变量筛选" class="headerlink" title="变量筛选"></a>变量筛选</h2><ul>
+<li>剔除IV值过低的变量：普遍当变量IV值低于0.02时，认为该变量对于好坏样本的区分能力较弱，可以剔除。该阈值是经验值，在实际操作中，根据候选变量的情况可进行调整。</li>
+<li>剔除变量趋势和业务逻辑不符的变量：所有变量的WOE值变动趋势要复合业务逻辑，如果WOE值不符合该趋势变动，则该变量不能用。如已婚人士的WOE值应高于未婚人士。</li>
+<li>剔除粗分箱后IV值下降超过30%的变量：如果在变量分箱过程中，强制合并两个有差异的栏位，导致IV下降过多，则最后的模型评分容易导致排序性混乱或不稳定。</li>
+<li>剔除集中度过高的变量：如某一取值分箱的占比超过98%。</li>
+</ul>
+<h2 id="粗分箱"><a href="#粗分箱" class="headerlink" title="粗分箱"></a>粗分箱</h2><p>之前的WOE值的分箱是在自动分箱（细分箱）的结果上计算的。因此需要依据细分箱的WOE结果，结合业务和数据分布对该变量进行粗分箱调整。目前，由于收到监管机构要求可解释性，绝大部分金融机构都是手动调整变量分箱。</p>
+<p>变量分箱主要从以下方面考虑：</p>
+<ul>
+<li>考虑WOE值是够单调递增或递减，特殊情况下可以接受U型或倒U型。</li>
+<li>每个变量栏位上的客户数不能太少，否则不稳定。</li>
+<li>每个变量栏位上的WOE值要能区分开，否则最后每个栏位得分相近没有区分度，相邻栏位的WOE值相差至少0.1。粗分箱的栏位建议在5个左右。</li>
+<li>从细分箱到粗分箱到过程中，IV不能下降太多，否则会流失变量的区分能力。</li>
+<li>粗分箱的栏位值要结合变量的业务含义。如月份类型的变量可以考虑3个月，6个月等作为栏位边界值；而百分比变量则可以考虑在25%，33%，50%等值作为栏位的边界值。</li>
+</ul>
+<p><img src="/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/coarse bin.png" alt="woe iv"></p>
+<h2 id="转换WOE值"><a href="#转换WOE值" class="headerlink" title="转换WOE值"></a>转换WOE值</h2><p>WOE值转换是把各变量个栏位上的取值转换为对应的WOE值。之后的logistic回归拟合将采用WOE值。</p>
+<p>转换完WOE之后，如果候选变量依然较多，可以从变量池内所有可能的变量中，初步确定最有预测能力的变量组合。采用的方法有：使用xgboost计算feature importance，采用重要的变量和逐步判别法等。</p>
+<h2 id="Logistic回归"><a href="#Logistic回归" class="headerlink" title="Logistic回归"></a>Logistic回归</h2><ul>
+<li>Logistic回归系数必须为负数：这是因为最后的评分会算到每个变量栏位上，为了保证每个变量的栏位趋势得分符合业务逻辑，所以所有入模变量的回归系数必须均为负数。</li>
+<li>Logistic回归系数的P值必须通过检验：普遍P值不能高于0.05，当模型受到局限性时，可以放宽至0.1。</li>
+<li>方差膨胀系数（variance inflation factor）必须通过检验：入模变量间不能存在相关性，因此需要对这部分变量进行VIF检验。普遍要求入模变量的VIF不超过4，当模型受到局限性时，可以放宽至10。同时，因为入模变量最后是转换成WOE值去拟合，因此部分变量会存在业务含义看上去具有相关性，但是VIF通过检验的情况，这时可以进行一定的取舍。</li>
+<li>尽量选择变量栏位、维度多样性，业务含义直观的变量：在候选变量充足或者有几个变量贡献相当但是不能兼容时，尽量选择变量栏位、维度多样性和业务含义直观的变量，这一方面能使模型更具有区分力和稳定性，也能使模型具有更好的解释性。</li>
+</ul>
+<h2 id="评分标准化"><a href="#评分标准化" class="headerlink" title="评分标准化"></a>评分标准化</h2><h3 id="评分转换逻辑"><a href="#评分转换逻辑" class="headerlink" title="评分转换逻辑"></a>评分转换逻辑</h3><p>需要设置标准分，标准odds和PDO三个参数，分数需取整。通常通过假设的方法求解A和B。假设500分时，对应的odds是1，每20分odds翻倍，则原公示可表达为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">500 = A + B * ln(1) </div><div class="line">520 = A + B * ln(2)</div></pre></td></tr></table></figure>
+<p>解得A=500，B=28.85。</p>
+<p>通常把A称为标准评分，标准评分对应的odds称为标准odds（这里是1），而每多少分对应的odds翻两倍称为PDO（Points to Double the Odds，这里是20）。标准评分，标准odds和PDO都可以根据情况修改。</p>
+<h3 id="评分卡生成逻辑"><a href="#评分卡生成逻辑" class="headerlink" title="评分卡生成逻辑"></a>评分卡生成逻辑</h3><p>评分卡标准化过程，需要从logistic的计算公式出发：</p>
+<p>$$ P_1 = \frac{1}{1+e^{-Z}} $$，    其中$$ z = \alpha + \beta_1 <em> x_1 + \beta_2 </em> x_2 + … + \beta_n * x_n $$</p>
+<p>推导公式可获得：$$ z = -ln(\frac{P_0}{P_1}) = -ln(odds) $$</p>
+<p>此时，我们可认为ln(odds)和变量X之间是线性关系。</p>
+<p>$$ Score = A + B <em> ln(odds) = A - B </em> z $$</p>
+<ol>
+<li><p>每个变量各栏位的评分</p>
+<p>$$ X<em>{11tmp} = -B <em> 系数1 </em>WOE</em>{11},\ X<em>{12tmp} = -B <em> 系数1 </em>WOE</em>{12}\ \ …$$</p>
+<p>$$ X<em>{21tmp} = -B <em> 系数2 </em>WOE</em>{21},\ X<em>{22tmp} = -B <em> 系数1 </em>WOE</em>{22}\ \ …$$</p>
+</li>
+<li><p>每个特征的最小得分求和</p>
+<p>$$ summin = \Sigma{X1<em>{tmpmin} + X2</em>{tmpmin} + … + Xn_{tmpmin}} $$</p>
+</li>
+<li><p>常数项处理</p>
+<p>$$ avgscore = (A - B * 系数0 + summin) / n $$</p>
+</li>
+<li><p>每个变量分栏的最终得分</p>
+<p>$$ X<em>{11}=round(X</em>{11tmp} - X1_{tmpmin} + avgscore) $$</p>
+<p>$$ X<em>{12}=round(X</em>{12tmp} - X1_{tmpmin} + avgscore) $$</p>
+</li>
+</ol>
+<h2 id="验证模型"><a href="#验证模型" class="headerlink" title="验证模型"></a>验证模型</h2><ul>
+<li>数据集：<ul>
+<li>Train：建模数据</li>
+<li>Test：验证数据</li>
+<li>OOT（Out Of Time）：选取建模样本时间之后的另外一个时间点验证</li>
+</ul>
+</li>
+<li>统计指标：<ul>
+<li>区分能力：KS，ROC，Gini等</li>
+<li>综合表现：评分排序性</li>
+<li>稳定性：PSI</li>
+</ul>
+</li>
+</ul>
+<h3 id="区分能力"><a href="#区分能力" class="headerlink" title="区分能力"></a>区分能力</h3><ul>
+<li>KS（Kolmogrov-Smirnov）值：取出每个分数上累计坏样本占比和累积好样本占比的最大差值。该值越大越好，普遍认为当KS大于30%时，模型具有区分能力；当KS值大于50%时，模型具有较好的区分能力。</li>
+</ul>
+<p><img src="/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/k-s.png" alt="ks"></p>
+<ul>
+<li>ROC曲线（Receiver Operating Characteristic Curve）：累计好样本占比对应累计坏样本占比曲线。AUC（Area Under Curve）是该曲线下面积。该值越大越好，普遍认为当AUC大于70%时，模型具有区分能力；当AUC值大于80%时，模型具有较好的区分能力。</li>
+</ul>
+<p><img src="/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/auc.png" alt="auc"></p>
+<ul>
+<li>Gini = 2 * ROC - 1，该值越大越好。</li>
+</ul>
+<h3 id="评分排序性"><a href="#评分排序性" class="headerlink" title="评分排序性"></a>评分排序性</h3><p>评分排序性是模型评分能力的综合考量。评分结果应该是随着分数的增加，坏账率应该越来越低，同时在每个评分点上，人数占比也要均匀分开，单个评分点上的人数占比不能大于5%。一般会把评分结果按样本数评分成十等份，分别计算其对应的好/坏样本数、坏账率等。</p>
+<p><img src="/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/sort.png" alt="sort"></p>
+<h3 id="模型稳定性"><a href="#模型稳定性" class="headerlink" title="模型稳定性"></a>模型稳定性</h3><p>通过传统评分模型获得结果的一大优势就是稳定性，评分稳定性通过PSI（Population Stability Index）体现。</p>
+<p>$$ PSI = \Sigma{ (\%test_i - \%train_i) * \ln(\%test_i / \%train_i)} $$</p>
+<p>对最终的评分计算PSI时，先会将Train上的数据集根据样本数平分成十等份，%Train<sub>i</sub>即对应分数区间上人数占比，在分数区间不变的情况下，计算Test数据集的人数占比即为%Test<sub>i</sub>。同理计算OOT数据集。</p>
+<p>PSI值也可以用于变量稳定性的计算，只要将分数区间换成变量的栏位区间即可。</p>
+<p>⼀般⽽言，当PSI⼩于0.1时，评分结果非常稳定，当PSI大于0.25时，评分结果不稳定。</p>
+<h2 id="模型部署上线"><a href="#模型部署上线" class="headerlink" title="模型部署上线"></a>模型部署上线</h2><ol>
+<li>模型开发完成后，由技术部⻔门负责模型的部署上线</li>
+<li>模型开发者需要提供模型开发⽂文档，特别是评分卡内容和变量量取值计算逻辑</li>
+<li>模型部署上线之后，一般不会直接采用模型结果，普遍让模型独立运行3-6个月，和原来的处理方式做比较，确认结果之后上线。</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Regression/" rel="tag"># Regression</a>
+          
+            <a href="/tags/Score-card/" rel="tag"># Score card</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/05/Regression Methods/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <p class="site-author-name" itemprop="name">Yuanyi Wu</p>
+            <p class="site-description motion-element" itemprop="description">朝闻道 夕死可矣</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wu-yuanyi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/yuanyi.wu.39" target="_blank" title="FB Page">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景说明"><span class="nav-number">1.</span> <span class="nav-text">背景说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型开发流程"><span class="nav-number">2.</span> <span class="nav-text">模型开发流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查数据"><span class="nav-number">3.</span> <span class="nav-text">检查数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单变量检查"><span class="nav-number">3.1.</span> <span class="nav-text">单变量检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量间逻辑检查"><span class="nav-number">3.2.</span> <span class="nav-text">变量间逻辑检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据分布"><span class="nav-number">3.3.</span> <span class="nav-text">数据分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据处理"><span class="nav-number">3.4.</span> <span class="nav-text">数据处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模型"><span class="nav-number">4.</span> <span class="nav-text">设计模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义表现"><span class="nav-number">4.1.</span> <span class="nav-text">定义表现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#确定时间窗口"><span class="nav-number">4.2.</span> <span class="nav-text">确定时间窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计子模型"><span class="nav-number">4.3.</span> <span class="nav-text">设计子模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#衍生变量"><span class="nav-number">5.</span> <span class="nav-text">衍生变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#申请评分"><span class="nav-number">5.1.</span> <span class="nav-text">申请评分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行为评分"><span class="nav-number">5.2.</span> <span class="nav-text">行为评分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">5.3.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽样与权重设置"><span class="nav-number">6.</span> <span class="nav-text">抽样与权重设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#随机抽样"><span class="nav-number">6.1.</span> <span class="nav-text">随机抽样</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置权重"><span class="nav-number">6.2.</span> <span class="nav-text">设置权重</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Train-amp-Test"><span class="nav-number">6.3.</span> <span class="nav-text">Train & Test</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#细分箱"><span class="nav-number">7.</span> <span class="nav-text">细分箱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量细分箱"><span class="nav-number">7.1.</span> <span class="nav-text">变量细分箱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算WOE值与IV"><span class="nav-number">7.2.</span> <span class="nav-text">计算WOE值与IV</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量筛选"><span class="nav-number">8.</span> <span class="nav-text">变量筛选</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#粗分箱"><span class="nav-number">9.</span> <span class="nav-text">粗分箱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转换WOE值"><span class="nav-number">10.</span> <span class="nav-text">转换WOE值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistic回归"><span class="nav-number">11.</span> <span class="nav-text">Logistic回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评分标准化"><span class="nav-number">12.</span> <span class="nav-text">评分标准化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#评分转换逻辑"><span class="nav-number">12.1.</span> <span class="nav-text">评分转换逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评分卡生成逻辑"><span class="nav-number">12.2.</span> <span class="nav-text">评分卡生成逻辑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证模型"><span class="nav-number">13.</span> <span class="nav-text">验证模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#区分能力"><span class="nav-number">13.1.</span> <span class="nav-text">区分能力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评分排序性"><span class="nav-number">13.2.</span> <span class="nav-text">评分排序性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型稳定性"><span class="nav-number">13.3.</span> <span class="nav-text">模型稳定性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型部署上线"><span class="nav-number">14.</span> <span class="nav-text">模型部署上线</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuanyi Wu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" href="https://hexo.io">Hexo</a></div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

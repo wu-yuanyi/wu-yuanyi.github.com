@@ -153,7 +153,7 @@ Train &amp;amp; Test">
 <meta property="og:image" content="http://wu-yuanyi.github.io/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/k-s.png">
 <meta property="og:image" content="http://wu-yuanyi.github.io/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/auc.png">
 <meta property="og:image" content="http://wu-yuanyi.github.io/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/sort.png">
-<meta property="og:updated_time" content="2019-09-08T14:13:54.089Z">
+<meta property="og:updated_time" content="2019-09-21T02:58:13.784Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="逻辑回归评分卡模型开发">
 <meta name="twitter:description" content="背景说明Logistic回归开发的评分卡模型主要用于信贷产品的申请（Application）和贷后（Behavior）环节。
@@ -382,7 +382,7 @@ Train &amp;amp; Test">
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-29T09:57:44+07:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-29T10:57:44+08:00">
                 2019-08-29
               </time>
             
@@ -606,7 +606,7 @@ Train &amp;amp; Test">
 <li>考虑WOE值是够单调递增或递减，特殊情况下可以接受U型或倒U型。</li>
 <li>每个变量栏位上的客户数不能太少，否则不稳定。</li>
 <li>每个变量栏位上的WOE值要能区分开，否则最后每个栏位得分相近没有区分度，相邻栏位的WOE值相差至少0.1。粗分箱的栏位建议在5个左右。</li>
-<li>从细分箱到粗分箱到过程中，IV不能下降太多，否则会流失变量的区分能力。</li>
+<li>从细分箱到粗分箱到过程中，IV不能下降太多(10%)，否则会流失变量的区分能力。</li>
 <li>粗分箱的栏位值要结合变量的业务含义。如月份类型的变量可以考虑3个月，6个月等作为栏位边界值；而百分比变量则可以考虑在25%，33%，50%等值作为栏位的边界值。</li>
 </ul>
 <p><img src="/2019/08/29/DataAnalysis/逻辑回归评分卡模型开发/coarse bin.png" alt="woe iv"></p>
@@ -722,6 +722,10 @@ Train &amp;amp; Test">
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/10/01/Diary/越南游记/" rel="prev" title="越南游记">
+                越南游记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -796,7 +800,7 @@ Train &amp;amp; Test">
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -807,7 +811,7 @@ Train &amp;amp; Test">
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>

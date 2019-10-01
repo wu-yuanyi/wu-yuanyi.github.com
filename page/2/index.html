@@ -277,6 +277,346 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2019/03/26/DataAnalysis/关系网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WYY's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/26/DataAnalysis/关系网络/" itemprop="url">关系网络</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-26T16:25:29+08:00">
+                2019-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Analysis/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Analysis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="关联关系"><a href="#关联关系" class="headerlink" title="关联关系"></a>关联关系</h2><h3 id="关系说明"><a href="#关系说明" class="headerlink" title="关系说明"></a>关系说明</h3><table>
+<thead>
+<tr>
+<th>关系类型</th>
+<th>关系</th>
+<th>关系说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>id_id</td>
+<td>种子与关联ID相同</td>
+</tr>
+<tr>
+<td>cellphone</td>
+<td>cellphone_cellphone</td>
+<td>种子与关联手机号相同</td>
+</tr>
+<tr>
+<td>cellphone</td>
+<td>cellphone_homephone</td>
+<td>种子手机号=关联家庭电话</td>
+</tr>
+<tr>
+<td>cellphone</td>
+<td>cellphone_empphone</td>
+<td>种子手机号=关联公司电话</td>
+</tr>
+<tr>
+<td>cellphone</td>
+<td>cellphone_c1phone</td>
+<td>种子手机号=关联联系人1 电话</td>
+</tr>
+<tr>
+<td>cellphone</td>
+<td>cellphone_c2phone</td>
+<td>种子手机号=关联联系人2 电话</td>
+</tr>
+<tr>
+<td>cellphone</td>
+<td>homephone_cellphone</td>
+<td>种子家庭电话=关联手机号</td>
+</tr>
+<tr>
+<td>cellphone</td>
+<td>empphone_cellphone</td>
+<td>种子公司电话=关联手机号</td>
+</tr>
+<tr>
+<td>cellphone</td>
+<td>c1phone_cellphone</td>
+<td>种子联系人1 电话=关联手机号</td>
+</tr>
+<tr>
+<td>cellphone</td>
+<td>c2phone_cellphone</td>
+<td>种子联系人2 电话=关联手机号</td>
+</tr>
+<tr>
+<td>contact</td>
+<td>c1phone_c1phone</td>
+<td>种子联系人1 电话=关联联系人1 电话</td>
+</tr>
+<tr>
+<td>contact</td>
+<td>c1phone_c2phone</td>
+<td>种子联系人1 电话=关联联系人2 电话</td>
+</tr>
+<tr>
+<td>contact</td>
+<td>c2phone_c1phone</td>
+<td>种子联系人2 电话=关联联系人1 电话</td>
+</tr>
+<tr>
+<td>contact</td>
+<td>c1phone_c2phone</td>
+<td>种子联系人2 电话=关联联系人2电话</td>
+</tr>
+<tr>
+<td>home/emp</td>
+<td>homephone_homephone</td>
+<td>种子家庭电话=关联家庭电话</td>
+</tr>
+<tr>
+<td>home/emp</td>
+<td>homephone_empphone</td>
+<td>种子家庭电话=关联公司电话</td>
+</tr>
+<tr>
+<td>home/emp</td>
+<td>homephone_c1phone</td>
+<td>种子家庭电话=关联联系人1 电话</td>
+</tr>
+<tr>
+<td>home/emp</td>
+<td>homephone_c2phone</td>
+<td>种子家庭电话=关联联系人2 电话</td>
+</tr>
+<tr>
+<td>home/emp</td>
+<td>empphone_empphone</td>
+<td>种子公司电话=关联公司电话</td>
+</tr>
+<tr>
+<td>home/emp</td>
+<td>empphone_homephone</td>
+<td>种子公司电话=关联家庭电话</td>
+</tr>
+<tr>
+<td>home/emp</td>
+<td>empphone_c1phone</td>
+<td>种子公司电话=关联联系人1 电话</td>
+</tr>
+<tr>
+<td>home/emp</td>
+<td>empphone_c2phone</td>
+<td>种子公司电话=关联联系人2电话</td>
+</tr>
+<tr>
+<td>home/emp</td>
+<td>c1phone_homephone</td>
+<td>种子联系人1 电话=关联家庭电话</td>
+</tr>
+<tr>
+<td>home/emp</td>
+<td>c1phone_empphone</td>
+<td>种子联系人1 电话=关联公司电话</td>
+</tr>
+<tr>
+<td>home/emp</td>
+<td>c2phone_homephone</td>
+<td>种子联系人2 电话=关联家庭电话</td>
+</tr>
+<tr>
+<td>home/emp</td>
+<td>c2phone_empphone</td>
+<td>种子联系人2 电话=关联公司电话</td>
+</tr>
+</tbody>
+</table>
+<h3 id="关系网络"><a href="#关系网络" class="headerlink" title="关系网络"></a>关系网络</h3><table>
+<thead>
+<tr>
+<th>一层关系类型</th>
+<th>二层关系类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>cellphone</td>
+</tr>
+<tr>
+<td>id</td>
+<td>contact</td>
+</tr>
+<tr>
+<td>id</td>
+<td>home/emp</td>
+</tr>
+<tr>
+<td>cellphone</td>
+<td>id</td>
+</tr>
+<tr>
+<td>cellphone</td>
+<td>contact</td>
+</tr>
+<tr>
+<td>cellphone</td>
+<td>home/emp</td>
+</tr>
+</tbody>
+</table>
+<h2 id="网络属性"><a href="#网络属性" class="headerlink" title="网络属性"></a>网络属性</h2><h3 id="人群属性"><a href="#人群属性" class="headerlink" title="人群属性"></a>人群属性</h3><ul>
+<li>年龄（按人去重，根据身份证计算当下年龄）：平均年龄；最大年龄；最小年龄；最大年龄差</li>
+<li>性别（按人去重，根据身份证计算）：男性占比</li>
+<li>省份：不同省份数，不同省份数/网络内不同人数</li>
+<li>城市：不同城市数，不同数/网络内不同人数</li>
+<li>城市等级：不同数量，占比，最大，最小，最大等级差，平均（去重）</li>
+<li>区域分布</li>
+<li>户籍城市等级</li>
+<li>户籍区域分布</li>
+<li>手机前两位 14、17数量，占比</li>
+<li>手机相似：前7位、8位与本申请一致数量，占比；网络内前7位、8位一致数量的最大值，占比</li>
+<li>联系人手机前两位 14、17数量，占比</li>
+<li>联系人手机相似：前7位、8位与本申请一致数量，占比；网络内前7位、8位一致数量的最大值，占比</li>
+<li>单位类型：学校、金融、信息技术、娱乐的占比</li>
+<li>申请时间：白天、晚上、夜间申请人数，占比</li>
+<li>平均时差：((最大-最小)/节点数)</li>
+<li>申请类型：不同数量，占比，最大，最小，最大等级差</li>
+</ul>
+<h3 id="多机构属性"><a href="#多机构属性" class="headerlink" title="多机构属性"></a>多机构属性</h3><ul>
+<li>总/线上/线下/信用卡/线上信用卡/线下信用卡/线上现金贷/线下现金贷/线上消费贷/线下消费贷/paydayloan</li>
+<li>期限等级/利率等级/金额等级</li>
+<li>统计申请数、机构数、人数</li>
+<li>分母为人数的占比型变量</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2019/01/17/DataAnalysis/决策树/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -308,7 +648,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-17T15:34:05+07:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-17T16:34:05+08:00">
                 2019-01-17
               </time>
             
@@ -571,7 +911,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-18T14:56:45+07:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-18T15:56:45+08:00">
                 2018-12-18
               </time>
             
@@ -973,7 +1313,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-25T14:57:20+07:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-25T15:57:20+08:00">
                 2018-09-25
               </time>
             
@@ -1172,7 +1512,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-17T15:32:16+07:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-17T16:32:16+08:00">
                 2018-04-17
               </time>
             
@@ -1341,187 +1681,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2018/03/20/Loan/人行报告(详版)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yuanyi Wu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WYY's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/20/Loan/人行报告(详版)/" itemprop="url">人行报告专业版</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T10:05:28+07:00">
-                2018-03-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Loan/" itemprop="url" rel="index">
-                    <span itemprop="name">Loan</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="样本"><a href="#样本" class="headerlink" title="样本"></a>样本</h1><p><a href="https://wenku.baidu.com/view/81a23a7e6bec0975f565e2c9.html?re=view" target="_blank" rel="external">个人信用报告（银行专业版）样本</a></p>
-<h1 id="基础信息"><a href="#基础信息" class="headerlink" title="基础信息"></a>基础信息</h1><ul>
-<li>查询时间：央行系统收到查申请人提出查询申请的时间</li>
-<li>报告时间：系统收到查询申请后，生成查询人的信用报告的时间</li>
-<li>账户数：名下分别有几个信用卡账户、几笔住房贷款、几笔其他贷款</li>
-<li>未销户账户数：查询人名下未销户（含正在使用和尚未激活）的信用卡账户数量</li>
-<li>未结清账户数：查询人名下未结清住房贷款和其他贷款的账户数量</li>
-<li>透支余额：准贷记卡欠银行钱的数量（包含本金和利息）</li>
-<li>已使用额度：贷记卡欠银行钱的数量（包含本金和利息）</li>
-<li>逾期金额：截至还款日的最后期限，仍未按时或足额偿还的金额，以及由此产生的利息（含罚息）和费用（包括超限费和滞纳金）</li>
-<li>公共记录：含最近5年内的欠税记录、法院民事判决记录、强制执行记录、行政处罚记录、电信欠费记录</li>
-<li>查询记录：何机构或何人在何时以何种理由查询过此人的信用报告</li>
-</ul>
-<h1 id="进阶信息"><a href="#进阶信息" class="headerlink" title="进阶信息"></a>进阶信息</h1><h2 id="账户数"><a href="#账户数" class="headerlink" title="账户数"></a>账户数</h2><p>账户数不等同于信用卡张数，而是等于信用卡记录数</p>
-<h3 id="同币种信用卡合并显示"><a href="#同币种信用卡合并显示" class="headerlink" title="同币种信用卡合并显示"></a>同币种信用卡合并显示</h3><p>民生银行（持有十张卡）</p>
-<ul>
-<li>都是人民币账户：信用报告上显示1条关于民生银行信用卡的记录</li>
-<li>都是双币账户：信用报告上显示2条关于民生银行信用卡的记录</li>
-<li>都是N币账户：信用报告上显示N条关于民生银行信用卡的记录</li>
-</ul>
-<h3 id="同币种信用卡不合并显示"><a href="#同币种信用卡不合并显示" class="headerlink" title="同币种信用卡不合并显示"></a>同币种信用卡不合并显示</h3><p>工商银行（持有十张卡）：</p>
-<ul>
-<li>都是人民币账户：信用报告上显示10条关于工商银行信用卡的记录</li>
-<li>都是双币账户：信用报告上显示20条关于工商银行信用卡的记录</li>
-<li>都是N币账户：信用报告上显示N0条关于工商银行信用卡的记录</li>
-</ul>
-<h3 id="合并账单"><a href="#合并账单" class="headerlink" title="合并账单"></a>合并账单</h3><p>广发银行（持有十张卡）：</p>
-<p>显示为1条信用记录，包含10张卡的消费记录，10张卡的账单日和还款日一致</p>
-<h3 id="不合并账单"><a href="#不合并账单" class="headerlink" title="不合并账单"></a>不合并账单</h3><p>中国银行（持有十张卡）：</p>
-<p>显示为10条信用记录，每条包含1张卡的消费记录，10张卡的账单日和还款日可以不一致</p>
-<h3 id="还款不需要每张卡分别还"><a href="#还款不需要每张卡分别还" class="headerlink" title="还款不需要每张卡分别还"></a>还款不需要每张卡分别还</h3><p>浦发银行（持有十张卡）：</p>
-<p>还款只需要还其中1张即可，还清了其中1张卡的账单，即还清所有卡的账单了。</p>
-<p>###还款需要每张卡分别还 </p>
-<p>农业银行（持有十张卡）：</p>
-<p>还款需要还每一张的信用卡，把每一张信用卡的账单都还清，才还清所有卡的账单。</p>
-<h2 id="报告的延迟性"><a href="#报告的延迟性" class="headerlink" title="报告的延迟性"></a>报告的延迟性</h2><ul>
-<li>如果某人申请了新的信用卡，或者办理了新的贷款，信报上并不会第一时间显示出查询记录、信用卡记录、贷款记录</li>
-<li>信用卡的已使用额度和账单并不是实时的，一般银行会每一个月或者每两个月上报数据，也就意味着个人征信报告的信用卡数据一般一到两个月更新一次。</li>
-<li>银行贷款和其他贷款机构的贷款记录一般会在1个星期甚至1个月以上的时间才会上报，并在信报上体现出来。</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1571,7 +1730,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1582,7 +1741,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>

@@ -277,6 +277,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2019/04/08/DataAnalysis/逐步判别法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yuanyi Wu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WYY's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/08/DataAnalysis/逐步判别法/" itemprop="url">逐步判别法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-08T14:20:37+08:00">
+                2019-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Regression-Methods/" itemprop="url" rel="index">
+                    <span itemprop="name">Regression Methods</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>​    逐步判别法，也叫逐步回归过程（stepwise regression procedure），是一种建立回归模型的方法。从候选变量集合中添加或移除（以逐步的方式）进入模型，直到没有理由在模型中添加或移除任何变量。</p>
+<h2 id="详细步骤"><a href="#详细步骤" class="headerlink" title="详细步骤"></a>详细步骤</h2><h3 id="首先"><a href="#首先" class="headerlink" title="首先"></a>首先</h3><p>​    设置逐步模型决定接受一个候选变量的显著性水平（significance level），称作Alpha-to-Enter显著性水平，记作𝜶<sub>E</sub>。设置从逐步模型中移除一个候选变量的显著性水平，称作Alpha-to-Remove显著性水平，记作𝜶<sub>R</sub>。</p>
+<p>​    许多软件包都将𝜶<sub>E</sub>和𝜶<sub>R</sub>设置为0.15，而不是一般的0.05。使得候选变量不至于太难进入模型或者很容易地从模型中被剔除。</p>
+<h3 id="步骤一"><a href="#步骤一" class="headerlink" title="步骤一"></a>步骤一</h3><ol>
+<li>拟合每一个单预测因子模型，即在x<sub>1</sub>上回归y，在x<sub>2</sub>上回归y，…，在x<sub>p-1</sub>上回归y。</li>
+<li>在那些t检验P值小于𝜶<sub>E</sub>=0.15的预测因子中，选择t检验P值最小的预测因子作为逐步模型中的第一个预测因子。</li>
+<li>如果没有任何预测因子的t检验的P值低于𝜶<sub>E</sub>=0.15，则结束。</li>
+</ol>
+<h3 id="步骤二"><a href="#步骤二" class="headerlink" title="步骤二"></a>步骤二</h3><ol>
+<li>假设x<sub>1</sub>具有最小的t检验的P值，且低于𝜶<sub>E</sub>=0.15，因此认为它是第一步产生的”最佳”单一预测因子。</li>
+<li>拟合每个包含预测因子x<sub>1</sub>的双预测因子模型，即在x<sub>1</sub>和x<sub>2</sub>上回归y，在x<sub>1</sub>和x<sub>3</sub>上回归y，…，在x<sub>1</sub>和x<sub>p-1</sub>上回归y。</li>
+<li>在这些t检验的P值低于𝜶<sub>E</sub>=0.15的预测因子中，选择t检验的P值最小的预测因子作为第二个预测因子加入模型。</li>
+<li>如果没有预测因子t检验的P值低于𝜶<sub>E</sub>=0.15，则结束。模型仅有第一步中获得的一个预测因子。</li>
+<li>否则，假设x<sub>2</sub>被认为是第二个”最佳”预测因子，因此将其加入模型。</li>
+<li>现在，由于x<sub>1</sub>是模型中的预测因子，回退观察逐步模型中加入预测因子x<sub>2</sub>是否在某种程度上影响了预测因子x<sub>1</sub>的显著性。检查𝜷<sub>1</sub>=0时，t检验的P值。如果P值变得不显著，即P值大于𝜶<sub>R</sub>=0.15，将x<sub>1</sub>从逐步模型中移除。</li>
+</ol>
+<h3 id="步骤三"><a href="#步骤三" class="headerlink" title="步骤三"></a>步骤三</h3><ol>
+<li>假设x<sub>1</sub>和x<sub>2</sub>入选了双预测因子模型，且未被剔除。</li>
+<li>拟合每个包含预测因子x<sub>1</sub>和x<sub>2</sub>的三预测因子模型，即在x<sub>1</sub>，x<sub>2</sub>和x<sub>3</sub>上回归y，在x<sub>1</sub>，x<sub>2</sub>和x<sub>4</sub>上回归y，…，在x<sub>1</sub>，x<sub>2</sub>和x<sub>p-1</sub>上回归y。</li>
+<li>在这些t检验的P值低于𝜶<sub>E</sub>=0.15的预测因子中，选择t检验的P值最小的预测因子作为第三个预测因子加入模型。</li>
+<li>如果没有预测因子t检验的P值低于𝜶<sub>E</sub>=0.15，则结束。模型仅有前两步中获得的两个预测因子。</li>
+<li>否则，假设x<sub>3</sub>被认为是第三个”最佳”预测因子，因此将其加入模型。</li>
+<li>现在，由于x<sub>1</sub>和x<sub>2</sub>是模型中的预测因子，回退观察逐步模型中加入预测因子x<sub>3</sub>是否在某种程度上影响了预测因子x<sub>1</sub>和x<sub>2</sub>的显著性。检查𝜷<sub>1</sub>=0或𝜷<sub>2</sub>=0时，t检验的P值。如果P值变得不显著，即P值大于𝜶<sub>R</sub>=0.15，将x<sub>1</sub>或x<sub>2</sub>从逐步模型中移除。</li>
+</ol>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p><a href="https://newonlinecourses.science.psu.edu/stat501/node/329/" target="_blank" rel="external">Stepwise Regression</a></p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
+<li>不保证最终模型在任何特定意义上是最佳的。（非最佳）</li>
+<li>该程序产生一个最终模型，但一般还有几个同样好的模型。（非唯一）</li>
+<li>逐步回归不考虑研究人员对预测因子的知识经验。也许将这些重要的预测因子加入模型是有必要的。</li>
+<li>不应该对变量入模的顺序进行过度解读。</li>
+<li>不应该得出这样的结论：所有预测y的重要的预测因子变量都被识别出，所有不重要的预测因子都被消除。这是两种在逐步回归过程中容易犯的错误。</li>
+<li>由于逐步回归过程中包含了很多𝜷<sub>k</sub>=0的t检验，因此有很大的概率，我们选中了一些不重要的预测因或删除了一些重要的预测因子。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2019/03/26/DataAnalysis/关系网络/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1468,219 +1642,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wu-yuanyi.github.io/2018/04/17/DataAnalysis/风控建模/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yuanyi Wu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WYY's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/17/DataAnalysis/风控建模/" itemprop="url">风控建模</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-17T16:32:16+08:00">
-                2018-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Data-Analysis/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Analysis</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="模型评估指标"><a href="#模型评估指标" class="headerlink" title="模型评估指标"></a>模型评估指标</h2><h3 id="混淆矩阵-Confusion-matrix"><a href="#混淆矩阵-Confusion-matrix" class="headerlink" title="混淆矩阵 Confusion matrix"></a>混淆矩阵 Confusion matrix</h3><table>
-<thead>
-<tr>
-<th></th>
-<th>预测1</th>
-<th>预测0</th>
-<th>合计</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>实际1</td>
-<td>TP(True Positive)</td>
-<td>FN(False Negative)</td>
-<td>Actual Positive</td>
-</tr>
-<tr>
-<td>实际0</td>
-<td>FP(False Positive)</td>
-<td>TN(True Negative)</td>
-<td>Actual Negative</td>
-</tr>
-<tr>
-<td>合计</td>
-<td>Predicted Positive</td>
-<td>Predicted Negative</td>
-<td>All</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>Recall(召回率), Sensitivity(敏感性): TP / (TP + FN)</li>
-<li>Precision(精确率): TP / (TP + FP)</li>
-<li>Specificity(特异性): TN / (TN + FP)</li>
-<li>Accuracy(准确率): (TP + TN) / (TP + FP + FN + TN)</li>
-<li>F值：F-measure = 2 <em> (Recall </em> Precision) / (Recall + Precision)<ul>
-<li>加权调和平均数，假设Precision和Recall同样重要</li>
-</ul>
-</li>
-</ul>
-<h3 id="ROC和AUC"><a href="#ROC和AUC" class="headerlink" title="ROC和AUC"></a>ROC和AUC</h3><p>ROC（Receiver Operating Characteristic）曲线和AUC（Area Under Curve）常被用来评价一个二值分类器（binary classifier）的优劣。</p>
-<h4 id="ROC"><a href="#ROC" class="headerlink" title="ROC"></a>ROC</h4><p>ROC曲线的横坐标为false positive rate（FPR），纵坐标为true positive rate（TPR）。</p>
-<p>FPR = 1- Specificity = FP / N = FP / (TN + FP)</p>
-<p>TPR = Recall = Sensitivity = TP / P = TP / (TP + FN)</p>
-<p><img src="/2018/04/17/DataAnalysis/风控建模/roc_curves.png" alt="roc_curve"></p>
-<ul>
-<li>(0,1)：FPR=0，TPR=1，即FP和FN都为0，所有分类都正确。</li>
-<li>(1,0)：FPR=1，TPR=0，即FP和FN都为1，所有分类都错误。</li>
-<li>(0,0)：FPR=0，TPR=0，即FP为0，FN为1，所有分类预测为负样本。</li>
-<li>(1,1)：FPR=1，TPR=1，即FP为1，FN为0，所有分类预测为正样本。</li>
-<li>y=x线上：采用随机分类的分类器。</li>
-<li>ROC曲线越接近左上角，该分类器性能越好。</li>
-</ul>
-<p>ROC曲线的优点：当测试集中的正负样本的分布变化的时候，ROC曲线能够保持不变。在实际的数据集中经常会出现类不平衡（class imbalance）现象，即负样本比正样本多很多（或者相反），而且测试数据中的正负样本的分布也可能随着时间变化。</p>
-<h4 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h4><p>AUC（Area Under Curve）被定义为ROC曲线下的面积。由于ROC曲线一般都处于y=x这条直线的上方，所以AUC的取值范围在0.5和1之间。</p>
-<blockquote>
-<p>The AUC value is equivalent to the probability that a randomly chosen positive example is ranked higher than a randomly chosen negative example.</p>
-</blockquote>
-<p>AUC值越大，当前分类算法越可能将正样本排在负样本之前，即能更好的分类。</p>
-<h3 id="Lift"><a href="#Lift" class="headerlink" title="Lift"></a>Lift</h3><p>Lift = [TP/(TP+FP)] / [(TP+FN)/(TP + FP + TN + FN)]</p>
-<p>用于衡量与不利用模型相比，模型预测能力的提升度。Lift越大，模型效果越好。</p>
-<p>在不使用模型时（baseline model），需要在整个样本中挑选，挑选的准确率是(TP+FN)/(TP + FP + TN + FN)。</p>
-<p>在使用模型时，，只在预测为positive的样例中挑选，挑选的准确率是TP/(TP+FP)。<img src="/2018/04/17/DataAnalysis/风控建模/lift.png" alt="lift"></p>
-<p>当阈值越大，越少的观测值会归为正例，但这部分越具有正例特征（以银行向客户推荐信用卡的例子来看，这一部分人群对推荐的反应最为活跃），所以在这个设置下，对应的lift值最大。当阈值越小，越多的观测值会归为正例，这时分类的效果就跟baseline model差不多了，相对应的lift值就接近于1。</p>
-<h3 id="Gain"><a href="#Gain" class="headerlink" title="Gain"></a>Gain</h3><p>增益图与提升图的区别在于纵坐标。它的纵坐标是TP/(TP+FP)。</p>
-<p>增益图是描述整体精准率的指标。按照模型预测出的概率从高到低排列，将每一个百分位数内的精准率指标标注在图形区域内，就形成了非累积的增益图。如果对每一个百分位及其之前的精准率求和，并将值标注在图形区域内，则形成累积的增益图。</p>
-<p><img src="/2018/04/17/DataAnalysis/风控建模/gain.png" alt="201800426gain"></p>
-<h3 id="K-S"><a href="#K-S" class="headerlink" title="K-S"></a>K-S</h3><p>正样本洛伦兹曲线记为f(x)，负样本洛伦兹曲线记为g(x)，K-S曲线实际上是f(x)与g(x)的差值曲线。K-S曲线的最高点（最大值）定义为KS值，KS值越大，模型分值的区分度越好，KS值为0代表是最没有区分度的随机模型。准确的来说，K-S是用来度量阳性与阴性分类区分程度的。</p>
-<p>K-S曲线的纵坐标是TPR与FPR。</p>
-<p><img src="/2018/04/17/DataAnalysis/风控建模/k-s.png" alt="20180426k-s"></p>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="http://alexkong.net/2013/06/introduction-to-auc-and-roc/" target="_blank" rel="external">ROC和AUC介绍以及如何计算AUC</a></p>
-<p><a href="https://www.jianshu.com/p/6ffa3df3ec86" target="_blank" rel="external">如何评估一个机器学习模型</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1730,7 +1691,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1741,7 +1702,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -1752,7 +1713,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
